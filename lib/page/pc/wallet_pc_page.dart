@@ -72,7 +72,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
 
   Widget _mainWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 50),
+      margin: EdgeInsets.only(top: 30),
       width: 1000,
       color: MyColors.white,
       child: Column(

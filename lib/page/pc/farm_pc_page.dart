@@ -118,7 +118,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
   Widget _mainWidget(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 50),
+      padding: EdgeInsets.only(top: 30),
       color: MyColors.white,
       child: Column(
         children: <Widget>[
