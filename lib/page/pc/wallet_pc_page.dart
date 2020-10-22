@@ -9,6 +9,7 @@ import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,12 +19,12 @@ import 'dart:js' as js;
 import 'package:url_launcher/url_launcher.dart';
 
 
-class AboutPcPage extends StatefulWidget {
+class WalletPcPage extends StatefulWidget {
   @override
-  _AboutPcPageState createState() => _AboutPcPageState();
+  _WalletPcPageState createState() => _WalletPcPageState();
 }
 
-class _AboutPcPageState extends State<AboutPcPage> {
+class _WalletPcPageState extends State<WalletPcPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
   bool tronFlag = false;
   Timer _timer;
@@ -33,7 +34,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
     super.initState();
     if (mounted) {
       setState(() {
-        CommonProvider.changeHomeIndex(3);
+        CommonProvider.changeHomeIndex(2);
       });
     }
     _reloadAccount();
@@ -58,64 +59,89 @@ class _AboutPcPageState extends State<AboutPcPage> {
         backgroundColor: MyColors.white,
         key: _scaffoldKey,
         appBar: _appBarWidget(context),
-        body: Column(
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(
-              child: _mainWidget(context),
-            ),
-            //FooterPage(),
+            _mainWidget(context),
           ],
         ),
       ),
     );
   }
 
+
   Widget _mainWidget(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 50),
+      width: 1000,
       color: MyColors.white,
-      padding: EdgeInsets.only(top: 50),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
         children: <Widget>[
-          _bizWidget(context),
+          Expanded(
+            child: _bodyWidget(context),
+          ),
         ],
       ),
     );
   }
 
-  Widget _bizWidget(BuildContext context) {
+  Widget _bodyWidget(BuildContext context) {
     return Container(
-      width: 1200,
-      margin: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-      child: Column(
-        children: [
+      child: ListView(
+        children: <Widget>[
+          _topWidget(context),
+          SizedBox(height: 10),
+        ],
+      ),
+    );
+  }
+
+  Widget _topWidget(BuildContext context) {
+    return Container(
+      width: 1000,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          gradient: LinearGradient(
+            colors: [MyColors.blue700, MyColors.blue500],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
           Container(
-            child: Text('Flash Finance111', style: GoogleFonts.lato(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black87),),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            child: Text('${S.of(context).aboutTips1}',
-                style: GoogleFonts.lato(fontSize: 17), maxLines: 1, overflow: TextOverflow.clip),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5),
-            child: Text('${S.of(context).aboutTips2}',
-                style: GoogleFonts.lato(fontSize: 17), maxLines: 1, overflow: TextOverflow.clip),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            child: Text('${S.of(context).aboutTips3}',
-                style: GoogleFonts.lato(fontSize: 16), maxLines: 1, overflow: TextOverflow.clip),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5),
-            child: Text('${S.of(context).aboutTips4}',
-                style: GoogleFonts.lato(fontSize: 16), maxLines: 1, overflow: TextOverflow.clip),
+              padding: EdgeInsets.only(top: 30, bottom: 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      'Flash  Wallet',
+                      style: GoogleFonts.lato(
+                        fontSize: 30,
+                        color: MyColors.white,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Text(
+                      '${S.of(context).aboutTips4}',
+                      style: GoogleFonts.lato(fontSize: 17, color: MyColors.white),
+                      maxLines: 1,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                ],
+              )
           ),
         ],
       ),
     );
   }
+
+
+
 
   Widget _appBarWidget(BuildContext context) {
     return AppBar(

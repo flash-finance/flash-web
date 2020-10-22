@@ -61,27 +61,83 @@ class _SwapPcPageState extends State<SwapPcPage> {
         backgroundColor: MyColors.white,
         key: _scaffoldKey,
         appBar: _appBarWidget(context),
-        body: Column(
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(
-              child: _mainWidget(context),
-            ),
-            //FooterPage(),
+            _mainWidget(context),
           ],
         ),
       ),
     );
   }
 
+
   Widget _mainWidget(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 50),
+      width: 1000,
       color: MyColors.white,
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: _bodyWidget(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _bodyWidget(BuildContext context) {
+    return Container(
+      child: ListView(
+        children: <Widget>[
+          _topWidget(context),
+          SizedBox(height: 10),
+          _bizWidget(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _topWidget(BuildContext context) {
+    return Container(
+      width: 1000,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          gradient: LinearGradient(
+            colors: [MyColors.blue700, MyColors.blue500],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _bizWidget(context),
+          Container(
+              padding: EdgeInsets.only(top: 30, bottom: 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      'Flash  Swap',
+                      style: GoogleFonts.lato(
+                        fontSize: 30,
+                        color: MyColors.white,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Text(
+                      '${S.of(context).aboutTips4}',
+                      style: GoogleFonts.lato(fontSize: 17, color: MyColors.white),
+                      maxLines: 1,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                ],
+              )
+          ),
         ],
       ),
     );
@@ -93,13 +149,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
         height: 500,
-        padding: EdgeInsets.only(left: 80, top: 50, right: 80, bottom: 50),
+        padding: EdgeInsets.only(left: 80, top: 30, right: 80, bottom: 50),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            _topWidget(context),
-            SizedBox(height: 60),
+            SizedBox(height: 30),
             _dataWidget(context),
             SizedBox(height: 80),
             _swapWidget(context),
@@ -109,7 +162,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
-  Widget _topWidget(BuildContext context) {
+  Widget _top1Widget(BuildContext context) {
     return Container(
       child: Text(
         'Flash  Swap',
@@ -517,7 +570,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   List<Widget> _actionWidget(BuildContext context) {
     List<Widget> _widgetList = [];
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
       _widgetList.add(_actionItemWidget(context, i));
     }
     _widgetList.add(SizedBox(width: LocalScreenUtil.getInstance().setWidth(50)));
@@ -541,12 +594,15 @@ class _SwapPcPageState extends State<SwapPcPage> {
       case 3:
         actionTitle = S.of(context).actionTitle3;
         break;
+      case 4:
+        actionTitle = S.of(context).actionTitle4;
+        break;
     }
     int langType = Provider.of<IndexProvider>(context).langType;
     return Container(
       color: MyColors.white,
       child: InkWell(
-        child: index != 3 && index != 4 ?
+        child: index != 4 && index != 5 ?
         Container(
             color: MyColors.white,
             child: Container(
@@ -564,7 +620,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 overflow: TextOverflow.ellipsis,
               ),
             ))
-            : index != 4 ?
+            : index != 5 ?
         Container(
           color: MyColors.white,
           child: Chip(
@@ -586,19 +642,19 @@ class _SwapPcPageState extends State<SwapPcPage> {
           child: Chip(
             elevation: 3,
             padding: EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
-            backgroundColor: MyColors.white,
+            backgroundColor: MyColors.blue500,
             label: Text(
               langType == 1 ? 'English' : '简体中文',
               style: GoogleFonts.lato(
                 letterSpacing: 0.5,
-                color: MyColors.grey700,
+                color: MyColors.white,
                 fontSize: 15,
               ),
             ),
           ),
         ),
         onTap: () async {
-          if (index != 3 && index != 4) {
+          if (index != 4 && index != 5) {
             CommonProvider.changeHomeIndex(index);
           }
           if (index == 0) {
@@ -606,10 +662,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
           } else if (index == 1) {
             Application.router.navigateTo(context, 'swap', transition: TransitionType.fadeIn);
           } else if (index == 2) {
+            Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
+          } else if (index == 3) {
             Application.router.navigateTo(context, 'about', transition: TransitionType.fadeIn);
-          } else if (index == 3 && account == '') {
+          } else if (index == 4 && account == '') {
             _showConnectWalletDialLog();
-          } else if (index == 4) {
+          } else if (index == 5) {
             _showLangTypeDialLog();
           }
         },

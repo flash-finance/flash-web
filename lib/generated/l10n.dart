@@ -53,21 +53,31 @@ class S {
     );
   }
 
-  /// `About`
+  /// `Wallet`
   String get actionTitle2 {
     return Intl.message(
-      'About',
+      'Wallet',
       name: 'actionTitle2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Connect Wallet`
+  /// `About`
   String get actionTitle3 {
     return Intl.message(
-      'Connect Wallet',
+      'About',
       name: 'actionTitle3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect Wallet`
+  String get actionTitle4 {
+    return Intl.message(
+      'Connect Wallet',
+      name: 'actionTitle4',
       desc: '',
       args: [],
     );
@@ -183,20 +193,20 @@ class S {
     );
   }
 
-  /// `mining:  docking with the platform of SUN, simple operation, no handling fees`
+  /// `mining:  directly to the platform of SUN,  simple operation,  no handling fees`
   String get aboutTips3 {
     return Intl.message(
-      'mining:  docking with the platform of SUN, simple operation, no handling fees',
+      'mining:  directly to the platform of SUN,  simple operation,  no handling fees',
       name: 'aboutTips3',
       desc: '',
       args: [],
     );
   }
 
-  /// `trading:  coming soon`
+  /// `trading:  directly to the platform of JustSwap,  simple operation,  0.1% handling fees`
   String get aboutTips4 {
     return Intl.message(
-      'trading:  coming soon',
+      'trading:  directly to the platform of JustSwap,  simple operation,  0.1% handling fees',
       name: 'aboutTips4',
       desc: '',
       args: [],

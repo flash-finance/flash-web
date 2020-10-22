@@ -838,7 +838,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
             ),
             ListTile(
               title:  Text(
-                '${S.of(context).actionTitle2}',
+                '${S.of(context).actionTitle3}',
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
                   color: _homeIndex == 2 ? Colors.black : Colors.grey[700],
@@ -859,7 +859,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
             ),
             ListTile(
               title: Text(
-                account == '' ? '${S.of(context).actionTitle3}' : account.substring(0, 4) + '...' + account.substring(account.length - 4, account.length),
+                account == '' ? '${S.of(context).actionTitle4}' : account.substring(0, 4) + '...' + account.substring(account.length - 4, account.length),
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
                   color: Colors.grey[700],

@@ -118,17 +118,63 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
   Widget _mainWidget(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 0, top: 0, right: 0),
+      padding: EdgeInsets.only(top: 50),
       color: MyColors.white,
       child: Column(
         children: <Widget>[
           Expanded(
             child: Column(
               children: <Widget>[
+                _topWidget(context),
                 _bodyWidget(context),
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+
+  Widget _topWidget(BuildContext context) {
+    return Container(
+      width: 1000,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          gradient: LinearGradient(
+            colors: [MyColors.blue700, MyColors.blue500],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(top: 30, bottom: 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      'Flash  Farm',
+                      style: GoogleFonts.lato(
+                        fontSize: 30,
+                        color: MyColors.white,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Text(
+                      '${S.of(context).aboutTips3}',
+                      style: GoogleFonts.lato(fontSize: 17, color: MyColors.white),
+                      maxLines: 1,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                ],
+              )
+            ),
         ],
       ),
     );
@@ -152,7 +198,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
     return Container(
       child: Column(
         children: <Widget>[
-          SizedBox(height: index == 0 ? 50 : 0),
+          SizedBox(height: index == 0 ? 10 : 0),
           !_layoutFlag ? _oneWidget(context, item, index) : (_layoutIndex == index ? _twoWidget(context, item, index) : _oneWidget(context, item, index)),
           SizedBox(height: 10),
           SizedBox(height: index == _farmRows.length - 1 ? 50 : 0),
@@ -390,7 +436,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
               child: Chip(
                 elevation: 2,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                padding: EdgeInsets.only(left: 6, top: 15, bottom: 15, right: 6),
+                padding: EdgeInsets.only(left: 5, top: 15, bottom: 15, right: 5),
                 backgroundColor: MyColors.blue500,
                 label: Icon(
                   !_layoutFlag ? CupertinoIcons.down_arrow : (_layoutIndex == index ? CupertinoIcons.up_arrow : CupertinoIcons.down_arrow),
@@ -910,7 +956,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
   List<Widget> _actionWidget(BuildContext context) {
     List<Widget> _widgetList = [];
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
       _widgetList.add(_actionItemWidget(context, i));
     }
     _widgetList.add(SizedBox(width: LocalScreenUtil.getInstance().setWidth(50)));
@@ -934,12 +980,15 @@ class _FarmPcPageState extends State<FarmPcPage> {
       case 3:
         actionTitle = S.of(context).actionTitle3;
         break;
+      case 4:
+        actionTitle = S.of(context).actionTitle4;
+        break;
     }
     int langType = Provider.of<IndexProvider>(context).langType;
     return Container(
       color: MyColors.white,
       child: InkWell(
-        child: index != 3 && index != 4 ?
+        child: index != 4 && index != 5 ?
         Container(
             color: MyColors.white,
             child: Container(
@@ -957,7 +1006,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 overflow: TextOverflow.ellipsis,
               ),
             ))
-            : index != 4 ?
+            : index != 5 ?
         Container(
           color: MyColors.white,
           child: Chip(
@@ -979,19 +1028,19 @@ class _FarmPcPageState extends State<FarmPcPage> {
           child: Chip(
             elevation: 3,
             padding: EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
-            backgroundColor: MyColors.white,
+            backgroundColor: MyColors.blue500,
             label: Text(
               langType == 1 ? 'English' : '简体中文',
               style: GoogleFonts.lato(
                 letterSpacing: 0.5,
-                color: MyColors.grey700,
+                color: MyColors.white,
                 fontSize: 15,
               ),
             ),
           ),
         ),
         onTap: () async {
-          if (index != 3 && index != 4) {
+          if (index != 4 && index != 5) {
             CommonProvider.changeHomeIndex(index);
           }
           if (index == 0) {
@@ -999,39 +1048,15 @@ class _FarmPcPageState extends State<FarmPcPage> {
           } else if (index == 1) {
             Application.router.navigateTo(context, 'swap', transition: TransitionType.fadeIn);
           } else if (index == 2) {
+            Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
+          } else if (index == 3) {
             Application.router.navigateTo(context, 'about', transition: TransitionType.fadeIn);
-          } else if (index == 3 && account == '') {
+          } else if (index == 4 && account == '') {
             _showConnectWalletDialLog();
-          } else if (index == 4) {
+          } else if (index == 5) {
             _showLangTypeDialLog();
           }
         },
-      ),
-    );
-  }
-
-  _shoTipsLog(String msg) {
-    showDialog(
-      context: context,
-      child: AlertDialog(
-        elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              child: Text(
-                '$msg',
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 16,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            )
-          ],
-        ),
       ),
     );
   }
