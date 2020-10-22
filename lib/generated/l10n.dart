@@ -173,6 +173,16 @@ class S {
     );
   }
 
+  /// `digital wallet:  security, convenience`
+  String get walletTips1 {
+    return Intl.message(
+      'digital wallet:  security, convenience',
+      name: 'walletTips1',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc.`
   String get aboutTips1 {
     return Intl.message(

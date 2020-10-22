@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmReward" : MessageLookupByLibrary.simpleMessage("Reward"),
     "farmTips1" : MessageLookupByLibrary.simpleMessage("please enter the correct value"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
-    "swapTips1" : MessageLookupByLibrary.simpleMessage("coming soon")
+    "swapTips1" : MessageLookupByLibrary.simpleMessage("coming soon"),
+    "walletTips1" : MessageLookupByLibrary.simpleMessage("digital wallet:  security, convenience")
   };
 }

@@ -58,12 +58,10 @@ class _AboutPcPageState extends State<AboutPcPage> {
         backgroundColor: MyColors.white,
         key: _scaffoldKey,
         appBar: _appBarWidget(context),
-        body: Column(
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(
-              child: _mainWidget(context),
-            ),
-            //FooterPage(),
+            _mainWidget(context),
           ],
         ),
       ),
@@ -72,25 +70,100 @@ class _AboutPcPageState extends State<AboutPcPage> {
 
   Widget _mainWidget(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 50),
+      width: 1000,
       color: MyColors.white,
-      padding: EdgeInsets.only(top: 50),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
         children: <Widget>[
+          Expanded(
+            child: _bodyWidget(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _bodyWidget(BuildContext context) {
+    return Container(
+      child: ListView(
+        children: <Widget>[
+          _topWidget(context),
+          SizedBox(height: 10),
           _bizWidget(context),
         ],
       ),
     );
   }
 
+  Widget _topWidget(BuildContext context) {
+    return Container(
+      width: 1000,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          gradient: LinearGradient(
+            colors: [MyColors.blue700, MyColors.blue500],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+              padding: EdgeInsets.only(top: 45, bottom: 45),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      'Flash  Finance',
+                      style: GoogleFonts.lato(
+                        fontSize: 30,
+                        color: MyColors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _bizWidget(BuildContext context) {
+    return Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      child: Container(
+        padding: EdgeInsets.only(left: 80, top: 80, right: 80, bottom: 80),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            gradient: LinearGradient(
+              colors: [MyColors.blue700, MyColors.blue500],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            )),
+        alignment: Alignment.center,
+        child: Column(
+          children: <Widget>[
+            Container(
+              child: Text('团队致力于产品的快速开发。目前，不私募，不发币', style: GoogleFonts.lato(fontSize: 18, color: Colors.white)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
+/*  Widget _bizWidget(BuildContext context) {
     return Container(
       width: 1200,
       margin: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
       child: Column(
         children: [
           Container(
-            child: Text('Flash Finance111', style: GoogleFonts.lato(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black87),),
+            child: Text('Flash Finance', style: GoogleFonts.lato(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black87),),
           ),
           Container(
             margin: EdgeInsets.only(top: 20),
@@ -115,7 +188,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
         ],
       ),
     );
-  }
+  }*/
 
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
