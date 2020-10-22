@@ -148,8 +148,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        height: 500,
-        padding: EdgeInsets.only(left: 80, top: 30, right: 80, bottom: 50),
+        padding: EdgeInsets.only(left: 80, top: 40, right: 80, bottom: 60),
         child: Column(
           children: <Widget>[
             SizedBox(height: 30),
@@ -192,28 +191,40 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     '发送',
                     style: GoogleFonts.lato(
                       fontSize: 16,
-                      color: MyColors.grey700,
+                      color: MyColors.black,
                     ),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(right: 2),
-                  child: Text(
-                    '余额:  17632.453',
-                    style: GoogleFonts.lato(
-                      fontSize: 16,
-                      color: MyColors.grey700,
+                    child: RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '余额:  ',
+                            style: GoogleFonts.lato(
+                              fontSize: 16,
+                              color: MyColors.grey700,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '17632.453',
+                            style: GoogleFonts.lato(
+                              fontSize: 16,
+                              color: MyColors.black,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
                 ),
               ],
             ),
           ),
           SizedBox(height: 8),
           Container(
-            padding: EdgeInsets.only(top: 2, bottom: 2),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.grey[100],
               border: Border.all(width: 1.0, color: Colors.black12),
               borderRadius: BorderRadius.circular(6),
             ),
@@ -221,44 +232,46 @@ class _SwapPcPageState extends State<SwapPcPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {},
-                  child: Row(
-                    children: <Widget>[
-                      SizedBox(width: 15),
-                      Container(
-                        child: ClipOval(
-                          child: Image.asset(
-                            'images/usdt.png',
-                            width: 32,
-                            height: 32,
-                            fit: BoxFit.cover,
+                  child: Container(
+                    padding: EdgeInsets.only(top: 4, bottom: 4),
+                    child: Container(
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(width: 15),
+                          Container(
+                            child: ClipOval(
+                              child: Image.asset(
+                                'images/usdt.png',
+                                width: 32,
+                                height: 32,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Container(
-                        width: 45,
-                        child: Text(
-                          'USDT',
-                          style: GoogleFonts.lato(
-                            fontSize: 16,
-                            color: MyColors.grey700,
+                          SizedBox(width: 10),
+                          Container(
+                            width: 45,
+                            child: Text(
+                              'USDT',
+                              style: GoogleFonts.lato(
+                                fontSize: 16,
+                                color: MyColors.grey700,
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(width: 5),
+                          Container(
+                            child: Icon(Icons.arrow_drop_down, size: 28, color: Colors.black54),
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 5),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border(right: BorderSide(width: 0.8, color: Colors.black12)),
-                        ),
-                        child: Icon(Icons.arrow_drop_down, size: 28, color: Colors.black54),
-                      ),
-                      SizedBox(width: 15),
-                    ],
+                    ),
                   ),
                 ),
                 Container(
-                    width: 170,
-                    padding: EdgeInsets.only(left: 0),
+                    width: 185,
+                    padding: EdgeInsets.only(left: 15, top: 2, bottom: 2),
+                    color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
                       enableInteractiveSelection: false,
@@ -279,17 +292,21 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       //inputFormatters: [DoubleFormat4Trade()],
                     )
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    width: 40,
-                    alignment: Alignment.centerRight,
-                    child: Text('MAX',
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        )),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: 40,
+                      padding: EdgeInsets.only(top: 2, bottom: 2),
+                      alignment: Alignment.center,
+                      child: Text(
+                          'MAX',
+                          style: TextStyle(
+                            color: Colors.grey[700],
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          )),
+                    ),
                   ),
                 ),
               ],
@@ -339,9 +356,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
       color: MyColors.white,
       alignment: Alignment.topCenter,
       child: Icon(
-        Icons.arrow_forward_sharp,
-        size: 28,
-        color: Colors.grey[700],
+        Icons.compare_arrows,
+        size: 30,
+        color: Colors.grey[800],
       ),
     );
   }
@@ -361,17 +378,30 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     '接收',
                     style: GoogleFonts.lato(
                       fontSize: 16,
-                      color: MyColors.grey700,
+                      color: MyColors.black,
                     ),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(right: 2),
-                  child: Text(
-                    '余额:  6548.453',
-                    style: GoogleFonts.lato(
-                      fontSize: 16,
-                      color: MyColors.grey700,
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '余额:  ',
+                          style: GoogleFonts.lato(
+                            fontSize: 16,
+                            color: MyColors.grey700,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '6548.453',
+                          style: GoogleFonts.lato(
+                            fontSize: 16,
+                            color: MyColors.black,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -380,9 +410,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
           ),
           SizedBox(height: 8),
           Container(
-            padding: EdgeInsets.only(top: 2, bottom: 2),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.grey[100],
               border: Border.all(width: 1.0, color: Colors.black12),
               borderRadius: BorderRadius.circular(6),
             ),
@@ -390,44 +419,46 @@ class _SwapPcPageState extends State<SwapPcPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {},
-                  child: Row(
-                    children: <Widget>[
-                      SizedBox(width: 15),
-                      Container(
-                        child: ClipOval(
-                          child: Image.asset(
-                            'images/trx.png',
-                            width: 32,
-                            height: 32,
-                            fit: BoxFit.cover,
+                  child: Container(
+                    padding: EdgeInsets.only(top: 4, bottom: 4),
+                    child: Container(
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(width: 15),
+                          Container(
+                            child: ClipOval(
+                              child: Image.asset(
+                                'images/trx.png',
+                                width: 32,
+                                height: 32,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Container(
-                        width: 45,
-                        child: Text(
-                          'TRX',
-                          style: GoogleFonts.lato(
-                            fontSize: 16,
-                            color: MyColors.grey700,
+                          SizedBox(width: 10),
+                          Container(
+                            width: 45,
+                            child: Text(
+                              'TRX',
+                              style: GoogleFonts.lato(
+                                fontSize: 16,
+                                color: MyColors.grey700,
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(width: 5),
+                          Container(
+                            child: Icon(Icons.arrow_drop_down, size: 28, color: Colors.black54),
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 5),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border(right: BorderSide(width: 0.8, color: Colors.black12)),
-                        ),
-                        child: Icon(Icons.arrow_drop_down, size: 28, color: Colors.black54),
-                      ),
-                      SizedBox(width: 15),
-                    ],
+                    ),
                   ),
                 ),
                 Container(
-                    width: 200,
-                    padding: EdgeInsets.only(left: 0),
+                    width: 185,
+                    padding: EdgeInsets.only(left: 15, top: 2, bottom: 2),
+                    color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
                       enableInteractiveSelection: false,
@@ -448,6 +479,23 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       //inputFormatters: [DoubleFormat4Trade()],
                     )
                 ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: 40,
+                      padding: EdgeInsets.only(top: 2, bottom: 2),
+                      alignment: Alignment.center,
+                      child: Text(
+                          'MAX',
+                          style: TextStyle(
+                            color: Colors.grey[700],
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          )),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -463,8 +511,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     '986471707.4153  TRX',
                     style: GoogleFonts.lato(
                       fontSize: 13,
-                      color: MyColors.grey700,
-                      //color: MyColors.white,
+                      //color: MyColors.grey700,
+                      color: MyColors.white,
                       fontStyle: FontStyle.italic,
                     ),
                   ),
@@ -478,8 +526,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     '25116757.4774  USDT',
                     style: GoogleFonts.lato(
                       fontSize: 13,
-                      color: MyColors.grey700,
-                      //color: MyColors.white,
+                      //color: MyColors.grey700,
+                      color: MyColors.white,
                       fontStyle: FontStyle.italic,
                     ),
                   ),
@@ -498,7 +546,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
       },
       child: Container(
         child: Chip(
-          padding: EdgeInsets.only(left: 80, top: 15, right: 80, bottom: 15),
+          padding: EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15),
           backgroundColor:  MyColors.blue500,
           label: Container(
             child: Text(
