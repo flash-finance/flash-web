@@ -162,17 +162,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
-  Widget _top1Widget(BuildContext context) {
-    return Container(
-      child: Text(
-        'Flash  Swap',
-        style: GoogleFonts.lato(
-            fontSize: 30, color: Colors.black87,
-            //fontStyle: FontStyle.italic,
-        ),
-      ),
-    );
-  }
 
   Widget _dataWidget(BuildContext context) {
     return Container(
@@ -612,7 +601,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 '$actionTitle',
                 style: GoogleFonts.lato(
                   fontSize: 16.0,
-                  letterSpacing: 1,
+                  letterSpacing: 0.5,
                   color: _homeIndex == index ? MyColors.black : MyColors.grey700,
                   fontWeight: FontWeight.w500,
                 ),

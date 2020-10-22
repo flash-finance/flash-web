@@ -197,7 +197,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
                 '$actionTitle',
                 style: GoogleFonts.lato(
                   fontSize: 16.0,
-                  letterSpacing: 1,
+                  letterSpacing: 0.5,
                   color: _homeIndex == index ? MyColors.black : MyColors.grey700,
                   fontWeight: FontWeight.w500,
                 ),
