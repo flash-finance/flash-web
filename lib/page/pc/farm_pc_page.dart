@@ -123,7 +123,11 @@ class _FarmPcPageState extends State<FarmPcPage> {
       child: Column(
         children: <Widget>[
           Expanded(
-            child: _bodyWidget(context),
+            child: Column(
+              children: <Widget>[
+                _bodyWidget(context),
+              ],
+            ),
           ),
         ],
       ),
@@ -870,7 +874,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
-      toolbarHeight: 60,
+      toolbarHeight: 80,
       titleSpacing: 0.0,
       leading: _leadingWidget(context),
       title: Container(

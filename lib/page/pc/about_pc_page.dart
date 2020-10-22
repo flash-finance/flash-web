@@ -119,7 +119,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
 
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
-      toolbarHeight: 60,
+      toolbarHeight: 80,
       titleSpacing: 0.0,
       leading: _leadingWidget(context),
       title: Container(
