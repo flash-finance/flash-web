@@ -203,20 +203,20 @@ class S {
     );
   }
 
-  /// `mining:  directly to the platform of SUN,  simple operation,  no handling fees`
+  /// `mining:  directly to the platform of SUN,  no handling fees`
   String get aboutTips3 {
     return Intl.message(
-      'mining:  directly to the platform of SUN,  simple operation,  no handling fees',
+      'mining:  directly to the platform of SUN,  no handling fees',
       name: 'aboutTips3',
       desc: '',
       args: [],
     );
   }
 
-  /// `trading:  directly to the platform of JustSwap,  simple operation,  0.1% handling fees`
+  /// `trading:  directly to the platform of JustSwap,  0.1% handling fees`
   String get aboutTips4 {
     return Intl.message(
-      'trading:  directly to the platform of JustSwap,  simple operation,  0.1% handling fees',
+      'trading:  directly to the platform of JustSwap,  0.1% handling fees',
       name: 'aboutTips4',
       desc: '',
       args: [],
