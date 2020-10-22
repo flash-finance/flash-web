@@ -298,39 +298,34 @@ class _FarmWapPageState extends State<FarmWapPage> {
               ),
             ),
             SizedBox(width: ScreenUtil().setWidth(50)),
-            Container(
-              child: Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6.0))),
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      _layoutIndex = index;
-                      if (type == 1) {
-                        _layoutFlag = true;
-                      } else {
-                        _layoutFlag = false;
-                      }
-                      _toDepositAmount = '';
-                      _toWithdrawAmount = '';
-                      _toHarvestAmount = '';
 
-                      _toDepositValue = '';
-                      _toWithdrawValue = '';
-                      _toHarvestValue = '';
-                    });
-                  },
-                  child: Container(
-                    width: ScreenUtil().setWidth(60),
-                    height: ScreenUtil().setWidth(60),
-                    color: MyColors.blue500,
-                    alignment: Alignment.center,
-                    child: Icon(
-                      !_layoutFlag ? CupertinoIcons.down_arrow : (_layoutIndex == index ? CupertinoIcons.up_arrow : CupertinoIcons.down_arrow),
-                      size: ScreenUtil().setSp(30),
-                      color: MyColors.white,
-                    ),
-                  ),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _layoutIndex = index;
+                  if (type == 1) {
+                    _layoutFlag = true;
+                  } else {
+                    _layoutFlag = false;
+                  }
+                  _toDepositAmount = '';
+                  _toWithdrawAmount = '';
+                  _toHarvestAmount = '';
+
+                  _toDepositValue = '';
+                  _toWithdrawValue = '';
+                  _toHarvestValue = '';
+                });
+              },
+              child: Chip(
+                elevation: 2,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                padding: EdgeInsets.only(left: ScreenUtil().setWidth(6), top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(6)),
+                backgroundColor: MyColors.blue500,
+                label: Icon(
+                  !_layoutFlag ? CupertinoIcons.down_arrow : (_layoutIndex == index ? CupertinoIcons.up_arrow : CupertinoIcons.down_arrow),
+                  size: ScreenUtil().setSp(32),
+                  color: MyColors.white,
                 ),
               ),
             ),

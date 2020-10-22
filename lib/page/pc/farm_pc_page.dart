@@ -365,39 +365,33 @@ class _FarmPcPageState extends State<FarmPcPage> {
               ),
             ),
             SizedBox(width: 50),
-            Container(
-              child: Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      _layoutIndex = index;
-                      if (type == 1) {
-                        _layoutFlag = true;
-                      } else {
-                        _layoutFlag = false;
-                      }
-                      _toDepositAmount = '';
-                      _toWithdrawAmount = '';
-                      _toHarvestAmount = '';
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _layoutIndex = index;
+                  if (type == 1) {
+                    _layoutFlag = true;
+                  } else {
+                    _layoutFlag = false;
+                  }
+                  _toDepositAmount = '';
+                  _toWithdrawAmount = '';
+                  _toHarvestAmount = '';
 
-                      _toDepositValue = '';
-                      _toWithdrawValue = '';
-                      _toHarvestValue = '';
-                    });
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    color: MyColors.blue500,
-                    alignment: Alignment.center,
-                    child: Icon(
-                      !_layoutFlag ? CupertinoIcons.down_arrow : (_layoutIndex == index ? CupertinoIcons.up_arrow : CupertinoIcons.down_arrow),
-                      size: 23,
-                      color: MyColors.white,
-                    ),
-                  ),
+                  _toDepositValue = '';
+                  _toWithdrawValue = '';
+                  _toHarvestValue = '';
+                });
+              },
+              child: Chip(
+                elevation: 2,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                padding: EdgeInsets.only(left: 6, top: 15, bottom: 15, right: 6),
+                backgroundColor: MyColors.blue500,
+                label: Icon(
+                  !_layoutFlag ? CupertinoIcons.down_arrow : (_layoutIndex == index ? CupertinoIcons.up_arrow : CupertinoIcons.down_arrow),
+                  size: 23,
+                  color: MyColors.white,
                 ),
               ),
             ),
