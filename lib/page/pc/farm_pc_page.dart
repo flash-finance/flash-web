@@ -915,20 +915,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
             ),
           ),
         ),
-        /*child: Chip(
-          elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          padding: EdgeInsets.only(left: 5, top: 15, bottom: 15, right: 5),
-          //backgroundColor: MyColors.white,
-          label: Text(
-            '$rate%',
-            style: GoogleFonts.lato(
-              letterSpacing: 0.5,
-              color: Colors.blue[800],
-              fontSize: 14,
-            ),
-          ),
-        ),*/
       ),
     );
   }

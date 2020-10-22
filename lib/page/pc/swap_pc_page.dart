@@ -564,11 +564,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
 
-
-
-
-
-
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
       toolbarHeight: 80,
