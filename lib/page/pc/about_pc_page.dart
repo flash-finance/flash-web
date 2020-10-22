@@ -136,7 +136,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
         padding: EdgeInsets.only(left: 80, top: 80, right: 80, bottom: 80),
-        color: MyColors.white,
+        //color: MyColors.white,
         /*decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20.0)),
             gradient: LinearGradient(

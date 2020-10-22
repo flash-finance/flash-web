@@ -303,7 +303,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           'MAX',
                           style: TextStyle(
                             color: Colors.grey[700],
-                            fontSize: 16,
+                            fontSize: 15,
                             fontWeight: FontWeight.w500,
                           )),
                     ),
@@ -490,7 +490,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           'MAX',
                           style: TextStyle(
                             color: Colors.grey[700],
-                            fontSize: 16,
+                            fontSize: 15,
                             fontWeight: FontWeight.w500,
                           )),
                     ),
