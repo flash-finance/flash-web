@@ -147,18 +147,19 @@ class _WalletPcPageState extends State<WalletPcPage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
         padding: EdgeInsets.only(left: 80, top: 80, right: 80, bottom: 80),
-        decoration: BoxDecoration(
+        color: MyColors.white,
+        /*decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20.0)),
             gradient: LinearGradient(
               colors: [MyColors.blue700, MyColors.blue500],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-            )),
+            )),*/
         alignment: Alignment.center,
         child: Column(
           children: <Widget>[
             Container(
-              child: Text('Coming  Soon', style: GoogleFonts.lato(fontSize: 30, color: Colors.white)),
+              child: Text('Coming  Soon', style: GoogleFonts.lato(fontSize: 30, color: Colors.black87)),
             ),
           ],
         ),
