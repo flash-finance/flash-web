@@ -40,6 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmTips1" : MessageLookupByLibrary.simpleMessage("please enter the correct value"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
     "swapTips1" : MessageLookupByLibrary.simpleMessage("coming soon"),
-    "walletTips1" : MessageLookupByLibrary.simpleMessage("digital wallet:  security, convenience")
+    "walletTips1" : MessageLookupByLibrary.simpleMessage("digital wallet:  open source, security, convenience")
   };
 }

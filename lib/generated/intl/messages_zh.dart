@@ -40,6 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmTips1" : MessageLookupByLibrary.simpleMessage("请输入正确数值"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("赎回"),
     "swapTips1" : MessageLookupByLibrary.simpleMessage("coming soon"),
-    "walletTips1" : MessageLookupByLibrary.simpleMessage("数字钱包:  安全、易用")
+    "walletTips1" : MessageLookupByLibrary.simpleMessage("数字钱包:  开源、安全、易用")
   };
 }

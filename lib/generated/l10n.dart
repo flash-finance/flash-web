@@ -173,10 +173,10 @@ class S {
     );
   }
 
-  /// `digital wallet:  security, convenience`
+  /// `digital wallet:  open source, security, convenience`
   String get walletTips1 {
     return Intl.message(
-      'digital wallet:  security, convenience',
+      'digital wallet:  open source, security, convenience',
       name: 'walletTips1',
       desc: '',
       args: [],
