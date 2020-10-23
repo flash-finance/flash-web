@@ -1,3 +1,4 @@
+import 'package:flash_web/page/pc/swap_pc_page.dart';
 import 'package:flash_web/page/wap/farm_wap_page.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,7 +9,6 @@ import 'package:provider/provider.dart';
 
 import 'common/platform.dart';
 import 'generated/l10n.dart';
-import 'page/pc/farm_pc_page.dart';
 import 'router/application.dart';
 import 'router/router.dart';
 
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       title: 'Flash Finance',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Application.router.generator,
-      home: isNotMobile ? FarmPcPage() : FarmWapPage(),
+      home: isNotMobile ? SwapPcPage() : FarmWapPage(),
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
