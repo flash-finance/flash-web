@@ -147,14 +147,6 @@ class _WalletPcPageState extends State<WalletPcPage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
         padding: EdgeInsets.only(left: 80, top: 80, right: 80, bottom: 80),
-        //color: MyColors.white,
-        /*decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20.0)),
-            gradient: LinearGradient(
-              colors: [MyColors.blue700, MyColors.blue500],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            )),*/
         alignment: Alignment.center,
         child: Column(
           children: <Widget>[
@@ -294,9 +286,9 @@ class _WalletPcPageState extends State<WalletPcPage> {
             CommonProvider.changeHomeIndex(index);
           }
           if (index == 0) {
-            Application.router.navigateTo(context, 'farm', transition: TransitionType.fadeIn);
-          } else if (index == 1) {
             Application.router.navigateTo(context, 'swap', transition: TransitionType.fadeIn);
+          } else if (index == 1) {
+            Application.router.navigateTo(context, 'farm', transition: TransitionType.fadeIn);
           } else if (index == 2) {
             Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
           } else if (index == 3) {

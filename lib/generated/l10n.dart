@@ -33,20 +33,20 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Farm`
+  /// `Swap`
   String get actionTitle0 {
     return Intl.message(
-      'Farm',
+      'Swap',
       name: 'actionTitle0',
       desc: '',
       args: [],
     );
   }
 
-  /// `Swap`
+  /// `Farm`
   String get actionTitle1 {
     return Intl.message(
-      'Swap',
+      'Farm',
       name: 'actionTitle1',
       desc: '',
       args: [],

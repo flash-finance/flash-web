@@ -35,7 +35,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     super.initState();
     if (mounted) {
       setState(() {
-        CommonProvider.changeHomeIndex(1);
+        CommonProvider.changeHomeIndex(0);
       });
     }
     _reloadAccount();
@@ -690,9 +690,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
             CommonProvider.changeHomeIndex(index);
           }
           if (index == 0) {
-            Application.router.navigateTo(context, 'farm', transition: TransitionType.fadeIn);
-          } else if (index == 1) {
             Application.router.navigateTo(context, 'swap', transition: TransitionType.fadeIn);
+          } else if (index == 1) {
+            Application.router.navigateTo(context, 'farm', transition: TransitionType.fadeIn);
           } else if (index == 2) {
             Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
           } else if (index == 3) {

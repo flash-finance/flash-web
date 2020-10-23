@@ -54,7 +54,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
     super.initState();
     if (mounted) {
       setState(() {
-        CommonProvider.changeHomeIndex(0);
+        CommonProvider.changeHomeIndex(1);
       });
     }
     _getMineInfo();
@@ -1045,9 +1045,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
             CommonProvider.changeHomeIndex(index);
           }
           if (index == 0) {
-            Application.router.navigateTo(context, 'farm', transition: TransitionType.fadeIn);
-          } else if (index == 1) {
             Application.router.navigateTo(context, 'swap', transition: TransitionType.fadeIn);
+          } else if (index == 1) {
+            Application.router.navigateTo(context, 'farm', transition: TransitionType.fadeIn);
           } else if (index == 2) {
             Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
           } else if (index == 3) {
