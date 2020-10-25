@@ -1050,7 +1050,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               child: Container(
                 alignment: Alignment.centerRight,
                 child: type == 1 ? Text(
-                  '${item.swapTokenPrice1.toStringAsFixed(3)}',
+                  '${item.swapTokenBalance}',
                   style: TextStyle(
                     color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
                     fontSize: 14,
@@ -1058,7 +1058,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ) : Text(
-                  '${item.swapTokenPrice1.toStringAsFixed(3)}',
+                  '${item.swapTokenBalance}',
                   style: TextStyle(
                     color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
                     fontSize: 14,
