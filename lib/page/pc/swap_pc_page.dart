@@ -245,7 +245,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    _showSwapTokenDialLog(1);
+                    _showSwapTokenDialLog(context, 1);
                   },
                   child: Container(
                     padding: EdgeInsets.only(top: 4, bottom: 4),
@@ -396,6 +396,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
+                    if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType == 1 || _swapRows[_rightSelectIndex].swapTokenType == 1)) {
+                      _showPoolTokenOneDialLog(context);
+                    } else if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType != 1 &&  _swapRows[_rightSelectIndex].swapTokenType != 1)) {
+                      _showPoolTokenTwoDialLog(context);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -507,7 +512,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    _showSwapTokenDialLog(2);
+                    _showSwapTokenDialLog(context, 2);
                   },
                   child: Container(
                     padding: EdgeInsets.only(top: 4, bottom: 4),
@@ -706,7 +711,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
-
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
       toolbarHeight: 80,
@@ -840,7 +844,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
           } else if (index == 3) {
             Application.router.navigateTo(context, 'about', transition: TransitionType.fadeIn);
           } else if (index == 4 && account == '') {
-            _showConnectWalletDialLog();
+            _showConnectWalletDialLog(context);
           } else if (index == 5) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
           }
@@ -849,7 +853,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
-  _showConnectWalletDialLog() {
+  _showConnectWalletDialLog(BuildContext context) {
     showDialog(
       context: context,
       child: AlertDialog(
@@ -861,8 +865,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
           width: 300,
           height: 150,
           decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Color(0xFFFFFF),
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
           ),
           child: Container(
@@ -906,7 +908,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
-  _showSwapTokenDialLog(int type) {
+  _showSwapTokenDialLog(BuildContext context, int type) {
     showDialog(
       context: context,
       child: AlertDialog(
@@ -918,8 +920,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
           height: 400,
           padding: EdgeInsets.only(top: 15),
           decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Color(0xFFFFFF),
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
           ),
           child: Column(
@@ -1111,6 +1111,55 @@ class _SwapPcPageState extends State<SwapPcPage> {
             ),
 
           ],
+        ),
+      ),
+    );
+  }
+
+
+  _showPoolTokenOneDialLog(BuildContext context) {
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        elevation: 3,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
+        ),
+        content: Container(
+          width: 450,
+          height: 400,
+          padding: EdgeInsets.only(top: 15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+          ),
+          child: Container(
+            child: Text(
+              'Pool Token One ',
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  _showPoolTokenTwoDialLog(BuildContext context) {
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        elevation: 3,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
+        ),
+        content: Container(
+          width: 450,
+          height: 400,
+          padding: EdgeInsets.only(top: 15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+          ),
+          child: Container(
+            child: Text(
+              'Pool Token Two ',
+            ),
+          ),
         ),
       ),
     );
