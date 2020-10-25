@@ -954,7 +954,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               width: 160,
               alignment: Alignment.center,
               child: type == 1 ? Text(
-              '${item.swapTokenPrice2}',
+              '${item.swapTokenPrice2.toStringAsFixed(4)}',
               style: TextStyle(
                 color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
                 fontSize: 14,
