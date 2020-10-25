@@ -186,6 +186,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   Widget _dataLeftWidget(BuildContext context) {
+    String price = '0.000';
+    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+      price = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(4);
+    }
     return Container(
       width: 380,
       child: Column(
@@ -327,7 +331,65 @@ class _SwapPcPageState extends State<SwapPcPage> {
             ),
           ),
           SizedBox(height: 8),
-          Container(
+          _flag1 && _flag2 ? Container(
+            child: Row(
+              children: <Widget>[
+                Container(
+                  child: ClipOval(
+                    child: Image.network(
+                      '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                      width: 17,
+                      height: 17,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(left: 3, right: 3),
+                  child: Text(
+                    '1  ${_swapRows[_leftSelectIndex].swapTokenName}  ≈  $price  ${_swapRows[_rightSelectIndex].swapTokenName} ',
+                    style: GoogleFonts.lato(
+                      fontSize: 13,
+                      color: MyColors.grey700,
+                    ),
+                  ),
+                ),
+                Container(
+                  child: ClipOval(
+                    child: Image.network(
+                      '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                      width: 17,
+                      height: 17,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(left: 3, right: 3),
+                  child: Text(
+                    '≈  ${_swapRows[_leftSelectIndex].swapTokenPrice2.toStringAsFixed(4)}  USD',
+                    style: GoogleFonts.lato(
+                      fontSize: 13,
+                      color: MyColors.grey700,
+                    ),
+                  ),
+                ),
+                Container(
+                  child: ClipOval(
+                    child: Image.asset(
+                      'images/usd.png',
+                      width: 19,
+                      height: 19,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ) : Container(),
+          /*Container(
             child: Column(
               children: <Widget>[
                 Container(
@@ -357,7 +419,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 ),
               ],
             ),
-          ),
+          ),*/
         ],
       ),
     );
@@ -386,6 +448,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   Widget _dataRightWidget(BuildContext context) {
+    String price = '0.000';
+    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+      price = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(4);
+    }
     return Container(
       width: 380,
       child: Column(
@@ -527,41 +593,64 @@ class _SwapPcPageState extends State<SwapPcPage> {
             ),
           ),
           SizedBox(height: 8),
-          Container(
-            child: Column(
+          _flag1 && _flag2 ? Container(
+            child: Row(
               children: <Widget>[
                 Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 2),
-                  child: Text(
-                    //'1  USDT  =  39.561  TRX',
-                    '986471707.4153  TRX',
-                    style: GoogleFonts.lato(
-                      fontSize: 13,
-                      //color: MyColors.grey700,
-                      color: MyColors.white,
-                      fontStyle: FontStyle.italic,
+                  child: ClipOval(
+                    child: Image.network(
+                      '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                      width: 17,
+                      height: 17,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                SizedBox(height: 5),
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 2),
+                  padding: EdgeInsets.only(left: 3, right: 3),
                   child: Text(
-                    //'Fee:  0.03%',
-                    '25116757.4774  USDT',
+                    '1  ${_swapRows[_rightSelectIndex].swapTokenName}  ≈  $price  ${_swapRows[_leftSelectIndex].swapTokenName} ',
                     style: GoogleFonts.lato(
                       fontSize: 13,
-                      //color: MyColors.grey700,
-                      color: MyColors.white,
-                      fontStyle: FontStyle.italic,
+                      color: MyColors.grey700,
+                    ),
+                  ),
+                ),
+                Container(
+                  child: ClipOval(
+                    child: Image.network(
+                      '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                      width: 17,
+                      height: 17,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(left: 3, right: 3),
+                  child: Text(
+                    '≈  ${_swapRows[_rightSelectIndex].swapTokenPrice2.toStringAsFixed(4)}  USD',
+                    style: GoogleFonts.lato(
+                      fontSize: 13,
+                      color: MyColors.grey700,
+                    ),
+                  ),
+                ),
+                Container(
+                  child: ClipOval(
+                    child: Image.asset(
+                      'images/usd.png',
+                      width: 19,
+                      height: 19,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
               ],
             ),
-          ),
+          ) : Container(),
         ],
       ),
     );
