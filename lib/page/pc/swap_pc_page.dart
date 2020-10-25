@@ -873,21 +873,82 @@ class _SwapPcPageState extends State<SwapPcPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
         ),
         content: Container(
-          width: 400,
+          width: 450,
+          height: 400,
+          padding: EdgeInsets.only(top: 15),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: Color(0xFFFFFF),
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
           ),
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            itemCount: _swapRows.length,
-            itemBuilder: (context, index) {
-              return _selectSwapTokenWidget(context, index, _swapRows[index], type);
-            },
+          child: Column(
+            children: <Widget>[
+              _selectSwapTitleWidget(context),
+              Expanded(
+                child: Container(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: _swapRows.length,
+                    itemBuilder: (context, index) {
+                      return _selectSwapTokenWidget(context, index, _swapRows[index], type);
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _selectSwapTitleWidget(BuildContext context) {
+    return Container(
+      width: 450,
+      padding: EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: <Widget>[
+          Container(
+              width: 140,
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 15),
+              child: Text(
+                'Token 名称',
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 14,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              )),
+          Container(
+              width: 160,
+              alignment: Alignment.center,
+              child: Text(
+                '价格 (USD)',
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 14,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              )),
+          Expanded(
+            child: Container(
+                alignment: Alignment.centerRight,
+                padding: EdgeInsets.only(right: 15),
+                child: Text(
+                  '余额',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 14,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                )),
+          ),
+        ],
       ),
     );
   }
@@ -901,7 +962,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
 
     return InkWell(
-      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderRadius: BorderRadius.all(Radius.circular(6.0)),
       onTap: () {
         if (type == 1 && index != _rightSelectIndex) {
           _leftSelectIndex = index;
@@ -915,38 +976,71 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
       },
       child: Container(
-        width: 400,
-        padding: EdgeInsets.only(left: 15, top: 12, right: 15, bottom: 12),
+        width: 450,
+        padding: EdgeInsets.only(top: 12, right: 15, bottom: 12),
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: flag ? Colors.grey[100] : null,
+          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+        ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              child: ClipOval(
-                child: Image.network(
-                  '${item.swapPicUrl}',
-                  width: 22,
-                  height: 22,
-                  fit: BoxFit.cover,
-                ),
+              width: 140,
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 15),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: ClipOval(
+                      child: Image.network(
+                        '${item.swapPicUrl}',
+                        width: 20,
+                        height: 20,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 10),
+                    alignment: Alignment.centerLeft,
+                    child: type == 1 ? Text(
+                      '${item.swapTokenName}',
+                      style: TextStyle(
+                        color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
+                        fontSize: 15,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ) : Text(
+                      '${item.swapTokenName}',
+                      style: TextStyle(
+                        color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
+                        fontSize: 16,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(
-              width: 100,
-              padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-              alignment: Alignment.centerLeft,
+              width: 160,
+              alignment: Alignment.center,
               child: type == 1 ? Text(
-                '${item.swapTokenName}',
-                style: TextStyle(
-                  color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
-                  fontSize: 16,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ) : Text(
-                '${item.swapTokenName}',
+              '${item.swapTokenPrice2}',
+              style: TextStyle(
+                color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
+                fontSize: 14,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ) : Text(
+                '${item.swapTokenPrice2}',
                 style: TextStyle(
                   color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -954,12 +1048,23 @@ class _SwapPcPageState extends State<SwapPcPage> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 alignment: Alignment.centerRight,
-                child: !flag ? Container() : Icon(
-                  Icons.check,
-                  color: Colors.black87,
-                  size: 20,
+                child: type == 1 ? Text(
+                  '${item.swapTokenPrice1.toStringAsFixed(3)}',
+                  style: TextStyle(
+                    color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
+                    fontSize: 14,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ) : Text(
+                  '${item.swapTokenPrice1.toStringAsFixed(3)}',
+                  style: TextStyle(
+                    color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
+                    fontSize: 14,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
