@@ -873,7 +873,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
         ),
         content: Container(
-          width: 350,
+          width: 400,
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: Color(0xFFFFFF),
@@ -899,19 +899,23 @@ class _SwapPcPageState extends State<SwapPcPage> {
     } else if (type == 2) {
       flag = index == _rightSelectIndex ? true : false;
     }
+
     return InkWell(
       borderRadius: BorderRadius.all(Radius.circular(8.0)),
       onTap: () {
-        if (type == 1) {
+        if (type == 1 && index != _rightSelectIndex) {
           _leftSelectIndex = index;
-        } else if (type == 2) {
+          setState(() {});
+          Navigator.pop(context);
+        } else if (type == 2 && index != _leftSelectIndex) {
           _rightSelectIndex = index;
+          setState(() {});
+          Navigator.pop(context);
         }
-        setState(() {});
-        Navigator.pop(context);
+
       },
       child: Container(
-        width: 350,
+        width: 400,
         padding: EdgeInsets.only(left: 15, top: 12, right: 15, bottom: 12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -930,10 +934,18 @@ class _SwapPcPageState extends State<SwapPcPage> {
               width: 100,
               padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
               alignment: Alignment.centerLeft,
-              child: Text(
+              child: type == 1 ? Text(
                 '${item.swapTokenName}',
                 style: TextStyle(
-                  color: !flag ? Colors.black87 : Colors.blue[800],
+                  color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
+                  fontSize: 16,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ) : Text(
+                '${item.swapTokenName}',
+                style: TextStyle(
+                  color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
                   fontSize: 16,
                 ),
                 maxLines: 1,
@@ -946,7 +958,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 alignment: Alignment.centerRight,
                 child: !flag ? Container() : Icon(
                   Icons.check,
-                  color: Colors.blue[800],
+                  color: Colors.black87,
                   size: 20,
                 ),
               ),
