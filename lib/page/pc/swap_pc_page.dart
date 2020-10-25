@@ -157,7 +157,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        padding: EdgeInsets.only(left: 80, top: 40, right: 80, bottom: 60),
+        padding: EdgeInsets.only(left: 80, top: 20, right: 80, bottom: 60),
         child: Column(
           children: <Widget>[
             SizedBox(height: 30),
@@ -437,7 +437,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
         width: 50,
         height: 50,
         color: MyColors.white,
-        alignment: Alignment.topCenter,
+        alignment: Alignment.center,
+        margin: EdgeInsets.only(top: 5),
         child: Icon(
           Icons.compare_arrows,
           size: 30,
