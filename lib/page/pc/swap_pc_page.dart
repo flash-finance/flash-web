@@ -4,14 +4,17 @@ import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/model/lang_model.dart';
+import 'package:flash_web/model/swap_model.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
+import 'package:flash_web/service/method_service.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
@@ -29,6 +32,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
   bool tronFlag = false;
   Timer _timer;
 
+  bool _flag1 = false;
+  bool _flag2 = false;
+
+  int _leftSelectIndex = 0;
+  int _rightSelectIndex = 1;
+
   @override
   void initState() {
     print('SwapPcPage initState');
@@ -38,7 +47,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
         CommonProvider.changeHomeIndex(0);
       });
     }
-    _reloadAccount();
+    //_reloadAccount();
+    _getSwapData();
   }
 
   @override
@@ -240,11 +250,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           SizedBox(width: 15),
                           Container(
                             child: ClipOval(
-                              child: Image.asset(
-                                'images/usdt.png',
+                              child: _flag1 ? Image.network(
+                                '${_swapRows[_leftSelectIndex].swapPicUrl}',
                                 width: 32,
                                 height: 32,
                                 fit: BoxFit.cover,
+                              ) : Container(
+                                width: 32,
+                                height: 32,
                               ),
                             ),
                           ),
@@ -252,7 +265,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             width: 45,
                             child: Text(
-                              'USDT',
+                              _flag1 ? '${_swapRows[_leftSelectIndex].swapTokenName}' : '',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
                                 color: MyColors.grey700,
@@ -350,16 +363,24 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   Widget _dataMidWidget(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      color: MyColors.white,
-      alignment: Alignment.topCenter,
-      child: Icon(
-        Icons.compare_arrows,
-        size: 30,
-        color: Colors.grey[800],
-      ),
+    return InkWell(
+      onTap: () {
+        int temp = _leftSelectIndex;
+        _leftSelectIndex = _rightSelectIndex;
+        _rightSelectIndex = temp;
+        setState(() {});
+      },
+      child: Container(
+        width: 50,
+        height: 50,
+        color: MyColors.white,
+        alignment: Alignment.topCenter,
+        child: Icon(
+          Icons.compare_arrows,
+          size: 30,
+          color: Colors.grey[800],
+        ),
+      )
     );
   }
 
@@ -427,11 +448,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           SizedBox(width: 15),
                           Container(
                             child: ClipOval(
-                              child: Image.asset(
-                                'images/trx.png',
+                              child: _flag2 ? Image.network(
+                                '${_swapRows[_rightSelectIndex].swapPicUrl}',
                                 width: 32,
                                 height: 32,
                                 fit: BoxFit.cover,
+                              ) : Container(
+                                width: 32,
+                                height: 32,
                               ),
                             ),
                           ),
@@ -439,7 +463,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             width: 45,
                             child: Text(
-                              'TRX',
+                              _flag2 ? '${_swapRows[_rightSelectIndex].swapTokenName}' : '',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
                                 color: MyColors.grey700,
@@ -852,5 +876,33 @@ class _SwapPcPageState extends State<SwapPcPage> {
         Provider.of<IndexProvider>(context, listen: false).changeAccount('');
       }
     });
+  }
+
+  SwapData _swapData;
+
+  List<SwapRow> _swapRows = [];
+
+  _getSwapData() async {
+    try {
+      String url = servicePath['swapQuery'];
+      await requestGet(url).then((value) {
+        var respData = Map<String, dynamic>.from(value);
+        SwapRespModel respModel = SwapRespModel.fromJson(respData);
+        if (respModel != null && respModel.code == 0) {
+          _swapData = respModel.data;
+          if (_swapData != null && _swapData.rows != null) {
+            _swapRows = _swapData.rows;
+          }
+        }
+      });
+      print('_getSwapData length:${_swapRows.length}');
+      _flag1 = _swapRows.length > 0 ? true : false;
+      _flag2 = _swapRows.length > 1 ? true : false;
+      if (mounted) {
+        setState(() {});
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }
