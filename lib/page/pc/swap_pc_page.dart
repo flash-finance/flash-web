@@ -234,7 +234,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 10),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -330,7 +330,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 10),
           _flag1 && _flag2 ? Container(
             child: Row(
               children: <Widget>[
@@ -389,62 +389,61 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ) : Container(),
-          /*Container(
-            child: Column(
+          SizedBox(height: 10),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Row(
               children: <Widget>[
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 2),
-                  child: Text(
-                    '1  USDT  =  39.561  TRX',
-                    style: GoogleFonts.lato(
-                      fontSize: 13,
-                      color: MyColors.grey700,
-                      fontStyle: FontStyle.italic,
+                InkWell(
+                  onTap: () {
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue[500],
+                      borderRadius: BorderRadius.circular(6),
                     ),
-                  ),
-                ),
-                SizedBox(height: 5),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 2),
-                  child: Text(
-                    'Fee:  0.1%',
-                    style: GoogleFonts.lato(
-                      fontSize: 13,
-                      color: MyColors.grey700,
-                      fontStyle: FontStyle.italic,
+                    padding: EdgeInsets.only(left: 10, top: 6, bottom: 6, right: 10),
+                    child: Text(
+                      '资金池',
+                      style: GoogleFonts.lato(
+                        letterSpacing: 0.2,
+                        color: MyColors.white,
+                        fontSize: 12,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-          ),*/
+          ),
         ],
       ),
     );
   }
 
   Widget _dataMidWidget(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        int temp = _leftSelectIndex;
-        _leftSelectIndex = _rightSelectIndex;
-        _rightSelectIndex = temp;
-        setState(() {});
-      },
-      child: Container(
-        width: 50,
-        height: 50,
-        color: MyColors.white,
-        alignment: Alignment.center,
-        margin: EdgeInsets.only(top: 5),
-        child: Icon(
-          Icons.compare_arrows,
-          size: 30,
-          color: Colors.grey[800],
-        ),
-      )
+    return Container(
+      color: Colors.white,
+      child: InkWell(
+          onTap: () {
+            int temp = _leftSelectIndex;
+            _leftSelectIndex = _rightSelectIndex;
+            _rightSelectIndex = temp;
+            setState(() {});
+          },
+          child: Container(
+            width: 50,
+            height: 50,
+            color: MyColors.white,
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(bottom: 30),
+            child: Icon(
+              Icons.compare_arrows,
+              size: 30,
+              color: Colors.grey[800],
+            ),
+          )
+      ),
     );
   }
 
@@ -497,7 +496,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 10),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -593,7 +592,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 10),
           _flag1 && _flag2 ? Container(
             child: Row(
               children: <Widget>[
@@ -652,6 +651,33 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ) : Container(),
+          SizedBox(height: 10),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Row(
+              children: <Widget>[
+                InkWell(
+                  onTap: () {
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: MyColors.white,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    padding: EdgeInsets.only(left: 10, top: 6, bottom: 6, right: 10),
+                    child: Text(
+                      '资金池',
+                      style: GoogleFonts.lato(
+                        letterSpacing: 0.2,
+                        color: MyColors.white,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
