@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
-import 'package:flash_web/model/lang_model.dart';
 import 'package:flash_web/model/swap_model.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
@@ -658,7 +657,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
         actionTitle = S.of(context).actionTitle4;
         break;
     }
-    int langType = Provider.of<IndexProvider>(context).langType;
     return Container(
       color: MyColors.white,
       child: InkWell(
@@ -704,7 +702,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
             padding: EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
             backgroundColor: MyColors.blue500,
             label: Text(
-              langType == 1 ? 'English' : '简体中文',
+              'English/中文',
               style: GoogleFonts.lato(
                 letterSpacing: 0.5,
                 color: MyColors.white,
@@ -728,7 +726,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
           } else if (index == 4 && account == '') {
             _showConnectWalletDialLog();
           } else if (index == 5) {
-            _showLangTypeDialLog();
+            Provider.of<IndexProvider>(context, listen: false).changeLangType();
           }
         },
       ),
@@ -787,79 +785,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  _showLangTypeDialLog() {
-    List<LangModel> langModels = Provider.of<IndexProvider>(context, listen: false).langModels;
-    showDialog(
-      context: context,
-      child: AlertDialog(
-        elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
-        ),
-        content: Container(
-          width: 300,
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Color(0xFFFFFF),
-            borderRadius: BorderRadius.all(Radius.circular(32.0)),
-          ),
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            itemCount: langModels.length,
-            itemBuilder: (context, index) {
-              return _selectLangTypeItemWidget(context, index, langModels[index]);
-            },
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _selectLangTypeItemWidget(BuildContext context, int index, LangModel item) {
-    int langType = Provider.of<IndexProvider>(context, listen: false).langType;
-    bool flag = index == langType ? true : false;
-    return InkWell(
-      onTap: () {
-        Provider.of<IndexProvider>(context, listen: false).changeLangType(index);
-        Navigator.pop(context);
-      },
-      child: Container(
-        width: 300,
-        //color: MyColors.white,
-        padding: EdgeInsets.only(top: 6, bottom: 6),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              width: 200,
-              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-              alignment: Alignment.centerLeft,
-              child: Text(
-                '${item.name}',
-                style: TextStyle(
-                  color: !flag ? Colors.black87 : Colors.blue[800],
-                  fontSize: 15,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Container(
-              width: 100,
-              padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-              alignment: Alignment.centerRight,
-              child: !flag ? Container() : Icon(
-                Icons.check,
-                color: Colors.blue[800],
-                size: 20,
-              ),
-            ),
-          ],
         ),
       ),
     );

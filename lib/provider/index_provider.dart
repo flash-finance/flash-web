@@ -1,5 +1,4 @@
 import 'package:flash_web/generated/l10n.dart';
-import 'package:flash_web/model/lang_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,12 +8,15 @@ class IndexProvider with ChangeNotifier {
   void init() {
     SharedPreferences.getInstance().then((prefs) {
       if (prefs.getInt(_langTypeKey) != null) {
-        int temp = prefs.getInt(_langTypeKey);
+        bool temp = true;
+        if (prefs.getBool(_langTypeKey) != null) {
+          temp = prefs.getBool(_langTypeKey);
+        }
         _langType = temp;
       }
-      if (_langType == 0) {
+      if (_langType) {
         S.load(Locale('zh', ''));
-      } else if (_langType == 1) {
+      } else {
         S.load(Locale('en', ''));
       }
       notifyListeners();
@@ -36,29 +38,22 @@ class IndexProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  int _langType = 0;
+  bool _langType = true;
 
-  int get langType => _langType;
+  bool get langType => _langType;
 
   String _langTypeKey =  'langTypeKey';
 
-  changeLangType(int value) async {
-    _langType = value;
+  changeLangType() async {
+    _langType = !_langType;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt(_langTypeKey, _langType);
-    if (_langType == 0) {
+    prefs.setBool(_langTypeKey, _langType);
+    if (_langType) {
       S.load(Locale('zh', ''));
-    } else if (_langType == 1) {
+    } else {
       S.load(Locale('en', ''));
     }
     notifyListeners();
   }
-
-  List<LangModel> _langModels = List<LangModel>()
-    ..add(LangModel(id: 0, name: '简体中文'))
-    ..add(LangModel(id: 1, name: 'English'));
-
-  List<LangModel> get langModels => _langModels;
-
 
 }
