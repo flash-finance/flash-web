@@ -241,7 +241,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
             child: Row(
               children: <Widget>[
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    _showSwapTokenDialLog(1);
+                  },
                   child: Container(
                     padding: EdgeInsets.only(top: 4, bottom: 4),
                     child: Container(
@@ -267,14 +269,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             child: Text(
                               _flag1 ? '${_swapRows[_leftSelectIndex].swapTokenName}' : '',
                               style: GoogleFonts.lato(
-                                fontSize: 16,
+                                fontSize: 15,
                                 color: MyColors.grey700,
                               ),
                             ),
                           ),
                           SizedBox(width: 5),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: 28, color: Colors.black54),
+                            child: Icon(Icons.arrow_drop_down, size: 26, color: Colors.black54),
                           ),
                         ],
                       ),
@@ -439,7 +441,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
             child: Row(
               children: <Widget>[
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    _showSwapTokenDialLog(2);
+                  },
                   child: Container(
                     padding: EdgeInsets.only(top: 4, bottom: 4),
                     child: Container(
@@ -465,14 +469,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             child: Text(
                               _flag2 ? '${_swapRows[_rightSelectIndex].swapTokenName}' : '',
                               style: GoogleFonts.lato(
-                                fontSize: 16,
+                                fontSize: 15,
                                 color: MyColors.grey700,
                               ),
                             ),
                           ),
                           SizedBox(width: 5),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: 28, color: Colors.black54),
+                            child: Icon(Icons.arrow_drop_down, size: 26, color: Colors.black54),
                           ),
                         ],
                       ),
@@ -855,6 +859,99 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 size: 20,
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _showSwapTokenDialLog(int type) {
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        elevation: 3,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
+        ),
+        content: Container(
+          width: 350,
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: Color(0xFFFFFF),
+            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+          ),
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemCount: _swapRows.length,
+            itemBuilder: (context, index) {
+              return _selectSwapTokenWidget(context, index, _swapRows[index], type);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _selectSwapTokenWidget(BuildContext context, int index, SwapRow item, int type) {
+    bool flag = false;
+    if (type == 1) {
+      flag = index == _leftSelectIndex ? true : false;
+    } else if (type == 2) {
+      flag = index == _rightSelectIndex ? true : false;
+    }
+    return InkWell(
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      onTap: () {
+        if (type == 1) {
+          _leftSelectIndex = index;
+        } else if (type == 2) {
+          _rightSelectIndex = index;
+        }
+        setState(() {});
+        Navigator.pop(context);
+      },
+      child: Container(
+        width: 350,
+        padding: EdgeInsets.only(left: 15, top: 12, right: 15, bottom: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              child: ClipOval(
+                child: Image.network(
+                  '${item.swapPicUrl}',
+                  width: 22,
+                  height: 22,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Container(
+              width: 100,
+              padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '${item.swapTokenName}',
+                style: TextStyle(
+                  color: !flag ? Colors.black87 : Colors.blue[800],
+                  fontSize: 16,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                alignment: Alignment.centerRight,
+                child: !flag ? Container() : Icon(
+                  Icons.check,
+                  color: Colors.blue[800],
+                  size: 20,
+                ),
+              ),
+            ),
+
           ],
         ),
       ),
