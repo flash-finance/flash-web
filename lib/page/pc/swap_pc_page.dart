@@ -10,6 +10,7 @@ import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
 import 'package:flash_web/service/method_service.dart';
+import 'package:flash_web/util/common_util.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,6 +41,18 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   int _leftSelectIndex = 0;
   int _rightSelectIndex = 1;
+
+  String _leftBalanceAmount = '0.000';
+  String _rightBalanceAmount = '0.000';
+
+  String _leftSwapAmount = '0.000';
+  String _rightSwapAmount = '0.000';
+
+  String _leftSwapValue = '0.00';
+  String _rightSwapValue = '0.00';
+
+  TextEditingController _leftSwapAmountController;
+  TextEditingController _rightSwapAmountController;
 
   @override
   void initState() {
@@ -79,6 +92,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
   @override
   Widget build(BuildContext context) {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
+    _leftSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _leftSwapAmount,
+        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _leftSwapAmount.length))));
+    _rightSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _rightSwapAmount,
+        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _rightSwapAmount.length))));
+
     return Material(
       color: MyColors.white,
       child: Scaffold(
@@ -143,7 +161,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap111',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -205,7 +223,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
       price = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
-    String _leftBalanceAmount = '0.000';
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0
         && _balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress] != null) {
       _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
@@ -313,10 +330,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
+                      controller: _leftSwapAmountController,
                       enableInteractiveSelection: false,
                       cursorColor: MyColors.black87,
                       decoration: InputDecoration(
-                        hintText: '输入数量',
+                        hintText: '',
                         hintStyle: TextStyle(color: Colors.grey[400], fontSize: 16, letterSpacing: 0.5),
                         border: InputBorder.none,
                       ),
@@ -325,15 +343,33 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
-                      onChanged: (String value) {},
+                      inputFormatters: [MyNumberTextInputFormatter(digit:3)],
+                      onChanged: (String value) {
+                        if (value != null && value != '') {
+                          _leftSwapAmount = value;
+                          _leftSwapValue = value;
+                        } else {
+                          _leftSwapAmount = '';
+                          _leftSwapValue = '';
+                        }
+                        setState(() {});
+                      },
                       onSaved: (String value) {},
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
-                      //inputFormatters: [DoubleFormat4Trade()],
+                      onEditingComplete: () {},
                     )
                 ),
                 Expanded(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      if (_flag1 && _flag2) {
+                        _leftSwapAmount = _leftBalanceAmount;
+                        if (_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress] != null) {
+                          _leftSwapValue = _balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress];
+                        }
+                        print('_leftSwapAmount: $_leftSwapAmount');
+                        print('_leftSwapValue: $_leftSwapValue');
+                      }
+                    },
                     child: Container(
                       width: 40,
                       padding: EdgeInsets.only(top: 2, bottom: 2),
@@ -478,7 +514,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
       price = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
-    String _rightBalanceAmount = '0.000';
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0
         && _balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress] != null) {
       _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
@@ -585,10 +620,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
+                      controller: _rightSwapAmountController,
                       enableInteractiveSelection: false,
                       cursorColor: MyColors.black87,
                       decoration: InputDecoration(
-                        hintText: '输入数量',
+                        hintText: '',
                         hintStyle: TextStyle(color: Colors.grey[400], fontSize: 16, letterSpacing: 0.5),
                         border: InputBorder.none,
                       ),
@@ -597,15 +633,33 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
-                      onChanged: (String value) {},
+                      inputFormatters: [MyNumberTextInputFormatter(digit:3)],
+                      onChanged: (String value) {
+                        if (value != null && value != '') {
+                          _rightSwapAmount = value;
+                          _rightSwapValue = value;
+                        } else {
+                          _rightSwapAmount = '';
+                          _rightSwapValue = '';
+                        }
+                        setState(() {});
+                      },
                       onSaved: (String value) {},
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
-                      //inputFormatters: [DoubleFormat4Trade()],
+                      onEditingComplete: () {},
                     )
                 ),
                 Expanded(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      if (_flag1 && _flag2) {
+                          _rightSwapAmount = _rightBalanceAmount;
+                          if (_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress] != null) {
+                            _rightSwapValue = _balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress];
+                          }
+                          print('_rightSwapAmount: $_rightSwapAmount');
+                          print('_rightSwapValue: $_rightSwapValue');
+                      }
+                    },
                     child: Container(
                       width: 40,
                       padding: EdgeInsets.only(top: 2, bottom: 2),
