@@ -161,7 +161,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap111',
+                      'Flash  Swap 555',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -347,12 +347,28 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       onChanged: (String value) {
                         if (value != null && value != '') {
                           _leftSwapAmount = value;
-                          _leftSwapValue = value;
+                          double leftAmount = Decimal.tryParse(_leftSwapAmount).toDouble();
+                          _leftSwapValue = (Decimal.tryParse(_leftSwapAmount) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+
+                          if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+                            double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
+                            _rightSwapAmount = rightAmount.toStringAsFixed(3);
+                            _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+
+                            print('_leftSwapAmount: $_leftSwapAmount');
+                            print('_leftSwapValue 111: $_leftSwapValue');
+                            print('_leftSwapValue 222: ${_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress]}');
+
+
+                            print('_rightSwapAmount: $_rightSwapAmount');
+                            print('_rightSwapValue 111: $_rightSwapValue');
+                            print('_rightSwapValue 222: ${_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress]}');
+
+                          }
                         } else {
                           _leftSwapAmount = '';
                           _leftSwapValue = '';
                         }
-                        setState(() {});
                       },
                       onSaved: (String value) {},
                       onEditingComplete: () {},
@@ -361,13 +377,25 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 Expanded(
                   child: InkWell(
                     onTap: () {
+                      _leftSwapAmount = _leftBalanceAmount;
+                      double leftAmount = Decimal.tryParse(_leftSwapAmount).toDouble();
+
                       if (_flag1 && _flag2) {
-                        _leftSwapAmount = _leftBalanceAmount;
                         if (_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress] != null) {
                           _leftSwapValue = _balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress];
                         }
                         print('_leftSwapAmount: $_leftSwapAmount');
-                        print('_leftSwapValue: $_leftSwapValue');
+                        print('_leftSwapValue 111: $_leftSwapValue');
+                        print('_leftSwapValue 222: ${_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress]}');
+
+                        if (_swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+                          double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
+                          _rightSwapAmount = rightAmount.toStringAsFixed(3);
+                          _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                          print('_rightSwapAmount: $_rightSwapAmount');
+                          print('_rightSwapValue 111: $_rightSwapValue');
+                          print('_rightSwapValue 222: ${_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress]}');
+                        }
                       }
                     },
                     child: Container(
@@ -1884,11 +1912,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     _getTokenBalance();
     _timer3 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
       if (_reloadTokenBalanceFlag) {
-        print('_reloadTokenBalance _getTokenBalance start');
         _getTokenBalance();
-        print('_reloadTokenBalance _getTokenBalance end');
-      } else {
-        print('_reloadTokenBalance _getTokenBalance is working');
       }
     });
   }
