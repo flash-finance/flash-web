@@ -205,7 +205,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     '发送',
                     style: GoogleFonts.lato(
                       fontSize: 16,
-                      color: MyColors.black,
+                      color: MyColors.black87,
                     ),
                   ),
                 ),
@@ -225,7 +225,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             text: '17632.453',
                             style: GoogleFonts.lato(
                               fontSize: 16,
-                              color: MyColors.black,
+                              color: MyColors.black87,
                             ),
                           ),
                         ],
@@ -472,7 +472,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     '接收',
                     style: GoogleFonts.lato(
                       fontSize: 16,
-                      color: MyColors.black,
+                      color: MyColors.black87,
                     ),
                   ),
                 ),
@@ -492,7 +492,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           text: '6548.453',
                           style: GoogleFonts.lato(
                             fontSize: 16,
-                            color: MyColors.black,
+                            color: MyColors.black87,
                           ),
                         ),
                       ],
@@ -703,7 +703,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               style: GoogleFonts.lato(
                 letterSpacing: 0.7,
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 17,
               ),
             ),
           ),
@@ -1126,7 +1126,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         ),
         content: Container(
           width: 450,
-          height: 250,
+          height: 200,
           padding: EdgeInsets.only(top: 15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
@@ -1168,7 +1168,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 child: Text(
                   '总流动性',
                   style: GoogleFonts.lato(
-                    fontSize: 15,
+                    fontSize: 14,
                     letterSpacing: 0.2,
                     color: Colors.black87,
                   ),
@@ -1196,7 +1196,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0))}',
                         style: GoogleFonts.lato(
                           fontSize: 16,
-                          color: MyColors.black,
+                          color: MyColors.black87,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.clip,
@@ -1207,7 +1207,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         '  USD',
                         style: GoogleFonts.lato(
                           fontSize: 16,
-                          color: MyColors.black,
+                          color: MyColors.black87,
                         ),
                       ),
                     ),
@@ -1220,7 +1220,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 child: Text(
                   '代币',
                   style: GoogleFonts.lato(
-                    fontSize: 15,
+                    fontSize: 14,
                     letterSpacing: 0.2,
                     color: Colors.black87,
                   ),
@@ -1248,7 +1248,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
                         style: GoogleFonts.lato(
                           fontSize: 16,
-                          color: MyColors.black,
+                          color: MyColors.black87,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.clip,
@@ -1259,7 +1259,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         '  ${_swapRows[_leftSelectIndex].swapTokenName}',
                         style: GoogleFonts.lato(
                           fontSize: 16,
-                          color: MyColors.black,
+                          color: MyColors.black87,
                         ),
                       ),
                     ),
@@ -1288,7 +1288,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
                         style: GoogleFonts.lato(
                           fontSize: 16,
-                          color: MyColors.black,
+                          color: MyColors.black87,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.clip,
@@ -1299,7 +1299,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         '  ${_swapRows[_rightSelectIndex].swapTokenName}',
                         style: GoogleFonts.lato(
                           fontSize: 16,
-                          color: MyColors.black,
+                          color: MyColors.black87,
                         ),
                       ),
                     ),
@@ -1394,7 +1394,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0))}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -1405,7 +1405,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '  USD',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                             ),
                           ),
@@ -1445,7 +1445,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -1456,7 +1456,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '  ${_swapRows[_leftSelectIndex].swapTokenName}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                             ),
                           ),
@@ -1484,7 +1484,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -1495,7 +1495,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '  ${_swapRows[_leftSelectIndex].baseTokenName}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                             ),
                           ),
@@ -1544,7 +1544,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       child: Text(
                         '总流动性',
                         style: GoogleFonts.lato(
-                          fontSize: 15,
+                          fontSize: 14,
                           letterSpacing: 0.2,
                           color: Colors.black87,
                         ),
@@ -1571,7 +1571,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0))}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -1582,7 +1582,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '  USD',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                             ),
                           ),
@@ -1595,7 +1595,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       child: Text(
                         '代币',
                         style: GoogleFonts.lato(
-                          fontSize: 15,
+                          fontSize: 14,
                           letterSpacing: 0.2,
                           color: Colors.black87,
                         ),
@@ -1622,7 +1622,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -1633,7 +1633,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '  ${_swapRows[_rightSelectIndex].baseTokenName}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                             ),
                           ),
@@ -1661,7 +1661,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -1672,7 +1672,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               '  ${_swapRows[_rightSelectIndex].swapTokenName}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: MyColors.black,
+                                color: MyColors.black87,
                               ),
                             ),
                           ),
