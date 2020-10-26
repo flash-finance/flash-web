@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:common_utils/common_utils.dart';
+import 'package:decimal/decimal.dart';
 import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
@@ -30,7 +31,8 @@ class SwapPcPage extends StatefulWidget {
 class _SwapPcPageState extends State<SwapPcPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
   bool tronFlag = false;
-  Timer _timer;
+  Timer _timer1;
+  Timer _timer2;
 
   bool _flag1 = false;
   bool _flag2 = false;
@@ -47,16 +49,22 @@ class _SwapPcPageState extends State<SwapPcPage> {
         CommonProvider.changeHomeIndex(0);
       });
     }
-    //_reloadAccount();
     _getSwapData();
+    _reloadAccount();
+    _getTokenBalance();
   }
 
   @override
   void dispose() {
     print('SwapPcPage dispose');
-    if (_timer != null) {
-      if (_timer.isActive) {
-        _timer.cancel();
+    if (_timer1 != null) {
+      if (_timer1.isActive) {
+        _timer1.cancel();
+      }
+    }
+    if (_timer2 != null) {
+      if (_timer2.isActive) {
+        _timer2.cancel();
       }
     }
     super.dispose();
@@ -191,6 +199,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
       price = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
+    String balanceAmount = '0.000';
+    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0) {
+      balanceAmount = (Decimal.tryParse(_swapRows[_leftSelectIndex].swapTokenBalance)/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+    }
+
     return Container(
       width: 380,
       child: Column(
@@ -222,7 +235,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             ),
                           ),
                           TextSpan(
-                            text: '17632.453',
+                            text: '$balanceAmount',
                             style: GoogleFonts.lato(
                               fontSize: 16,
                               color: MyColors.black87,
@@ -458,6 +471,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
       price = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
+    String balanceAmount = '0.000';
+    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0) {
+      balanceAmount = (Decimal.tryParse(_swapRows[_rightSelectIndex].swapTokenBalance)/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+    }
     return Container(
       width: 380,
       child: Column(
@@ -489,7 +506,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           ),
                         ),
                         TextSpan(
-                          text: '6548.453',
+                          text: '$balanceAmount',
                           style: GoogleFonts.lato(
                             fontSize: 16,
                             color: MyColors.black87,
@@ -996,6 +1013,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   Widget _selectSwapTokenWidget(BuildContext context, int index, SwapRow item, int type) {
+    String balanceAmount = '0.000';
+    if (item.swapTokenPrecision > 0) {
+      balanceAmount = (Decimal.tryParse(item.swapTokenBalance)/Decimal.fromInt(10).pow(item.swapTokenPrecision)).toStringAsFixed(3);
+    }
     bool flag = false;
     if (type == 1) {
       flag = index == _leftSelectIndex ? true : false;
@@ -1092,7 +1113,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               child: Container(
                 alignment: Alignment.centerRight,
                 child: type == 1 ? Text(
-                  '${item.swapTokenBalance}',
+                  '$balanceAmount',
                   style: TextStyle(
                     color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
                     fontSize: 14,
@@ -1100,7 +1121,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ) : Text(
-                  '${item.swapTokenBalance}',
+                  '$balanceAmount',
                   style: TextStyle(
                     color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
                     fontSize: 14,
@@ -1691,7 +1712,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
 
   _reloadAccount() async {
-    _timer = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+    _timer1 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
       tronFlag = js.context.hasProperty('tronWeb');
       if (tronFlag) {
         var result = js.context["tronWeb"]["defaultAddress"]["base58"];
@@ -1733,4 +1754,24 @@ class _SwapPcPageState extends State<SwapPcPage> {
       print(e);
     }
   }
+
+  _getTokenBalance() async {
+    js.context['setBalance']=setBalance;
+    _timer2 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      String account = Provider.of<IndexProvider>(context, listen: false).account;
+      if (account != '') {
+        for (int i=0; i<_swapRows.length; i++) {
+          js.context.callMethod('getTokenBalance', [i.toString(), _swapRows[i].swapTokenType, _swapRows[i].swapTokenAddress, account]);
+        }
+      }
+    });
+  }
+
+  void setBalance(index, balance) {
+    if (_swapRows.length > index) {
+      _swapRows[index].swapTokenBalance = balance.toString();
+      setState(() {});
+    }
+  }
+
 }
