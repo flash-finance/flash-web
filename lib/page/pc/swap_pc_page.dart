@@ -1004,7 +1004,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
 
     return InkWell(
-      borderRadius: BorderRadius.all(Radius.circular(6.0)),
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
       onTap: () {
         if (type == 1 && index != _rightSelectIndex) {
           _leftSelectIndex = index;
@@ -1023,7 +1023,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           color: flag ? Colors.grey[100] : null,
-          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
         child: Row(
           children: <Widget>[
