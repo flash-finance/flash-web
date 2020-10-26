@@ -1033,7 +1033,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
 
     return InkWell(
-      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
       onTap: () {
         if (type == 1 && index != _rightSelectIndex) {
           _leftSelectIndex = index;
@@ -1052,7 +1052,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           color: flag ? Colors.grey[100] : null,
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
         child: Row(
           children: <Widget>[
@@ -1079,7 +1079,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       '${item.swapTokenName}',
                       style: TextStyle(
                         color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
-                        fontSize: 15,
+                        fontSize: 14,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -1087,7 +1087,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       '${item.swapTokenName}',
                       style: TextStyle(
                         color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
-                        fontSize: 15,
+                        fontSize: 14,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -1151,18 +1151,19 @@ class _SwapPcPageState extends State<SwapPcPage> {
       context: context,
       child: AlertDialog(
         elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
         content: Container(
           width: 450,
-          height: 200,
-          padding: EdgeInsets.only(top: 15),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(32.0)),
-          ),
+          height: 230,
+          padding: EdgeInsets.only(top: 10),
           child: Column(
             children:<Widget> [
               Container(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -1173,7 +1174,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         style: GoogleFonts.lato(
                           letterSpacing: 0.2,
                           fontSize: 16,
-                          color: MyColors.black87,
+                          color: Colors.black87,
                         ),
                       ),
                     ),
@@ -1184,152 +1185,163 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         style: GoogleFonts.lato(
                           letterSpacing: 0.2,
                           fontSize: 16,
-                          color: MyColors.black87,
+                          color: Colors.black87,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 0),
               Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  '总流动性',
-                  style: GoogleFonts.lato(
-                    fontSize: 14,
-                    letterSpacing: 0.2,
-                    color: Colors.black87,
-                  ),
+                padding: EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-              ),
-              SizedBox(height: 8),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                child: Column(
                   children: <Widget>[
                     Container(
-                      child: ClipOval(
-                        child: Image.asset(
-                          'images/usd.png',
-                          width: 24,
-                          height: 24,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: 6),
+                      alignment: Alignment.centerLeft,
                       child: Text(
-                        _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0))}'
-                        : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                        '总流动性',
                         style: GoogleFonts.lato(
-                          fontSize: 16,
-                          color: MyColors.black87,
+                          fontSize: 14,
+                          letterSpacing: 0.2,
+                          color: Colors.black87,
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
                       ),
                     ),
+                    SizedBox(height: 8),
                     Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            child: ClipOval(
+                              child: Image.asset(
+                                'images/usd.png',
+                                width: 22.5,
+                                height: 22.5,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 6),
+                            child: Text(
+                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0))}'
+                                  : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                              style: GoogleFonts.lato(
+                                fontSize: 15,
+                                color: MyColors.black87,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.clip,
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              '  USD',
+                              style: GoogleFonts.lato(
+                                fontSize: 15,
+                                color: MyColors.black87,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    Container(
+                      alignment: Alignment.centerLeft,
                       child: Text(
-                        '  USD',
+                        '代币',
                         style: GoogleFonts.lato(
-                          fontSize: 16,
-                          color: MyColors.black87,
+                          fontSize: 14,
+                          letterSpacing: 0.2,
+                          color: Colors.black87,
                         ),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 15),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  '代币',
-                  style: GoogleFonts.lato(
-                    fontSize: 14,
-                    letterSpacing: 0.2,
-                    color: Colors.black87,
-                  ),
-                ),
-              ),
-              SizedBox(height: 8),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
+                    SizedBox(height: 8),
                     Container(
-                      child: ClipOval(
-                        child: Image.network(
-                          '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                          width: 22,
-                          height: 22,
-                          fit: BoxFit.cover,
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            child: ClipOval(
+                              child: Image.network(
+                                '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                                width: 20,
+                                height: 20,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 6),
+                            child: Text(
+                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0))}'
+                                  : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
+                              style: GoogleFonts.lato(
+                                fontSize: 15,
+                                color: MyColors.black87,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.clip,
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              '  ${_swapRows[_leftSelectIndex].swapTokenName}',
+                              style: GoogleFonts.lato(
+                                fontSize: 15,
+                                color: MyColors.black87,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                    SizedBox(height: 8),
                     Container(
-                      padding: EdgeInsets.only(left: 6),
-                      child: Text(
-                          _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0))}'
-                        : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
-                        style: GoogleFonts.lato(
-                          fontSize: 16,
-                          color: MyColors.black87,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                      ),
-                    ),
-                    Container(
-                      child: Text(
-                        '  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                        style: GoogleFonts.lato(
-                          fontSize: 16,
-                          color: MyColors.black87,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 8),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      child: ClipOval(
-                        child: Image.network(
-                          '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                          width: 22,
-                          height: 22,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: 6),
-                      child: Text(
-                        _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0))}'
-                            : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
-                        style: GoogleFonts.lato(
-                          fontSize: 16,
-                          color: MyColors.black87,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                      ),
-                    ),
-                    Container(
-                      child: Text(
-                        '  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                        style: GoogleFonts.lato(
-                          fontSize: 16,
-                          color: MyColors.black87,
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            child: ClipOval(
+                              child: Image.network(
+                                '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                                width: 20,
+                                height: 20,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 6),
+                            child: Text(
+                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0))}'
+                                  : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
+                              style: GoogleFonts.lato(
+                                fontSize: 15,
+                                color: MyColors.black87,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.clip,
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              '  ${_swapRows[_rightSelectIndex].swapTokenName}',
+                              style: GoogleFonts.lato(
+                                fontSize: 15,
+                                color: MyColors.black87,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -1352,21 +1364,21 @@ class _SwapPcPageState extends State<SwapPcPage> {
         content: Container(
           width: 450,
           height: 420,
-          padding: EdgeInsets.only(top: 15),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(32.0)),
-          ),
+          padding: EdgeInsets.only(top: 10),
           child: Column(
             children:<Widget> [
               Container(
                 child: Column(
                   children: <Widget>[
                     Container(
+                      padding: EdgeInsets.only(top: 10, bottom: 0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(left: 10),
                             child: Text(
                               '${_swapRows[_leftSelectIndex].swapTokenName}-${_swapRows[_leftSelectIndex].baseTokenName}',
                               style: GoogleFonts.lato(
@@ -1390,142 +1402,153 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 0),
                     Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '总流动性',
-                        style: GoogleFonts.lato(
-                          fontSize: 15,
-                          letterSpacing: 0.2,
-                          color: Colors.black87,
-                        ),
+                      padding: EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                      child: Column(
                         children: <Widget>[
                           Container(
-                            child: ClipOval(
-                              child: Image.asset(
-                                'images/usd.png',
-                                width: 24,
-                                height: 24,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 6),
+                            alignment: Alignment.centerLeft,
                             child: Text(
-                              '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                              '总流动性',
                               style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
+                                fontSize: 14,
+                                letterSpacing: 0.2,
+                                color: Colors.black87,
                               ),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
                             ),
                           ),
+                          SizedBox(height: 8),
                           Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  child: ClipOval(
+                                    child: Image.asset(
+                                      'images/usd.png',
+                                      width: 22.5,
+                                      height: 22.5,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    '  USD',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Container(
+                            alignment: Alignment.centerLeft,
                             child: Text(
-                              '  USD',
+                              '代币',
                               style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
+                                fontSize: 14,
+                                letterSpacing: 0.2,
+                                color: Colors.black87,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '代币',
-                        style: GoogleFonts.lato(
-                          fontSize: 15,
-                          letterSpacing: 0.2,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
+                          SizedBox(height: 8),
                           Container(
-                            child: ClipOval(
-                              child: Image.network(
-                                '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                width: 22,
-                                height: 22,
-                                fit: BoxFit.cover,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  child: ClipOval(
+                                    child: Image.network(
+                                      '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                                      width: 20,
+                                      height: 20,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    '  ${_swapRows[_leftSelectIndex].swapTokenName}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
+                          SizedBox(height: 8),
                           Container(
-                            padding: EdgeInsets.only(left: 6),
-                            child: Text(
-                              '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              '  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            child: ClipOval(
-                              child: Image.network(
-                                '${_swapRows[_leftSelectIndex].basePicUrl}',
-                                width: 22,
-                                height: 22,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 6),
-                            child: Text(
-                              '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              '  ${_swapRows[_leftSelectIndex].baseTokenName}',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  child: ClipOval(
+                                    child: Image.network(
+                                      '${_swapRows[_leftSelectIndex].basePicUrl}',
+                                      width: 20,
+                                      height: 20,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    '  ${_swapRows[_leftSelectIndex].baseTokenName}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -1534,16 +1557,18 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 10),
               Container(
                 child: Column(
                   children: <Widget>[
                     Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(left: 10),
                             child: Text(
                               '${_swapRows[_rightSelectIndex].baseTokenName}-${_swapRows[_rightSelectIndex].swapTokenName}',
                               style: GoogleFonts.lato(
@@ -1567,142 +1592,153 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 0),
                     Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '总流动性',
-                        style: GoogleFonts.lato(
-                          fontSize: 14,
-                          letterSpacing: 0.2,
-                          color: Colors.black87,
-                        ),
+                      padding: EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                      child: Column(
                         children: <Widget>[
                           Container(
-                            child: ClipOval(
-                              child: Image.asset(
-                                'images/usd.png',
-                                width: 24,
-                                height: 24,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 6),
+                            alignment: Alignment.centerLeft,
                             child: Text(
-                              '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                              '总流动性',
                               style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
+                                fontSize: 14,
+                                letterSpacing: 0.2,
+                                color: Colors.black87,
                               ),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
                             ),
                           ),
+                          SizedBox(height: 8),
                           Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  child: ClipOval(
+                                    child: Image.asset(
+                                      'images/usd.png',
+                                      width: 22.5,
+                                      height: 22.5,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    '  USD',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Container(
+                            alignment: Alignment.centerLeft,
                             child: Text(
-                              '  USD',
+                              '代币',
                               style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
+                                fontSize: 14,
+                                letterSpacing: 0.2,
+                                color: Colors.black87,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '代币',
-                        style: GoogleFonts.lato(
-                          fontSize: 14,
-                          letterSpacing: 0.2,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
+                          SizedBox(height: 8),
                           Container(
-                            child: ClipOval(
-                              child: Image.network(
-                                '${_swapRows[_rightSelectIndex].basePicUrl}',
-                                width: 22,
-                                height: 22,
-                                fit: BoxFit.cover,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  child: ClipOval(
+                                    child: Image.network(
+                                      '${_swapRows[_rightSelectIndex].basePicUrl}',
+                                      width: 20,
+                                      height: 20,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    '  ${_swapRows[_rightSelectIndex].baseTokenName}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
+                          SizedBox(height: 8),
                           Container(
-                            padding: EdgeInsets.only(left: 6),
-                            child: Text(
-                              '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              '  ${_swapRows[_rightSelectIndex].baseTokenName}',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            child: ClipOval(
-                              child: Image.network(
-                                '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                width: 22,
-                                height: 22,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 6),
-                            child: Text(
-                              '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              '  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.black87,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  child: ClipOval(
+                                    child: Image.network(
+                                      '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                                      width: 20,
+                                      height: 20,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    '  ${_swapRows[_rightSelectIndex].swapTokenName}',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 15,
+                                      color: MyColors.black87,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
