@@ -45,11 +45,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
   String _leftBalanceAmount = '0.000';
   String _rightBalanceAmount = '0.000';
 
-  String _leftSwapAmount = '0.000';
-  String _rightSwapAmount = '0.000';
+  String _leftSwapAmount = '';
+  String _rightSwapAmount = '';
 
-  String _leftSwapValue = '0.00';
-  String _rightSwapValue = '0.00';
+  String _leftSwapValue = '';
+  String _rightSwapValue = '';
 
   TextEditingController _leftSwapAmountController;
   TextEditingController _rightSwapAmountController;
