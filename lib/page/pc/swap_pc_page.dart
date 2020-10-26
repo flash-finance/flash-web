@@ -234,7 +234,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -330,7 +330,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 8),
           _flag1 && _flag2 ? Container(
             child: Row(
               children: <Widget>[
@@ -389,7 +389,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ) : Container(),
-          SizedBox(height: 10),
+          SizedBox(height: 8),
           Container(
             alignment: Alignment.centerLeft,
             child: Row(
@@ -501,7 +501,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -597,7 +597,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 8),
           _flag1 && _flag2 ? Container(
             child: Row(
               children: <Widget>[
@@ -656,7 +656,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ],
             ),
           ) : Container(),
-          SizedBox(height: 10),
+          SizedBox(height: 8),
           Container(
             alignment: Alignment.centerLeft,
             child: Row(
