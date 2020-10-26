@@ -41,10 +41,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   int _leftSelectIndex = 0;
   int _rightSelectIndex = 1;
 
-  String _leftBalanceAmount = '0.000';
-
-  String _rightBalanceAmount = '0.000';
-
   @override
   void initState() {
     print('SwapPcPage initState');
@@ -147,7 +143,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap222',
+                      'Flash  Swap',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -209,8 +205,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
       price = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
-    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0) {
-      _leftBalanceAmount = (Decimal.tryParse(_swapRows[_leftSelectIndex].swapTokenBalance)/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+    String _leftBalanceAmount = '0.000';
+    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0
+        && _balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress] != null) {
+      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
     }
 
     return Container(
@@ -480,8 +478,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
       price = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
-    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0) {
-      _rightBalanceAmount = (Decimal.tryParse(_swapRows[_rightSelectIndex].swapTokenBalance)/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+    String _rightBalanceAmount = '0.000';
+    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0
+        && _balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress] != null) {
+      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
     }
     return Container(
       width: 380,
@@ -1022,8 +1022,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   Widget _selectSwapTokenWidget(BuildContext context, int index, SwapRow item, int type) {
     String balanceAmount = '0.000';
-    if (item.swapTokenPrecision > 0) {
-      balanceAmount = (Decimal.tryParse(item.swapTokenBalance)/Decimal.fromInt(10).pow(item.swapTokenPrecision)).toStringAsFixed(3);
+    if (item.swapTokenPrecision > 0 && _balanceMap[item.swapTokenAddress] != null) {
+      balanceAmount = (Decimal.tryParse(_balanceMap[item.swapTokenAddress])/Decimal.fromInt(10).pow(item.swapTokenPrecision)).toStringAsFixed(3);
     }
     bool flag = false;
     if (type == 1) {
@@ -1724,11 +1724,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     _getAccount();
     _timer2 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
       if (_reloadAccountFlag) {
-        //print('_reloadAccount _getAccount start');
         _getAccount();
-        //print('_reloadAccount _getAccount end');
-      } else {
-        //print('_reloadAccount _getAccount is working');
       }
     });
   }
@@ -1755,15 +1751,13 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   bool _reloadSwapDataFlag = false;
 
+  var _balanceMap = Map<String, String>();
+
   _reloadSwapData() async {
     _getSwapData();
-    _timer1 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
       if (_reloadSwapDataFlag) {
-        //print('_reloadSwapData _getSwapData start');
         _getSwapData();
-        //print('_reloadSwapData _getSwapData end');
-      } else {
-        //print('_reloadSwapData _getSwapData is working');
       }
     });
   }
@@ -1798,7 +1792,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
   _reloadTokenBalance() async {
     js.context['setBalance']=setBalance;
     _getTokenBalance();
-    _timer3 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+    _timer3 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
       if (_reloadTokenBalanceFlag) {
         print('_reloadTokenBalance _getTokenBalance start');
         _getTokenBalance();
@@ -1820,10 +1814,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
     _reloadTokenBalanceFlag = true;
   }
 
-  void setBalance(index, balance) {
-    print('setBalance index: ${index.toString()}, balance: ${balance.toString()}');
+  void setBalance(index, tokenAddress, balance) {
+    //print('setBalance index: ${index.toString()}, tokenAddress: ${tokenAddress.toString()}, balance: ${balance.toString()}');
     if (_swapRows.length > index) {
-      _swapRows[index].swapTokenBalance = balance.toString();
+      _balanceMap['${tokenAddress.toString()}'] = balance.toString();
       setState(() {});
     }
   }

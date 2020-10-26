@@ -72,8 +72,6 @@ class SwapRow {
   double volume24h;
   double transaction24h;
 
-  String swapTokenBalance;
-
   SwapRow(
       {this.id,
         this.swapTokenAddress,
@@ -97,7 +95,6 @@ class SwapRow {
         this.baseTokenPrice2,
         this.volume24h,
         this.transaction24h,
-        this.swapTokenBalance,
       });
 
   SwapRow.fromJson(Map<String, dynamic> json) {
@@ -123,7 +120,6 @@ class SwapRow {
     baseTokenPrice2 = (json['baseTokenPrice2'] as num)?.toDouble();
     volume24h = (json['volume24h'] as num)?.toDouble();
     transaction24h = (json['transaction24h'] as num)?.toDouble();
-    swapTokenBalance = '0.000';
   }
 
   Map<String, dynamic> toJson() {
@@ -150,7 +146,6 @@ class SwapRow {
     data['baseTokenPrice2'] = this.baseTokenPrice2;
     data['volume24h'] = this.volume24h;
     data['transaction24h'] = this.transaction24h;
-    data['swapTokenBalance'] = this.swapTokenBalance;
     return data;
   }
 }
