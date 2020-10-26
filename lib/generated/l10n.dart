@@ -213,10 +213,10 @@ class S {
     );
   }
 
-  /// `trading:  directly to the platform of JustSwap,  0.1% handling fees`
+  /// `trading:  directly to the platform of JustSwap,  0.01% handling fees`
   String get aboutTips4 {
     return Intl.message(
-      'trading:  directly to the platform of JustSwap,  0.1% handling fees',
+      'trading:  directly to the platform of JustSwap,  0.01% handling fees',
       name: 'aboutTips4',
       desc: '',
       args: [],

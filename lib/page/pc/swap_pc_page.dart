@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:common_utils/common_utils.dart';
 import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
@@ -1116,7 +1117,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
-
   _showPoolTokenOneDialLog(BuildContext context) {
     showDialog(
       context: context,
@@ -1126,15 +1126,187 @@ class _SwapPcPageState extends State<SwapPcPage> {
         ),
         content: Container(
           width: 450,
-          height: 400,
+          height: 250,
           padding: EdgeInsets.only(top: 15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
           ),
-          child: Container(
-            child: Text(
-              'Pool Token One ',
-            ),
+          child: Column(
+            children:<Widget> [
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text(
+                        '${_swapRows[_leftSelectIndex].swapTokenName}-${_swapRows[_rightSelectIndex].swapTokenName}',
+                        style: GoogleFonts.lato(
+                          letterSpacing: 0.2,
+                          fontSize: 16,
+                          color: MyColors.black87,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 2),
+                      child: Text(
+                        '资金池',
+                        style: GoogleFonts.lato(
+                          letterSpacing: 0.2,
+                          fontSize: 16,
+                          color: MyColors.black87,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '总流动性',
+                  style: GoogleFonts.lato(
+                    fontSize: 15,
+                    letterSpacing: 0.2,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              SizedBox(height: 8),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: ClipOval(
+                        child: Image.asset(
+                          'images/usd.png',
+                          width: 24,
+                          height: 24,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 6),
+                      child: Text(
+                        _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0))}'
+                        : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                        style: GoogleFonts.lato(
+                          fontSize: 16,
+                          color: MyColors.black,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        '  USD',
+                        style: GoogleFonts.lato(
+                          fontSize: 16,
+                          color: MyColors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 15),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '代币',
+                  style: GoogleFonts.lato(
+                    fontSize: 15,
+                    letterSpacing: 0.2,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              SizedBox(height: 8),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: ClipOval(
+                        child: Image.network(
+                          '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                          width: 22,
+                          height: 22,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 6),
+                      child: Text(
+                          _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0))}'
+                        : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
+                        style: GoogleFonts.lato(
+                          fontSize: 16,
+                          color: MyColors.black,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        '  ${_swapRows[_leftSelectIndex].swapTokenName}',
+                        style: GoogleFonts.lato(
+                          fontSize: 16,
+                          color: MyColors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 8),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: ClipOval(
+                        child: Image.network(
+                          '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                          width: 22,
+                          height: 22,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 6),
+                      child: Text(
+                        _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0))}'
+                            : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
+                        style: GoogleFonts.lato(
+                          fontSize: 16,
+                          color: MyColors.black,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        '  ${_swapRows[_rightSelectIndex].swapTokenName}',
+                        style: GoogleFonts.lato(
+                          fontSize: 16,
+                          color: MyColors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),

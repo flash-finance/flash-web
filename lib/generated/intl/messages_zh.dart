@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutTips1" : MessageLookupByLibrary.simpleMessage("在波场DeFi生态，Flash Finance团队希望做一系列的产品: 挖矿、机枪池、交易、借贷和数字钱包等"),
     "aboutTips2" : MessageLookupByLibrary.simpleMessage("团队致力于产品的快速开发，目前，不私募，不发币"),
     "aboutTips3" : MessageLookupByLibrary.simpleMessage("挖矿:  聚合SUN平台，无需手续费"),
-    "aboutTips4" : MessageLookupByLibrary.simpleMessage("交易:  聚合JustSwap平台，0.1%手续费"),
+    "aboutTips4" : MessageLookupByLibrary.simpleMessage("交易:  聚合JustSwap平台，0.01%手续费"),
     "aboutTips5" : MessageLookupByLibrary.simpleMessage("会做:  挖矿、机枪池、交易、借贷和数字钱包等"),
     "actionTitle0" : MessageLookupByLibrary.simpleMessage("交易"),
     "actionTitle1" : MessageLookupByLibrary.simpleMessage("挖矿"),
