@@ -1057,7 +1057,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       '${item.swapTokenName}',
                       style: TextStyle(
                         color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
-                        fontSize: 16,
+                        fontSize: 15,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -1078,7 +1078,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ) : Text(
-                '${item.swapTokenPrice2}',
+                '${item.swapTokenPrice2.toStringAsFixed(4)}',
                 style: TextStyle(
                   color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
                   fontSize: 14,
