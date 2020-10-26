@@ -13,4 +13,6 @@ async function getTokenBalance(index, tokenType, tokenAddress, userAddress) {
         setBalance(index, tokenAddress, balance);
     }
 
- }
+}
+
+
