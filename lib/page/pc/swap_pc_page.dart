@@ -257,12 +257,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             child: ClipOval(
                               child: _flag1 ? Image.network(
                                 '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                width: 32,
-                                height: 32,
+                                width: 30,
+                                height: 30,
                                 fit: BoxFit.cover,
                               ) : Container(
-                                width: 32,
-                                height: 32,
+                                width: 30,
+                                height: 30,
                               ),
                             ),
                           ),
@@ -524,12 +524,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             child: ClipOval(
                               child: _flag2 ? Image.network(
                                 '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                width: 32,
-                                height: 32,
+                                width: 30,
+                                height: 30,
                                 fit: BoxFit.cover,
                               ) : Container(
-                                width: 32,
-                                height: 32,
+                                width: 30,
+                                height: 30,
                               ),
                             ),
                           ),
