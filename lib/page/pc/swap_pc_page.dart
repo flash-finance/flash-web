@@ -33,12 +33,17 @@ class _SwapPcPageState extends State<SwapPcPage> {
   bool tronFlag = false;
   Timer _timer1;
   Timer _timer2;
+  Timer _timer3;
 
   bool _flag1 = false;
   bool _flag2 = false;
 
   int _leftSelectIndex = 0;
   int _rightSelectIndex = 1;
+
+  String _leftBalanceAmount = '0.000';
+
+  String _rightBalanceAmount = '0.000';
 
   @override
   void initState() {
@@ -49,9 +54,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
         CommonProvider.changeHomeIndex(0);
       });
     }
-    _getSwapData();
+    _reloadSwapData();
     _reloadAccount();
-    _getTokenBalance();
+    _reloadTokenBalance();
   }
 
   @override
@@ -65,6 +70,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (_timer2 != null) {
       if (_timer2.isActive) {
         _timer2.cancel();
+      }
+    }
+    if (_timer3 != null) {
+      if (_timer3.isActive) {
+        _timer3.cancel();
       }
     }
     super.dispose();
@@ -137,7 +147,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap222',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -199,9 +209,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
       price = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
-    String balanceAmount = '0.000';
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0) {
-      balanceAmount = (Decimal.tryParse(_swapRows[_leftSelectIndex].swapTokenBalance)/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+      _leftBalanceAmount = (Decimal.tryParse(_swapRows[_leftSelectIndex].swapTokenBalance)/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
     }
 
     return Container(
@@ -235,7 +244,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             ),
                           ),
                           TextSpan(
-                            text: '$balanceAmount',
+                            text: '$_leftBalanceAmount',
                             style: GoogleFonts.lato(
                               fontSize: 16,
                               color: MyColors.black87,
@@ -471,9 +480,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
       price = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
-    String balanceAmount = '0.000';
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0) {
-      balanceAmount = (Decimal.tryParse(_swapRows[_rightSelectIndex].swapTokenBalance)/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+      _rightBalanceAmount = (Decimal.tryParse(_swapRows[_rightSelectIndex].swapTokenBalance)/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
     }
     return Container(
       width: 380,
@@ -506,7 +514,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           ),
                         ),
                         TextSpan(
-                          text: '$balanceAmount',
+                          text: '$_rightBalanceAmount',
                           style: GoogleFonts.lato(
                             fontSize: 16,
                             color: MyColors.black87,
@@ -1710,28 +1718,58 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
+  bool _reloadAccountFlag = false;
 
   _reloadAccount() async {
-    _timer1 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      tronFlag = js.context.hasProperty('tronWeb');
-      if (tronFlag) {
-        var result = js.context["tronWeb"]["defaultAddress"]["base58"];
-        if (result.toString() != 'false') {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
-        } else {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount('');
-        }
+    _getAccount();
+    _timer2 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+      if (_reloadAccountFlag) {
+        //print('_reloadAccount _getAccount start');
+        _getAccount();
+        //print('_reloadAccount _getAccount end');
+      } else {
+        //print('_reloadAccount _getAccount is working');
+      }
+    });
+  }
+
+  _getAccount() async {
+    _reloadAccountFlag = false;
+    tronFlag = js.context.hasProperty('tronWeb');
+    if (tronFlag) {
+      var result = js.context["tronWeb"]["defaultAddress"]["base58"];
+      if (result.toString() != 'false') {
+        Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
       } else {
         Provider.of<IndexProvider>(context, listen: false).changeAccount('');
       }
-    });
+    } else {
+      Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+    }
+    _reloadAccountFlag = true;
   }
 
   SwapData _swapData;
 
   List<SwapRow> _swapRows = [];
 
-  _getSwapData() async {
+  bool _reloadSwapDataFlag = false;
+
+  _reloadSwapData() async {
+    _getSwapData();
+    _timer1 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+      if (_reloadSwapDataFlag) {
+        //print('_reloadSwapData _getSwapData start');
+        _getSwapData();
+        //print('_reloadSwapData _getSwapData end');
+      } else {
+        //print('_reloadSwapData _getSwapData is working');
+      }
+    });
+  }
+
+  void _getSwapData() async {
+    _reloadSwapDataFlag = false;
     try {
       String url = servicePath['swapQuery'];
       await requestGet(url).then((value) {
@@ -1739,12 +1777,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
         SwapRespModel respModel = SwapRespModel.fromJson(respData);
         if (respModel != null && respModel.code == 0) {
           _swapData = respModel.data;
-          if (_swapData != null && _swapData.rows != null) {
+          if (_swapData != null && _swapData.rows != null && _swapData.rows.length > 0) {
             _swapRows = _swapData.rows;
           }
         }
       });
-      print('_getSwapData length:${_swapRows.length}');
       _flag1 = _swapRows.length > 0 ? true : false;
       _flag2 = _swapRows.length > 1 ? true : false;
       if (mounted) {
@@ -1753,21 +1790,38 @@ class _SwapPcPageState extends State<SwapPcPage> {
     } catch (e) {
       print(e);
     }
+    _reloadSwapDataFlag = true;
   }
 
-  _getTokenBalance() async {
+  bool _reloadTokenBalanceFlag = false;
+
+  _reloadTokenBalance() async {
     js.context['setBalance']=setBalance;
-    _timer2 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
-      String account = Provider.of<IndexProvider>(context, listen: false).account;
-      if (account != '') {
-        for (int i=0; i<_swapRows.length; i++) {
-          js.context.callMethod('getTokenBalance', [i.toString(), _swapRows[i].swapTokenType, _swapRows[i].swapTokenAddress, account]);
-        }
+    _getTokenBalance();
+    _timer3 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+      if (_reloadTokenBalanceFlag) {
+        print('_reloadTokenBalance _getTokenBalance start');
+        _getTokenBalance();
+        print('_reloadTokenBalance _getTokenBalance end');
+      } else {
+        print('_reloadTokenBalance _getTokenBalance is working');
       }
     });
   }
 
+  _getTokenBalance() async {
+    _reloadTokenBalanceFlag = false;
+    String account = Provider.of<IndexProvider>(context, listen: false).account;
+    if (account != '') {
+      for (int i=0; i<_swapRows.length; i++) {
+        js.context.callMethod('getTokenBalance', [i.toString(), _swapRows[i].swapTokenType, _swapRows[i].swapTokenAddress, account]);
+      }
+    }
+    _reloadTokenBalanceFlag = true;
+  }
+
   void setBalance(index, balance) {
+    print('setBalance index: ${index.toString()}, balance: ${balance.toString()}');
     if (_swapRows.length > index) {
       _swapRows[index].swapTokenBalance = balance.toString();
       setState(() {});
