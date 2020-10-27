@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:common_utils/common_utils.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
@@ -161,7 +160,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap111',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -1360,8 +1359,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             padding: EdgeInsets.only(left: 6),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0))}'
-                                  : '$_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
+                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
+                                  : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
                                 fontSize: 15,
                                 color: MyColors.black87,
@@ -1412,8 +1411,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             padding: EdgeInsets.only(left: 6),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0))}'
-                                  : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
+                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
+                                  : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
                                 fontSize: 15,
                                 color: MyColors.black87,
@@ -1452,8 +1451,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             padding: EdgeInsets.only(left: 6),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0))}'
-                                  : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
+                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
+                                  : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
                                 fontSize: 15,
                                 color: MyColors.black87,
@@ -1621,7 +1620,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                 Container(
                                   padding: EdgeInsets.only(left: 6),
                                   child: Text(
-                                    '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
+                                    '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
                                       fontSize: 15,
                                       color: MyColors.black87,
@@ -1660,7 +1659,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                 Container(
                                   padding: EdgeInsets.only(left: 6),
                                   child: Text(
-                                    '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
+                                    '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
                                       fontSize: 15,
                                       color: MyColors.black87,
@@ -1760,7 +1759,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                 Container(
                                   padding: EdgeInsets.only(left: 6),
                                   child: Text(
-                                    '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                                    '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
                                       fontSize: 15,
                                       color: MyColors.black87,
@@ -1811,7 +1810,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                 Container(
                                   padding: EdgeInsets.only(left: 6),
                                   child: Text(
-                                    '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0))}',
+                                    '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
                                       fontSize: 15,
                                       color: MyColors.black87,
@@ -1850,7 +1849,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                 Container(
                                   padding: EdgeInsets.only(left: 6),
                                   child: Text(
-                                    '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0))}',
+                                    '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
                                       fontSize: 15,
                                       color: MyColors.black87,
