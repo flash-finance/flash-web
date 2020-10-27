@@ -47,8 +47,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
   String _leftSwapAmount = '';
   String _rightSwapAmount = '';
 
-  String _leftSwapValue = '';
-  String _rightSwapValue = '';
+  String _leftSwapValue = '0';
+  String _rightSwapValue = '0';
 
   TextEditingController _leftSwapAmountController;
   TextEditingController _rightSwapAmountController;
@@ -162,7 +162,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap333',
+                      'Flash  Swap222',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -846,28 +846,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
-  Widget _swapWidget(BuildContext context) {
-    return InkWell(
-      onTap: () {
-      },
-      child: Container(
-        child: Chip(
-          padding: _swapFlag ? EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
-          backgroundColor:  MyColors.blue500,
-          label: Container(
-            child: Text(
-              _swapFlag ? '兑换' : '代币余额不足',
-              style: GoogleFonts.lato(
-                letterSpacing: _swapFlag ? 0.7 : 0.2,
-                color: Colors.white,
-                fontSize: 15,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
@@ -1986,11 +1964,75 @@ class _SwapPcPageState extends State<SwapPcPage> {
     _reloadTokenBalanceFlag = true;
   }
 
+  Widget _swapWidget(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        js.context['setAllowance']=setAllowance;
+        js.context['setApprove']=setApprove;
+        String account = Provider.of<IndexProvider>(context, listen: false).account;
+        if (account != '' && _flag1 && _flag2 && _swapFlag) {
+          double value1 = double.parse(_leftSwapValue);
+          double value2 = double.parse(_rightSwapValue);
+          if (value1 > 0 && value2 > 0) {
+              if (_swapRows[_leftSelectIndex].swapTokenType == 2)
+              js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_leftSelectIndex].baseTokenAddress, account, value1, value2]);
+          } else {
+
+          }
+        }
+      },
+      child: Container(
+        color: Colors.white,
+        child: Chip(
+          padding: _swapFlag ? EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
+          backgroundColor:  MyColors.blue500,
+          label: Container(
+            child: Text(
+              _swapFlag ? '兑换' : '代币余额不足',
+              style: GoogleFonts.lato(
+                letterSpacing: _swapFlag ? 0.7 : 0.2,
+                color: Colors.white,
+                fontSize: 15,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   void setBalance(index, tokenAddress, balance) {
-    print('setBalance index: ${index.toString()}, tokenAddress: ${tokenAddress.toString()}, balance: ${balance.toString()}');
+    //print('setBalance index: ${index.toString()}, tokenAddress: ${tokenAddress.toString()}, balance: ${balance.toString()}');
     if (_swapRows.length > index) {
       _balanceMap['${tokenAddress.toString()}'] = balance.toString();
       setState(() {});
+    }
+  }
+
+  void setAllowance(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue, allowanceAmount) {
+    double allowanceValue = Decimal.tryParse(allowanceAmount.toString()).toDouble();
+    double swapValue = double.parse(swapTradeValue.toString());
+    if (swapValue > allowanceValue) {
+      js.context.callMethod('approve', [lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue]);
+    } else {
+      String account = Provider.of<IndexProvider>(context, listen: false).account;
+      if (account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
+        js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, account]);
+      } else if (account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
+        js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, account, baseTokenAddress]);
+      }
+    }
+  }
+
+
+  void setApprove(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue) {
+    print('setApprove swapTokenType: ${swapTokenType.toString()}, baseTokenType: ${baseTokenType.toString()}');
+    print('setApprove swapTokenAddress: ${swapTokenAddress.toString()}, swapTradeValue: ${swapTradeValue.toString()}, baseTradeValue:${baseTradeValue.toString()}');
+    String account = Provider.of<IndexProvider>(context, listen: false).account;
+    if (account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
+        js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, account]);
+    } else if (account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
+        js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, account, baseTokenAddress]);
     }
   }
 
