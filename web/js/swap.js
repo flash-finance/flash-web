@@ -80,3 +80,21 @@ async function tokenToTrxSwap(swapToken, lpToken, tokensSold, minTrx, userAddres
     });
     console.log('tokenToTrxSwap result: ' + result);
 }
+
+async function tokenToTokenSwap(swapToken, lpToken, tokensSold, minTokensBought, minTrxBought, userAddress, targetToken) {
+    console.log('tokenToTokenSwap swapToken: ' + swapToken);
+    console.log('tokenToTokenSwap lpToken: ' + lpToken);
+    console.log('tokenToTokenSwap tokensSold: ' + tokensSold);
+    console.log('tokenToTokenSwap minTokensBought: ' + minTokensBought);
+    console.log('tokenToTokenSwap minTrxBought: ' + minTrxBought);
+    console.log('tokenToTokenSwap userAddress: ' + userAddress);
+    console.log('tokenToTokenSwap targetToken: ' + targetToken);
+
+    let obj = await tronWeb.contract().at(flashSwapContract);
+    let result = await obj.tokenToTokenSwap(swapToken, lpToken, tokensSold.toString(), minTokensBought.toString(), minTrxBought.toString(), userAddress, targetToken).send({
+        feeLimit: 10000000
+    });
+
+    console.log('tokenToTokenSwap result: ' + result);
+}
+

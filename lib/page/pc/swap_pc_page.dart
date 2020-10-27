@@ -1975,8 +1975,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
           double value2 = double.parse(_rightSwapValue);
           if (value1 > 0 && value2 > 0) {
               if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
-                js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_leftSelectIndex].baseTokenAddress, account, value1, value2]);
-              } else if (_swapRows[_leftSelectIndex].swapTokenType == 1){
+                js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, account, value1, value2]);
+              } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 && _swapRows[_rightSelectIndex].swapTokenType == 2){
                 js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, value1, account]);
               }
           }
