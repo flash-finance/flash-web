@@ -53,6 +53,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
   TextEditingController _leftSwapAmountController;
   TextEditingController _rightSwapAmountController;
 
+  bool _swapFlag = true;
+
   @override
   void initState() {
     print('SwapPcPage initState');
@@ -160,7 +162,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap333',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -363,10 +365,19 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             print('_rightSwapValue 111: $_rightSwapValue');
                             print('_rightSwapValue 222: ${_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress]}');
 
+                            if (leftAmount > double.parse(_leftBalanceAmount)) {
+                                _swapFlag = false;
+                            } else {
+                              _swapFlag = true;
+                            }
+                            setState(() {});
+
                           }
                         } else {
                           _leftSwapAmount = '';
                           _leftSwapValue = '';
+                          _swapFlag = true;
+                          setState(() {});
                         }
                       },
                       onSaved: (String value) {},
@@ -841,15 +852,15 @@ class _SwapPcPageState extends State<SwapPcPage> {
       },
       child: Container(
         child: Chip(
-          padding: EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15),
+          padding: _swapFlag ? EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
           backgroundColor:  MyColors.blue500,
           label: Container(
             child: Text(
-              '兑换',
+              _swapFlag ? '兑换' : '代币余额不足',
               style: GoogleFonts.lato(
-                letterSpacing: 0.7,
+                letterSpacing: _swapFlag ? 0.7 : 0.2,
                 color: Colors.white,
-                fontSize: 17,
+                fontSize: 15,
               ),
             ),
           ),
@@ -1976,7 +1987,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   void setBalance(index, tokenAddress, balance) {
-    //print('setBalance index: ${index.toString()}, tokenAddress: ${tokenAddress.toString()}, balance: ${balance.toString()}');
+    print('setBalance index: ${index.toString()}, tokenAddress: ${tokenAddress.toString()}, balance: ${balance.toString()}');
     if (_swapRows.length > index) {
       _balanceMap['${tokenAddress.toString()}'] = balance.toString();
       setState(() {});
