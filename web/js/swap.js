@@ -25,6 +25,15 @@ async function allowance(lpTokenAddress, swapTokenType, baseTokenType, swapToken
     console.log('allowance baseTradeValue: ' + baseTradeValue);
     let obj = await tronWeb.contract().at(swapTokenAddress);
     let result = await obj.allowance(userAddress, flashSwapContract).call();
+
+    //  USDT USDJ
+    if (swapTokenAddress == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t') {
+        result = tronWeb.toDecimal(result.remaining._hex);
+    } else if (swapTokenAddress == 'TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT') {
+        result = tronWeb.toDecimal(result._hex);
+    }
+    console.log('allowance result: ' + result);
+
     setAllowance(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue, result);
 }
 
@@ -44,6 +53,19 @@ async function approve(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAd
     });
 
     setApprove(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue);
+}
+
+async function trxToTokenSwap(swapToken, lpToken, minTokens, trxSold, userAddress) {
+    console.log('trxToTokenSwap swapToken: ' + swapToken);
+    console.log('trxToTokenSwap lpToken: ' + lpToken);
+    console.log('trxToTokenSwap tokensSold: ' + minTokens);
+    console.log('trxToTokenSwap minTrx: ' + trxSold);
+    console.log('trxToTokenSwap userAddress: ' + userAddress);
+    let obj = await tronWeb.contract().at(flashSwapContract);
+    let result = await obj.trxToTokenSwap(swapToken, lpToken, minTokens.toString(), userAddress).send({
+        callValue: trxSold.toString(),
+        feeLimit: 10000000
+    });
 }
 
 async function tokenToTrxSwap(swapToken, lpToken, tokensSold, minTrx, userAddress) {
