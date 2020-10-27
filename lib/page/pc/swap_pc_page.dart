@@ -1361,7 +1361,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             padding: EdgeInsets.only(left: 6),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0))}'
-                                  : '${TextUtil.formatComma3(_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                                  : '$_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
                                 fontSize: 15,
                                 color: MyColors.black87,
@@ -1570,7 +1570,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                 Container(
                                   padding: EdgeInsets.only(left: 6),
                                   child: Text(
-                                    '${TextUtil.formatComma3(_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0))}',
+                                    '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
                                       fontSize: 15,
                                       color: MyColors.black87,
