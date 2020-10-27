@@ -30,6 +30,9 @@ class SwapPcPage extends StatefulWidget {
 
 class _SwapPcPageState extends State<SwapPcPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
+  String _account = '';
+  String _leftKey = '';
+  String _rightKey = '';
   bool tronFlag = false;
   Timer _timer1;
   Timer _timer2;
@@ -54,6 +57,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
   TextEditingController _rightSwapAmountController;
 
   bool _swapFlag = true;
+
+  bool _loadFlag = false;
 
   @override
   void initState() {
@@ -162,7 +167,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap111',
+                      'Flash  Swap',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -225,8 +230,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
       price = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0
-        && _balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress] != null) {
-      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+        && _balanceMap[_leftKey] != null) {
+      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
     }
 
     return Container(
@@ -358,12 +363,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
                             print('_leftSwapAmount: $_leftSwapAmount');
                             print('_leftSwapValue 111: $_leftSwapValue');
-                            print('_leftSwapValue 222: ${_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress]}');
+                            print('_leftSwapValue 222: ${_balanceMap[_leftKey]}');
 
 
                             print('_rightSwapAmount: $_rightSwapAmount');
                             print('_rightSwapValue 111: $_rightSwapValue');
-                            print('_rightSwapValue 222: ${_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress]}');
+                            print('_rightSwapValue 222: ${_balanceMap[_rightKey]}');
 
                             if (leftAmount > double.parse(_leftBalanceAmount)) {
                                 _swapFlag = false;
@@ -391,12 +396,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       double leftAmount = Decimal.tryParse(_leftSwapAmount).toDouble();
 
                       if (_flag1 && _flag2) {
-                        if (_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress] != null) {
-                          _leftSwapValue = _balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress];
+                        if (_balanceMap[_leftKey] != null) {
+                          _leftSwapValue = _balanceMap[_leftKey];
                         }
                         print('_leftSwapAmount: $_leftSwapAmount');
                         print('_leftSwapValue 111: $_leftSwapValue');
-                        print('_leftSwapValue 222: ${_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress]}');
+                        print('_leftSwapValue 222: ${_balanceMap[_leftKey]}');
 
                         if (_swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
                           double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
@@ -404,7 +409,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
                           print('_rightSwapAmount: $_rightSwapAmount');
                           print('_rightSwapValue 111: $_rightSwapValue');
-                          print('_rightSwapValue 222: ${_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress]}');
+                          print('_rightSwapValue 222: ${_balanceMap[_rightKey]}');
                         }
                       }
                     },
@@ -527,7 +532,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
       child: InkWell(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
-
             int temp1 = _leftSelectIndex;
             _leftSelectIndex = _rightSelectIndex;
             _rightSelectIndex = temp1;
@@ -562,8 +566,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
       price = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(4);
     }
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0
-        && _balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress] != null) {
-      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+        && _balanceMap[_rightKey] != null) {
+      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
     }
     return Container(
       width: 380,
@@ -694,12 +698,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
                             print('_rightSwapAmount: $_rightSwapAmount');
                             print('_rightSwapValue 111: $_rightSwapValue');
-                            print('_rightSwapValue 222: ${_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress]}');
-
+                            print('_rightSwapValue 222: ${_balanceMap[_rightKey]}');
 
                             print('_leftSwapAmount: $_leftSwapAmount');
                             print('_leftSwapValue 111: $_leftSwapValue');
-                            print('_leftSwapValue 222: ${_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress]}');
+                            print('_leftSwapValue 222: ${_balanceMap[_leftKey]}');
 
                           }
                         } else {
@@ -720,12 +723,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         double rightAmount = Decimal.tryParse(_rightSwapAmount).toDouble();
 
                         if (_flag1 && _flag2) {
-                          if (_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress] != null) {
-                            _rightSwapValue = _balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress];
+                          if (_balanceMap[_rightKey] != null) {
+                            _rightSwapValue = _balanceMap[_rightKey];
                           }
                           print('_rightSwapAmount: $_rightSwapAmount');
                           print('_rightSwapValue 111: $_rightSwapValue');
-                          print('_rightSwapValue 222: ${_balanceMap[_swapRows[_rightSelectIndex].swapTokenAddress]}');
+                          print('_rightSwapValue 222: ${_balanceMap[_rightKey]}');
 
                           if (_swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
                             double leftAmount = rightAmount * _swapRows[_rightSelectIndex].swapTokenPrice1 /_swapRows[_leftSelectIndex].swapTokenPrice1;
@@ -733,7 +736,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
                             print('_leftSwapAmount: $_leftSwapAmount');
                             print('_leftSwapValue 111: $_leftSwapValue');
-                            print('_leftSwapValue 222: ${_balanceMap[_swapRows[_leftSelectIndex].swapTokenAddress]}');
+                            print('_leftSwapValue 222: ${_balanceMap[_leftKey]}');
                           }
                         }
                       }
@@ -846,7 +849,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
-
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
       toolbarHeight: 80,
@@ -893,7 +895,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   Widget _actionItemWidget(BuildContext context, int index) {
-    String account = Provider.of<IndexProvider>(context).account;
     int _homeIndex = CommonProvider.homeIndex;
     String actionTitle = '';
     switch(index) {
@@ -942,7 +943,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
             padding: EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
             backgroundColor: MyColors.blue500,
             label: Text(
-              account == '' ? '$actionTitle' : account.substring(0, 4) + '...' + account.substring(account.length - 4, account.length),
+              _account == '' ? '$actionTitle' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
               style: GoogleFonts.lato(
                 letterSpacing: 0.5,
                 color: MyColors.white,
@@ -979,7 +980,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
             Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
           } else if (index == 3) {
             Application.router.navigateTo(context, 'about', transition: TransitionType.fadeIn);
-          } else if (index == 4 && account == '') {
+          } else if (index == 4 && _account == '') {
             _showConnectWalletDialLog(context);
           } else if (index == 5) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
@@ -1132,8 +1133,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   Widget _selectSwapTokenWidget(BuildContext context, int index, SwapRow item, int type) {
     String balanceAmount = '0.000';
-    if (item.swapTokenPrecision > 0 && _balanceMap[item.swapTokenAddress] != null) {
-      balanceAmount = (Decimal.tryParse(_balanceMap[item.swapTokenAddress])/Decimal.fromInt(10).pow(item.swapTokenPrecision)).toStringAsFixed(3);
+    String _key = '$_account+${item.swapTokenAddress}';
+    if (item.swapTokenPrecision > 0 && _balanceMap[_key] != null) {
+      balanceAmount = (Decimal.tryParse(_balanceMap[_key])/Decimal.fromInt(10).pow(item.swapTokenPrecision)).toStringAsFixed(3);
     }
     bool flag = false;
     if (type == 1) {
@@ -1876,7 +1878,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   _reloadAccount() async {
     _getAccount();
-    _timer2 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+    _timer2 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
       if (_reloadAccountFlag) {
         _getAccount();
       }
@@ -1888,13 +1890,28 @@ class _SwapPcPageState extends State<SwapPcPage> {
     tronFlag = js.context.hasProperty('tronWeb');
     if (tronFlag) {
       var result = js.context["tronWeb"]["defaultAddress"]["base58"];
-      if (result.toString() != 'false') {
-        Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
-      } else {
-        Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+      if (result.toString() != 'false' && result.toString() != _account) {
+        if (mounted) {
+          setState(() {
+            _account = result.toString();
+            if (_flag1 && _flag2) {
+              _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
+              _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
+            }
+          });
+        }
+        _getTokenBalance(1);
       }
     } else {
-      Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+      if (mounted) {
+        setState(() {
+          _account = '';
+          if (_flag1 && _flag2) {
+            _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
+            _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
+          }
+        });
+      }
     }
     _reloadAccountFlag = true;
   }
@@ -1932,6 +1949,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
       });
       _flag1 = _swapRows.length > 0 ? true : false;
       _flag2 = _swapRows.length > 1 ? true : false;
+      _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
+      _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
       if (mounted) {
         setState(() {});
       }
@@ -1945,20 +1964,22 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   _reloadTokenBalance() async {
     js.context['setBalance']=setBalance;
-    _getTokenBalance();
+    _getTokenBalance(1);
     _timer3 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
       if (_reloadTokenBalanceFlag) {
-        _getTokenBalance();
+        _getTokenBalance(2);
       }
     });
   }
 
-  _getTokenBalance() async {
+  _getTokenBalance(int type) async {
     _reloadTokenBalanceFlag = false;
-    String account = Provider.of<IndexProvider>(context, listen: false).account;
-    if (account != '') {
+    if (_account != '') {
       for (int i=0; i<_swapRows.length; i++) {
-        js.context.callMethod('getTokenBalance', [i.toString(), _swapRows[i].swapTokenType, _swapRows[i].swapTokenAddress, account]);
+        String _key = '$_account+${_swapRows[i].swapTokenAddress}';
+        if (type == 1 || _balanceMap[_key] == null) {
+          js.context.callMethod('getTokenBalance', [_swapRows[i].swapTokenType, _swapRows[i].swapTokenAddress, _account]);
+        }
       }
     }
     _reloadTokenBalanceFlag = true;
@@ -1967,18 +1988,24 @@ class _SwapPcPageState extends State<SwapPcPage> {
   Widget _swapWidget(BuildContext context) {
     return InkWell(
       onTap: () {
-        js.context['setAllowance']=setAllowance;
-        js.context['setApprove']=setApprove;
-        String account = Provider.of<IndexProvider>(context, listen: false).account;
-        if (account != '' && _flag1 && _flag2 && _swapFlag) {
+        js.context['setAllowance'] = setAllowance;
+        js.context['setApprove'] = setApprove;
+        js.context['setTrxToTokenSwap'] = setTrxToTokenSwap;
+        js.context['setTokenToTrxSwap'] = setTokenToTrxSwap;
+        js.context['setTokenToTokenSwap'] = setTokenToTokenSwap;
+        js.context['setError'] = setError;
+        if (_account != '' && _flag1 && _flag2 && _swapFlag) {
           double value1 = double.parse(_leftSwapValue);
           double value2 = double.parse(_rightSwapValue);
           if (value1 > 0 && value2 > 0) {
-              if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
-                js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, account, value1, value2]);
-              } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 && _swapRows[_rightSelectIndex].swapTokenType == 2){
-                js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, value1, account]);
-              }
+            setState(() {
+              _loadFlag = true;
+            });
+            if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
+              js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, value1, value2]);
+            } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 && _swapRows[_rightSelectIndex].swapTokenType == 2){
+              js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, value1, _account]);
+            }
           }
         }
       },
@@ -1987,7 +2014,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         child: Chip(
           padding: _swapFlag ? EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
           backgroundColor:  MyColors.blue500,
-          label: Container(
+          label: !_loadFlag ? Container(
             child: Text(
               _swapFlag ? '兑换' : '代币余额不足',
               style: GoogleFonts.lato(
@@ -1996,17 +2023,29 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 fontSize: 15,
               ),
             ),
+          ) : Container(
+            color: Colors.blue[500],
+            child: CupertinoActivityIndicator(),
           ),
         ),
       ),
     );
   }
 
-  void setBalance(index, tokenAddress, balance) {
-    //print('setBalance index: ${index.toString()}, tokenAddress: ${tokenAddress.toString()}, balance: ${balance.toString()}');
-    if (_swapRows.length > index) {
-      _balanceMap['${tokenAddress.toString()}'] = balance.toString();
-      setState(() {});
+  void setBalance(tokenAddress, balance) {
+    print('setBalance tokenAddress: ${tokenAddress.toString()}, balance: ${balance.toString()}');
+    try {
+      double.parse(balance.toString());
+    } catch (e) {
+      print('setBalance double.parse error');
+      return;
+    }
+    if (_account != '') {
+      String _key = '$_account+${tokenAddress.toString()}';
+      _balanceMap[_key] = balance.toString();
+      if (mounted) {
+        setState(() {});
+      }
     }
   }
 
@@ -2016,25 +2055,92 @@ class _SwapPcPageState extends State<SwapPcPage> {
     if (swapValue > allowanceValue) {
       js.context.callMethod('approve', [lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue]);
     } else {
-      String account = Provider.of<IndexProvider>(context, listen: false).account;
-      if (account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
-        js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, account]);
-      } else if (account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
-        js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, account, baseTokenAddress]);
+      if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
+        js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
+      } else if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
+        js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, _account, baseTokenAddress]);
       }
     }
   }
 
-
   void setApprove(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue) {
     print('setApprove swapTokenType: ${swapTokenType.toString()}, baseTokenType: ${baseTokenType.toString()}');
     print('setApprove swapTokenAddress: ${swapTokenAddress.toString()}, swapTradeValue: ${swapTradeValue.toString()}, baseTradeValue:${baseTradeValue.toString()}');
-    String account = Provider.of<IndexProvider>(context, listen: false).account;
-    if (account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
-        js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, account]);
-    } else if (account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
-        js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, account, baseTokenAddress]);
+    if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
+        js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
+    } else if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
+        js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, _account, baseTokenAddress]);
     }
   }
 
+  void setTrxToTokenSwap(swapToken, result) {
+    print('setTrxToTokenSwap swapToken: ${swapToken.toString()}, result:${result.toString()}');
+    setState(() {
+      _loadFlag = false;
+    });
+    for (int i = 0; i < 2; i++) {
+      Future.delayed(Duration(milliseconds: 2000), (){
+        js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
+        js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
+        if (i == 0) {
+          setState(() {
+            _leftSwapAmount = '';
+            _leftSwapValue = '';
+            _rightSwapAmount = '';
+            _rightSwapValue = '';
+          });
+        }
+      });
+      print('setTrxToTokenSwap delayed end: $i');
+    }
+  }
+
+  void setTokenToTrxSwap(swapToken, result) {
+    print('setTrxToTokenSwap swapToken: ${swapToken.toString()}, result:${result.toString()}');
+    setState(() {
+      _loadFlag = false;
+    });
+    for (int i = 0; i < 2; i++) {
+      Future.delayed(Duration(milliseconds: 2000), (){
+        js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
+        js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
+        if (i == 0) {
+          setState(() {
+            _leftSwapAmount = '';
+            _leftSwapValue = '';
+            _rightSwapAmount = '';
+            _rightSwapValue = '';
+          });
+        }
+      });
+    }
+  }
+
+  void setTokenToTokenSwap(leftToken, rightToken, result) {
+    print('setTrxToTokenSwap leftToken: ${leftToken.toString()}, rightToken: ${rightToken.toString()}, result:${result.toString()}');
+    setState(() {
+      _loadFlag = false;
+    });
+    for (int i = 0; i < 2; i++) {
+      Future.delayed(Duration(milliseconds: 2000), (){
+        js.context.callMethod('getTokenBalance', [2, leftToken, _account]);
+        js.context.callMethod('getTokenBalance', [2, rightToken, _account]);
+        if (i == 0) {
+          setState(() {
+            _leftSwapAmount = '';
+            _leftSwapValue = '';
+            _rightSwapAmount = '';
+            _rightSwapValue = '';
+          });
+        }
+      });
+    }
+  }
+
+  void setError(msg) {
+    print('setError: ${msg.toString()}');
+    setState(() {
+      _loadFlag = false;
+    });
+  }
 }
