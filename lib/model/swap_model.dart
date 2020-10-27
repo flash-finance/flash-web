@@ -50,6 +50,7 @@ class SwapData {
 
 class SwapRow {
   int id;
+  String lpTokenAddress;
   String swapTokenAddress;
   String swapTokenName;
   int swapTokenType;
@@ -74,6 +75,7 @@ class SwapRow {
 
   SwapRow(
       {this.id,
+        this.lpTokenAddress,
         this.swapTokenAddress,
         this.swapTokenName,
         this.swapTokenType,
@@ -99,6 +101,7 @@ class SwapRow {
 
   SwapRow.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    lpTokenAddress = json['lpTokenAddress'];
     swapTokenAddress = json['swapTokenAddress'];
     swapTokenName = json['swapTokenName'];
     swapTokenType = json['swapTokenType'];
@@ -125,6 +128,7 @@ class SwapRow {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['lpTokenAddress'] = this.lpTokenAddress;
     data['swapTokenAddress'] = this.swapTokenAddress;
     data['swapTokenName'] = this.swapTokenName;
     data['swapTokenType'] = this.swapTokenType;
