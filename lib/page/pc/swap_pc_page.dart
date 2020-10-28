@@ -167,7 +167,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap001',
+                      'Flash  Swap111',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -376,11 +376,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
                               _swapFlag = true;
                             }
                             setState(() {});
-
                           }
                         } else {
                           _leftSwapAmount = '';
                           _leftSwapValue = '';
+                          _rightSwapAmount = '';
+                          _rightSwapValue = '';
                           _swapFlag = true;
                           setState(() {});
                         }
@@ -704,12 +705,21 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             print('_leftSwapValue 111: $_leftSwapValue');
                             print('_leftSwapValue 222: ${_balanceMap[_leftKey]}');
 
+                            if (leftAmount > double.parse(_leftBalanceAmount)) {
+                              _swapFlag = false;
+                            } else {
+                              _swapFlag = true;
+                            }
+                            setState(() {});
                           }
                         } else {
                           _rightSwapAmount = '';
                           _rightSwapValue = '';
+                          _leftSwapAmount = '';
+                          _leftSwapValue = '';
+                          _swapFlag = true;
+                          setState(() {});
                         }
-                        setState(() {});
                       },
                       onSaved: (String value) {},
                       onEditingComplete: () {},
@@ -1348,7 +1358,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 6),
+                            padding: EdgeInsets.only(left: 10),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
@@ -1400,7 +1410,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 6),
+                            padding: EdgeInsets.only(left: 10),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
@@ -1440,7 +1450,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 6),
+                            padding: EdgeInsets.only(left: 10),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
@@ -1558,7 +1568,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 6),
+                                  padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
@@ -1609,7 +1619,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 6),
+                                  padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
@@ -1648,7 +1658,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 6),
+                                  padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
@@ -1748,7 +1758,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 6),
+                                  padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
@@ -1799,7 +1809,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 6),
+                                  padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
@@ -1838,7 +1848,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 6),
+                                  padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: GoogleFonts.lato(
@@ -2078,6 +2088,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
+    _showResultDialLog(context);
     for (int i = 0; i < 2; i++) {
       Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
@@ -2100,6 +2111,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
+    _showResultDialLog(context);
     for (int i = 0; i < 2; i++) {
       Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
@@ -2121,6 +2133,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
+    _showResultDialLog(context);
     for (int i = 0; i < 2; i++) {
       Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, leftToken, _account]);
@@ -2143,4 +2156,48 @@ class _SwapPcPageState extends State<SwapPcPage> {
       _loadFlag = false;
     });
   }
+
+  _showResultDialLog(BuildContext context) {
+    Timer _timer;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+          _timer = Timer(Duration(milliseconds: 1500), () {
+          Navigator.of(context).pop();
+        });
+        return AlertDialog(
+          elevation: 3,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))
+          ),
+          content: Container(
+            width: 50,
+            height: 30,
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      '执行成功',
+                      style: GoogleFonts.lato(
+                        fontSize: 16.0,
+                        letterSpacing: 0.2,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    ).then((value) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
+  }
+
 }
