@@ -43,6 +43,14 @@ class Util {
     }
   }
 
+  static String formatNum(double num,int position){
+    if((num.toString().length-num.toString().lastIndexOf(".")-1)<position){
+      return num.toStringAsFixed(position).substring(0,num.toString().lastIndexOf(".")+position+1).toString();
+    }else{
+      return num.toString().substring(0,num.toString().lastIndexOf(".")+position+1).toString();
+    }
+  }
+
   static int getDayTime(DateTime dateTime) {
     String dateStr = DateUtil.formatDateMs(dateTime.millisecondsSinceEpoch, format: DateFormats.y_mo_d);
     DateTime dt = DateUtil.getDateTime(dateStr);
@@ -105,4 +113,5 @@ class MyNumberTextInputFormatter extends TextInputFormatter {
       selection: new TextSelection.collapsed(offset: selectionIndex),
     );
   }
+
 }
