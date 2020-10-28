@@ -44,10 +44,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
   int _leftSelectIndex = 0;
   int _rightSelectIndex = 1;
 
-  String _leftPrice = '0.0000';
-  String _rightPrice = '0.0000';
-  String _leftBalanceAmount = '0.000';
-  String _rightBalanceAmount = '0.000';
+  String _leftPrice = '0.000000';
+  String _rightPrice = '0.000000';
+  String _leftBalanceAmount = '0.0000';
+  String _rightBalanceAmount = '0.0000';
 
   String _leftSwapAmount = '';
   String _rightSwapAmount = '';
@@ -169,7 +169,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap101',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -341,7 +341,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
-                      inputFormatters: [MyNumberTextInputFormatter(digit:3)],
+                      inputFormatters: [MyNumberTextInputFormatter(digit:6)],
                       onChanged: (String value) {
                         if (value != null && value != '') {
                           _leftSwapAmount = value;
@@ -350,7 +350,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
                           if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
                             double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
-                            _rightSwapAmount = rightAmount.toStringAsFixed(3);
+                            _rightSwapAmount = rightAmount.toStringAsFixed(6);
                             _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
 
                             print('_leftSwapAmount: $_leftSwapAmount');
@@ -398,7 +398,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
                         if (_swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
                           double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
-                          _rightSwapAmount = rightAmount.toStringAsFixed(3);
+                          _rightSwapAmount = rightAmount.toStringAsFixed(6);
                           _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
                           print('_rightSwapAmount: $_rightSwapAmount');
                           print('_rightSwapValue 111: $_rightSwapValue');
@@ -462,7 +462,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 3, right: 3),
                   child: Text(
-                    '≈  ${_swapRows[_leftSelectIndex].swapTokenPrice2.toStringAsFixed(4)}  USD',
+                    '≈  ${_swapRows[_leftSelectIndex].swapTokenPrice2.toStringAsFixed(6)}  USD',
                     style: GoogleFonts.lato(
                       fontSize: 13,
                       color: MyColors.grey700,
@@ -679,7 +679,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
-                      inputFormatters: [MyNumberTextInputFormatter(digit:3)],
+                      inputFormatters: [MyNumberTextInputFormatter(digit:6)],
                       onChanged: (String value) {
                         if (value != null && value != '') {
                           _rightSwapAmount = value;
@@ -688,7 +688,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
                           if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
                             double leftAmount = rightAmount * _swapRows[_rightSelectIndex].swapTokenPrice1 /_swapRows[_leftSelectIndex].swapTokenPrice1;
-                            _leftSwapAmount = leftAmount.toStringAsFixed(3);
+                            _leftSwapAmount = leftAmount.toStringAsFixed(6);
                             _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
 
                             print('_rightSwapAmount: $_rightSwapAmount');
@@ -736,7 +736,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
                           if (_swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
                             double leftAmount = rightAmount * _swapRows[_rightSelectIndex].swapTokenPrice1 /_swapRows[_leftSelectIndex].swapTokenPrice1;
-                            _leftSwapAmount = leftAmount.toStringAsFixed(3);
+                            _leftSwapAmount = leftAmount.toStringAsFixed(6);
                             _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
                             print('_leftSwapAmount: $_leftSwapAmount');
                             print('_leftSwapValue 111: $_leftSwapValue');
@@ -801,7 +801,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 3, right: 3),
                   child: Text(
-                    '≈  ${_swapRows[_rightSelectIndex].swapTokenPrice2.toStringAsFixed(4)}  USD',
+                    '≈  ${_swapRows[_rightSelectIndex].swapTokenPrice2.toStringAsFixed(6)}  USD',
                     style: GoogleFonts.lato(
                       fontSize: 13,
                       color: MyColors.grey700,
@@ -1136,10 +1136,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   Widget _selectSwapTokenWidget(BuildContext context, int index, SwapRow item, int type) {
-    String balanceAmount = '0.000';
+    String balanceAmount = '0.0000';
     String _key = '$_account+${item.swapTokenAddress}';
     if (item.swapTokenPrecision > 0 && _balanceMap[_key] != null) {
-      balanceAmount = (Decimal.tryParse(_balanceMap[_key])/Decimal.fromInt(10).pow(item.swapTokenPrecision)).toStringAsFixed(3);
+      balanceAmount = (Decimal.tryParse(_balanceMap[_key])/Decimal.fromInt(10).pow(item.swapTokenPrecision)).toStringAsFixed(4);
     }
     bool flag = false;
     if (type == 1) {
@@ -1226,7 +1226,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               width: 160,
               alignment: Alignment.center,
               child: type == 1 ? Text(
-              '${item.swapTokenPrice2.toStringAsFixed(4)}',
+              '${item.swapTokenPrice2.toStringAsFixed(6)}',
               style: TextStyle(
                 color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
                 fontSize: 14,
@@ -1234,7 +1234,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ) : Text(
-                '${item.swapTokenPrice2.toStringAsFixed(4)}',
+                '${item.swapTokenPrice2.toStringAsFixed(6)}',
                 style: TextStyle(
                   color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
                   fontSize: 14,
@@ -1972,17 +1972,17 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
 
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0 && _balanceMap[_leftKey] != null) {
-      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(4);
     }
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0 && _balanceMap[_rightKey] != null) {
-      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(4);
     }
 
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(4);
+      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(6);
     }
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(4);
+      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(6);
     }
   }
 
