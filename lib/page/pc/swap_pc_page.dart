@@ -44,6 +44,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
   int _leftSelectIndex = 0;
   int _rightSelectIndex = 1;
 
+  String _leftPrice = '0.0000';
+  String _rightPrice = '0.0000';
   String _leftBalanceAmount = '0.000';
   String _rightBalanceAmount = '0.000';
 
@@ -167,7 +169,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap666',
+                      'Flash  Swap888',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -224,11 +226,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   Widget _dataLeftWidget(BuildContext context) {
-    String price = '0.000';
-    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-      price = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(4);
-    }
-
     return Container(
       width: 380,
       child: Column(
@@ -444,7 +441,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 3, right: 3),
                   child: Text(
-                    '1  ${_swapRows[_leftSelectIndex].swapTokenName}  ≈  $price  ${_swapRows[_rightSelectIndex].swapTokenName} ',
+                    '1  ${_swapRows[_leftSelectIndex].swapTokenName}  ≈  $_leftPrice  ${_swapRows[_rightSelectIndex].swapTokenName} ',
                     style: GoogleFonts.lato(
                       fontSize: 13,
                       color: MyColors.grey700,
@@ -543,6 +540,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
             _leftBalanceAmount = _rightBalanceAmount;
             _rightBalanceAmount = temp4;
 
+            String temp5 = _leftPrice;
+            _leftPrice = _rightPrice;
+            _rightPrice = temp5;
+
             setState(() {});
           },
           child: Container(
@@ -562,10 +563,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   Widget _dataRightWidget(BuildContext context) {
-    String price = '0.000';
-    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-      price = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(4);
-    }
 
     return Container(
       width: 380,
@@ -783,7 +780,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 3, right: 3),
                   child: Text(
-                    '1  ${_swapRows[_rightSelectIndex].swapTokenName}  ≈  $price  ${_swapRows[_leftSelectIndex].swapTokenName} ',
+                    '1  ${_swapRows[_rightSelectIndex].swapTokenName}  ≈  $_rightPrice  ${_swapRows[_leftSelectIndex].swapTokenName} ',
                     style: GoogleFonts.lato(
                       fontSize: 13,
                       color: MyColors.grey700,
@@ -1160,6 +1157,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
+          _reloadSub();
           setState(() {});
           Navigator.pop(context);
         } else if (type == 2 && index != _leftSelectIndex) {
@@ -1168,6 +1166,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
+          _reloadSub();
           setState(() {});
           Navigator.pop(context);
         }
@@ -1956,16 +1955,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
       });
       _flag1 = _swapRows.length > 0 ? true : false;
       _flag2 = _swapRows.length > 1 ? true : false;
-      _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
-      _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
-
-      if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0 && _balanceMap[_leftKey] != null) {
-        _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
-      }
-      if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0 && _balanceMap[_rightKey] != null) {
-        _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
-      }
-
+      _reloadSub();
       if (mounted) {
         setState(() {});
       }
@@ -1973,6 +1963,27 @@ class _SwapPcPageState extends State<SwapPcPage> {
       print(e);
     }
     _reloadSwapDataFlag = true;
+  }
+
+  void _reloadSub() {
+    if (_flag1 && _flag2) {
+      _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
+      _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
+    }
+
+    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0 && _balanceMap[_leftKey] != null) {
+      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+    }
+    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0 && _balanceMap[_rightKey] != null) {
+      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(3);
+    }
+
+    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toStringAsFixed(4);
+    }
+    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toStringAsFixed(4);
+    }
   }
 
   bool _reloadTokenBalanceFlag = false;
