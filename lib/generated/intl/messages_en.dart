@@ -21,10 +21,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "aboutTips01" : MessageLookupByLibrary.simpleMessage("trading:  directly to the platform of JustSwap"),
     "aboutTips1" : MessageLookupByLibrary.simpleMessage("in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc."),
     "aboutTips2" : MessageLookupByLibrary.simpleMessage("the team is committed to the rapid development of products. currently, no private placement or currency issuance"),
     "aboutTips3" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN,  no handling fees"),
-    "aboutTips4" : MessageLookupByLibrary.simpleMessage("trading:  directly to the platform of JustSwap,  0.01% handling fees"),
     "aboutTips5" : MessageLookupByLibrary.simpleMessage("to do: mining, vault, trading, lending, digital wallet, etc."),
     "actionTitle0" : MessageLookupByLibrary.simpleMessage("Swap"),
     "actionTitle1" : MessageLookupByLibrary.simpleMessage("Farm"),
@@ -39,7 +39,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmReward" : MessageLookupByLibrary.simpleMessage("Reward"),
     "farmTips1" : MessageLookupByLibrary.simpleMessage("please enter the correct value"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
+    "swapBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
+    "swapInsufficientBalance" : MessageLookupByLibrary.simpleMessage("Insufficient Balance"),
+    "swapPool" : MessageLookupByLibrary.simpleMessage("Pool"),
+    "swapPooledTokens" : MessageLookupByLibrary.simpleMessage("Pooled Tokens"),
+    "swapReceive" : MessageLookupByLibrary.simpleMessage("Receive"),
+    "swapSend" : MessageLookupByLibrary.simpleMessage("Send"),
+    "swapSwap" : MessageLookupByLibrary.simpleMessage("Swap"),
     "swapTips1" : MessageLookupByLibrary.simpleMessage("coming soon"),
+    "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
+    "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
+    "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token Name"),
+    "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("Price (USD)"),
+    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity"),
     "walletTips1" : MessageLookupByLibrary.simpleMessage("digital wallet:  open source, security, convenience")
   };
 }

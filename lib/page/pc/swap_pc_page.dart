@@ -179,7 +179,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
-                      '${S.of(context).aboutTips4}',
+                      '${S.of(context).aboutTips01}',
                       style: GoogleFonts.lato(fontSize: 17, color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
@@ -237,7 +237,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 Container(
                   padding: EdgeInsets.only(left: 2),
                   child: Text(
-                    '发送',
+                    '${S.of(context).swapSend}',
                     style: GoogleFonts.lato(
                       fontSize: 16,
                       color: MyColors.black87,
@@ -250,7 +250,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                            text: '余额:  ',
+                            text: '${S.of(context).swapBalance}:  ',
                             style: GoogleFonts.lato(
                               fontSize: 16,
                               color: MyColors.grey700,
@@ -507,9 +507,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       color: Colors.blue[500],
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    padding: EdgeInsets.only(left: 10, top: 6, bottom: 6, right: 10),
+                    padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
                     child: Text(
-                      '资金池',
+                      '${S.of(context).swapPooledTokens}',
                       style: GoogleFonts.lato(
                         letterSpacing: 0.2,
                         color: MyColors.white,
@@ -581,7 +581,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 Container(
                   padding: EdgeInsets.only(left: 2),
                   child: Text(
-                    '接收',
+                    '${S.of(context).swapReceive}',
                     style: GoogleFonts.lato(
                       fontSize: 16,
                       color: MyColors.black87,
@@ -594,7 +594,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: '余额:  ',
+                          text: '${S.of(context).swapBalance}:  ',
                           style: GoogleFonts.lato(
                             fontSize: 16,
                             color: MyColors.grey700,
@@ -847,9 +847,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       color: MyColors.white,
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    padding: EdgeInsets.only(left: 10, top: 6, bottom: 6, right: 10),
+                    padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
                     child: Text(
-                      '资金池',
+                      '${S.of(context).swapPooledTokens}',
                       style: GoogleFonts.lato(
                         letterSpacing: 0.2,
                         color: MyColors.white,
@@ -1109,7 +1109,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: 15),
               child: Text(
-                'Token 名称',
+                '${S.of(context).swapTokenName}',
                 style: TextStyle(
                   color: Colors.black87,
                   fontSize: 14,
@@ -1121,7 +1121,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               width: 160,
               alignment: Alignment.center,
               child: Text(
-                '价格 (USD)',
+                '${S.of(context).swapTokenPrice}',
                 style: TextStyle(
                   color: Colors.black87,
                   fontSize: 14,
@@ -1134,7 +1134,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 alignment: Alignment.centerRight,
                 padding: EdgeInsets.only(right: 15),
                 child: Text(
-                  '余额',
+                  '${S.of(context).swapTokenBalance}',
                   style: TextStyle(
                     color: Colors.black87,
                     fontSize: 14,
@@ -1321,7 +1321,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     Container(
                       padding: EdgeInsets.only(left: 2),
                       child: Text(
-                        '资金池',
+                        ' ${S.of(context).swapPool}',
                         style: GoogleFonts.lato(
                           letterSpacing: 0.2,
                           fontSize: 16,
@@ -1344,7 +1344,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '总流动性',
+                        '${S.of(context).swapTotalLiquidity}',
                         style: GoogleFonts.lato(
                           fontSize: 14,
                           letterSpacing: 0.2,
@@ -1396,7 +1396,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '代币',
+                        '${S.of(context).swapToken}',
                         style: GoogleFonts.lato(
                           fontSize: 14,
                           letterSpacing: 0.2,
@@ -1531,7 +1531,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             padding: EdgeInsets.only(left: 2),
                             child: Text(
-                              '资金池',
+                              '  ${S.of(context).swapPool}',
                               style: GoogleFonts.lato(
                                 letterSpacing: 0.2,
                                 fontSize: 16,
@@ -1554,7 +1554,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '总流动性',
+                              '${S.of(context).swapTotalLiquidity}',
                               style: GoogleFonts.lato(
                                 fontSize: 14,
                                 letterSpacing: 0.2,
@@ -1605,7 +1605,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '代币',
+                              '${S.of(context).swapToken}',
                               style: GoogleFonts.lato(
                                 fontSize: 14,
                                 letterSpacing: 0.2,
@@ -1721,7 +1721,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             padding: EdgeInsets.only(left: 2),
                             child: Text(
-                              '资金池',
+                              ' ${S.of(context).swapPool}',
                               style: GoogleFonts.lato(
                                 letterSpacing: 0.2,
                                 fontSize: 16,
@@ -1744,7 +1744,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '总流动性',
+                              '${S.of(context).swapTotalLiquidity}',
                               style: GoogleFonts.lato(
                                 fontSize: 14,
                                 letterSpacing: 0.2,
@@ -1795,7 +1795,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '代币',
+                              '${S.of(context).swapToken}',
                               style: GoogleFonts.lato(
                                 fontSize: 14,
                                 letterSpacing: 0.2,
@@ -2056,7 +2056,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
           backgroundColor:  MyColors.blue500,
           label: !_loadFlag ? Container(
             child: Text(
-              _swapFlag ? '兑换' : '代币余额不足',
+              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapInsufficientBalance}',
               style: GoogleFonts.lato(
                 letterSpacing: _swapFlag ? 0.7 : 0.2,
                 color: Colors.white,

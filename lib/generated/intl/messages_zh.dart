@@ -21,10 +21,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "aboutTips01" : MessageLookupByLibrary.simpleMessage("交易:  聚合JustSwap平台"),
     "aboutTips1" : MessageLookupByLibrary.simpleMessage("在波场DeFi生态，Flash Finance团队希望做一系列的产品: 挖矿、机枪池、交易、借贷和数字钱包等"),
     "aboutTips2" : MessageLookupByLibrary.simpleMessage("团队致力于产品的快速开发，目前，不私募，不发币"),
     "aboutTips3" : MessageLookupByLibrary.simpleMessage("挖矿:  聚合SUN平台，无需手续费"),
-    "aboutTips4" : MessageLookupByLibrary.simpleMessage("交易:  聚合JustSwap平台，0.01%手续费"),
     "aboutTips5" : MessageLookupByLibrary.simpleMessage("会做:  挖矿、机枪池、交易、借贷和数字钱包等"),
     "actionTitle0" : MessageLookupByLibrary.simpleMessage("交易"),
     "actionTitle1" : MessageLookupByLibrary.simpleMessage("挖矿"),
@@ -39,7 +39,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmReward" : MessageLookupByLibrary.simpleMessage("奖励"),
     "farmTips1" : MessageLookupByLibrary.simpleMessage("请输入正确数值"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("赎回"),
+    "swapBalance" : MessageLookupByLibrary.simpleMessage("余额"),
+    "swapInsufficientBalance" : MessageLookupByLibrary.simpleMessage("余额不足"),
+    "swapPool" : MessageLookupByLibrary.simpleMessage("资金池"),
+    "swapPooledTokens" : MessageLookupByLibrary.simpleMessage("资金池"),
+    "swapReceive" : MessageLookupByLibrary.simpleMessage("接收"),
+    "swapSend" : MessageLookupByLibrary.simpleMessage("发送"),
+    "swapSwap" : MessageLookupByLibrary.simpleMessage("兑换"),
     "swapTips1" : MessageLookupByLibrary.simpleMessage("coming soon"),
+    "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
+    "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("余额"),
+    "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token 名称"),
+    "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("价格 (USD)"),
+    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("总流动性"),
     "walletTips1" : MessageLookupByLibrary.simpleMessage("数字钱包:  开源、安全、易用")
   };
 }

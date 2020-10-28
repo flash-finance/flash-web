@@ -83,6 +83,126 @@ class S {
     );
   }
 
+  /// `Send`
+  String get swapSend {
+    return Intl.message(
+      'Send',
+      name: 'swapSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receive`
+  String get swapReceive {
+    return Intl.message(
+      'Receive',
+      name: 'swapReceive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balance`
+  String get swapBalance {
+    return Intl.message(
+      'Balance',
+      name: 'swapBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pooled Tokens`
+  String get swapPooledTokens {
+    return Intl.message(
+      'Pooled Tokens',
+      name: 'swapPooledTokens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swap`
+  String get swapSwap {
+    return Intl.message(
+      'Swap',
+      name: 'swapSwap',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Token Name`
+  String get swapTokenName {
+    return Intl.message(
+      'Token Name',
+      name: 'swapTokenName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price (USD)`
+  String get swapTokenPrice {
+    return Intl.message(
+      'Price (USD)',
+      name: 'swapTokenPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balance`
+  String get swapTokenBalance {
+    return Intl.message(
+      'Balance',
+      name: 'swapTokenBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pool`
+  String get swapPool {
+    return Intl.message(
+      'Pool',
+      name: 'swapPool',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Liquidity`
+  String get swapTotalLiquidity {
+    return Intl.message(
+      'Total Liquidity',
+      name: 'swapTotalLiquidity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Token`
+  String get swapToken {
+    return Intl.message(
+      'Token',
+      name: 'swapToken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insufficient Balance`
+  String get swapInsufficientBalance {
+    return Intl.message(
+      'Insufficient Balance',
+      name: 'swapInsufficientBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Balance`
   String get farmBalance {
     return Intl.message(
@@ -183,6 +303,16 @@ class S {
     );
   }
 
+  /// `trading:  directly to the platform of JustSwap`
+  String get aboutTips01 {
+    return Intl.message(
+      'trading:  directly to the platform of JustSwap',
+      name: 'aboutTips01',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc.`
   String get aboutTips1 {
     return Intl.message(
@@ -208,16 +338,6 @@ class S {
     return Intl.message(
       'mining:  directly to the platform of SUN,  no handling fees',
       name: 'aboutTips3',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `trading:  directly to the platform of JustSwap,  0.01% handling fees`
-  String get aboutTips4 {
-    return Intl.message(
-      'trading:  directly to the platform of JustSwap,  0.01% handling fees',
-      name: 'aboutTips4',
       desc: '',
       args: [],
     );

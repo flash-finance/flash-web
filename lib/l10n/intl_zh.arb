@@ -5,6 +5,19 @@
   "actionTitle3": "关于",
   "actionTitle4": "连接钱包",
 
+  "swapSend": "发送",
+  "swapReceive": "接收",
+  "swapBalance": "余额",
+  "swapPooledTokens": "资金池",
+  "swapSwap": "兑换",
+  "swapTokenName": "Token 名称",
+  "swapTokenPrice": "价格 (USD)",
+  "swapTokenBalance": "余额",
+  "swapPool": "资金池",
+  "swapTotalLiquidity": "总流动性",
+  "swapToken": "Token",
+  "swapInsufficientBalance": "余额不足",
+
   "farmBalance": "余额",
   "farmDeposited": "已存",
   "farmReward": "奖励",
@@ -19,9 +32,9 @@
 
   "walletTips1": "数字钱包:  开源、安全、易用",
 
+  "aboutTips01": "交易:  聚合JustSwap平台",
   "aboutTips1": "在波场DeFi生态，Flash Finance团队希望做一系列的产品: 挖矿、机枪池、交易、借贷和数字钱包等",
   "aboutTips2": "团队致力于产品的快速开发，目前，不私募，不发币",
   "aboutTips3": "挖矿:  聚合SUN平台，无需手续费",
-  "aboutTips4": "交易:  聚合JustSwap平台，0.01%手续费",
   "aboutTips5": "会做:  挖矿、机枪池、交易、借贷和数字钱包等"
 }
