@@ -201,7 +201,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
           children: <Widget>[
             SizedBox(height: 30),
             _dataWidget(context),
-            SizedBox(height: 80),
+            SizedBox(height: 60),
             _swapWidget(context),
           ],
         ),
@@ -2002,9 +2002,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
               _loadFlag = true;
             });
             if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
-              js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, value1, value2]);
+              js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, _leftSwapValue, _rightSwapValue]);
             } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 && _swapRows[_rightSelectIndex].swapTokenType == 2){
-              js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, value1, _account]);
+              js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, _leftSwapValue, _account]);
             }
           }
         }
