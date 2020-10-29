@@ -164,7 +164,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap18',
+                      'Flash  Swap20',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(40),
                         color: MyColors.white,
@@ -313,7 +313,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                           ),
                           SizedBox(width: ScreenUtil().setWidth(5)),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.black54),
+                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[800]),
                           ),
                         ],
                       ),
@@ -421,8 +421,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   child: Text(
                     '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
                     style: GoogleFonts.lato(
-                      fontSize: ScreenUtil().setSp(25),
-                      color: MyColors.grey700,
+                      fontSize: ScreenUtil().setSp(23),
+                      color: MyColors.grey800,
                     ),
                   ),
                 ),
@@ -432,8 +432,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   child: Text(
                     '≈ ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
                     style: GoogleFonts.lato(
-                      fontSize: ScreenUtil().setSp(25),
-                      color: MyColors.grey700,
+                      fontSize: ScreenUtil().setSp(23),
+                      color: MyColors.grey800,
                     ),
                   ),
                 ),
@@ -577,13 +577,13 @@ class _SwapWapPageState extends State<SwapWapPage> {
                               _flag2 ? '${_swapRows[_rightSelectIndex].swapTokenName}' : '',
                               style: GoogleFonts.lato(
                                 fontSize: ScreenUtil().setSp(28),
-                                color: MyColors.grey700,
+                                color: Colors.black87,
                               ),
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(5)),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.black54),
+                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[800]),
                           ),
                         ],
                       ),
@@ -673,9 +673,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       child: Text(
                           'MAX',
                           style: TextStyle(
-                            color: Colors.grey[700],
+                            color: Colors.black87,
                             fontSize: ScreenUtil().setSp(27),
-                            fontWeight: FontWeight.w500,
                           )),
                     ),
                   ),
@@ -693,8 +692,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   child: Text(
                     '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
                     style: GoogleFonts.lato(
-                      fontSize: ScreenUtil().setSp(25),
-                      color: MyColors.grey700,
+                      fontSize: ScreenUtil().setSp(23),
+                      color: MyColors.grey800,
                     ),
                   ),
                 ),
@@ -704,8 +703,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   child: Text(
                     '≈ ${Util.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
                     style: GoogleFonts.lato(
-                      fontSize: ScreenUtil().setSp(25),
-                      color: MyColors.grey700,
+                      fontSize: ScreenUtil().setSp(23),
+                      color: MyColors.grey800,
                     ),
                   ),
                 ),
@@ -1628,7 +1627,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
           padding: EdgeInsets.all(20),
           children: <Widget>[
             ListTile(
-              title:  Text(
+              title: Text(
                 '${S.of(context).actionTitle0}',
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
@@ -1639,13 +1638,13 @@ class _SwapWapPageState extends State<SwapWapPage> {
               ),
               onTap: () {
                 setState(() {
-                  CommonProvider.changeHomeIndex(1);
+                  CommonProvider.changeHomeIndex(0);
                 });
                 Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
               },
               leading: Icon(
                 Icons.broken_image,
-                color: _homeIndex == 1 ? Colors.black87 : Colors.grey[700],
+                color: _homeIndex == 0 ? Colors.black87 : Colors.grey[700],
               ),
             ),
             ListTile(
@@ -1653,7 +1652,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 '${S.of(context).actionTitle1}',
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
-                  color: _homeIndex == 0 ? Colors.black : Colors.grey[700],
+                  color: _homeIndex == 1 ? Colors.black : Colors.grey[700],
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
