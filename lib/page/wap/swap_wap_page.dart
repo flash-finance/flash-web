@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:decimal/decimal.dart';
 import 'package:flash_web/common/color.dart';
@@ -199,6 +200,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
           children: <Widget>[
             SizedBox(height: ScreenUtil().setHeight(60)),
             _dataWidget(context),
+            SizedBox(height: ScreenUtil().setHeight(10)),
+            _poolWidget(context),
             SizedBox(height: ScreenUtil().setHeight(60)),
             _swapWidget(context),
             SizedBox(height: ScreenUtil().setHeight(60)),
@@ -213,9 +216,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
         child: Column(
           children: <Widget>[
             _dataLeftWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(30)),
-            //_dataMidWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(30)),
+            SizedBox(height: ScreenUtil().setHeight(0)),
+            _dataMidWidget(context),
+            SizedBox(height: ScreenUtil().setHeight(0)),
             _dataRightWidget(context),
           ],
         )
@@ -448,6 +451,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
   Widget _dataMidWidget(BuildContext context) {
     return Container(
       color: Colors.white,
+      margin: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(0)),
       child: InkWell(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -473,19 +477,12 @@ class _SwapWapPageState extends State<SwapWapPage> {
             setState(() {});
           },
           child: Container(
+            color: MyColors.white,
             alignment: Alignment.center,
-            child:  ClipOval(
-              child: Container(
-                width: ScreenUtil().setWidth(100),
-                color: Colors.blue[500],
-                child: Image.asset(
-                  'images/swap.png',
-                  width: ScreenUtil().setWidth(100),
-                  height: ScreenUtil().setWidth(100),
-                  fit: BoxFit.cover,
-                  color: Colors.white,
-                ),
-              ),
+            child: Icon(
+              Icons.swap_horiz,
+              size: ScreenUtil().setSp(45),
+              color: Colors.grey[700],
             ),
           )
       ),
@@ -711,6 +708,42 @@ class _SwapWapPageState extends State<SwapWapPage> {
               ],
             ),
           ) : Container(),
+        ],
+      ),
+    );
+  }
+
+  Widget _poolWidget(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType == 1 || _swapRows[_rightSelectIndex].swapTokenType == 1)) {
+                _showPoolTokenOneDialLog(context);
+              } else if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType != 1 &&  _swapRows[_rightSelectIndex].swapTokenType != 1)) {
+                _showPoolTokenTwoDialLog(context);
+              }
+            },
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.blue[500],
+                borderRadius: BorderRadius.circular(6),
+              ),
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(18), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(18)),
+              child: Text(
+                '${S.of(context).swapPooledTokens}',
+                style: GoogleFonts.lato(
+                  letterSpacing: 0.2,
+                  color: MyColors.white,
+                  fontSize: ScreenUtil().setSp(23),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -1575,15 +1608,15 @@ class _SwapWapPageState extends State<SwapWapPage> {
       child: Container(
         color: Colors.white,
         child: Chip(
-          padding: _swapFlag ? EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
+          padding: _swapFlag ? EdgeInsets.only(left: ScreenUtil().setWidth(80), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(80), bottom: ScreenUtil().setHeight(20)) : EdgeInsets.only(left: ScreenUtil().setWidth(60), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(60), bottom: ScreenUtil().setHeight(20)),
           backgroundColor:  MyColors.blue500,
           label: !_loadFlag ? Container(
             child: Text(
-              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapInsufficientBalance}',
+              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
               style: GoogleFonts.lato(
-                letterSpacing: _swapFlag ? 0.7 : 0.2,
+                letterSpacing: 0.2,
                 color: Colors.white,
-                fontSize: 15,
+                fontSize: ScreenUtil().setSp(28),
               ),
             ),
           ) : Container(
@@ -1633,10 +1666,11 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   fontSize: ScreenUtil().setSp(32),
                   color: _homeIndex == 0 ? Colors.black : Colors.grey[700],
                 ),
-                maxLines: 0,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
               onTap: () {
+                Navigator.pop(context);
                 setState(() {
                   CommonProvider.changeHomeIndex(0);
                 });

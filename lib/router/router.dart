@@ -13,13 +13,13 @@ class Routes {
       return null;
     });
 
-    router.define('/farm', handler: farmPcHandler);
     router.define('/swap', handler: swapPcHandler);
+    router.define('/farm', handler: farmPcHandler);
     router.define('/wallet', handler: walletPcHandler);
     router.define('/about', handler: aboutPcHandler);
 
-    router.define('/wap/farm', handler: farmWapHandler);
     router.define('/wap/swap', handler: swapWapHandler);
+    router.define('/wap/farm', handler: farmWapHandler);
     router.define('/wap/about', handler: aboutWapHandler);
 
   }

@@ -40,7 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmTips1" : MessageLookupByLibrary.simpleMessage("请输入正确数值"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("赎回"),
     "swapBalance" : MessageLookupByLibrary.simpleMessage("余额"),
-    "swapInsufficientBalance" : MessageLookupByLibrary.simpleMessage("余额不足"),
     "swapPool" : MessageLookupByLibrary.simpleMessage("资金池"),
     "swapPooledTokens" : MessageLookupByLibrary.simpleMessage("资金池"),
     "swapReceive" : MessageLookupByLibrary.simpleMessage("接收"),
@@ -50,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
     "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("余额"),
     "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token 名称"),
+    "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("余额不足"),
     "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("价格 (USD)"),
     "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("总流动性"),
     "walletTips1" : MessageLookupByLibrary.simpleMessage("数字钱包:  开源、安全、易用")

@@ -193,11 +193,11 @@ class S {
     );
   }
 
-  /// `Insufficient Balance`
-  String get swapInsufficientBalance {
+  /// `Token Not Enough`
+  String get swapTokenNotEnough {
     return Intl.message(
-      'Insufficient Balance',
-      name: 'swapInsufficientBalance',
+      'Token Not Enough',
+      name: 'swapTokenNotEnough',
       desc: '',
       args: [],
     );

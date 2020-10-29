@@ -40,7 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmTips1" : MessageLookupByLibrary.simpleMessage("please enter the correct value"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
     "swapBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
-    "swapInsufficientBalance" : MessageLookupByLibrary.simpleMessage("Insufficient Balance"),
     "swapPool" : MessageLookupByLibrary.simpleMessage("Pool"),
     "swapPooledTokens" : MessageLookupByLibrary.simpleMessage("Pooled Tokens"),
     "swapReceive" : MessageLookupByLibrary.simpleMessage("Receive"),
@@ -50,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
     "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
     "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token Name"),
+    "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("Token Not Enough"),
     "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("Price (USD)"),
     "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity"),
     "walletTips1" : MessageLookupByLibrary.simpleMessage("digital wallet:  open source, security, convenience")

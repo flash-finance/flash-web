@@ -16,7 +16,7 @@
   "swapPool": "Pool",
   "swapTotalLiquidity": "Total Liquidity",
   "swapToken": "Token",
-  "swapInsufficientBalance": "Insufficient Balance",
+  "swapTokenNotEnough": "Token Not Enough",
 
 
   "farmBalance": "Balance",

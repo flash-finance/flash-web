@@ -16,7 +16,7 @@
   "swapPool": "资金池",
   "swapTotalLiquidity": "总流动性",
   "swapToken": "Token",
-  "swapInsufficientBalance": "余额不足",
+  "swapTokenNotEnough": "余额不足",
 
   "farmBalance": "余额",
   "farmDeposited": "已存",

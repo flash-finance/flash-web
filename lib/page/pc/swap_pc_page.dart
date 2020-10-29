@@ -305,6 +305,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           SizedBox(width: 10),
                           Container(
                             width: 45,
+                            alignment: Alignment.center,
                             child: Text(
                               _flag1 ? '${_swapRows[_leftSelectIndex].swapTokenName}' : '',
                               style: GoogleFonts.lato(
@@ -315,7 +316,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           ),
                           SizedBox(width: 5),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: 26, color: Colors.black54),
+                            child: Icon(Icons.arrow_drop_down, size: 23, color: Colors.black54),
                           ),
                         ],
                       ),
@@ -558,11 +559,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
             height: 50,
             color: MyColors.white,
             alignment: Alignment.center,
-            margin: EdgeInsets.only(bottom: 30),
+            margin: EdgeInsets.only(bottom: 35),
             child: Icon(
-              Icons.compare_arrows,
-              size: 30,
-              color: Colors.grey[800],
+              Icons.swap_horiz,
+              size: 28,
+              color: Colors.grey[700],
             ),
           )
       ),
@@ -649,6 +650,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           SizedBox(width: 10),
                           Container(
                             width: 45,
+                            alignment: Alignment.center,
                             child: Text(
                               _flag2 ? '${_swapRows[_rightSelectIndex].swapTokenName}' : '',
                               style: GoogleFonts.lato(
@@ -659,7 +661,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           ),
                           SizedBox(width: 5),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: 26, color: Colors.black54),
+                            child: Icon(Icons.arrow_drop_down, size: 23, color: Colors.black54),
                           ),
                         ],
                       ),
@@ -1925,7 +1927,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
           backgroundColor:  MyColors.blue500,
           label: !_loadFlag ? Container(
             child: Text(
-              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapInsufficientBalance}',
+              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
               style: GoogleFonts.lato(
                 letterSpacing: _swapFlag ? 0.7 : 0.2,
                 color: Colors.white,
