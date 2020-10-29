@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:decimal/decimal.dart';
 import 'package:flash_web/common/color.dart';
@@ -149,7 +148,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
           gradient: LinearGradient(
             colors: [MyColors.blue700, MyColors.blue500],
             begin: Alignment.topCenter,
@@ -938,37 +937,22 @@ class _SwapWapPageState extends State<SwapWapPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
         content: Container(
-          width: 450,
-          height: 230,
-          padding: EdgeInsets.only(top: 10),
+          width: ScreenUtil().setWidth(600),
+          height: ScreenUtil().setHeight(380),
+          padding: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
           child: Column(
             children:<Widget> [
               Container(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                ),
+                padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(left: 10),
                       child: Text(
                         '${_swapRows[_leftSelectIndex].swapTokenName}-${_swapRows[_rightSelectIndex].swapTokenName}',
                         style: GoogleFonts.lato(
                           letterSpacing: 0.2,
-                          fontSize: 16,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: 2),
-                      child: Text(
-                        ' ${S.of(context).swapPool}',
-                        style: GoogleFonts.lato(
-                          letterSpacing: 0.2,
-                          fontSize: 16,
+                          fontSize: ScreenUtil().setSp(30),
                           color: Colors.black87,
                         ),
                       ),
@@ -978,11 +962,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
               ),
               SizedBox(height: 0),
               Container(
-                padding: EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                ),
+                padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(20), bottom:  ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(20)),
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -990,13 +970,13 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       child: Text(
                         '${S.of(context).swapTotalLiquidity}',
                         style: GoogleFonts.lato(
-                          fontSize: 14,
+                          fontSize: ScreenUtil().setSp(26),
                           letterSpacing: 0.2,
-                          color: Colors.black87,
+                          color: Colors.grey[800],
                         ),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: ScreenUtil().setHeight(15)),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -1005,19 +985,19 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             child: ClipOval(
                               child: Image.asset(
                                 'images/usd.png',
-                                width: 22.5,
-                                height: 22.5,
+                                width: ScreenUtil().setWidth(38),
+                                height: ScreenUtil().setWidth(38),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
-                                fontSize: 15,
+                                fontSize: ScreenUtil().setSp(26),
                                 color: MyColors.black87,
                               ),
                               maxLines: 1,
@@ -1028,7 +1008,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             child: Text(
                               '  USD',
                               style: GoogleFonts.lato(
-                                fontSize: 15,
+                                fontSize: ScreenUtil().setSp(26),
                                 color: MyColors.black87,
                               ),
                             ),
@@ -1036,19 +1016,19 @@ class _SwapWapPageState extends State<SwapWapPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: ScreenUtil().setHeight(40)),
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${S.of(context).swapToken}',
                         style: GoogleFonts.lato(
-                          fontSize: 14,
+                          fontSize: ScreenUtil().setSp(26),
                           letterSpacing: 0.2,
-                          color: Colors.black87,
+                          color: Colors.grey[800],
                         ),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: ScreenUtil().setHeight(15)),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -1057,19 +1037,19 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             child: ClipOval(
                               child: Image.network(
                                 '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                width: 20,
-                                height: 20,
+                                width: ScreenUtil().setWidth(35),
+                                height: ScreenUtil().setWidth(35),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
-                                fontSize: 15,
+                                fontSize: ScreenUtil().setSp(26),
                                 color: MyColors.black87,
                               ),
                               maxLines: 1,
@@ -1080,7 +1060,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             child: Text(
                               '  ${_swapRows[_leftSelectIndex].swapTokenName}',
                               style: GoogleFonts.lato(
-                                fontSize: 15,
+                                fontSize: ScreenUtil().setSp(26),
                                 color: MyColors.black87,
                               ),
                             ),
@@ -1088,7 +1068,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: ScreenUtil().setHeight(15)),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -1097,19 +1077,19 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             child: ClipOval(
                               child: Image.network(
                                 '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                width: 20,
-                                height: 20,
+                                width: ScreenUtil().setWidth(35),
+                                height: ScreenUtil().setWidth(35),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
-                                fontSize: 15,
+                                fontSize: ScreenUtil().setSp(26),
                                 color: MyColors.black87,
                               ),
                               maxLines: 1,
@@ -1120,7 +1100,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             child: Text(
                               '  ${_swapRows[_rightSelectIndex].swapTokenName}',
                               style: GoogleFonts.lato(
-                                fontSize: 15,
+                                fontSize: ScreenUtil().setSp(26),
                                 color: MyColors.black87,
                               ),
                             ),
