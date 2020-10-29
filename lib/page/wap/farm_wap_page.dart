@@ -49,7 +49,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
     super.initState();
     if (mounted) {
       setState(() {
-        CommonProvider.changeHomeIndex(0);
+        CommonProvider.changeHomeIndex(1);
       });
     }
     _getMineInfo();
