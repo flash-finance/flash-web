@@ -720,12 +720,11 @@ class _SwapWapPageState extends State<SwapWapPage> {
         children: <Widget>[
           InkWell(
             onTap: () {
-              _showResultDialLog(context);
-              /*if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType == 1 || _swapRows[_rightSelectIndex].swapTokenType == 1)) {
+              if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType == 1 || _swapRows[_rightSelectIndex].swapTokenType == 1)) {
                 _showPoolTokenOneDialLog(context);
               } else if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType != 1 &&  _swapRows[_rightSelectIndex].swapTokenType != 1)) {
                 _showPoolTokenTwoDialLog(context);
-              }*/
+              }
             },
             child: Container(
               alignment: Alignment.center,
@@ -1919,11 +1918,11 @@ class _SwapWapPageState extends State<SwapWapPage> {
         return AlertDialog(
           elevation: 3,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20.0))
+              borderRadius: BorderRadius.all(Radius.circular(15.0))
           ),
           content: Container(
-            width: ScreenUtil().setWidth(200),
-            height: ScreenUtil().setHeight(50),
+            width: ScreenUtil().setWidth(100),
+            height: ScreenUtil().setHeight(35),
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -2200,7 +2200,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         return AlertDialog(
           elevation: 3,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20.0))
+              borderRadius: BorderRadius.all(Radius.circular(15.0))
           ),
           content: Container(
             width: 50,
