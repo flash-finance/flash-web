@@ -481,7 +481,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             alignment: Alignment.center,
             child: Icon(
               Icons.swap_horiz,
-              size: ScreenUtil().setSp(45),
+              size: ScreenUtil().setSp(48),
               color: Colors.grey[700],
             ),
           )
@@ -733,7 +733,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 color: Colors.blue[500],
                 borderRadius: BorderRadius.circular(6),
               ),
-              padding: EdgeInsets.only(left: ScreenUtil().setWidth(18), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(18)),
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(18), top: ScreenUtil().setHeight(12), bottom: ScreenUtil().setHeight(12), right: ScreenUtil().setWidth(18)),
               child: Text(
                 '${S.of(context).swapPooledTokens}',
                 style: GoogleFonts.lato(
