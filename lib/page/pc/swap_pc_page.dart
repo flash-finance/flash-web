@@ -1894,6 +1894,53 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
+  Widget _swapWidget(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        js.context['setAllowance'] = setAllowance;
+        js.context['setApprove'] = setApprove;
+        js.context['setTrxToTokenSwap'] = setTrxToTokenSwap;
+        js.context['setTokenToTrxSwap'] = setTokenToTrxSwap;
+        js.context['setTokenToTokenSwap'] = setTokenToTokenSwap;
+        js.context['setError'] = setError;
+        if (_account != '' && _flag1 && _flag2 && _swapFlag) {
+          double value1 = double.parse(_leftSwapValue);
+          double value2 = double.parse(_rightSwapValue);
+          if (value1 > 0 && value2 > 0) {
+            setState(() {
+              _loadFlag = true;
+            });
+            if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
+              js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, _leftSwapValue, _rightSwapValue]);
+            } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 && _swapRows[_rightSelectIndex].swapTokenType == 2){
+              js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, _leftSwapValue, _account]);
+            }
+          }
+        }
+      },
+      child: Container(
+        color: Colors.white,
+        child: Chip(
+          padding: _swapFlag ? EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
+          backgroundColor:  MyColors.blue500,
+          label: !_loadFlag ? Container(
+            child: Text(
+              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapInsufficientBalance}',
+              style: GoogleFonts.lato(
+                letterSpacing: _swapFlag ? 0.7 : 0.2,
+                color: Colors.white,
+                fontSize: 15,
+              ),
+            ),
+          ) : Container(
+            color: Colors.blue[500],
+            child: CupertinoActivityIndicator(),
+          ),
+        ),
+      ),
+    );
+  }
+
   bool _reloadAccountFlag = false;
 
   _reloadAccount() async {
@@ -2023,53 +2070,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
       }
     }
     _reloadTokenBalanceFlag = true;
-  }
-
-  Widget _swapWidget(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        js.context['setAllowance'] = setAllowance;
-        js.context['setApprove'] = setApprove;
-        js.context['setTrxToTokenSwap'] = setTrxToTokenSwap;
-        js.context['setTokenToTrxSwap'] = setTokenToTrxSwap;
-        js.context['setTokenToTokenSwap'] = setTokenToTokenSwap;
-        js.context['setError'] = setError;
-        if (_account != '' && _flag1 && _flag2 && _swapFlag) {
-          double value1 = double.parse(_leftSwapValue);
-          double value2 = double.parse(_rightSwapValue);
-          if (value1 > 0 && value2 > 0) {
-            setState(() {
-              _loadFlag = true;
-            });
-            if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
-              js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, _leftSwapValue, _rightSwapValue]);
-            } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 && _swapRows[_rightSelectIndex].swapTokenType == 2){
-              js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, _leftSwapValue, _account]);
-            }
-          }
-        }
-      },
-      child: Container(
-        color: Colors.white,
-        child: Chip(
-          padding: _swapFlag ? EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
-          backgroundColor:  MyColors.blue500,
-          label: !_loadFlag ? Container(
-            child: Text(
-              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapInsufficientBalance}',
-              style: GoogleFonts.lato(
-                letterSpacing: _swapFlag ? 0.7 : 0.2,
-                color: Colors.white,
-                fontSize: 15,
-              ),
-            ),
-          ) : Container(
-            color: Colors.blue[500],
-            child: CupertinoActivityIndicator(),
-          ),
-        ),
-      ),
-    );
   }
 
   void setBalance(tokenAddress, balance) {
