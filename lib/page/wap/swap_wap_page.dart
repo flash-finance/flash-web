@@ -137,7 +137,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
       child: ListView(
         children: <Widget>[
           _topWidget(context),
-          SizedBox(height: ScreenUtil().setHeight(10)),
+          SizedBox(height: ScreenUtil().setHeight(50)),
           _bizWidget(context),
         ],
       ),
@@ -158,7 +158,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(30)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -166,7 +166,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     child: Text(
                       'Flash  Swap',
                       style: GoogleFonts.lato(
-                        fontSize: ScreenUtil().setSp(35),
+                        fontSize: ScreenUtil().setSp(40),
                         color: MyColors.white,
                       ),
                     ),
@@ -175,7 +175,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
                       '${S.of(context).aboutTips01}',
-                      style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(15), color: MyColors.white),
+                      style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -189,15 +189,21 @@ class _SwapWapPageState extends State<SwapWapPage> {
   }
 
   Widget _bizWidget(BuildContext context) {
-    return  Container(
-      padding: EdgeInsets.only(left: ScreenUtil().setWidth(0), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(0), bottom: ScreenUtil().setHeight(20)),
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: ScreenUtil().setHeight(30)),
-          _dataWidget(context),
-          SizedBox(height: ScreenUtil().setHeight(60)),
-          _swapWidget(context),
-        ],
+    return Card(
+      elevation: 3,
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      child: Container(
+        padding: EdgeInsets.only(left: ScreenUtil().setWidth(0), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(0), bottom: ScreenUtil().setHeight(20)),
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: ScreenUtil().setHeight(60)),
+            _dataWidget(context),
+            SizedBox(height: ScreenUtil().setHeight(60)),
+            _swapWidget(context),
+            SizedBox(height: ScreenUtil().setHeight(60)),
+          ],
+        ),
       ),
     );
   }
