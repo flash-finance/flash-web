@@ -316,7 +316,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                           ),
                           SizedBox(width: ScreenUtil().setWidth(5)),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[800]),
+                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[700]),
                           ),
                         ],
                       ),
@@ -420,7 +420,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
               children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5), right: ScreenUtil().setWidth(5)),
+                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
                   child: Text(
                     '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
                     style: GoogleFonts.lato(
@@ -431,9 +431,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5), right: ScreenUtil().setWidth(5)),
+                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(5)),
                   child: Text(
-                    '≈ ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
+                    ' ≈ ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
                     style: GoogleFonts.lato(
                       fontSize: ScreenUtil().setSp(23),
                       color: MyColors.grey800,
@@ -481,7 +481,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             alignment: Alignment.center,
             child: Icon(
               Icons.swap_horiz,
-              size: ScreenUtil().setSp(48),
+              size: ScreenUtil().setSp(45),
               color: Colors.grey[700],
             ),
           )
@@ -580,7 +580,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                           ),
                           SizedBox(width: ScreenUtil().setWidth(5)),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[800]),
+                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[700]),
                           ),
                         ],
                       ),
@@ -685,7 +685,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
               children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5), right: ScreenUtil().setWidth(5)),
+                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
                   child: Text(
                     '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
                     style: GoogleFonts.lato(
@@ -696,9 +696,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5), right: ScreenUtil().setWidth(5)),
+                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(5)),
                   child: Text(
-                    '≈ ${Util.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
+                    ' ≈ ${Util.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
                     style: GoogleFonts.lato(
                       fontSize: ScreenUtil().setSp(23),
                       color: MyColors.grey800,
@@ -1640,7 +1640,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
         hoverColor: MyColors.white,
         icon: Container(
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
-          child: Icon(Icons.menu, size: ScreenUtil().setWidth(55), color: Colors.black87),
+          child: Icon(Icons.menu, size: ScreenUtil().setWidth(55), color: Colors.grey[800]),
         ),
         onPressed: () {
           _scaffoldKey.currentState.openDrawer();
