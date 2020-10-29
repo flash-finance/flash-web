@@ -354,15 +354,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             _rightSwapAmount = Util.formatNum(rightAmount, 6);
                             _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
 
-                            print('_leftSwapAmount: $_leftSwapAmount');
-                            print('_leftSwapValue 111: $_leftSwapValue');
-                            print('_leftSwapValue 222: ${_balanceMap[_leftKey]}');
-
-
-                            print('_rightSwapAmount: $_rightSwapAmount');
-                            print('_rightSwapValue 111: $_rightSwapValue');
-                            print('_rightSwapValue 222: ${_balanceMap[_rightKey]}');
-
                             if (leftAmount > double.parse(_leftBalanceAmount)) {
                                 _swapFlag = false;
                             } else {
@@ -393,17 +384,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         if (_balanceMap[_leftKey] != null) {
                           _leftSwapValue = _balanceMap[_leftKey];
                         }
-                        print('_leftSwapAmount: $_leftSwapAmount');
-                        print('_leftSwapValue 111: $_leftSwapValue');
-                        print('_leftSwapValue 222: ${_balanceMap[_leftKey]}');
 
                         if (_swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
                           double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
                           _rightSwapAmount = Util.formatNum(rightAmount, 6);
                           _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
-                          print('_rightSwapAmount: $_rightSwapAmount');
-                          print('_rightSwapValue 111: $_rightSwapValue');
-                          print('_rightSwapValue 222: ${_balanceMap[_rightKey]}');
 
                           if (leftAmount > double.parse(_leftBalanceAmount)) {
                             _swapFlag = false;
@@ -699,14 +684,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             _leftSwapAmount = Util.formatNum(leftAmount, 6);
                             _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
 
-                            print('_rightSwapAmount 000: $_rightSwapAmount');
-                            print('_rightSwapValue 111: $_rightSwapValue');
-                            print('_rightSwapValue 222: ${_balanceMap[_rightKey]}');
-
-                            print('_leftSwapAmount: $_leftSwapAmount');
-                            print('_leftSwapValue 111: $_leftSwapValue');
-                            print('_leftSwapValue 222: ${_balanceMap[_leftKey]}');
-
                             if (_balanceMap[_leftKey] != null && double.parse(_leftSwapValue) > double.parse(_balanceMap[_leftKey])) {
                               _swapFlag = false;
                             } else {
@@ -738,18 +715,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           if (_balanceMap[_rightKey] != null) {
                             _rightSwapValue = _balanceMap[_rightKey];
                           }
-                          print('_rightSwapAmount: $_rightSwapAmount');
-                          print('_rightSwapValue 111: $_rightSwapValue');
-                          print('_rightSwapValue 222: ${_balanceMap[_rightKey]}');
 
                           if (_swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
                             double leftAmount = rightAmount * _swapRows[_rightSelectIndex].swapTokenPrice1 /_swapRows[_leftSelectIndex].swapTokenPrice1;
                             _leftSwapAmount = Util.formatNum(leftAmount, 4);
                             _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
-                            print('_leftSwapAmount: $_leftSwapAmount');
-                            print('_leftSwapValue 111: $_leftSwapValue');
-                            print('_leftSwapValue 222: ${_balanceMap[_leftKey]}');
-
                             if (_balanceMap[_leftKey] != null && double.parse(_leftSwapValue) > double.parse(_balanceMap[_leftKey])) {
                               _swapFlag = false;
                             } else {
@@ -2075,7 +2045,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   void setBalance(tokenAddress, balance) {
-    print('setBalance tokenAddress: ${tokenAddress.toString()}, balance: ${balance.toString()}');
     try {
       double.parse(balance.toString());
     } catch (e) {
@@ -2106,8 +2075,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   void setApprove(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue) {
-    print('setApprove swapTokenType: ${swapTokenType.toString()}, baseTokenType: ${baseTokenType.toString()}');
-    print('setApprove swapTokenAddress: ${swapTokenAddress.toString()}, swapTradeValue: ${swapTradeValue.toString()}, baseTradeValue:${baseTradeValue.toString()}');
     if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
         js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
     } else if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
@@ -2116,7 +2083,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   void setTrxToTokenSwap(swapToken, result) {
-    print('setTrxToTokenSwap swapToken: ${swapToken.toString()}, result:${result.toString()}');
     setState(() {
       _loadFlag = false;
     });
@@ -2134,12 +2100,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
           });
         }
       });
-      print('setTrxToTokenSwap delayed end: $i');
     }
   }
 
   void setTokenToTrxSwap(swapToken, result) {
-    print('setTrxToTokenSwap swapToken: ${swapToken.toString()}, result:${result.toString()}');
     setState(() {
       _loadFlag = false;
     });
@@ -2161,7 +2125,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   }
 
   void setTokenToTokenSwap(leftToken, rightToken, result) {
-    print('setTrxToTokenSwap leftToken: ${leftToken.toString()}, rightToken: ${rightToken.toString()}, result:${result.toString()}');
     setState(() {
       _loadFlag = false;
     });
