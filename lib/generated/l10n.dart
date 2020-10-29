@@ -203,6 +203,16 @@ class S {
     );
   }
 
+  /// `Executed Successfully`
+  String get swapExecutedSuccessfully {
+    return Intl.message(
+      'Executed Successfully',
+      name: 'swapExecutedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Balance`
   String get farmBalance {
     return Intl.message(

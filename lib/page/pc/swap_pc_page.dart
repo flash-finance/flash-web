@@ -2211,7 +2211,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '执行成功',
+                      '${S.of(context).swapExecutedSuccessfully}',
                       style: GoogleFonts.lato(
                         fontSize: 16.0,
                         letterSpacing: 0.2,

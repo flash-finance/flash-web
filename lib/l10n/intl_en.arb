@@ -17,6 +17,8 @@
   "swapTotalLiquidity": "Total Liquidity",
   "swapToken": "Token",
   "swapTokenNotEnough": "Token Not Enough",
+  "swapExecutedSuccessfully": "Executed Successfully",
+
 
 
   "farmBalance": "Balance",

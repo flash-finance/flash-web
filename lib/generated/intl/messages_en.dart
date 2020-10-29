@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmTips1" : MessageLookupByLibrary.simpleMessage("please enter the correct value"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
     "swapBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
+    "swapExecutedSuccessfully" : MessageLookupByLibrary.simpleMessage("Executed Successfully"),
     "swapPool" : MessageLookupByLibrary.simpleMessage("Pool"),
     "swapPooledTokens" : MessageLookupByLibrary.simpleMessage("Pooled Tokens"),
     "swapReceive" : MessageLookupByLibrary.simpleMessage("Receive"),

@@ -17,6 +17,7 @@
   "swapTotalLiquidity": "总流动性",
   "swapToken": "Token",
   "swapTokenNotEnough": "余额不足",
+  "swapExecutedSuccessfully": "执行成功",
 
   "farmBalance": "余额",
   "farmDeposited": "已存",
