@@ -165,7 +165,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap111',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(40),
                         color: MyColors.white,
@@ -342,6 +342,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                         fontSize: ScreenUtil().setSp(28),
                         fontWeight: FontWeight.w500,
                       ),
+                      keyboardType: TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [MyNumberTextInputFormatter(digit:6)],
                       onChanged: (String value) {
                         if (value != null && value != '' && double.parse(value) >= 0) {
@@ -605,6 +606,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                         fontSize: ScreenUtil().setSp(28),
                         fontWeight: FontWeight.w500,
                       ),
+                      keyboardType: TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [MyNumberTextInputFormatter(digit:6)],
                       onChanged: (String value) {
                         if (value != null && value != '' && double.parse(value) >= 0) {

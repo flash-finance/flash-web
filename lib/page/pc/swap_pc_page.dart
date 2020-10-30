@@ -170,7 +170,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap111',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -343,6 +343,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
+                      keyboardType: TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [MyNumberTextInputFormatter(digit:6)],
                       onChanged: (String value) {
                         if (value != null && value != '' && double.parse(value) >= 0) {
@@ -673,6 +674,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
+                      keyboardType: TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [MyNumberTextInputFormatter(digit:6)],
                       onChanged: (String value) {
                         if (value != null && value != '' && double.parse(value) >= 0) {
