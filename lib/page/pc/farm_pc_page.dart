@@ -56,6 +56,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
         CommonProvider.changeHomeIndex(1);
       });
     }
+    Provider.of<IndexProvider>(context, listen: false).init();
     _getMineInfo();
     //_getApy();
     //_reloadAccount();

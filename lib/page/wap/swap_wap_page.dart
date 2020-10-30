@@ -165,7 +165,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap111',
+                      'Flash  Swap',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(40),
                         color: MyColors.white,
