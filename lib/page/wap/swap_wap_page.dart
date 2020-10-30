@@ -68,6 +68,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
         CommonProvider.changeHomeIndex(0);
       });
     }
+    Provider.of<IndexProvider>(context, listen: false).init();
     _reloadSwapData();
     _reloadAccount();
     _reloadTokenBalance();

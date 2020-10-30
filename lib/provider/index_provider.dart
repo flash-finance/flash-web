@@ -7,11 +7,8 @@ class IndexProvider with ChangeNotifier {
 
   void init() {
     SharedPreferences.getInstance().then((prefs) {
-      if (prefs.getInt(_langTypeKey) != null) {
-        bool temp = true;
-        if (prefs.getBool(_langTypeKey) != null) {
-          temp = prefs.getBool(_langTypeKey);
-        }
+      if (prefs.getBool(_langTypeKey) != null) {
+        bool temp = prefs.getBool(_langTypeKey);
         _langType = temp;
       }
       if (_langType) {
@@ -47,7 +44,7 @@ class IndexProvider with ChangeNotifier {
   changeLangType() async {
     _langType = !_langType;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(_langTypeKey, _langType);
+    await prefs.setBool(_langTypeKey, _langType);
     if (_langType) {
       S.load(Locale('zh', ''));
     } else {
