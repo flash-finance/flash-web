@@ -322,8 +322,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     child: Text(
                      item.poolType == 1 ? 'Token': 'LP Token',
                       style: GoogleFonts.lato(
-                        fontSize: 13,
-                        color: MyColors.grey800,
+                        fontSize: 14.5,
+                        color: MyColors.grey700,
                       ),
                     ),
                   ),
@@ -352,8 +352,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     child: Text(
                       '${S.of(context).farmStaked}',
                       style: GoogleFonts.lato(
-                        fontSize: 13,
-                        color: MyColors.grey800,
+                        fontSize: 14.5,
+                        color: MyColors.grey700,
                       ),
                     ),
                   ),
@@ -382,8 +382,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     child: Text(
                       '${S.of(context).farmDeadline}',
                       style: GoogleFonts.lato(
-                        fontSize: 13,
-                        color: MyColors.grey800,
+                        fontSize: 14.5,
+                        color: MyColors.grey700,
                       ),
                     ),
                   ),
@@ -410,8 +410,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     child: Text(
                       '${S.of(context).farmApy}',
                       style: GoogleFonts.lato(
-                        fontSize: 13,
-                        color: MyColors.grey800,
+                        fontSize: 14.5,
+                        color: MyColors.grey700,
                       ),
                     ),
                   ),
@@ -481,7 +481,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     '${S.of(context).farmBalance}:   $balanceAmount ${item.depositTokenName}',
                     style: GoogleFonts.lato(
                       fontSize: 15,
-                      color: MyColors.grey700,
+                      color: MyColors.black87,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -605,7 +605,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     '${S.of(context).farmDeposited}:   $depositedAmount ${item.depositTokenName}',
                     style: GoogleFonts.lato(
                       fontSize: 15,
-                      color: MyColors.grey700,
+                      color: MyColors.black87,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -727,7 +727,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     '${S.of(context).farmReward}:   $harvestedAmount ${item.mineTokenName}',
                     style: GoogleFonts.lato(
                       fontSize: 15,
-                      color: MyColors.grey700,
+                      color: MyColors.black87,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
