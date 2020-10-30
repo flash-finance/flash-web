@@ -40,6 +40,7 @@ dependencies:
   common_utils: ^1.2.1
   url_launcher: ^5.1.4
   decimal: ^0.3.5
+  fluttertoast: ^7.1.1
 
 dev_dependencies:
   flutter_test:

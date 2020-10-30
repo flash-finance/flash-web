@@ -2086,7 +2086,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
-    _showResultDialLog(context);
+    Util.showToast(S.of(context).swapExecutedSuccessfully);
     for (int i = 0; i < 2; i++) {
       Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
@@ -2107,7 +2107,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
-    _showResultDialLog(context);
+    Util.showToast(S.of(context).swapExecutedSuccessfully);
     for (int i = 0; i < 2; i++) {
       Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
@@ -2128,7 +2128,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
-    _showResultDialLog(context);
+    Util.showToast(S.of(context).swapExecutedSuccessfully);
     for (int i = 0; i < 2; i++) {
       Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, leftToken, _account]);
@@ -2152,7 +2152,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     });
   }
 
-  _showResultDialLog(BuildContext context) {
+  /*_showResultDialLog(BuildContext context) {
     Timer _timer;
     showDialog(
       context: context,
@@ -2193,6 +2193,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
         _timer.cancel();
       }
     });
-  }
+  }*/
 
 }

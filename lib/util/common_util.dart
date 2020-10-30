@@ -1,7 +1,24 @@
 import 'package:common_utils/common_utils.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Util {
+
+  static showToast(String value) {
+    Fluttertoast.showToast(
+      msg: value,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.blue[500],
+      textColor: Colors.white,
+      fontSize: 16.0,
+      webBgColor: "linear-gradient(to bottom, #1976D2, #2196F3)",
+      webPosition: "center",
+    );
+  }
+
   static String removeDecimalZeroFormat(double x){
     int i = x.truncate() ;
     if(x == i){

@@ -57,9 +57,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
       });
     }
     _getMineInfo();
-    _getApy();
-    _reloadAccount();
-    _reloadAmount();
+    //_getApy();
+    //_reloadAccount();
+    //_reloadAmount();
   }
 
   @override
@@ -1167,12 +1167,12 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
   _getMineInfo() async {
     _getFarmData();
-    js.context['setMineInfo']=setMineInfo;
+    /*js.context['setMineInfo']=setMineInfo;
     _timer3 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
       for (int i=0; i<_farmRows.length; i++) {
         js.context.callMethod('getMineInfo', [i.toString(), _farmRows[i].poolAddress, _farmRows[i].depositLpToken, _farmRows[i].mineLpToken]);
       }
-    });
+    });*/
   }
 
   void setMineInfo(index, totalSupply, depositTokenPrice, mineTokenPrice) {
