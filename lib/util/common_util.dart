@@ -8,9 +8,9 @@ class Util {
   static showToast(String value) {
     Fluttertoast.showToast(
       msg: value,
-      toastLength: Toast.LENGTH_SHORT,
+      toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
+      timeInSecForIosWeb: 3,
       backgroundColor: Colors.blue[500],
       textColor: Colors.white,
       fontSize: 16.0,

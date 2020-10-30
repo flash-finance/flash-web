@@ -1841,7 +1841,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     setState(() {
       _loadFlag = false;
     });
-    _showResultDialLog(context);
+    Util.showToast(S.of(context).swapSuccess);
     for (int i = 0; i < 2; i++) {
       Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
@@ -1862,7 +1862,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     setState(() {
       _loadFlag = false;
     });
-    _showResultDialLog(context);
+    Util.showToast(S.of(context).swapSuccess);
     for (int i = 0; i < 2; i++) {
       Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
@@ -1883,7 +1883,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     setState(() {
       _loadFlag = false;
     });
-    _showResultDialLog(context);
+    Util.showToast(S.of(context).swapSuccess);
     for (int i = 0; i < 2; i++) {
       Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, leftToken, _account]);
@@ -1904,49 +1904,6 @@ class _SwapWapPageState extends State<SwapWapPage> {
     print('setError: ${msg.toString()}');
     setState(() {
       _loadFlag = false;
-    });
-  }
-
-  _showResultDialLog(BuildContext context) {
-    Timer _timer;
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        _timer = Timer(Duration(milliseconds: 1500), () {
-          Navigator.of(context).pop();
-        });
-        return AlertDialog(
-          elevation: 3,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15.0))
-          ),
-          content: Container(
-            width: ScreenUtil().setWidth(100),
-            height: ScreenUtil().setHeight(35),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      '${S.of(context).swapExecutedSuccessfully}',
-                      style: GoogleFonts.lato(
-                        fontSize: ScreenUtil().setSp(30),
-                        letterSpacing: 0.2,
-                        color: Colors.black87,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    ).then((value) {
-      if (_timer.isActive) {
-        _timer.cancel();
-      }
     });
   }
 

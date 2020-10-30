@@ -203,11 +203,11 @@ class S {
     );
   }
 
-  /// `Executed Successfully`
-  String get swapExecutedSuccessfully {
+  /// `Success`
+  String get swapSuccess {
     return Intl.message(
-      'Executed Successfully',
-      name: 'swapExecutedSuccessfully',
+      'Success',
+      name: 'swapSuccess',
       desc: '',
       args: [],
     );
