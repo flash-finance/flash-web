@@ -213,6 +213,26 @@ class S {
     );
   }
 
+  /// `Staked`
+  String get farmStaked {
+    return Intl.message(
+      'Staked',
+      name: 'farmStaked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deadline`
+  String get farmDeadline {
+    return Intl.message(
+      'Deadline',
+      name: 'farmDeadline',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Balance`
   String get farmBalance {
     return Intl.message(
@@ -343,10 +363,10 @@ class S {
     );
   }
 
-  /// `mining:  directly to the platform of SUN,  no handling fees`
+  /// `mining:  directly to the platform of SUN`
   String get aboutTips3 {
     return Intl.message(
-      'mining:  directly to the platform of SUN,  no handling fees',
+      'mining:  directly to the platform of SUN',
       name: 'aboutTips3',
       desc: '',
       args: [],

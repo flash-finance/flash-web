@@ -6,4 +6,5 @@ const baseUrl = 'https://flashfi.cn';
 
 const servicePath = <String, String>{
   'swapQuery': baseUrl + '/flash/api/v1/common/tron/swap/query',
+  'farmQuery': baseUrl + '/flash/api/v1/common/tron/farm/query',
 };

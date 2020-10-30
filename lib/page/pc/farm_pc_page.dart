@@ -5,10 +5,12 @@ import 'package:decimal/decimal.dart';
 import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
+import 'package:flash_web/model/farm2_model.dart';
 import 'package:flash_web/model/farm_model.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
+import 'package:flash_web/service/method_service.dart';
 import 'package:flash_web/util/common_util.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:fluro/fluro.dart';
@@ -57,6 +59,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
       });
     }
     Provider.of<IndexProvider>(context, listen: false).init();
+
+    _reloadFarmData();
     _getMineInfo();
     //_getApy();
     //_reloadAccount();
@@ -167,7 +171,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).aboutTips3}',
-                      style: GoogleFonts.lato(fontSize: 17, color: MyColors.white),
+                      style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -186,15 +190,15 @@ class _FarmPcPageState extends State<FarmPcPage> {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        itemCount: _farmRows.length,
+        itemCount: _farm2Rows.length,
         itemBuilder: (context, index) {
-          return _bizWidget(context, _farmRows[index], index);
+          return _bizWidget(context, _farm2Rows[index], index);
         },
       ),
     );
   }
 
-  Widget _bizWidget(BuildContext context, FarmRows item, int index) {
+  Widget _bizWidget(BuildContext context, FarmRow item, int index) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -207,7 +211,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
     );
   }
 
-  Widget _oneWidget(BuildContext context, FarmRows item, int index) {
+  Widget _oneWidget(BuildContext context, FarmRow item, int index) {
     return InkWell(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -233,7 +237,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
     );
   }
 
-  Widget _twoWidget(BuildContext context, FarmRows item, int index) {
+  Widget _twoWidget(BuildContext context, FarmRow item, int index) {
     return InkWell(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -261,9 +265,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
     );
   }
 
-  Widget _topBizWidget(BuildContext context, FarmRows item, int index, int type) {
-    String balanceAmount = (Decimal.tryParse(item.balanceAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
-    String depositedAmount = (Decimal.tryParse(item.depositedAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
+  Widget _topBizWidget(BuildContext context, FarmRow item, int index, int type) {
+    var time = DateTime.fromMillisecondsSinceEpoch(item.endTime * 1000);
+    String timeStr = DateUtil.formatDate(time, format: 'yyyy-MM-dd HH:mm');
     return InkWell(
       onTap: () {
         setState(() {
@@ -290,10 +294,10 @@ class _FarmPcPageState extends State<FarmPcPage> {
           children: <Widget>[
             Container(
               child: ClipOval(
-                child: Image.asset(
+                child: Image.network(
                   '${item.pic1}',
-                  width: 50,
-                  height: 50,
+                  width: 46,
+                  height: 46,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -308,18 +312,18 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     child: Text(
                       '${item.depositTokenName}',
                       style: GoogleFonts.lato(
-                        fontSize: 19,
-                        color: MyColors.black,
+                        fontSize: 17,
+                        color: MyColors.black87,
                       ),
                     ),
                   ),
                   SizedBox(height: 8),
                   Container(
                     child: Text(
-                      '${item.depositTokenName}',
+                     item.poolType == 1 ? 'Token': 'LP Token',
                       style: GoogleFonts.lato(
-                        fontSize: 14,
-                        color: MyColors.grey700,
+                        fontSize: 13,
+                        color: MyColors.grey800,
                       ),
                     ),
                   ),
@@ -328,16 +332,16 @@ class _FarmPcPageState extends State<FarmPcPage> {
             ),
             SizedBox(width: 50),
             Container(
-              width: 200,
+              width: 170,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
               Container(
                     child: Text(
-                      '$balanceAmount ${item.depositTokenName}',
+                      '${item.depositTokenValue.toStringAsFixed(0)}  USD',
                       style: GoogleFonts.lato(
-                        fontSize: 19,
-                        color: MyColors.black,
+                        fontSize: 17,
+                        color: MyColors.black87,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -346,10 +350,10 @@ class _FarmPcPageState extends State<FarmPcPage> {
                   SizedBox(height: 8),
                   Container(
                     child: Text(
-                      '${S.of(context).farmBalance}',
+                      '${S.of(context).farmStaked}',
                       style: GoogleFonts.lato(
-                        fontSize: 14,
-                        color: MyColors.grey700,
+                        fontSize: 13,
+                        color: MyColors.grey800,
                       ),
                     ),
                   ),
@@ -358,16 +362,16 @@ class _FarmPcPageState extends State<FarmPcPage> {
             ),
             SizedBox(width: 50),
             Container(
-              width: 150,
+              width: 180,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '$depositedAmount ${item.depositTokenName}',
+                      '$timeStr',
                       style: GoogleFonts.lato(
-                        fontSize: 19,
-                        color: MyColors.black,
+                        fontSize: 17,
+                        color: MyColors.black87,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -376,10 +380,10 @@ class _FarmPcPageState extends State<FarmPcPage> {
                   SizedBox(height: 8),
                   Container(
                     child: Text(
-                      '${S.of(context).farmDeposited}',
+                      '${S.of(context).farmDeadline}',
                       style: GoogleFonts.lato(
-                        fontSize: 14,
-                        color: MyColors.grey700,
+                        fontSize: 13,
+                        color: MyColors.grey800,
                       ),
                     ),
                   ),
@@ -394,10 +398,10 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '${item.apy}%',
+                      '${(item.apy * 100).toStringAsFixed(2)}%',
                       style: GoogleFonts.lato(
-                        fontSize: 19,
-                        color: MyColors.black,
+                        fontSize: 17,
+                        color: MyColors.black87,
                       ),
                     ),
                   ),
@@ -406,8 +410,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     child: Text(
                       '${S.of(context).farmApy}',
                       style: GoogleFonts.lato(
-                        fontSize: 14,
-                        color: MyColors.grey700,
+                        fontSize: 13,
+                        color: MyColors.grey800,
                       ),
                     ),
                   ),
@@ -451,10 +455,13 @@ class _FarmPcPageState extends State<FarmPcPage> {
     );
   }
 
-  Widget _bottomBizWidget(BuildContext context, FarmRows item) {
-    String balanceAmount = (Decimal.tryParse(item.balanceAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
-    String depositedAmount = (Decimal.tryParse(item.depositedAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
-    String harvestedAmount = (Decimal.tryParse(item.harvestedAmount)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toStringAsFixed(4);
+  Widget _bottomBizWidget(BuildContext context, FarmRow item) {
+    //String balanceAmount = (Decimal.tryParse(item.balanceAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
+    //String depositedAmount = (Decimal.tryParse(item.depositedAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
+    //String harvestedAmount = (Decimal.tryParse(item.harvestedAmount)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toStringAsFixed(4);
+    String balanceAmount = '';
+    String depositedAmount = '';
+    String harvestedAmount = '';
 
     String account = Provider.of<IndexProvider>(context).account;
 
@@ -863,10 +870,14 @@ class _FarmPcPageState extends State<FarmPcPage> {
     }*/
   }
 
-  Widget _rateWidget(BuildContext context, int type, FarmRows item, int rate) {
-    double balanceAmount = (Decimal.tryParse(item.balanceAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
-    double depositedAmount = (Decimal.tryParse(item.depositedAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
-    double harvestedAmount = (Decimal.tryParse(item.harvestedAmount)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toDouble();
+  Widget _rateWidget(BuildContext context, int type, FarmRow item, int rate) {
+    //double balanceAmount = (Decimal.tryParse(item.balanceAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+    //double depositedAmount = (Decimal.tryParse(item.depositedAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+    //double harvestedAmount = (Decimal.tryParse(item.harvestedAmount)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toDouble();
+
+    double balanceAmount = 0;
+    double depositedAmount = 0;
+    double harvestedAmount = 0;
 
     double amount = 0.0;
     if (type == 1) {
@@ -1166,6 +1177,46 @@ class _FarmPcPageState extends State<FarmPcPage> {
     }
   }
 
+
+
+  Farm2Data _farm2data;
+
+  List<FarmRow> _farm2Rows = [];
+
+  bool _reloadFarmDataFlag = false;
+
+  _reloadFarmData() async {
+    _getFarmData();
+    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadFarmDataFlag) {
+        _getFarmData();
+      }
+    });
+  }
+
+  void _getFarmData() async {
+    try {
+      String url = servicePath['farmQuery'];
+      await requestGet(url).then((value) {
+        var respData = Map<String, dynamic>.from(value);
+        FarmRespModel respModel = FarmRespModel.fromJson(respData);
+        if (respModel != null && respModel.code == 0) {
+          _farm2data = respModel.data;
+          if (_farm2data != null && _farm2data.rows != null && _farm2data.rows.length > 0) {
+            _farm2Rows = _farm2data.rows;
+          }
+        }
+      });
+      if (mounted) {
+        setState(() {});
+      }
+    } catch (e) {
+      print(e);
+    }
+    _reloadFarmDataFlag = true;
+  }
+
+
   _getMineInfo() async {
     _getFarmData();
     /*js.context['setMineInfo']=setMineInfo;
@@ -1209,7 +1260,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
   List<FarmRows> _farmRows = List<FarmRows>();
 
-  _getFarmData() async {
+  _getFarm2Data() async {
     _farmRows.add(FarmRows(
         id: 0,
         poolType: 1,
