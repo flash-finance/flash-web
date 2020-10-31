@@ -125,7 +125,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
       child: Column(
         children: <Widget>[
           _topWidget(context),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           Expanded(
             child: _bodyWidget(context),
           ),
