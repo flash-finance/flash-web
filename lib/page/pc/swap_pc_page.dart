@@ -130,6 +130,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
       color: MyColors.white,
       child: Column(
         children: <Widget>[
+          _topWidget(context),
+          SizedBox(height: 10),
           Expanded(
             child: _bodyWidget(context),
           ),
@@ -142,8 +144,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
     return Container(
       child: ListView(
         children: <Widget>[
-          _topWidget(context),
-          SizedBox(height: 10),
           _bizWidget(context),
         ],
       ),
@@ -2085,13 +2085,13 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
   }
 
-  void setTrxToTokenSwap(swapToken, result) {
+  void setTrxToTokenSwap(swapToken, result) async {
     setState(() {
       _loadFlag = false;
     });
     Util.showToast(S.of(context).swapSuccess);
-    for (int i = 0; i < 2; i++) {
-      Future.delayed(Duration(milliseconds: 2000), (){
+    for (int i = 0; i < 3; i++) {
+      await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
         if (i == 0) {
@@ -2106,13 +2106,13 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
   }
 
-  void setTokenToTrxSwap(swapToken, result) {
+  void setTokenToTrxSwap(swapToken, result) async {
     setState(() {
       _loadFlag = false;
     });
     Util.showToast(S.of(context).swapSuccess);
-    for (int i = 0; i < 2; i++) {
-      Future.delayed(Duration(milliseconds: 2000), (){
+    for (int i = 0; i < 3; i++) {
+      await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
         if (i == 0) {
@@ -2127,13 +2127,13 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
   }
 
-  void setTokenToTokenSwap(leftToken, rightToken, result) {
+  void setTokenToTokenSwap(leftToken, rightToken, result) async {
     setState(() {
       _loadFlag = false;
     });
     Util.showToast(S.of(context).swapSuccess);
-    for (int i = 0; i < 2; i++) {
-      Future.delayed(Duration(milliseconds: 2000), (){
+    for (int i = 0; i < 3; i++) {
+      await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, leftToken, _account]);
         js.context.callMethod('getTokenBalance', [2, rightToken, _account]);
         if (i == 0) {

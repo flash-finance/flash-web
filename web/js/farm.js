@@ -1,9 +1,9 @@
 
-async function getAmount4Farm(index, account, tokenAddress, poolAddress) {
-    console.log('index: '+ index + '; account: ' + account + '; tokenAddress: ' + tokenAddress + '; poolAddress: ' + poolAddress);
+async function getAmount4Farm(tokenType, account, tokenAddress, poolAddress) {
+    console.log('tokenType: '+ tokenType + '; account: ' + account + '; tokenAddress: ' + tokenAddress + '; poolAddress: ' + poolAddress);
     let balanceAmount = '0';
     let code = 0;
-    if (index == '0') {
+    if (tokenType == '1') {
         tronWeb.trx.getUnconfirmedBalance(account).then(result => {
             balanceAmount = result;
         }).catch(e => {
@@ -36,7 +36,7 @@ async function getAmount4Farm(index, account, tokenAddress, poolAddress) {
          return;
      }
 
-    setTokenAmount4Farm(index, tokenAddress, balanceAmount, depositedAmount, harvestedAmount);
+    setTokenAmount4Farm(tokenType, tokenAddress, balanceAmount, depositedAmount, harvestedAmount);
  }
 
 
@@ -72,12 +72,12 @@ async function approve4Farm(tokenType, stakeAmount, tokenAddress, poolAddress) {
         return;
     }
 
-    setStake4Farm(tokenType, stakeAmount, poolAddress);
+    setStake4Farm(tokenType, stakeAmount, poolAddress, tokenAddress);
 }
 
 
-async function stake4Farm(tokenType, amount, poolAddress) {
-    console.log('stake4Farm tokenType: ' + tokenType + '; amount: ' + amount + '; poolAddress: ' + poolAddress);
+async function stake4Farm(tokenType, amount, poolAddress, tokenAddress) {
+    console.log('stake4Farm tokenType: ' + tokenType + '; amount: ' + amount + '; poolAddress: ' + poolAddress + '; tokenAddress: ' + tokenAddress);
     let poolObj = await tronWeb.contract().at(poolAddress);
     let code = 0;
     let result = '';
@@ -105,11 +105,11 @@ async function stake4Farm(tokenType, amount, poolAddress) {
     }
 
     console.log("stake4Farm result: " + result);
-    setHash4Farm(1, result);
+    setHash4Farm(1, poolAddress, tokenAddress, result);
 }
 
 
-async function withdraw4Farm(amount, poolAddress) {
+async function withdraw4Farm(amount, poolAddress, tokenAddress) {
     let poolObj = await tronWeb.contract().at(poolAddress);
     let code = 0;
     let result = await poolObj.withdraw(amount.toString()).send({feeLimit: 10000000}).catch(e => {
@@ -123,10 +123,10 @@ async function withdraw4Farm(amount, poolAddress) {
     }
 
     console.log("withdraw4Farm result: " + result);
-    setHash4Farm(2, result);
+    setHash4Farm(2, poolAddress, tokenAddress, result);
 }
 
-async function getReward4Farm(poolAddress) {
+async function getReward4Farm(poolAddress, tokenAddress) {
     let poolObj = await tronWeb.contract().at(poolAddress);
     let code = 0;
     let result = await poolObj.getReward().send({feeLimit: 10000000}).catch(e => {
@@ -136,7 +136,7 @@ async function getReward4Farm(poolAddress) {
     });
 
     console.log("getReward4Farm result: " + result);
-    setHash4Farm(3, result);
+    setHash4Farm(3, poolAddress, tokenAddress, result);
 }
 
 
