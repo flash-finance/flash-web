@@ -1,4 +1,5 @@
 import 'package:flash_web/page/pc/about_pc_page.dart';
+import 'package:flash_web/page/pc/lend_pc_page.dart';
 import 'package:flash_web/page/pc/swap_pc_page.dart';
 import 'package:flash_web/page/pc/farm_pc_page.dart';
 import 'package:flash_web/page/pc/wallet_pc_page.dart';
@@ -16,6 +17,11 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 Handler swapPcHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return SwapPcPage();
+});
+
+Handler lendPcHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return LendPcPage();
 });
 
 Handler walletPcHandler =

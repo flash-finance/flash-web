@@ -19,12 +19,12 @@ import 'dart:js' as js;
 import 'package:url_launcher/url_launcher.dart';
 
 
-class WalletPcPage extends StatefulWidget {
+class LendPcPage extends StatefulWidget {
   @override
-  _WalletPcPageState createState() => _WalletPcPageState();
+  _LendPcPageState createState() => _LendPcPageState();
 }
 
-class _WalletPcPageState extends State<WalletPcPage> {
+class _LendPcPageState extends State<LendPcPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
   String _account = '';
   bool _tronFlag = false;
@@ -35,7 +35,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
     super.initState();
     if (mounted) {
       setState(() {
-        CommonProvider.changeHomeIndex(3);
+        CommonProvider.changeHomeIndex(2);
       });
     }
     _reloadAccount();
@@ -118,7 +118,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Wallet',
+                      'Flash  Lend',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -128,7 +128,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
-                      '${S.of(context).aboutTips04}',
+                      '${S.of(context).aboutTips03}',
                       style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,

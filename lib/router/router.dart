@@ -15,6 +15,7 @@ class Routes {
 
     router.define('/swap', handler: swapPcHandler);
     router.define('/farm', handler: farmPcHandler);
+    router.define('/lend', handler: lendPcHandler);
     router.define('/wallet', handler: walletPcHandler);
     router.define('/about', handler: aboutPcHandler);
 

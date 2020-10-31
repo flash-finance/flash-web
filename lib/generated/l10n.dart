@@ -343,16 +343,6 @@ class S {
     );
   }
 
-  /// `digital wallet:  open source, security, convenience`
-  String get walletTips1 {
-    return Intl.message(
-      'digital wallet:  open source, security, convenience',
-      name: 'walletTips1',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `trading:  directly to the platform of JustSwap`
   String get aboutTips01 {
     return Intl.message(
@@ -368,6 +358,26 @@ class S {
     return Intl.message(
       'mining:  directly to the platform of SUN',
       name: 'aboutTips02',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `lending:  open source, security, convenience`
+  String get aboutTips03 {
+    return Intl.message(
+      'lending:  open source, security, convenience',
+      name: 'aboutTips03',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `lending:  open source, security, convenience`
+  String get aboutTips04 {
+    return Intl.message(
+      'lending:  open source, security, convenience',
+      name: 'aboutTips04',
       desc: '',
       args: [],
     );

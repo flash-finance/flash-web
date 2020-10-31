@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "aboutTips01" : MessageLookupByLibrary.simpleMessage("trading:  directly to the platform of JustSwap"),
     "aboutTips02" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN"),
+    "aboutTips03" : MessageLookupByLibrary.simpleMessage("lending:  open source, security, convenience"),
+    "aboutTips04" : MessageLookupByLibrary.simpleMessage("lending:  open source, security, convenience"),
     "aboutTips1" : MessageLookupByLibrary.simpleMessage("in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc."),
     "aboutTips2" : MessageLookupByLibrary.simpleMessage("the team is committed to the rapid development of products. currently, no private placement or currency issuance"),
     "aboutTips3" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN"),
@@ -57,7 +59,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token Name"),
     "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("Token Not Enough"),
     "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("Price (USD)"),
-    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity"),
-    "walletTips1" : MessageLookupByLibrary.simpleMessage("digital wallet:  open source, security, convenience")
+    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity")
   };
 }

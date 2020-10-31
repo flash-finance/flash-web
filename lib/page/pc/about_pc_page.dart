@@ -26,7 +26,7 @@ class AboutPcPage extends StatefulWidget {
 class _AboutPcPageState extends State<AboutPcPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
   String _account = '';
-  bool tronFlag = false;
+  bool _tronFlag = false;
   Timer _timer;
 
   @override
@@ -387,19 +387,36 @@ class _AboutPcPageState extends State<AboutPcPage> {
   }
 
 
+  bool _reloadAccountFlag = false;
+
   _reloadAccount() async {
-    _timer = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      tronFlag = js.context.hasProperty('tronWeb');
-      if (tronFlag) {
-        var result = js.context["tronWeb"]["defaultAddress"]["base58"];
-        if (result.toString() != 'false') {
-          //Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
-        } else {
-          //Provider.of<IndexProvider>(context, listen: false).changeAccount('');
-        }
-      } else {
-        //Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+    _getAccount();
+    _timer = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadAccountFlag) {
+        _getAccount();
       }
     });
+  }
+
+  _getAccount() async {
+    _reloadAccountFlag = false;
+    _tronFlag = js.context.hasProperty('tronWeb');
+    if (_tronFlag) {
+      var result = js.context["tronWeb"]["defaultAddress"]["base58"];
+      if (result.toString() != 'false' && result.toString() != _account) {
+        if (mounted) {
+          setState(() {
+            _account = result.toString();
+          });
+        }
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          _account = '';
+        });
+      }
+    }
+    _reloadAccountFlag = true;
   }
 }
