@@ -294,9 +294,9 @@ class _FarmWapPageState extends State<FarmWapPage> {
                 ),
               ),
             ),
-            SizedBox(width: ScreenUtil().setWidth(50)),
+            SizedBox(width: ScreenUtil().setWidth(20)),
             Container(
-              width: ScreenUtil().setWidth(160),
+              width: ScreenUtil().setWidth(100),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -304,9 +304,11 @@ class _FarmWapPageState extends State<FarmWapPage> {
                     child: Text(
                       '${item.depositTokenName}',
                       style: GoogleFonts.lato(
-                        fontSize: ScreenUtil().setSp(30),
-                        color: MyColors.black,
+                        fontSize: ScreenUtil().setSp(26),
+                        color: MyColors.black87,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   SizedBox(height: ScreenUtil().setHeight(8)),
@@ -315,16 +317,50 @@ class _FarmWapPageState extends State<FarmWapPage> {
                       item.poolType == 1 ? 'Token': 'LP Token',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(20),
-                        color: MyColors.grey700,
+                        color: MyColors.grey800,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(width: ScreenUtil().setWidth(50)),
+            SizedBox(width: ScreenUtil().setWidth(20)),
             Container(
-              width: ScreenUtil().setWidth(160),
+              width: ScreenUtil().setWidth(200),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      '${item.depositTokenValue.toStringAsFixed(0)}',
+                      style: GoogleFonts.lato(
+                        fontSize: ScreenUtil().setSp(26),
+                        color: MyColors.black87,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  SizedBox(height: ScreenUtil().setHeight(8)),
+                  Container(
+                    child: Text(
+                      '${S.of(context).farmStaked} (USD)',
+                      style: GoogleFonts.lato(
+                        fontSize: ScreenUtil().setSp(20),
+                        color: MyColors.grey800,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(width: ScreenUtil().setWidth(20)),
+            Container(
+              width: ScreenUtil().setWidth(100),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -332,9 +368,11 @@ class _FarmWapPageState extends State<FarmWapPage> {
                     child: Text(
                       '${(item.apy * 100).toStringAsFixed(2)}%',
                       style: GoogleFonts.lato(
-                        fontSize: ScreenUtil().setSp(30),
-                        color: MyColors.black,
+                        fontSize: ScreenUtil().setSp(26),
+                        color: MyColors.black87,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   SizedBox(height: ScreenUtil().setHeight(5)),
@@ -343,46 +381,49 @@ class _FarmWapPageState extends State<FarmWapPage> {
                       '${S.of(context).farmApy}',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(20),
-                        color: MyColors.grey700,
+                        color: MyColors.grey800,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(width: ScreenUtil().setWidth(50)),
+            SizedBox(width: ScreenUtil().setWidth(15)),
+            Expanded(
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    _layoutIndex = index;
+                    if (type == 1) {
+                      _layoutFlag = true;
+                    } else {
+                      _layoutFlag = false;
+                    }
+                    _toDepositAmount = '';
+                    _toWithdrawAmount = '';
+                    _toHarvestAmount = '';
 
-            InkWell(
-              onTap: () {
-                setState(() {
-                  _layoutIndex = index;
-                  if (type == 1) {
-                    _layoutFlag = true;
-                  } else {
-                    _layoutFlag = false;
-                  }
-                  _toDepositAmount = '';
-                  _toWithdrawAmount = '';
-                  _toHarvestAmount = '';
-
-                  _toDepositValue = '';
-                  _toWithdrawValue = '';
-                  _toHarvestValue = '';
-                });
-              },
-              child: Chip(
-                elevation: 2,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                padding: EdgeInsets.only(left: ScreenUtil().setWidth(6), top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(6)),
-                backgroundColor: MyColors.blue500,
-                label: Icon(
-                  !_layoutFlag ? CupertinoIcons.down_arrow : (_layoutIndex == index ? CupertinoIcons.up_arrow : CupertinoIcons.down_arrow),
-                  size: ScreenUtil().setSp(32),
-                  color: MyColors.white,
+                    _toDepositValue = '';
+                    _toWithdrawValue = '';
+                    _toHarvestValue = '';
+                  });
+                },
+                child: Chip(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(6), top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(6)),
+                  backgroundColor: MyColors.blue500,
+                  label: Icon(
+                    !_layoutFlag ? CupertinoIcons.down_arrow : (_layoutIndex == index ? CupertinoIcons.up_arrow : CupertinoIcons.down_arrow),
+                    size: ScreenUtil().setSp(32),
+                    color: MyColors.white,
+                  ),
                 ),
               ),
             ),
-            SizedBox(width: ScreenUtil().setWidth(25)),
+            SizedBox(width: ScreenUtil().setWidth(20)),
           ],
         ),
       ),
@@ -424,7 +465,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                         '${S.of(context).farmBalance}:   $balanceAmount ${item.depositTokenName}',
                         style: GoogleFonts.lato(
                           fontSize: ScreenUtil().setSp(23),
-                          color: MyColors.grey700,
+                          color: MyColors.black87,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -571,7 +612,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                         '${S.of(context).farmDeposited}:   $depositedAmount ${item.depositTokenName}',
                         style: GoogleFonts.lato(
                           fontSize: ScreenUtil().setSp(23),
-                          color: MyColors.grey700,
+                          color: MyColors.black87,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -720,7 +761,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                         '${S.of(context).farmReward}:   $harvestedAmount ${item.mineTokenName}',
                         style: GoogleFonts.lato(
                           fontSize: ScreenUtil().setSp(23),
-                          color: MyColors.grey700,
+                          color: MyColors.black87,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
