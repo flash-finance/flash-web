@@ -38,6 +38,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
         CommonProvider.changeHomeIndex(3);
       });
     }
+    Provider.of<IndexProvider>(context, listen: false).init();
     _reloadAccount();
   }
 

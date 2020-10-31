@@ -38,6 +38,7 @@ class _LendPcPageState extends State<LendPcPage> {
         CommonProvider.changeHomeIndex(2);
       });
     }
+    Provider.of<IndexProvider>(context, listen: false).init();
     _reloadAccount();
   }
 

@@ -37,6 +37,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
         CommonProvider.changeHomeIndex(4);
       });
     }
+    Provider.of<IndexProvider>(context, listen: false).init();
     _reloadAccount();
   }
 
