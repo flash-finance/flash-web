@@ -493,6 +493,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                             color: MyColors.black87,
                             fontSize: ScreenUtil().setSp(26),
                           ),
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [MyNumberTextInputFormatter(digit:3)],
                           onChanged: (String value) {
                             if (value != null && value != '') {
@@ -640,6 +641,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                             color: MyColors.black87,
                             fontSize: ScreenUtil().setSp(26),
                           ),
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [MyNumberTextInputFormatter(digit:3)],
                           onChanged: (String value) {
                             if (value != null && value != '') {
