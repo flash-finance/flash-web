@@ -154,7 +154,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Farm001',
+                      'Flash  Farm101',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -450,14 +450,22 @@ class _FarmPcPageState extends State<FarmPcPage> {
   }
 
   Widget _bottomBizWidget(BuildContext context, FarmRow item) {
-    //String balanceAmount = (Decimal.tryParse(item.balanceAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
-    //String depositedAmount = (Decimal.tryParse(item.depositedAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
-    //String harvestedAmount = (Decimal.tryParse(item.harvestedAmount)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toStringAsFixed(4);
-    String balanceAmount = '';
-    String depositedAmount = '';
-    String harvestedAmount = '';
-
-    String account = Provider.of<IndexProvider>(context).account;
+    String _key = '$_account+${item.depositTokenAddress}';
+    String balanceAmount = '0.00';
+    String depositedAmount = '0.00';
+    String harvestedAmount = '0.00';
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].balanceAmount != null) {
+      String temp = _tokenAmountMap[_key].balanceAmount;
+      balanceAmount =(Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
+    }
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].depositedAmount != null) {
+      String temp = _tokenAmountMap[_key].depositedAmount;
+      depositedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
+    }
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].depositedAmount != null) {
+      String temp = _tokenAmountMap[_key].harvestedAmount;
+      harvestedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toStringAsFixed(4);
+    }
 
     return Container(
       width: 1000,
@@ -509,6 +517,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                           color: MyColors.black87,
                           fontSize: 16,
                         ),
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [MyNumberTextInputFormatter(digit:3)],
                         onChanged: (String value) {
                           if (value != null && value != '') {
@@ -546,26 +555,33 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 SizedBox(height: 20),
                 InkWell(
                   onTap: () {
-                    js.context['setAllowance']=setAllowance;
-                    js.context['setStake']=setStake;
-                    js.context['setHash']=setHash;
+                    js.context['setAllowance4Farm']=setAllowance4Farm;
+                    js.context['setStake4Farm']=setStake4Farm;
+                    js.context['setHash4Farm']=setHash4Farm;
 
-                    if (_toDepositValue == '' || item.balanceAmount == '') {
+                    if(_tokenAmountMap[_key] == null ||  _tokenAmountMap[_key].balanceAmount == null) {
+                      return;
+                    }
+
+                    print('0000 _toDepositValue: $_toDepositValue, balanceAmount: ${_tokenAmountMap[_key].balanceAmount}');
+                    if (_toDepositValue == '' ||  _tokenAmountMap[_key].balanceAmount == '') {
                       return;
                     }
                     double value1 =  (Decimal.tryParse(_toDepositValue) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
                     if (value1 <= 0) {
-                      //_shoTipsLog('${S.of(context).farmTips1}');
                       return;
                     }
-                    double value2 = double.parse(item.balanceAmount);
+                    double value2 = double.parse(_tokenAmountMap[_key].balanceAmount);
                     if (value1 > value2) {
                       return;
                     }
-                    if (account != '' && item.depositTokenType != 1) {
-                      js.context.callMethod('allowance', [item.depositTokenType, value1, account, item.depositTokenAddress, item.poolAddress]);
-                    } else {
-                      js.context.callMethod('stake', [item.depositTokenType, value1, item.poolAddress]);
+                    print('111111');
+                    if (_account != '' && item.depositTokenType == 2) {
+                      print('2222');
+                      js.context.callMethod('allowance4Farm', [item.depositTokenType, value1, _account, item.depositTokenAddress, item.poolAddress]);
+                    } else if (_account != '' && item.depositTokenType == 1 ){
+                      print('3333');
+                      js.context.callMethod('stake4Farm', [item.depositTokenType, value1, item.poolAddress]);
                     }
                   },
                   child: Container(
@@ -633,6 +649,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                           color: MyColors.black87,
                           fontSize: 16,
                         ),
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [MyNumberTextInputFormatter(digit:3)],
                         onChanged: (String value) {
                           if (value != null && value != '') {
@@ -670,23 +687,31 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 SizedBox(height: 20),
                 InkWell(
                   onTap: () {
-                    js.context['setAllowance']=setAllowance;
-                    js.context['setStake']=setStake;
-                    js.context['setHash']=setHash;
+                    js.context['setAllowance4Farm']=setAllowance4Farm;
+                    js.context['setStake4Farm']=setStake4Farm;
+                    js.context['setHash4Farm']=setHash4Farm;
 
-                    if (_toWithdrawValue == '' || item.depositedAmount == '') {
+                    if(_tokenAmountMap[_key] == null ||  _tokenAmountMap[_key].depositedAmount == null) {
+                      return;
+                    }
+
+                    print('0000 _toWithdrawValue: $_toWithdrawValue, depositedAmount: ${_tokenAmountMap[_key].depositedAmount}');
+                    if (_toDepositValue == '' ||  _tokenAmountMap[_key].depositedAmount == '') {
+                      return;
+                    }
+
+                    if (_toWithdrawValue == '' ||  _tokenAmountMap[_key].depositedAmount == '') {
                       return;
                     }
                     double value1 =  (Decimal.tryParse(_toWithdrawValue) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
                     if (value1 <= 0) {
-                      //_shoTipsLog('${S.of(context).farmTips1}');
                       return;
                     }
-                    double value2 = double.parse(item.depositedAmount);
+                    double value2 = double.parse( _tokenAmountMap[_key].depositedAmount);
                     if (value1 > value2) {
                       return;
                     }
-                    js.context.callMethod('withdraw', [value1, item.poolAddress]);
+                    js.context.callMethod('withdraw4Farm', [value1, item.poolAddress]);
                   },
                   child: Container(
                     color: MyColors.white,
@@ -756,6 +781,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                           color: MyColors.black87,
                           fontSize: 16,
                         ),
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [MyNumberTextInputFormatter(digit:4)],
                         onChanged: (String value) {
                           if (value != null && value != '') {
@@ -787,22 +813,27 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 SizedBox(height: 20),
                 InkWell(
                   onTap: () {
-                    js.context['setAllowance']=setAllowance;
-                    js.context['setStake']=setStake;
-                    js.context['setHash']=setHash;
+                    js.context['setAllowance4Farm']=setAllowance4Farm;
+                    js.context['setStake4Farm']=setStake4Farm;
+                    js.context['setHash4Farm']=setHash4Farm;
 
-                    if (_toHarvestValue == '' || item.harvestedAmount == '') {
+                    if(_tokenAmountMap[_key] == null ||  _tokenAmountMap[_key].harvestedAmount == null) {
+                      return;
+                    }
+
+                    print('0000 _toHarvestValue: $_toHarvestValue, harvestedAmount: ${_tokenAmountMap[_key].harvestedAmount}');
+                    if (_toDepositValue == '' ||  _tokenAmountMap[_key].harvestedAmount == '') {
                       return;
                     }
                     double value1 = double.parse(_toHarvestValue);
                     if (value1 <= 0) {
                       return;
                     }
-                    double value2 = double.parse(item.harvestedAmount);
+                    double value2 = double.parse(_tokenAmountMap[_key].harvestedAmount);
                     if (value2 <= 0) {
                       return;
                     }
-                    js.context.callMethod('getReward', [item.poolAddress]);
+                    js.context.callMethod('getReward4Farm', [item.poolAddress]);
                   },
                   child: Container(
                     color: MyColors.white,
@@ -829,21 +860,24 @@ class _FarmPcPageState extends State<FarmPcPage> {
     );
   }
 
-  void setAllowance(tokenType, stakeAmount, tokenAddress, poolAddress, allowanceAmount) {
+  void setAllowance4Farm(tokenType, stakeAmount, tokenAddress, poolAddress, allowanceAmount) {
+    print('setAllowance4Farm tokenType: $tokenType, stakeAmount: $stakeAmount, tokenAddress: $tokenAddress, poolAddress: $poolAddress, allowanceAmount: $allowanceAmount');
     double allowanceValue = Decimal.tryParse(allowanceAmount.toString()).toDouble();
     double stakeValue= double.parse(stakeAmount.toString());
     if (stakeValue > allowanceValue) {
-      js.context.callMethod('approve', [tokenType, stakeAmount, tokenAddress, poolAddress]);
+      js.context.callMethod('approve4Farm', [tokenType, stakeAmount, tokenAddress, poolAddress]);
     } else {
-      js.context.callMethod('stake', [tokenType, stakeAmount, poolAddress]);
+      js.context.callMethod('stake4Farm', [tokenType, stakeAmount, poolAddress]);
     }
   }
 
-  void setStake(tokenType, stakeAmount, poolAddress) {
-    js.context.callMethod('stake', [tokenType, stakeAmount, poolAddress]);
+  void setStake4Farm(tokenType, stakeAmount, poolAddress) {
+    print('setStake4Farm tokenType: $tokenType, stakeAmount: $stakeAmount, poolAddress: $poolAddress');
+    js.context.callMethod('stake4Farm', [tokenType, stakeAmount, poolAddress]);
   }
 
-  void setHash(type, hash) {
+  void setHash4Farm(type, hash) {
+    print('setHash4Farm type: $type, hash: $hash');
     setState(() {
       if (type == 1) {
         _toDepositAmount = '';
@@ -856,22 +890,26 @@ class _FarmPcPageState extends State<FarmPcPage> {
         _toHarvestValue = '';
       }
     });
-    /*if (type != 3) {
-      String account = Provider.of<IndexProvider>(context, listen: false).account;
-      if(account != '') {
-        js.context.callMethod('getAmount', [0, account, _farmRows[0].depositTokenAddress, _farmRows[0].poolAddress]);
-      }
-    }*/
   }
 
   Widget _rateWidget(BuildContext context, int type, FarmRow item, int rate) {
-    //double balanceAmount = (Decimal.tryParse(item.balanceAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
-    //double depositedAmount = (Decimal.tryParse(item.depositedAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
-    //double harvestedAmount = (Decimal.tryParse(item.harvestedAmount)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toDouble();
-
     double balanceAmount = 0;
     double depositedAmount = 0;
     double harvestedAmount = 0;
+
+    String _key = '$_account+${item.depositTokenAddress}';
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].balanceAmount != null) {
+      String temp = _tokenAmountMap[_key].balanceAmount;
+      balanceAmount =(Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+    }
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].depositedAmount != null) {
+      String temp = _tokenAmountMap[_key].depositedAmount;
+      depositedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+    }
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].depositedAmount != null) {
+      String temp = _tokenAmountMap[_key].harvestedAmount;
+      harvestedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toDouble();
+    }
 
     double amount = 0.0;
     if (type == 1) {
@@ -890,9 +928,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
         splashColor: Color(0x802196F3),
         highlightColor: Color(0x802196F3),
         onTap: () {
-          String account = Provider.of<IndexProvider>(context, listen: false).account;
           double rateDouble = NumUtil.divide(rate, 100);
-          if(account != '') {
+          if(_account != '') {
             double value = NumUtil.multiply(amount, rateDouble);
             setState(() {
               if (type == 1) {
@@ -1120,6 +1157,13 @@ class _FarmPcPageState extends State<FarmPcPage> {
     );
   }
 
+
+  Farm2Data _farm2data;
+
+  List<FarmRow> _farm2Rows = [];
+
+  bool _reloadFarmDataFlag = false;
+
   _reloadFarmData() async {
     _getFarmData();
     _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
@@ -1236,22 +1280,11 @@ class _FarmPcPageState extends State<FarmPcPage> {
     }
   }
 
-
-  Farm2Data _farm2data;
-
-  List<FarmRow> _farm2Rows = [];
-
-  bool _reloadFarmDataFlag = false;
-
-
-
-
   void setError4Farm(msg) {
     print('setError4Farm: ${msg.toString()}');
     setState(() {
       _loadFlag = false;
     });
   }
-
 
 }

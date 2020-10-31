@@ -74,11 +74,6 @@ class FarmRow {
   int endTime;
   int status;
 
-
-  String balanceAmount;
-  String depositedAmount;
-  String harvestedAmount;
-
   FarmRow(
       {this.id,
         this.poolType,
