@@ -1013,11 +1013,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
               children: <Widget>[
                 Container(
                   child: Text(
-                    '请使用TronLink钱包登录',
+                    '${S.of(context).connectWallet}',
                     style: GoogleFonts.lato(
                       fontSize: 18.0,
                       letterSpacing: 0.2,
-                      color: MyColors.black,
+                      color: MyColors.black87,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -1031,11 +1031,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     },
                     child: Container(
                       child: Text(
-                        '还没安装TronLink？ 请点击此处>>',
+                        '${S.of(context).installWallet}',
                         style: GoogleFonts.lato(
-                          fontSize: 15.0,
+                          fontSize: 14.0,
                           letterSpacing: 0.2,
-                          color: MyColors.black87,
+                          color: Colors.grey[800],
                           //decoration: TextDecoration.underline,
                         ),
                       ),

@@ -5,6 +5,9 @@
   "actionTitle3": "About",
   "actionTitle4": "Connect Wallet",
 
+  "connectWallet": "Please login with TronLink",
+  "installWallet": "Haven't installed TronLink yet? Click here>>",
+
   "swapSend": "Send",
   "swapReceive": "Receive",
   "swapBalance": "Balance",

@@ -83,6 +83,26 @@ class S {
     );
   }
 
+  /// `Please login with TronLink`
+  String get connectWallet {
+    return Intl.message(
+      'Please login with TronLink',
+      name: 'connectWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Haven't installed TronLink yet? Click here>>`
+  String get installWallet {
+    return Intl.message(
+      'Haven\'t installed TronLink yet? Click here>>',
+      name: 'installWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Send`
   String get swapSend {
     return Intl.message(

@@ -5,6 +5,10 @@
   "actionTitle3": "关于",
   "actionTitle4": "连接钱包",
 
+  "connectWallet": "请使用TronLink钱包登录",
+  "installWallet": "还没安装TronLink？ 请点击此处>>",
+
+
   "swapSend": "发送",
   "swapReceive": "接收",
   "swapBalance": "余额",
