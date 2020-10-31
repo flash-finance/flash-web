@@ -153,7 +153,7 @@ class _LendPcPageState extends State<LendPcPage> {
         child: Column(
           children: <Widget>[
             Container(
-              child: Text('Coming  Soon', style: GoogleFonts.lato(fontSize: 26, color: Colors.grey[800])),
+              child: Text('Coming  Soon', style: GoogleFonts.lato(fontSize: 24, color: Colors.grey[800])),
             ),
           ],
         ),

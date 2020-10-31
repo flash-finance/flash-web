@@ -63,7 +63,6 @@ class _FarmWapPageState extends State<FarmWapPage> {
       });
     }
     Provider.of<IndexProvider>(context, listen: false).init();
-
     _reloadFarmData();
     _reloadAccount();
     _reloadTokenAmount();
