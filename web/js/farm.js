@@ -8,11 +8,13 @@ async function getAmount4Farm(index, account, tokenAddress, poolAddress) {
             balanceAmount = result;
         }).catch(e => {
                 console.log('getUnconfirmedBalance error:' + JSON.stringify(e));
+                setError4Farm(JSON.stringify(e));
                 code = 1;
                });
     } else {
         let tokenObj = await tronWeb.contract().at(tokenAddress);
         balanceAmount = await tokenObj.balanceOf(account).call().catch(e => {
+            setError4Farm(JSON.stringify(e));
             console.log('getAmount4Farm balanceOf error:' + JSON.stringify(e));
             code = 1;
         });
@@ -21,10 +23,12 @@ async function getAmount4Farm(index, account, tokenAddress, poolAddress) {
     let poolObj = await tronWeb.contract().at(poolAddress);
     let depositedAmount = await poolObj.balanceOf(account).call().catch(e => {
         console.log('getAmount4Farm balanceOf error:' + JSON.stringify(e));
+        setError4Farm(JSON.stringify(e));
         code = 1;
     });
     let harvestedAmount = await poolObj.earned(account).call().catch(e => {
         console.log('getAmount4Farm earned error:' + JSON.stringify(e));
+        setError4Farm(JSON.stringify(e));
         code = 1;
     });
 
@@ -43,6 +47,7 @@ async function allowance4Farm(tokenType, stakeAmount, account, tokenAddress, poo
     let code = 0;
     let result = await tokenObj.allowance(account, poolAddress).call().catch(e => {
          console.log('allowance4Farm error:' + JSON.stringify(e));
+         setError4Farm(JSON.stringify(e));
          code = 1;
     });
 
@@ -59,6 +64,7 @@ async function approve4Farm(tokenType, stakeAmount, tokenAddress, poolAddress) {
         feeLimit: 10000000
     }).catch(e => {
         console.log('approve4Farm error:' + JSON.stringify(e));
+        setError4Farm(JSON.stringify(e));
         code = 1;
    });
 
@@ -81,6 +87,7 @@ async function stake4Farm(tokenType, amount, poolAddress) {
          feeLimit: 10000000
         }).catch(e => {
             console.log('stake4Farm error:' + JSON.stringify(e));
+            setError4Farm(JSON.stringify(e));
             code = 1;
         });
     } else {
@@ -88,6 +95,7 @@ async function stake4Farm(tokenType, amount, poolAddress) {
         feeLimit: 10000000
        }).catch(e => {
             console.log('stake4Farm error:' + JSON.stringify(e));
+            setError4Farm(JSON.stringify(e));
             code = 1;
        });
     }
@@ -106,6 +114,7 @@ async function withdraw4Farm(amount, poolAddress) {
     let code = 0;
     let result = await poolObj.withdraw(amount.toString()).send({feeLimit: 10000000}).catch(e => {
         console.log('withdraw4Farm error:' + JSON.stringify(e));
+        setError4Farm(JSON.stringify(e));
         code = 1;
     });
 
@@ -122,6 +131,7 @@ async function getReward4Farm(poolAddress) {
     let code = 0;
     let result = await poolObj.getReward().send({feeLimit: 10000000}).catch(e => {
         console.log('getReward4Farm error:' + JSON.stringify(e));
+        setError4Farm(JSON.stringify(e));
         code = 1;
     });
 

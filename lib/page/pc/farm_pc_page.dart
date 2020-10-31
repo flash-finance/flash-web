@@ -49,7 +49,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
   TextEditingController _toWithdrawAmountController;
   TextEditingController _toHarvestAmountController;
 
-  bool _loadFlag = false;
+  bool _depositLoadFlag = false;
+  bool _withdrawLoadFlag = false;
+  bool _harvestLoadFlag = false;
 
   @override
   void initState() {
@@ -558,12 +560,12 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     js.context['setAllowance4Farm']=setAllowance4Farm;
                     js.context['setStake4Farm']=setStake4Farm;
                     js.context['setHash4Farm']=setHash4Farm;
+                    js.context['setError4Farm']=setError4Farm;
 
                     if(_tokenAmountMap[_key] == null ||  _tokenAmountMap[_key].balanceAmount == null) {
                       return;
                     }
 
-                    print('0000 _toDepositValue: $_toDepositValue, balanceAmount: ${_tokenAmountMap[_key].balanceAmount}');
                     if (_toDepositValue == '' ||  _tokenAmountMap[_key].balanceAmount == '') {
                       return;
                     }
@@ -575,12 +577,15 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     if (value1 > value2) {
                       return;
                     }
-                    print('111111');
                     if (_account != '' && item.depositTokenType == 2) {
-                      print('2222');
+                      setState(() {
+                        _depositLoadFlag = true;
+                      });
                       js.context.callMethod('allowance4Farm', [item.depositTokenType, value1, _account, item.depositTokenAddress, item.poolAddress]);
                     } else if (_account != '' && item.depositTokenType == 1 ){
-                      print('3333');
+                      setState(() {
+                        _depositLoadFlag = true;
+                      });
                       js.context.callMethod('stake4Farm', [item.depositTokenType, value1, item.poolAddress]);
                     }
                   },
@@ -590,13 +595,18 @@ class _FarmPcPageState extends State<FarmPcPage> {
                       elevation: 2,
                       padding: EdgeInsets.only(left: 50, top: 15, bottom: 15, right: 50),
                       backgroundColor: MyColors.blue500,
-                      label: Text(
-                        '${S.of(context).farmDeposit}',
-                        style: GoogleFonts.lato(
-                          letterSpacing: 0.5,
-                          color: MyColors.white,
-                          fontSize: 15,
+                      label: !_depositLoadFlag ? Container(
+                        child: Text(
+                          '${S.of(context).farmDeposit}',
+                          style: GoogleFonts.lato(
+                            letterSpacing: 0.5,
+                            color: MyColors.white,
+                            fontSize: 15,
+                          ),
                         ),
+                      ) : Container(
+                        color: Colors.blue[500],
+                        child: CupertinoActivityIndicator(),
                       ),
                     ),
                   ),
@@ -690,19 +700,17 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     js.context['setAllowance4Farm']=setAllowance4Farm;
                     js.context['setStake4Farm']=setStake4Farm;
                     js.context['setHash4Farm']=setHash4Farm;
+                    js.context['setError4Farm']=setError4Farm;
 
                     if(_tokenAmountMap[_key] == null ||  _tokenAmountMap[_key].depositedAmount == null) {
                       return;
                     }
 
                     print('0000 _toWithdrawValue: $_toWithdrawValue, depositedAmount: ${_tokenAmountMap[_key].depositedAmount}');
-                    if (_toDepositValue == '' ||  _tokenAmountMap[_key].depositedAmount == '') {
-                      return;
-                    }
-
                     if (_toWithdrawValue == '' ||  _tokenAmountMap[_key].depositedAmount == '') {
                       return;
                     }
+
                     double value1 =  (Decimal.tryParse(_toWithdrawValue) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
                     if (value1 <= 0) {
                       return;
@@ -711,6 +719,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     if (value1 > value2) {
                       return;
                     }
+                    setState(() {
+                      _withdrawLoadFlag = true;
+                    });
                     js.context.callMethod('withdraw4Farm', [value1, item.poolAddress]);
                   },
                   child: Container(
@@ -719,13 +730,18 @@ class _FarmPcPageState extends State<FarmPcPage> {
                       elevation: 2,
                       padding: EdgeInsets.only(left: 50, top: 15, bottom: 15, right: 50),
                       backgroundColor: MyColors.blue500,
-                      label: Text(
-                        '${S.of(context).farmWithdraw}',
-                        style: GoogleFonts.lato(
-                          letterSpacing: 0.5,
-                          color: MyColors.white,
-                          fontSize: 15,
+                      label: !_withdrawLoadFlag ? Container(
+                        child: Text(
+                          '${S.of(context).farmWithdraw}',
+                          style: GoogleFonts.lato(
+                            letterSpacing: 0.5,
+                            color: MyColors.white,
+                            fontSize: 15,
+                          ),
                         ),
+                      ) : Container(
+                        color: Colors.blue[500],
+                        child: CupertinoActivityIndicator(),
                       ),
                     ),
                   ),
@@ -816,15 +832,17 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     js.context['setAllowance4Farm']=setAllowance4Farm;
                     js.context['setStake4Farm']=setStake4Farm;
                     js.context['setHash4Farm']=setHash4Farm;
+                    js.context['setError4Farm']=setError4Farm;
 
                     if(_tokenAmountMap[_key] == null ||  _tokenAmountMap[_key].harvestedAmount == null) {
                       return;
                     }
 
                     print('0000 _toHarvestValue: $_toHarvestValue, harvestedAmount: ${_tokenAmountMap[_key].harvestedAmount}');
-                    if (_toDepositValue == '' ||  _tokenAmountMap[_key].harvestedAmount == '') {
+                    if (_toHarvestValue == '' ||  _tokenAmountMap[_key].harvestedAmount == '') {
                       return;
                     }
+
                     double value1 = double.parse(_toHarvestValue);
                     if (value1 <= 0) {
                       return;
@@ -833,6 +851,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     if (value2 <= 0) {
                       return;
                     }
+                    setState(() {
+                      _harvestLoadFlag = true;
+                    });
                     js.context.callMethod('getReward4Farm', [item.poolAddress]);
                   },
                   child: Container(
@@ -841,14 +862,19 @@ class _FarmPcPageState extends State<FarmPcPage> {
                       elevation: 2,
                       padding: EdgeInsets.only(left: 50, top: 15, bottom: 15, right: 50),
                       backgroundColor: MyColors.blue500,
-                      label: Text(
-                        '${S.of(context).farmHarvest}',
-                        style: GoogleFonts.lato(
-                          letterSpacing: 0.5,
-                          color: MyColors.white,
-                          fontSize: 15,
+                      label: !_harvestLoadFlag ? Container(
+                        child: Text(
+                          '${S.of(context).farmHarvest}',
+                          style: GoogleFonts.lato(
+                            letterSpacing: 0.5,
+                            color: MyColors.white,
+                            fontSize: 15,
+                          ),
                         ),
-                      ),
+                      ) :  Container(
+                    color: Colors.blue[500],
+                      child: CupertinoActivityIndicator(),
+                    ),
                     ),
                   ),
                 ),
@@ -858,38 +884,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
         ],
       ),
     );
-  }
-
-  void setAllowance4Farm(tokenType, stakeAmount, tokenAddress, poolAddress, allowanceAmount) {
-    print('setAllowance4Farm tokenType: $tokenType, stakeAmount: $stakeAmount, tokenAddress: $tokenAddress, poolAddress: $poolAddress, allowanceAmount: $allowanceAmount');
-    double allowanceValue = Decimal.tryParse(allowanceAmount.toString()).toDouble();
-    double stakeValue= double.parse(stakeAmount.toString());
-    if (stakeValue > allowanceValue) {
-      js.context.callMethod('approve4Farm', [tokenType, stakeAmount, tokenAddress, poolAddress]);
-    } else {
-      js.context.callMethod('stake4Farm', [tokenType, stakeAmount, poolAddress]);
-    }
-  }
-
-  void setStake4Farm(tokenType, stakeAmount, poolAddress) {
-    print('setStake4Farm tokenType: $tokenType, stakeAmount: $stakeAmount, poolAddress: $poolAddress');
-    js.context.callMethod('stake4Farm', [tokenType, stakeAmount, poolAddress]);
-  }
-
-  void setHash4Farm(type, hash) {
-    print('setHash4Farm type: $type, hash: $hash');
-    setState(() {
-      if (type == 1) {
-        _toDepositAmount = '';
-        _toDepositValue = '';
-      } else if (type == 2) {
-        _toWithdrawAmount = '';
-        _toWithdrawValue = '';
-      } else if (type == 3) {
-        _toHarvestAmount = '';
-        _toHarvestValue = '';
-      }
-    });
   }
 
   Widget _rateWidget(BuildContext context, int type, FarmRow item, int rate) {
@@ -1280,10 +1274,56 @@ class _FarmPcPageState extends State<FarmPcPage> {
     }
   }
 
+  void setAllowance4Farm(tokenType, stakeAmount, tokenAddress, poolAddress, allowanceAmount) {
+    print('setAllowance4Farm tokenType: $tokenType, stakeAmount: $stakeAmount, tokenAddress: $tokenAddress, poolAddress: $poolAddress, allowanceAmount: $allowanceAmount');
+    double allowanceValue = Decimal.tryParse(allowanceAmount.toString()).toDouble();
+    double stakeValue= double.parse(stakeAmount.toString());
+    if (stakeValue > allowanceValue) {
+      js.context.callMethod('approve4Farm', [tokenType, stakeAmount, tokenAddress, poolAddress]);
+    } else {
+      js.context.callMethod('stake4Farm', [tokenType, stakeAmount, poolAddress]);
+    }
+  }
+
+  void setStake4Farm(tokenType, stakeAmount, poolAddress) {
+    print('setStake4Farm tokenType: $tokenType, stakeAmount: $stakeAmount, poolAddress: $poolAddress');
+    js.context.callMethod('stake4Farm', [tokenType, stakeAmount, poolAddress]);
+  }
+
+
+  void setHash4Farm(type, hash) {
+    print('setHash4Farm type: $type, hash: $hash');
+    Util.showToast(S.of(context).swapSuccess);
+    for (int i = 0; i < 2; i++) {
+      Future.delayed(Duration(milliseconds: 2000), (){
+        _getTokenAmount(1);
+        if (i == 0) {
+          setState(() {
+            if (type == 1) {
+              _depositLoadFlag = false;
+              _toDepositAmount = '';
+              _toDepositValue = '';
+            } else if (type == 2) {
+              _withdrawLoadFlag = false;
+              _toWithdrawAmount = '';
+              _toWithdrawValue = '';
+            } else if (type == 3) {
+              _harvestLoadFlag = false;
+              _toHarvestAmount = '';
+              _toHarvestValue = '';
+            }
+          });
+        }
+      });
+    }
+  }
+
   void setError4Farm(msg) {
     print('setError4Farm: ${msg.toString()}');
     setState(() {
-      _loadFlag = false;
+      _depositLoadFlag = false;
+      _withdrawLoadFlag = false;
+      _harvestLoadFlag = false;
     });
   }
 
