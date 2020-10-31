@@ -151,7 +151,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Farm111',
+                      'Flash  Farm',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(40),
                         color: MyColors.white,
@@ -471,7 +471,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                     SizedBox(height: ScreenUtil().setHeight(10)),
                     Card(
                       elevation: 0,
-                      shape: RoundedRectangleBorder(side: BorderSide(width: 1.2, color: Colors.grey[300]), borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                      shape: RoundedRectangleBorder(side: BorderSide(width: 1.0, color: Colors.grey[200]), borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       child: Container(
                         width: ScreenUtil().setWidth(280),
                         alignment: Alignment.center,
@@ -618,7 +618,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                     SizedBox(height: ScreenUtil().setHeight(10)),
                     Card(
                       elevation: 0,
-                      shape: RoundedRectangleBorder(side: BorderSide(width: 1.2, color: Colors.grey[300]), borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                      shape: RoundedRectangleBorder(side: BorderSide(width: 1.0, color: Colors.grey[200]), borderRadius: BorderRadius.all(Radius.circular(25.0))),
                       child: Container(
                         width: ScreenUtil().setWidth(280),
                         alignment: Alignment.center,

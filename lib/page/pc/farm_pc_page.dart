@@ -173,7 +173,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 20),
+                    margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).aboutTips02}',
                       style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
@@ -502,7 +502,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 SizedBox(height: 10),
                 Card(
                   elevation: 0,
-                  shape: RoundedRectangleBorder(side: BorderSide(width: 1.5, color: Colors.grey[300]), borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                  shape: RoundedRectangleBorder(side: BorderSide(width: 1.2, color: Colors.grey[200]), borderRadius: BorderRadius.all(Radius.circular(30.0))),
                   child: MaterialButton(
                     color: MyColors.white,
                     disabledColor: MyColors.white,
@@ -655,7 +655,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 SizedBox(height: 10),
                 Card(
                   elevation: 0,
-                  shape: RoundedRectangleBorder(side: BorderSide(width: 1.5, color: Colors.grey[300]), borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                  shape: RoundedRectangleBorder(side: BorderSide(width: 1.2, color: Colors.grey[200]), borderRadius: BorderRadius.all(Radius.circular(30.0))),
                   child: MaterialButton(
                     elevation: 3,
                     color: MyColors.white,
@@ -805,7 +805,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 SizedBox(height: 10),
                 Card(
                   elevation: 0,
-                  shape: RoundedRectangleBorder(side: BorderSide(width: 1.5, color: Colors.grey[300]), borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                  shape: RoundedRectangleBorder(side: BorderSide(width: 1.2, color: Colors.grey[200]), borderRadius: BorderRadius.all(Radius.circular(30.0))),
                   child: MaterialButton(
                     elevation: 3,
                     color: MyColors.white,
