@@ -163,7 +163,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Farm601',
+                      'Flash  Farm201',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -531,7 +531,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                         onChanged: (String value) {
                           if (value != null && value != '') {
                             _toDepositAmount = value;
-                            _toDepositValue = value;
+                            _toDepositValue = (Decimal.tryParse(_toDepositAmount) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(0);
                           } else {
                             _toDepositAmount = '';
                             _toDepositValue = '';
@@ -579,12 +579,13 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
                     print('0000 _toDepositValue: $_toDepositValue, balanceAmount: ${_tokenAmountMap[_key].balanceAmount}');
 
-                    double value1 =  (Decimal.tryParse(_toDepositValue) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+                    double value1 =  Decimal.tryParse(_toDepositValue).toDouble();
                     if (value1 <= 0) {
                       return;
                     }
                     double value2 = double.parse(_tokenAmountMap[_key].balanceAmount);
-                    print('0000 value1: $value1, value2: $value2');
+                    print('000 String value1: $_toDepositValue, value2: ${_tokenAmountMap[_key].balanceAmount}');
+                    print('0000 double value1: $value1, value2: $value2');
                     if (value1 > value2) {
                       return;
                     }
@@ -592,12 +593,12 @@ class _FarmPcPageState extends State<FarmPcPage> {
                       setState(() {
                         _depositLoadFlag = true;
                       });
-                      js.context.callMethod('allowance4Farm', [item.depositTokenType, value1, _account, item.depositTokenAddress, item.poolAddress]);
+                      js.context.callMethod('allowance4Farm', [item.depositTokenType, _toDepositValue, _account, item.depositTokenAddress, item.poolAddress]);
                     } else if (_account != '' && item.depositTokenType == 1 ){
                       setState(() {
                         _depositLoadFlag = true;
                       });
-                      js.context.callMethod('stake4Farm', [item.depositTokenType, value1, item.poolAddress, item.depositTokenAddress]);
+                      js.context.callMethod('stake4Farm', [item.depositTokenType, _toDepositValue, item.poolAddress, item.depositTokenAddress]);
                     }
                   },
                   child: Container(
@@ -675,7 +676,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                         onChanged: (String value) {
                           if (value != null && value != '') {
                             _toWithdrawAmount = value;
-                            _toWithdrawValue = value;
+                            _toWithdrawValue = (Decimal.tryParse(_toWithdrawAmount) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(0);
                           } else {
                             _toWithdrawAmount = '';
                             _toWithdrawValue = '';
@@ -722,19 +723,21 @@ class _FarmPcPageState extends State<FarmPcPage> {
                       return;
                     }
 
-                    double value1 =  (Decimal.tryParse(_toWithdrawValue) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+                    double value1 =  Decimal.tryParse(_toWithdrawValue).toDouble();
                     if (value1 <= 0) {
                       return;
                     }
                     double value2 = double.parse( _tokenAmountMap[_key].depositedAmount);
-                    print('1111 value1: $value1, value2: $value2');
+
+                    print('000 String value1: $_toWithdrawValue, value2: ${_tokenAmountMap[_key].depositedAmount}');
+                    print('1111 double value1: $value1, value2: $value2');
                     if (value1 > value2) {
                       return;
                     }
                     setState(() {
                       _withdrawLoadFlag = true;
                     });
-                    js.context.callMethod('withdraw4Farm', [value1, item.poolAddress, item.depositTokenAddress]);
+                    js.context.callMethod('withdraw4Farm', [_toWithdrawValue, item.poolAddress, item.depositTokenAddress]);
                   },
                   child: Container(
                     color: MyColors.white,
@@ -814,7 +817,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                         onChanged: (String value) {
                           if (value != null && value != '') {
                             _toHarvestAmount = value;
-                            _toHarvestValue = value;
+                            _toHarvestValue = (Decimal.tryParse(_toHarvestAmount) * Decimal.fromInt(10).pow(item.mineTokenDecimal)).toStringAsFixed(0);
                           } else {
                             _toHarvestAmount = '';
                             _toHarvestValue = '';
@@ -855,7 +858,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                       return;
                     }
 
-                    double value1 = double.parse(_toHarvestValue);
+                    double value1 = Decimal.tryParse(_toHarvestValue).toDouble();
                     if (value1 <= 0) {
                       return;
                     }
@@ -912,7 +915,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
       String temp = _tokenAmountMap[_key].depositedAmount;
       depositedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
     }
-    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].depositedAmount != null) {
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].harvestedAmount != null) {
       String temp = _tokenAmountMap[_key].harvestedAmount;
       harvestedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toDouble();
     }
@@ -925,7 +928,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
     } else if (type == 3) {
       amount = harvestedAmount;
     }
-
     return Material(
       color: Colors.white,
       child: InkWell(
@@ -940,13 +942,30 @@ class _FarmPcPageState extends State<FarmPcPage> {
             setState(() {
               if (type == 1) {
                 _toDepositAmount = value.toStringAsFixed(3);
-                _toDepositValue = Util.formatNum(value, item.depositTokenDecimal);
+                String temp = value.toStringAsFixed(item.depositTokenDecimal);
+                if (rate != 100) {
+                  _toDepositValue = (Decimal.tryParse(temp) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toString();
+                } else {
+                  _toDepositValue = _tokenAmountMap[_key].balanceAmount;
+                }
               } else if (type == 2) {
                 _toWithdrawAmount = value.toStringAsFixed(3);
-                _toWithdrawValue = Util.formatNum(value, item.depositTokenDecimal);
+                String temp = value.toStringAsFixed(item.depositTokenDecimal);
+                if (rate != 100) {
+                  _toWithdrawValue = (Decimal.tryParse(temp) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toString();
+                } else {
+                  _toWithdrawValue = _tokenAmountMap[_key].depositedAmount;
+                }
+                print('depositedAmount sss1: ${_tokenAmountMap[_key].depositedAmount}');
+                print('_toWithdrawValue sss2: $_toWithdrawValue');
               } else if (type == 3) {
                 _toHarvestAmount = value.toStringAsFixed(4);
-                _toHarvestValue = Util.formatNum(value, item.mineTokenDecimal);
+                String temp = value.toStringAsFixed(item.mineTokenDecimal);
+                if (rate != 100) {
+                  _toHarvestValue = (Decimal.tryParse(temp) * Decimal.fromInt(10).pow(item.mineTokenDecimal)).toString();
+                } else {
+                  _toHarvestValue = _tokenAmountMap[_key].harvestedAmount;
+                }
               }
             });
           }
