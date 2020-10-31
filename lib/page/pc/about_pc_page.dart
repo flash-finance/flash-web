@@ -6,6 +6,7 @@ import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
+import 'package:flash_web/util/common_util.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -318,6 +319,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
             _showConnectWalletDialLog(context);
           } else if (index == 5) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
+            Util.showToast(S.of(context).swapSuccess);
           }
         },
       ),

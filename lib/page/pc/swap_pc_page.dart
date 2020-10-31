@@ -986,6 +986,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
             _showConnectWalletDialLog(context);
           } else if (index == 5) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
+            Util.showToast(S.of(context).swapSuccess);
           }
         },
       ),
