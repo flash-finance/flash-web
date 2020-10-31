@@ -158,3 +158,17 @@ class FarmRow {
     return data;
   }
 }
+
+
+class FarmTokenAmount {
+  String balanceAmount;
+  String depositedAmount;
+  String harvestedAmount;
+
+  FarmTokenAmount({
+    this.balanceAmount,
+    this.depositedAmount,
+    this.harvestedAmount,
+  });
+}
+

@@ -6,7 +6,6 @@ import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/model/farm2_model.dart';
-import 'package:flash_web/model/farm_model.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
@@ -31,12 +30,12 @@ class FarmPcPage extends StatefulWidget {
 class _FarmPcPageState extends State<FarmPcPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
   int _layoutIndex = -1;
+  String _account = '';
   bool _layoutFlag = false;
   bool tronFlag = false;
   Timer _timer1;
   Timer _timer2;
   Timer _timer3;
-  Timer _timer4;
   String _toDepositAmount = '0.00';
   String _toWithdrawAmount = '0.00';
   String _toHarvestAmount = '0.00';
@@ -50,6 +49,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
   TextEditingController _toWithdrawAmountController;
   TextEditingController _toHarvestAmountController;
 
+  bool _loadFlag = false;
+
   @override
   void initState() {
     super.initState();
@@ -61,10 +62,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
     Provider.of<IndexProvider>(context, listen: false).init();
 
     _reloadFarmData();
-    _getMineInfo();
-    //_getApy();
-    //_reloadAccount();
-    //_reloadAmount();
+    _reloadAccount();
+    _reloadTokenAmount();
   }
 
   @override
@@ -82,11 +81,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
     if (_timer3 != null) {
       if (_timer3.isActive) {
         _timer3.cancel();
-      }
-    }
-    if (_timer4 != null) {
-      if (_timer4.isActive) {
-        _timer4.cancel();
       }
     }
     super.dispose();
@@ -160,7 +154,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Farm',
+                      'Flash  Farm001',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -205,7 +199,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
           SizedBox(height: index == 0 ? 10 : 0),
           !_layoutFlag ? _oneWidget(context, item, index) : (_layoutIndex == index ? _twoWidget(context, item, index) : _oneWidget(context, item, index)),
           SizedBox(height: 10),
-          SizedBox(height: index == _farmRows.length - 1 ? 50 : 0),
+          SizedBox(height: index == _farm2Rows.length - 1 ? 50 : 0),
         ],
       ),
     );
@@ -976,7 +970,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
   }
 
   Widget _actionItemWidget(BuildContext context, int index) {
-    String account = Provider.of<IndexProvider>(context).account;
     int _homeIndex = CommonProvider.homeIndex;
     String actionTitle = '';
     switch(index) {
@@ -1025,7 +1018,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
             padding: EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
             backgroundColor: MyColors.blue500,
             label: Text(
-              account == '' ? '$actionTitle' : account.substring(0, 4) + '...' + account.substring(account.length - 4, account.length),
+              _account == '' ? '$actionTitle' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
               style: GoogleFonts.lato(
                 letterSpacing: 0.5,
                 color: MyColors.white,
@@ -1062,8 +1055,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
             Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
           } else if (index == 3) {
             Application.router.navigateTo(context, 'about', transition: TransitionType.fadeIn);
-          } else if (index == 4 && account == '') {
-            _showConnectWalletDialLog();
+          } else if (index == 4 && _account == '') {
+            _showConnectWalletDialLog(context);
           } else if (index == 5) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
           }
@@ -1071,7 +1064,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
       ),
     );
   }
-  _showConnectWalletDialLog() {
+
+  _showConnectWalletDialLog(BuildContext context) {
     showDialog(
       context: context,
       child: AlertDialog(
@@ -1083,8 +1077,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
           width: 300,
           height: 150,
           decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Color(0xFFFFFF),
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
           ),
           child: Container(
@@ -1128,63 +1120,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
     );
   }
 
-
-  _reloadAccount() async {
-    _timer1 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      tronFlag = js.context.hasProperty('tronWeb');
-      if (tronFlag) {
-        var result = js.context["tronWeb"]["defaultAddress"]["base58"];
-        if (result.toString() != 'false') {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
-        } else {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount('');
-        }
-      } else {
-        Provider.of<IndexProvider>(context, listen: false).changeAccount('');
-      }
-    });
-  }
-
-  _reloadAmount() async {
-    js.context['setAmount']=setAmount;
-    _timer2 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      String account = Provider.of<IndexProvider>(context, listen: false).account;
-      if (account != '') {
-        for (int i=0; i<_farmRows.length; i++) {
-          js.context.callMethod('getAmount', [i.toString(), account, _farmRows[i].depositTokenAddress, _farmRows[i].poolAddress]);
-        }
-      } else {
-        for (int i=0; i<_farmRows.length; i++) {
-          setAmount(i, '0', '0', '0');
-        }
-      }
-    });
-  }
-
-  void setAmount(index, balanceAmount, depositedAmount, harvestedAmount) {
-    int i = int.parse(index.toString());
-    if (_farmRows.length > i) {
-      if (balanceAmount.toString() != '') {
-        _farmRows[i].balanceAmount = balanceAmount.toString();
-      }
-      if (depositedAmount.toString() != '') {
-        _farmRows[i].depositedAmount = depositedAmount.toString();
-      }
-      if (harvestedAmount.toString() != '') {
-        _farmRows[i].harvestedAmount = harvestedAmount.toString();
-      }
-      setState(() {});
-    }
-  }
-
-
-
-  Farm2Data _farm2data;
-
-  List<FarmRow> _farm2Rows = [];
-
-  bool _reloadFarmDataFlag = false;
-
   _reloadFarmData() async {
     _getFarmData();
     _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
@@ -1216,102 +1151,106 @@ class _FarmPcPageState extends State<FarmPcPage> {
     _reloadFarmDataFlag = true;
   }
 
+  bool _reloadAccountFlag = false;
 
-  _getMineInfo() async {
-    _getFarmData();
-    /*js.context['setMineInfo']=setMineInfo;
-    _timer3 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      for (int i=0; i<_farmRows.length; i++) {
-        js.context.callMethod('getMineInfo', [i.toString(), _farmRows[i].poolAddress, _farmRows[i].depositLpToken, _farmRows[i].mineLpToken]);
-      }
-    });*/
-  }
-
-  void setMineInfo(index, totalSupply, depositTokenPrice, mineTokenPrice) {
-    int i = int.parse(index.toString());
-    if (_farmRows.length > i) {
-      double total = (Decimal.tryParse(totalSupply.toString())/Decimal.fromInt(10).pow(_farmRows[i].depositTokenDecimal)).toDouble();
-      _farmRows[i].depositTotalSupply = total;
-      double depositPrice = (Decimal.tryParse(depositTokenPrice.toString())/Decimal.fromInt(10).pow(_farmRows[i].depositTokenDecimal)).toDouble();
-      double minePrice = (Decimal.tryParse(mineTokenPrice.toString())/Decimal.fromInt(10).pow(_farmRows[i].mineTokenDecimal)).toDouble();
-      if (depositPrice > 0) {
-        _farmRows[i].depositTokenPrice = 1/depositPrice;
-      }
-      if (minePrice > 0) {
-        _farmRows[i].mineTokenPrice = 1/minePrice;
-      }
-      setState(() {});
-    }
-  }
-
-  _getApy() async {
-    _timer4 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      String account = Provider.of<IndexProvider>(context, listen: false).account;
-      if (account != '') {
-        for (int i=0; i<_farmRows.length; i++) {
-          if (_farmRows[i].depositTotalSupply > 0 && _farmRows[i].depositTokenPrice > 0 && _farmRows[i].mineTokenPrice > 0) {
-            double value = (_farmRows[i].produceAmount * _farmRows[i].mineTokenPrice* 365*100) /(_farmRows[i].depositTotalSupply*_farmRows[i].depositTokenPrice);
-            _farmRows[i].apy = value.toStringAsFixed(2);
-          }
-        }
+  _reloadAccount() async {
+    _getAccount();
+    _timer2 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadAccountFlag) {
+        _getAccount();
       }
     });
   }
 
-  List<FarmRows> _farmRows = List<FarmRows>();
+  _getAccount() async {
+    _reloadAccountFlag = false;
+    tronFlag = js.context.hasProperty('tronWeb');
+    if (tronFlag) {
+      var result = js.context["tronWeb"]["defaultAddress"]["base58"];
+      if (result.toString() != 'false' && result.toString() != _account) {
+        if (mounted) {
+          setState(() {
+            _account = result.toString();
+          });
+        }
+        _getTokenAmount(1);
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          _account = '';
+        });
+      }
+    }
+    _reloadAccountFlag = true;
+  }
 
-  _getFarm2Data() async {
-    _farmRows.add(FarmRows(
-        id: 0,
-        poolType: 1,
-        poolAddress: 'TQjaZ9FD473QBTdUzMLmSyoGB6Yz1CGpux',
-        depositTokenName: 'TRX',
-        depositTokenType: 1,
-        depositTokenAddress: '',
-        depositTokenDecimal: 6,
-        mineTokenName: 'SUN',
-        mineTokenType: 2,
-        mineTokenAddress: 'TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9',
-        mineTokenDecimal: 18,
-        pic1: 'images/trx.png',
-        pic2: 'images/trx.png',
-        apy: '0.00',
-        balanceAmount: '0',
-        depositedAmount: '0',
-        harvestedAmount: '0',
-        depositTotalSupply: 0,
-        produceAmount: 2400,
-        depositTokenPrice: 0,
-        mineTokenPrice: 0,
-        depositLpToken: '',
-        mineLpToken: 'TUEYcyPAqc4hTg1fSuBCPc18vGWcJDECVw',
-    ));
-    _farmRows.add(FarmRows(
-        id: 1,
-        poolType: 1,
-        poolAddress: 'TTSV7bKDPoJQ8HsMBseNbgQrDCDtAFnAA6',
-        depositTokenName: 'SUN',
-        depositTokenType: 2,
-        depositTokenAddress: 'TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9',
-        depositTokenDecimal: 18,
-        mineTokenName: 'SUN',
-        mineTokenType: 2,
-        mineTokenAddress: 'TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9',
-        mineTokenDecimal: 18,
-        pic1: 'images/sun.png',
-        pic2: 'images/sun.png',
-        apy: '0.00',
-        balanceAmount: '0',
-        depositedAmount: '0',
-        harvestedAmount: '0',
-        depositTotalSupply: 0,
-        produceAmount: 1600,
-        depositTokenPrice: 0,
-        mineTokenPrice: 1,
-        depositLpToken: 'TUEYcyPAqc4hTg1fSuBCPc18vGWcJDECVw',
-        mineLpToken: 'TUEYcyPAqc4hTg1fSuBCPc18vGWcJDECVw',
-    ));
-    setState(() {});
+  var _tokenAmountMap = Map<String, FarmTokenAmount>();
+
+  bool _reloadTokenAmountFlag = false;
+
+  _reloadTokenAmount() async {
+    js.context['setTokenAmount4Farm']=setTokenAmount4Farm;
+    _getTokenAmount(1);
+    _timer3 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadTokenAmountFlag) {
+        _getTokenAmount(2);
+      }
+    });
+  }
+
+  _getTokenAmount(int type) async {
+    _reloadTokenAmountFlag = false;
+    if (_account != '') {
+      for (int i=0; i<_farm2Rows.length; i++) {
+        String _key = '$_account+${_farm2Rows[i].depositTokenAddress}';
+        if (type == 1 || _tokenAmountMap[_key] == null || _tokenAmountMap[_key].balanceAmount == null
+             || _tokenAmountMap[_key].depositedAmount == null &&  _tokenAmountMap[_key].harvestedAmount == null) {
+          js.context.callMethod('getAmount4Farm', [i, _account, _farm2Rows[i].depositTokenAddress, _farm2Rows[i].poolAddress]);
+        }
+      }
+    }
+    _reloadTokenAmountFlag = true;
+  }
+
+
+  void setTokenAmount4Farm(index, depositedToken, balanceAmount, depositedAmount, harvestedAmount) {
+    print('setAmount4Farm111: $index, depositedToken: $depositedToken, depositedAmount:$depositedAmount, harvestedAmount: $harvestedAmount');
+    try {
+      double.parse(balanceAmount.toString());
+      double.parse(depositedAmount.toString());
+      double.parse(harvestedAmount.toString());
+    } catch (e) {
+      print('setAmount4Farm double.parse error');
+      return;
+    }
+    if (_account != '') {
+      String _key = '$_account+${depositedToken.toString()}';
+      _tokenAmountMap[_key] = FarmTokenAmount();
+      _tokenAmountMap[_key].balanceAmount = balanceAmount.toString();
+      _tokenAmountMap[_key].depositedAmount = depositedAmount.toString();
+      _tokenAmountMap[_key].harvestedAmount = harvestedAmount.toString();
+      if (mounted) {
+        setState(() {});
+      }
+    }
+  }
+
+
+  Farm2Data _farm2data;
+
+  List<FarmRow> _farm2Rows = [];
+
+  bool _reloadFarmDataFlag = false;
+
+
+
+
+  void setError4Farm(msg) {
+    print('setError4Farm: ${msg.toString()}');
+    setState(() {
+      _loadFlag = false;
+    });
   }
 
 

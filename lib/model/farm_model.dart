@@ -1,4 +1,3 @@
-class VaultRespModel {}
 
 class FarmRows {
   int id;
