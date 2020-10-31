@@ -705,7 +705,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
               ),
             ],
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -727,59 +727,6 @@ class _FarmWapPageState extends State<FarmWapPage> {
                       ),
                     ),
                     SizedBox(height: ScreenUtil().setHeight(10)),
-                    Card(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(side: BorderSide(width: 1.2, color: Colors.grey[300]), borderRadius: BorderRadius.all(Radius.circular(25.0))),
-                      child: Container(
-                        width: ScreenUtil().setWidth(350),
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(1), bottom: ScreenUtil().setHeight(1)),
-                        child: TextFormField(
-                          controller: _toHarvestAmountController,
-                          enableInteractiveSelection: false,
-                          readOnly: true,
-                          cursorColor: MyColors.black87,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            hintText: '',
-                            hintStyle: GoogleFonts.lato(
-                              color: Colors.grey[500],
-                              fontSize: 16,
-                              letterSpacing: 0.5,
-                            ),
-                            border: InputBorder.none,
-                          ),
-                          style: GoogleFonts.lato(
-                            color: MyColors.black87,
-                            fontSize: ScreenUtil().setSp(26),
-                          ),
-                          inputFormatters: [MyNumberTextInputFormatter(digit:6)],
-                          onChanged: (String value) {
-                            if (value != null && value != '') {
-                              _toHarvestAmount = value;
-                              _toHarvestValue = (Decimal.tryParse(_toHarvestAmount) * Decimal.fromInt(10).pow(item.mineTokenDecimal)).toStringAsFixed(0);
-                            } else {
-                              _toHarvestAmount = '';
-                              _toHarvestValue = '';
-                            }
-                            setState(() {});
-                          },
-                          onSaved: (String value) {},
-                          onEditingComplete: () {},
-                        ),
-                      ),
-                      ),
-                    SizedBox(height: ScreenUtil().setHeight(10)),
-                    Container(
-                      width: ScreenUtil().setWidth(350),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          _rateWidget(context, 3, item, 100),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: ScreenUtil().setHeight(5)),
                     InkWell(
                       onTap: () {
                         js.context['setAllowance4Farm']=setAllowance4Farm;
@@ -791,16 +738,8 @@ class _FarmWapPageState extends State<FarmWapPage> {
                           return;
                         }
 
-                        if (_toHarvestValue == '' ||  _tokenAmountMap[_key].harvestedAmount == '') {
-                          return;
-                        }
-
-                        double value1 = Decimal.tryParse(_toHarvestValue).toDouble();
-                        if (value1 <= 0) {
-                          return;
-                        }
-                        double value2 = double.parse(_tokenAmountMap[_key].harvestedAmount);
-                        if (value2 <= 0) {
+                        double value = double.parse(_tokenAmountMap[_key].harvestedAmount);
+                        if (value <= 0) {
                           return;
                         }
                         setState(() {
@@ -872,8 +811,8 @@ class _FarmWapPageState extends State<FarmWapPage> {
 
     return Material(
       color: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: InkWell(
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
         hoverColor: Colors.white,
         splashColor: Color(0x802196F3),
         highlightColor: Color(0x802196F3),
