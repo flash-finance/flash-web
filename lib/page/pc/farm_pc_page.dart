@@ -5,7 +5,7 @@ import 'package:decimal/decimal.dart';
 import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
-import 'package:flash_web/model/farm2_model.dart';
+import 'package:flash_web/model/farm_model.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
@@ -195,9 +195,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        itemCount: _farm2Rows.length,
+        itemCount: _farmRows.length,
         itemBuilder: (context, index) {
-          return _bizSubWidget(context, _farm2Rows[index], index);
+          return _bizSubWidget(context, _farmRows[index], index);
         },
       ),
     );
@@ -209,7 +209,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
         children: <Widget>[
           !_layoutFlag ? _oneWidget(context, item, index) : (_layoutIndex == index ? _twoWidget(context, item, index) : _oneWidget(context, item, index)),
           SizedBox(height: 10),
-          SizedBox(height: index == _farm2Rows.length - 1 ? 50 : 0),
+          SizedBox(height: index == _farmRows.length - 1 ? 50 : 0),
         ],
       ),
     );
@@ -1201,9 +1201,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
   }
 
 
-  Farm2Data _farm2data;
+  FarmData _farmData;
 
-  List<FarmRow> _farm2Rows = [];
+  List<FarmRow> _farmRows = [];
 
   bool _reloadFarmDataFlag = false;
 
@@ -1223,9 +1223,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
         var respData = Map<String, dynamic>.from(value);
         FarmRespModel respModel = FarmRespModel.fromJson(respData);
         if (respModel != null && respModel.code == 0) {
-          _farm2data = respModel.data;
-          if (_farm2data != null && _farm2data.rows != null && _farm2data.rows.length > 0) {
-            _farm2Rows = _farm2data.rows;
+          _farmData = respModel.data;
+          if (_farmData != null && _farmData.rows != null && _farmData.rows.length > 0) {
+            _farmRows = _farmData.rows;
           }
         }
       });
@@ -1289,11 +1289,11 @@ class _FarmPcPageState extends State<FarmPcPage> {
   _getTokenAmount(int type) async {
     _reloadTokenAmountFlag = false;
     if (_account != '') {
-      for (int i=0; i<_farm2Rows.length; i++) {
-        String _key = '$_account+${_farm2Rows[i].depositTokenAddress}';
+      for (int i=0; i<_farmRows.length; i++) {
+        String _key = '$_account+${_farmRows[i].depositTokenAddress}';
         if (type == 1 || _tokenAmountMap[_key] == null || _tokenAmountMap[_key].balanceAmount == null
              || _tokenAmountMap[_key].depositedAmount == null &&  _tokenAmountMap[_key].harvestedAmount == null) {
-          js.context.callMethod('getAmount4Farm', [_farm2Rows[i].depositTokenType, _account, _farm2Rows[i].depositTokenAddress, _farm2Rows[i].poolAddress]);
+          js.context.callMethod('getAmount4Farm', [_farmRows[i].depositTokenType, _account, _farmRows[i].depositTokenAddress, _farmRows[i].poolAddress]);
         }
       }
     }

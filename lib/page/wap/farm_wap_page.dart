@@ -5,7 +5,7 @@ import 'package:decimal/decimal.dart';
 import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
-import 'package:flash_web/model/farm2_model.dart';
+import 'package:flash_web/model/farm_model.dart';
 import 'package:flash_web/model/farm_model.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
@@ -107,6 +107,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
       drawer: _drawerWidget(context),
       body: Column(
         children: <Widget>[
+          _topWidget(context),
           Expanded(
             child: _mainWidget(context),
           ),
@@ -122,7 +123,6 @@ class _FarmWapPageState extends State<FarmWapPage> {
       color: MyColors.white,
       child: Column(
         children: <Widget>[
-          _topWidget(context),
           SizedBox(height: ScreenUtil().setHeight(30)),
           Expanded(
             child: _bodyWidget(context),
@@ -950,9 +950,9 @@ class _FarmWapPageState extends State<FarmWapPage> {
   }
 
 
-  Farm2Data _farm2data;
+  Farm2Data _farmData;
 
-  List<FarmRow> _farm2Rows = [];
+  List<FarmRow> _farmRows = [];
 
   bool _reloadFarmDataFlag = false;
 
@@ -972,9 +972,9 @@ class _FarmWapPageState extends State<FarmWapPage> {
         var respData = Map<String, dynamic>.from(value);
         FarmRespModel respModel = FarmRespModel.fromJson(respData);
         if (respModel != null && respModel.code == 0) {
-          _farm2data = respModel.data;
-          if (_farm2data != null && _farm2data.rows != null && _farm2data.rows.length > 0) {
-            _farm2Rows = _farm2data.rows;
+          _farmData = respModel.data;
+          if (_farmData != null && _farmData.rows != null && _farmData.rows.length > 0) {
+            _farmRows = _farmData.rows;
           }
         }
       });
@@ -1038,11 +1038,11 @@ class _FarmWapPageState extends State<FarmWapPage> {
   _getTokenAmount(int type) async {
     _reloadTokenAmountFlag = false;
     if (_account != '') {
-      for (int i=0; i<_farm2Rows.length; i++) {
-        String _key = '$_account+${_farm2Rows[i].depositTokenAddress}';
+      for (int i=0; i<_farmRows.length; i++) {
+        String _key = '$_account+${_farmRows[i].depositTokenAddress}';
         if (type == 1 || _tokenAmountMap[_key] == null || _tokenAmountMap[_key].balanceAmount == null
             || _tokenAmountMap[_key].depositedAmount == null &&  _tokenAmountMap[_key].harvestedAmount == null) {
-          js.context.callMethod('getAmount4Farm', [_farm2Rows[i].depositTokenType, _account, _farm2Rows[i].depositTokenAddress, _farm2Rows[i].poolAddress]);
+          js.context.callMethod('getAmount4Farm', [_farmRows[i].depositTokenType, _account, _farmRows[i].depositTokenAddress, _farmRows[i].poolAddress]);
         }
       }
     }
