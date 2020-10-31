@@ -32,7 +32,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
   int _layoutIndex = -1;
   String _account = '';
   bool _layoutFlag = false;
-  bool tronFlag = false;
+  bool _tronFlag = false;
   Timer _timer1;
   Timer _timer2;
   Timer _timer3;
@@ -1251,8 +1251,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
   _getAccount() async {
     _reloadAccountFlag = false;
-    tronFlag = js.context.hasProperty('tronWeb');
-    if (tronFlag) {
+    _tronFlag = js.context.hasProperty('tronWeb');
+    if (_tronFlag) {
       var result = js.context["tronWeb"]["defaultAddress"]["base58"];
       if (result.toString() != 'false' && result.toString() != _account) {
         if (mounted) {

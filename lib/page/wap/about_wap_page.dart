@@ -21,7 +21,7 @@ class AboutWapPage extends StatefulWidget {
 
 class _AboutWapPageState extends State<AboutWapPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  String _account = '';
   bool tronFlag = false;
   Timer _timer;
 
@@ -143,7 +143,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
         hoverColor: MyColors.white,
         icon: Container(
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
-          child: Icon(Icons.menu, size: ScreenUtil().setWidth(55), color: Colors.black87),
+          child: Icon(Icons.menu, size: ScreenUtil().setWidth(55), color: Colors.grey[800]),
         ),
         onPressed: () {
           _scaffoldKey.currentState.openDrawer();
@@ -155,7 +155,6 @@ class _AboutWapPageState extends State<AboutWapPage> {
 
   Widget _drawerWidget(BuildContext context) {
     int _homeIndex = CommonProvider.homeIndex;
-    String account = Provider.of<IndexProvider>(context).account;
     return Drawer(
       child: Container(
         color: MyColors.white,
@@ -177,15 +176,15 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(0);
                 });
-                Application.router.navigateTo(context, 'wap/farm', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
               },
               leading: Icon(
-                Icons.assistant,
+                Icons.broken_image,
                 color: _homeIndex == 0 ? Colors.black87 : Colors.grey[700],
               ),
             ),
             ListTile(
-              title:  Text(
+              title: Text(
                 '${S.of(context).actionTitle1}',
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
@@ -195,13 +194,14 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 overflow: TextOverflow.ellipsis,
               ),
               onTap: () {
+                Navigator.pop(context);
                 setState(() {
                   CommonProvider.changeHomeIndex(1);
                 });
-                Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/farm', transition: TransitionType.fadeIn);
               },
               leading: Icon(
-                Icons.broken_image,
+                Icons.assistant,
                 color: _homeIndex == 1 ? Colors.black87 : Colors.grey[700],
               ),
             ),
@@ -228,7 +228,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
             ),
             ListTile(
               title: Text(
-                account == '' ? '${S.of(context).actionTitle4}' : account.substring(0, 4) + '...' + account.substring(account.length - 4, account.length),
+                _account == '' ? '${S.of(context).actionTitle4}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
                   color: Colors.grey[700],
@@ -273,12 +273,12 @@ class _AboutWapPageState extends State<AboutWapPage> {
       if (tronFlag) {
         var result = js.context["tronWeb"]["defaultAddress"]["base58"];
         if (result.toString() != 'false') {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
+          //Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
         } else {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+          //Provider.of<IndexProvider>(context, listen: false).changeAccount('');
         }
       } else {
-        Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+        //Provider.of<IndexProvider>(context, listen: false).changeAccount('');
       }
     });
   }

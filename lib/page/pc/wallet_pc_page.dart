@@ -25,7 +25,8 @@ class WalletPcPage extends StatefulWidget {
 
 class _WalletPcPageState extends State<WalletPcPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool tronFlag = false;
+  String _account = '';
+  bool _tronFlag = false;
   Timer _timer;
 
   @override
@@ -205,7 +206,6 @@ class _WalletPcPageState extends State<WalletPcPage> {
   }
 
   Widget _actionItemWidget(BuildContext context, int index) {
-    String account = Provider.of<IndexProvider>(context).account;
     int _homeIndex = CommonProvider.homeIndex;
     String actionTitle = '';
     switch(index) {
@@ -254,7 +254,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
             padding: EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
             backgroundColor: MyColors.blue500,
             label: Text(
-              account == '' ? '$actionTitle' : account.substring(0, 4) + '...' + account.substring(account.length - 4, account.length),
+              _account == '' ? '$actionTitle' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
               style: GoogleFonts.lato(
                 letterSpacing: 0.5,
                 color: MyColors.white,
@@ -291,8 +291,8 @@ class _WalletPcPageState extends State<WalletPcPage> {
             Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
           } else if (index == 3) {
             Application.router.navigateTo(context, 'about', transition: TransitionType.fadeIn);
-          } else if (index == 4 && account == '') {
-            _showConnectWalletDialLog();
+          } else if (index == 4 && _account == '') {
+            _showConnectWalletDialLog(context);
           } else if (index == 5) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
           }
@@ -301,7 +301,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
     );
   }
 
-  _showConnectWalletDialLog() {
+  _showConnectWalletDialLog(BuildContext context) {
     showDialog(
       context: context,
       child: AlertDialog(
@@ -361,16 +361,16 @@ class _WalletPcPageState extends State<WalletPcPage> {
 
   _reloadAccount() async {
     _timer = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      tronFlag = js.context.hasProperty('tronWeb');
-      if (tronFlag) {
+      _tronFlag = js.context.hasProperty('tronWeb');
+      if (_tronFlag) {
         var result = js.context["tronWeb"]["defaultAddress"]["base58"];
         if (result.toString() != 'false') {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
+          //Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
         } else {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+          //Provider.of<IndexProvider>(context, listen: false).changeAccount('');
         }
       } else {
-        Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+        //Provider.of<IndexProvider>(context, listen: false).changeAccount('');
       }
     });
   }

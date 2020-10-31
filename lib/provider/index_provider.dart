@@ -20,21 +20,6 @@ class IndexProvider with ChangeNotifier {
     });
   }
 
-
-
-  bool _tronFlag = false;
-
-  bool get tronFlag => _tronFlag;
-
-  String _account = '';
-
-  String get account => _account;
-
-  void changeAccount(String value) {
-    _account = value;
-    notifyListeners();
-  }
-
   bool _langType = true;
 
   bool get langType => _langType;

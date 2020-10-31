@@ -190,11 +190,10 @@ class _FarmWapPageState extends State<FarmWapPage> {
     );
   }
 
-  Widget _bizWidget(BuildContext context, FarmRows item, int index) {
+  Widget _bizWidget(BuildContext context, FarmRow item, int index) {
     return Container(
       child: Column(
         children: <Widget>[
-          SizedBox(height: index == 0 ? ScreenUtil().setHeight(30) : ScreenUtil().setHeight(0)),
           !_layoutFlag ? _oneWidget(context, item, index) : (_layoutIndex == index ? _twoWidget(context, item, index) : _oneWidget(context, item, index)),
           SizedBox(height: ScreenUtil().setHeight(10)),
           SizedBox(height: index == _farmRows.length - 1 ? ScreenUtil().setHeight(30) : ScreenUtil().setHeight(0)),
@@ -203,7 +202,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
     );
   }
 
-  Widget _oneWidget(BuildContext context, FarmRows item, int index) {
+  Widget _oneWidget(BuildContext context, FarmRow item, int index) {
     return InkWell(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -229,7 +228,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
     );
   }
 
-  Widget _twoWidget(BuildContext context, FarmRows item, int index) {
+  Widget _twoWidget(BuildContext context, FarmRow item, int index) {
     return InkWell(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -257,7 +256,9 @@ class _FarmWapPageState extends State<FarmWapPage> {
     );
   }
 
-  Widget _topBizWidget(BuildContext context, FarmRows item, int index, int type) {
+  Widget _topBizWidget(BuildContext context, FarmRow item, int index, int type) {
+    var time = DateTime.fromMillisecondsSinceEpoch(item.endTime * 1000);
+    String timeStr = DateUtil.formatDate(time, format: 'yyyy-MM-dd HH:mm');
     return InkWell(
       onTap: () {
         setState(() {
@@ -388,12 +389,23 @@ class _FarmWapPageState extends State<FarmWapPage> {
     );
   }
 
-  Widget _bottomBizWidget(BuildContext context, FarmRows item) {
-    String balanceAmount = (Decimal.tryParse(item.balanceAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
-    String depositedAmount = (Decimal.tryParse(item.depositedAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
-    String harvestedAmount = (Decimal.tryParse(item.harvestedAmount)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toStringAsFixed(4);
-
-    String account = Provider.of<IndexProvider>(context).account;
+  Widget _bottomBizWidget(BuildContext context, FarmRow item) {
+    String _key = '$_account+${item.depositTokenAddress}';
+    String balanceAmount = '0.00';
+    String depositedAmount = '0.00';
+    String harvestedAmount = '0.00';
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].balanceAmount != null) {
+      String temp = _tokenAmountMap[_key].balanceAmount;
+      balanceAmount =(Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
+    }
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].depositedAmount != null) {
+      String temp = _tokenAmountMap[_key].depositedAmount;
+      depositedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(3);
+    }
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].depositedAmount != null) {
+      String temp = _tokenAmountMap[_key].harvestedAmount;
+      harvestedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toStringAsFixed(4);
+    }
 
     return Container(
       width: ScreenUtil().setWidth(700),
@@ -448,7 +460,19 @@ class _FarmWapPageState extends State<FarmWapPage> {
                           onChanged: (String value) {
                             if (value != null && value != '') {
                               _toDepositAmount = value;
-                              _toDepositValue = value;
+                              _toDepositValue = (Decimal.tryParse(_toDepositAmount) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(0);
+
+                              if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].balanceAmount != null) {
+                                double value1 = double.parse(_toDepositValue);
+                                String temp = _tokenAmountMap[_key].balanceAmount;
+                                double value2 = double.parse(temp);
+                                if (value1 > value2) {
+                                  _depositEnoughFlag = false;
+                                } else {
+                                  _depositEnoughFlag = true;
+                                }
+                              }
+
                             } else {
                               _toDepositAmount = '';
                               _toDepositValue = '';
@@ -479,26 +503,37 @@ class _FarmWapPageState extends State<FarmWapPage> {
                     SizedBox(height: ScreenUtil().setHeight(5)),
                     InkWell(
                       onTap: () {
-                        js.context['setAllowance']=setAllowance;
-                        js.context['setStake']=setStake;
-                        js.context['setHash']=setHash;
+                        js.context['setAllowance4Farm']=setAllowance4Farm;
+                        js.context['setStake4Farm']=setStake4Farm;
+                        js.context['setHash4Farm']=setHash4Farm;
+                        js.context['setError4Farm']=setError4Farm;
 
-                        if (_toDepositValue == '' || item.balanceAmount == '') {
+                        if(_tokenAmountMap[_key] == null ||  _tokenAmountMap[_key].balanceAmount == null) {
                           return;
                         }
-                        double value1 =  (Decimal.tryParse(_toDepositValue) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+
+                        if (_toDepositValue == '' ||  _tokenAmountMap[_key].balanceAmount == '') {
+                          return;
+                        }
+
+                        double value1 =  Decimal.tryParse(_toDepositValue).toDouble();
                         if (value1 <= 0) {
-                          //_shoTipsLog('${S.of(context).farmTips1}');
                           return;
                         }
-                        double value2 = double.parse(item.balanceAmount);
+                        double value2 = double.parse(_tokenAmountMap[_key].balanceAmount);
                         if (value1 > value2) {
                           return;
                         }
-                        if (account != '' && item.depositTokenType != 1) {
-                          js.context.callMethod('allowance', [item.depositTokenType, value1, account, item.depositTokenAddress, item.poolAddress]);
-                        } else {
-                          js.context.callMethod('stake', [item.depositTokenType, value1, item.poolAddress]);
+                        if (_account != '' && item.depositTokenType == 2 && _depositEnoughFlag) {
+                          setState(() {
+                            _depositLoadFlag = true;
+                          });
+                          js.context.callMethod('allowance4Farm', [item.depositTokenType, _toDepositValue, _account, item.depositTokenAddress, item.poolAddress]);
+                        } else if (_account != '' && item.depositTokenType == 1 && _depositEnoughFlag){
+                          setState(() {
+                            _depositLoadFlag = true;
+                          });
+                          js.context.callMethod('stake4Farm', [item.depositTokenType, _toDepositValue, item.poolAddress, item.depositTokenAddress]);
                         }
                       },
                       child: Container(
@@ -507,13 +542,18 @@ class _FarmWapPageState extends State<FarmWapPage> {
                           elevation: 2,
                           padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(20)),
                           backgroundColor: MyColors.blue500,
-                          label: Text(
-                            '${S.of(context).farmDeposit}',
-                            style: GoogleFonts.lato(
-                              letterSpacing: 0.5,
-                              color: MyColors.white,
-                              fontSize: ScreenUtil().setSp(24),
+                          label: !_depositLoadFlag ? Container(
+                            child: Text(
+                              '${S.of(context).farmDeposit}',
+                              style: GoogleFonts.lato(
+                                letterSpacing: 0.5,
+                                color: MyColors.white,
+                                fontSize: ScreenUtil().setSp(24),
+                              ),
                             ),
+                          ) : Container(
+                            color: Colors.blue[500],
+                            child: CupertinoActivityIndicator(),
                           ),
                         ),
                       ),
@@ -567,7 +607,18 @@ class _FarmWapPageState extends State<FarmWapPage> {
                           onChanged: (String value) {
                             if (value != null && value != '') {
                               _toWithdrawAmount = value;
-                              _toWithdrawValue = value;
+                              _toWithdrawValue = (Decimal.tryParse(_toWithdrawAmount) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toStringAsFixed(0);
+
+                              if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].depositedAmount != null) {
+                                double value1 = double.parse(_toWithdrawValue);
+                                String temp = _tokenAmountMap[_key].depositedAmount;
+                                double value2 = double.parse(temp);
+                                if (value1 > value2) {
+                                  _withdrawEnoughFlag = false;
+                                } else {
+                                  _withdrawEnoughFlag = true;
+                                }
+                              }
                             } else {
                               _toWithdrawAmount = '';
                               _toWithdrawValue = '';
@@ -598,22 +649,34 @@ class _FarmWapPageState extends State<FarmWapPage> {
                     SizedBox(height: ScreenUtil().setHeight(5)),
                     InkWell(
                       onTap: () {
-                        js.context['setAllowance']=setAllowance;
-                        js.context['setStake']=setStake;
-                        js.context['setHash']=setHash;
+                        js.context['setAllowance4Farm']=setAllowance4Farm;
+                        js.context['setStake4Farm']=setStake4Farm;
+                        js.context['setHash4Farm']=setHash4Farm;
+                        js.context['setError4Farm']=setError4Farm;
 
-                        if (_toWithdrawValue == '' || item.depositedAmount == '') {
+                        if(_tokenAmountMap[_key] == null ||  _tokenAmountMap[_key].depositedAmount == null) {
                           return;
                         }
-                        double value1 =  (Decimal.tryParse(_toWithdrawValue) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+
+                        if (_toWithdrawValue == '' ||  _tokenAmountMap[_key].depositedAmount == '') {
+                          return;
+                        }
+
+                        double value1 =  Decimal.tryParse(_toWithdrawValue).toDouble();
                         if (value1 <= 0) {
                           return;
                         }
-                        double value2 = double.parse(item.depositedAmount);
+                        double value2 = double.parse( _tokenAmountMap[_key].depositedAmount);
+
                         if (value1 > value2) {
                           return;
                         }
-                        js.context.callMethod('withdraw', [value1, item.poolAddress]);
+                        setState(() {
+                          _withdrawLoadFlag = true;
+                        });
+                        if (_account != '' && _withdrawEnoughFlag) {
+                          js.context.callMethod('withdraw4Farm', [_toWithdrawValue, item.poolAddress, item.depositTokenAddress]);
+                        }
                       },
                       child: Container(
                         color: MyColors.white,
@@ -621,13 +684,18 @@ class _FarmWapPageState extends State<FarmWapPage> {
                           elevation: 2,
                           padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(20)),
                           backgroundColor: MyColors.blue500,
-                          label: Text(
-                            '${S.of(context).farmWithdraw}',
-                            style: GoogleFonts.lato(
-                              letterSpacing: 0.5,
-                              color: MyColors.white,
-                              fontSize: ScreenUtil().setSp(24),
+                          label: !_withdrawLoadFlag ? Container(
+                            child: Text(
+                              '${S.of(context).farmWithdraw}',
+                              style: GoogleFonts.lato(
+                                letterSpacing: 0.5,
+                                color: MyColors.white,
+                                fontSize: ScreenUtil().setSp(24),
+                              ),
                             ),
+                          ) : Container(
+                            color: Colors.blue[500],
+                            child: CupertinoActivityIndicator(),
                           ),
                         ),
                       ),
@@ -689,7 +757,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                           onChanged: (String value) {
                             if (value != null && value != '') {
                               _toHarvestAmount = value;
-                              _toHarvestValue = value;
+                              _toHarvestValue = (Decimal.tryParse(_toHarvestAmount) * Decimal.fromInt(10).pow(item.mineTokenDecimal)).toStringAsFixed(0);
                             } else {
                               _toHarvestAmount = '';
                               _toHarvestValue = '';
@@ -714,22 +782,33 @@ class _FarmWapPageState extends State<FarmWapPage> {
                     SizedBox(height: ScreenUtil().setHeight(5)),
                     InkWell(
                       onTap: () {
-                        js.context['setAllowance']=setAllowance;
-                        js.context['setStake']=setStake;
-                        js.context['setHash']=setHash;
+                        js.context['setAllowance4Farm']=setAllowance4Farm;
+                        js.context['setStake4Farm']=setStake4Farm;
+                        js.context['setHash4Farm']=setHash4Farm;
+                        js.context['setError4Farm']=setError4Farm;
 
-                        if (_toHarvestValue == '' || item.harvestedAmount == '') {
+                        if(_tokenAmountMap[_key] == null ||  _tokenAmountMap[_key].harvestedAmount == null) {
                           return;
                         }
-                        double value1 = double.parse(_toHarvestValue);
+
+                        if (_toHarvestValue == '' ||  _tokenAmountMap[_key].harvestedAmount == '') {
+                          return;
+                        }
+
+                        double value1 = Decimal.tryParse(_toHarvestValue).toDouble();
                         if (value1 <= 0) {
                           return;
                         }
-                        double value2 = double.parse(item.harvestedAmount);
+                        double value2 = double.parse(_tokenAmountMap[_key].harvestedAmount);
                         if (value2 <= 0) {
                           return;
                         }
-                        js.context.callMethod('getReward', [item.poolAddress]);
+                        setState(() {
+                          _harvestLoadFlag = true;
+                        });
+                        if (_account != '') {
+                          js.context.callMethod('getReward4Farm', [item.poolAddress, item.depositTokenAddress]);
+                        }
                       },
                       child: Container(
                         color: MyColors.white,
@@ -737,13 +816,18 @@ class _FarmWapPageState extends State<FarmWapPage> {
                           elevation: 2,
                           padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(20)),
                           backgroundColor: MyColors.blue500,
-                          label: Text(
-                            '${S.of(context).farmHarvest}',
-                            style: GoogleFonts.lato(
-                              letterSpacing: 0.5,
-                              color: MyColors.white,
-                              fontSize: ScreenUtil().setSp(24),
+                          label: !_harvestLoadFlag ? Container(
+                            child: Text(
+                              '${S.of(context).farmHarvest}',
+                              style: GoogleFonts.lato(
+                                letterSpacing: 0.5,
+                                color: MyColors.white,
+                                fontSize: ScreenUtil().setSp(24),
+                              ),
                             ),
+                          ) : Container(
+                            color: Colors.blue[500],
+                            child: CupertinoActivityIndicator(),
                           ),
                         ),
                       ),
@@ -758,10 +842,24 @@ class _FarmWapPageState extends State<FarmWapPage> {
     );
   }
 
-  Widget _rateWidget(BuildContext context, int type, FarmRows item, int rate) {
-    double balanceAmount = (Decimal.tryParse(item.balanceAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
-    double depositedAmount = (Decimal.tryParse(item.depositedAmount)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
-    double harvestedAmount = (Decimal.tryParse(item.harvestedAmount)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toDouble();
+  Widget _rateWidget(BuildContext context, int type, FarmRow item, int rate) {
+    double balanceAmount = 0;
+    double depositedAmount = 0;
+    double harvestedAmount = 0;
+
+    String _key = '$_account+${item.depositTokenAddress}';
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].balanceAmount != null) {
+      String temp = _tokenAmountMap[_key].balanceAmount;
+      balanceAmount =(Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+    }
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].depositedAmount != null) {
+      String temp = _tokenAmountMap[_key].depositedAmount;
+      depositedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.depositTokenDecimal)).toDouble();
+    }
+    if(_tokenAmountMap[_key] != null &&  _tokenAmountMap[_key].harvestedAmount != null) {
+      String temp = _tokenAmountMap[_key].harvestedAmount;
+      harvestedAmount = (Decimal.tryParse(temp)/Decimal.fromInt(10).pow(item.mineTokenDecimal)).toDouble();
+    }
 
     double amount = 0.0;
     if (type == 1) {
@@ -780,20 +878,34 @@ class _FarmWapPageState extends State<FarmWapPage> {
         splashColor: Color(0x802196F3),
         highlightColor: Color(0x802196F3),
         onTap: () {
-          String account = Provider.of<IndexProvider>(context, listen: false).account;
           double rateDouble = NumUtil.divide(rate, 100);
-          if(account != '') {
+          if(_account != '') {
             double value = NumUtil.multiply(amount, rateDouble);
             setState(() {
               if (type == 1) {
                 _toDepositAmount = value.toStringAsFixed(3);
-                _toDepositValue = value.toStringAsFixed(item.depositTokenDecimal);
+                String temp = value.toStringAsFixed(item.depositTokenDecimal);
+                if (rate != 100) {
+                  _toDepositValue = (Decimal.tryParse(temp) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toString();
+                } else {
+                  _toDepositValue = _tokenAmountMap[_key].balanceAmount;
+                }
               } else if (type == 2) {
                 _toWithdrawAmount = value.toStringAsFixed(3);
-                _toWithdrawValue = value.toStringAsFixed(item.depositTokenDecimal);
+                String temp = value.toStringAsFixed(item.depositTokenDecimal);
+                if (rate != 100) {
+                  _toWithdrawValue = (Decimal.tryParse(temp) * Decimal.fromInt(10).pow(item.depositTokenDecimal)).toString();
+                } else {
+                  _toWithdrawValue = _tokenAmountMap[_key].depositedAmount;
+                }
               } else if (type == 3) {
                 _toHarvestAmount = value.toStringAsFixed(4);
-                _toHarvestValue = value.toStringAsFixed(item.mineTokenDecimal);
+                String temp = value.toStringAsFixed(item.mineTokenDecimal);
+                if (rate != 100) {
+                  _toHarvestValue = (Decimal.tryParse(temp) * Decimal.fromInt(10).pow(item.mineTokenDecimal)).toString();
+                } else {
+                  _toHarvestValue = _tokenAmountMap[_key].harvestedAmount;
+                }
               }
             });
           }
@@ -825,7 +937,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
         hoverColor: MyColors.white,
         icon: Container(
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
-          child: Icon(Icons.menu, size: ScreenUtil().setWidth(55), color: Colors.black87),
+          child: Icon(Icons.menu, size: ScreenUtil().setWidth(55), color: Colors.grey[800]),
         ),
         onPressed: () {
           _scaffoldKey.currentState.openDrawer();
@@ -837,7 +949,6 @@ class _FarmWapPageState extends State<FarmWapPage> {
 
   Widget _drawerWidget(BuildContext context) {
     int _homeIndex = CommonProvider.homeIndex;
-    String account = Provider.of<IndexProvider>(context).account;
     return Drawer(
       child: Container(
         color: MyColors.white,
@@ -859,15 +970,15 @@ class _FarmWapPageState extends State<FarmWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(0);
                 });
-                Application.router.navigateTo(context, 'wap/farm', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
               },
               leading: Icon(
-                Icons.assistant,
+                Icons.broken_image,
                 color: _homeIndex == 0 ? Colors.black87 : Colors.grey[700],
               ),
             ),
             ListTile(
-              title:  Text(
+              title: Text(
                 '${S.of(context).actionTitle1}',
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
@@ -877,13 +988,14 @@ class _FarmWapPageState extends State<FarmWapPage> {
                 overflow: TextOverflow.ellipsis,
               ),
               onTap: () {
+                Navigator.pop(context);
                 setState(() {
                   CommonProvider.changeHomeIndex(1);
                 });
-                Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/farm', transition: TransitionType.fadeIn);
               },
               leading: Icon(
-                Icons.broken_image,
+                Icons.assistant,
                 color: _homeIndex == 1 ? Colors.black87 : Colors.grey[700],
               ),
             ),
@@ -910,7 +1022,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
             ),
             ListTile(
               title: Text(
-                account == '' ? '${S.of(context).actionTitle4}' : account.substring(0, 4) + '...' + account.substring(account.length - 4, account.length),
+                _account == '' ? '${S.of(context).actionTitle4}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
                   color: Colors.grey[700],
@@ -950,7 +1062,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
   }
 
 
-  Farm2Data _farmData;
+  FarmData _farmData;
 
   List<FarmRow> _farmRows = [];
 

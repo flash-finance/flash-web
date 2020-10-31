@@ -1567,7 +1567,6 @@ class _SwapWapPageState extends State<SwapWapPage> {
 
   Widget _drawerWidget(BuildContext context) {
     int _homeIndex = CommonProvider.homeIndex;
-    String account = Provider.of<IndexProvider>(context).account;
     return Drawer(
       child: Container(
         color: MyColors.white,
@@ -1641,7 +1640,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ),
             ListTile(
               title: Text(
-                account == '' ? '${S.of(context).actionTitle4}' : account.substring(0, 4) + '...' + account.substring(account.length - 4, account.length),
+                _account == '' ? '${S.of(context).actionTitle4}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
                   color: Colors.grey[700],
@@ -1679,7 +1678,6 @@ class _SwapWapPageState extends State<SwapWapPage> {
       ),
     );
   }
-
 
   bool _reloadAccountFlag = false;
 

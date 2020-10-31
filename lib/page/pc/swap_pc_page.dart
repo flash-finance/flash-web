@@ -33,7 +33,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
   String _account = '';
   String _leftKey = '';
   String _rightKey = '';
-  bool tronFlag = false;
+  bool _tronFlag = false;
   Timer _timer1;
   Timer _timer2;
   Timer _timer3;
@@ -1939,8 +1939,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   _getAccount() async {
     _reloadAccountFlag = false;
-    tronFlag = js.context.hasProperty('tronWeb');
-    if (tronFlag) {
+    _tronFlag = js.context.hasProperty('tronWeb');
+    if (_tronFlag) {
       var result = js.context["tronWeb"]["defaultAddress"]["base58"];
       if (result.toString() != 'false' && result.toString() != _account) {
         if (mounted) {
