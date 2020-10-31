@@ -93,6 +93,8 @@ class _FarmPcPageState extends State<FarmPcPage> {
   @override
   Widget build(BuildContext context) {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
+
     _toDepositAmountController =  TextEditingController.fromValue(TextEditingValue(text: _toDepositAmount,
         selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _toDepositAmount.length))));
     _toWithdrawAmountController =  TextEditingController.fromValue(TextEditingValue(text: _toWithdrawAmount,

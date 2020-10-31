@@ -101,6 +101,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
   @override
   Widget build(BuildContext context) {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
+
     _leftSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _leftSwapAmount,
         selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _leftSwapAmount.length))));
     _rightSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _rightSwapAmount,

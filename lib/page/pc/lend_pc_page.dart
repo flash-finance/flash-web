@@ -55,6 +55,7 @@ class _LendPcPageState extends State<LendPcPage> {
   @override
   Widget build(BuildContext context) {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
     return Material(
       color: MyColors.white,
       child: Scaffold(
