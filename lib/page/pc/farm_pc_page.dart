@@ -174,7 +174,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 10),
+                    margin: EdgeInsets.only(top: 20),
                     child: Text(
                       '${S.of(context).aboutTips3}',
                       style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
@@ -208,7 +208,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
     return Container(
       child: Column(
         children: <Widget>[
-          SizedBox(height: index == 0 ? 10 : 0),
           !_layoutFlag ? _oneWidget(context, item, index) : (_layoutIndex == index ? _twoWidget(context, item, index) : _oneWidget(context, item, index)),
           SizedBox(height: 10),
           SizedBox(height: index == _farm2Rows.length - 1 ? 50 : 0),
