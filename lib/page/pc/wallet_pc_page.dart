@@ -152,7 +152,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
         child: Column(
           children: <Widget>[
             Container(
-              child: Text('Coming  Soon', style: GoogleFonts.lato(fontSize: 30, color: Colors.black87)),
+              child: Text('Coming  Soon', style: GoogleFonts.lato(fontSize: 26, color: Colors.grey[800])),
             ),
           ],
         ),

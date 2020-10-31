@@ -1,6 +1,5 @@
 
 async function getAmount4Farm(tokenType, account, tokenAddress, poolAddress) {
-    console.log('tokenType: '+ tokenType + '; account: ' + account + '; tokenAddress: ' + tokenAddress + '; poolAddress: ' + poolAddress);
     let balanceAmount = '0';
     let code = 0;
     if (tokenType == '1') {
@@ -41,8 +40,6 @@ async function getAmount4Farm(tokenType, account, tokenAddress, poolAddress) {
 
 
 async function allowance4Farm(tokenType, stakeAmount, account, tokenAddress, poolAddress) {
-    console.log('allowance4Farm tokenType: ' + tokenType + '; stakeAmount: ' + stakeAmount);
-    console.log('allowance4Farm account: ' + account + '; tokenAddress: ' + tokenAddress + '; poolAddress: ' + poolAddress);
     let tokenObj = await tronWeb.contract().at(tokenAddress);
     let code = 0;
     let result = await tokenObj.allowance(account, poolAddress).call().catch(e => {
@@ -77,7 +74,6 @@ async function approve4Farm(tokenType, stakeAmount, tokenAddress, poolAddress) {
 
 
 async function stake4Farm(tokenType, amount, poolAddress, tokenAddress) {
-    console.log('stake4Farm tokenType: ' + tokenType + '; amount: ' + amount + '; poolAddress: ' + poolAddress + '; tokenAddress: ' + tokenAddress);
     let poolObj = await tronWeb.contract().at(poolAddress);
     let code = 0;
     let result = '';

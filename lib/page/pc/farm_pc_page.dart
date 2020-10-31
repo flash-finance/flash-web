@@ -1307,7 +1307,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
 
   void setTokenAmount4Farm(tokenType, depositedToken, balanceAmount, depositedAmount, harvestedAmount) {
-   //print('setAmount4Farm tokenType: $tokenType, depositedToken: $depositedToken, balanceAmount: $balanceAmount, depositedAmount:$depositedAmount, harvestedAmount: $harvestedAmount');
     try {
       double.parse(balanceAmount.toString());
       double.parse(depositedAmount.toString());
