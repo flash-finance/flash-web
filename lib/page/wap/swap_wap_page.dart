@@ -1854,7 +1854,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     setState(() {
       _loadFlag = false;
     });
-    Util.showToast(S.of(context).success);
+    Util.showToast(S.of(context).success, timeValue: 2);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
@@ -1875,7 +1875,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     setState(() {
       _loadFlag = false;
     });
-    Util.showToast(S.of(context).success);
+    Util.showToast(S.of(context).success, timeValue: 2);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
@@ -1896,7 +1896,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     setState(() {
       _loadFlag = false;
     });
-    Util.showToast(S.of(context).success);
+    Util.showToast(S.of(context).success, timeValue: 2);
     for (int i = 0; i < 3; i++) {
      await  Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, leftToken, _account]);

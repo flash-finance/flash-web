@@ -1178,7 +1178,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
 
 
   void setHash4Farm(type, poolAddress, tokenAddress, hash) async {
-    Util.showToast(S.of(context).success);
+    Util.showToast(S.of(context).success, timeValue: 2);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         if (tokenAddress.toString() != 'TRX') {
