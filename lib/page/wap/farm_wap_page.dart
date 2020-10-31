@@ -3,11 +3,14 @@ import 'dart:async';
 import 'package:common_utils/common_utils.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flash_web/common/color.dart';
+import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
+import 'package:flash_web/model/farm2_model.dart';
 import 'package:flash_web/model/farm_model.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
+import 'package:flash_web/service/method_service.dart';
 import 'package:flash_web/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,12 +29,12 @@ class FarmWapPage extends StatefulWidget {
 class _FarmWapPageState extends State<FarmWapPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
   int _layoutIndex = -1;
+  String _account = '';
   bool _layoutFlag = false;
   bool tronFlag = false;
   Timer _timer1;
   Timer _timer2;
   Timer _timer3;
-  Timer _timer4;
   String _toDepositAmount = '0.00';
   String _toWithdrawAmount = '0.00';
   String _toHarvestAmount = '0.00';
@@ -40,9 +43,17 @@ class _FarmWapPageState extends State<FarmWapPage> {
   String _toWithdrawValue = '0.00';
   String _toHarvestValue = '0.00';
 
+
   TextEditingController _toDepositAmountController;
   TextEditingController _toWithdrawAmountController;
   TextEditingController _toHarvestAmountController;
+
+  bool _depositLoadFlag = false;
+  bool _withdrawLoadFlag = false;
+  bool _harvestLoadFlag = false;
+
+  bool _depositEnoughFlag = true;
+  bool _withdrawEnoughFlag = true;
 
   @override
   void initState() {
@@ -52,10 +63,11 @@ class _FarmWapPageState extends State<FarmWapPage> {
         CommonProvider.changeHomeIndex(1);
       });
     }
-    _getMineInfo();
-    _getApy();
+    Provider.of<IndexProvider>(context, listen: false).init();
+
+    _reloadFarmData();
     _reloadAccount();
-    _reloadAmount();
+    _reloadTokenAmount();
   }
 
   @override
@@ -73,11 +85,6 @@ class _FarmWapPageState extends State<FarmWapPage> {
     if (_timer3 != null) {
       if (_timer3.isActive) {
         _timer3.cancel();
-      }
-    }
-    if (_timer4 != null) {
-      if (_timer4.isActive) {
-        _timer4.cancel();
       }
     }
     super.dispose();
@@ -115,8 +122,54 @@ class _FarmWapPageState extends State<FarmWapPage> {
       color: MyColors.white,
       child: Column(
         children: <Widget>[
+          _topWidget(context),
+          SizedBox(height: ScreenUtil().setHeight(30)),
           Expanded(
             child: _bodyWidget(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _topWidget(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          gradient: LinearGradient(
+            colors: [MyColors.blue700, MyColors.blue500],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(30)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      'Flash  Swap',
+                      style: GoogleFonts.lato(
+                        fontSize: ScreenUtil().setSp(40),
+                        color: MyColors.white,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
+                    child: Text(
+                      '${S.of(context).aboutTips01}',
+                      style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
+                      maxLines: 1,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                ],
+              )
           ),
         ],
       ),
@@ -897,179 +950,180 @@ class _FarmWapPageState extends State<FarmWapPage> {
   }
 
 
-  void setAllowance(tokenType, stakeAmount, tokenAddress, poolAddress, allowanceAmount) {
+  Farm2Data _farm2data;
+
+  List<FarmRow> _farm2Rows = [];
+
+  bool _reloadFarmDataFlag = false;
+
+  _reloadFarmData() async {
+    _getFarmData();
+    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadFarmDataFlag) {
+        _getFarmData();
+      }
+    });
+  }
+
+  void _getFarmData() async {
+    try {
+      String url = servicePath['farmQuery'];
+      await requestGet(url).then((value) {
+        var respData = Map<String, dynamic>.from(value);
+        FarmRespModel respModel = FarmRespModel.fromJson(respData);
+        if (respModel != null && respModel.code == 0) {
+          _farm2data = respModel.data;
+          if (_farm2data != null && _farm2data.rows != null && _farm2data.rows.length > 0) {
+            _farm2Rows = _farm2data.rows;
+          }
+        }
+      });
+      if (mounted) {
+        setState(() {});
+      }
+    } catch (e) {
+      print(e);
+    }
+    _reloadFarmDataFlag = true;
+  }
+
+  bool _reloadAccountFlag = false;
+
+  _reloadAccount() async {
+    _getAccount();
+    _timer2 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadAccountFlag) {
+        _getAccount();
+      }
+    });
+  }
+
+  _getAccount() async {
+    _reloadAccountFlag = false;
+    tronFlag = js.context.hasProperty('tronWeb');
+    if (tronFlag) {
+      var result = js.context["tronWeb"]["defaultAddress"]["base58"];
+      if (result.toString() != 'false' && result.toString() != _account) {
+        if (mounted) {
+          setState(() {
+            _account = result.toString();
+          });
+        }
+        _getTokenAmount(1);
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          _account = '';
+        });
+      }
+    }
+    _reloadAccountFlag = true;
+  }
+
+  var _tokenAmountMap = Map<String, FarmTokenAmount>();
+
+  bool _reloadTokenAmountFlag = false;
+
+  _reloadTokenAmount() async {
+    js.context['setTokenAmount4Farm']=setTokenAmount4Farm;
+    _getTokenAmount(1);
+    _timer3 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadTokenAmountFlag) {
+        _getTokenAmount(2);
+      }
+    });
+  }
+
+  _getTokenAmount(int type) async {
+    _reloadTokenAmountFlag = false;
+    if (_account != '') {
+      for (int i=0; i<_farm2Rows.length; i++) {
+        String _key = '$_account+${_farm2Rows[i].depositTokenAddress}';
+        if (type == 1 || _tokenAmountMap[_key] == null || _tokenAmountMap[_key].balanceAmount == null
+            || _tokenAmountMap[_key].depositedAmount == null &&  _tokenAmountMap[_key].harvestedAmount == null) {
+          js.context.callMethod('getAmount4Farm', [_farm2Rows[i].depositTokenType, _account, _farm2Rows[i].depositTokenAddress, _farm2Rows[i].poolAddress]);
+        }
+      }
+    }
+    _reloadTokenAmountFlag = true;
+  }
+
+
+  void setTokenAmount4Farm(tokenType, depositedToken, balanceAmount, depositedAmount, harvestedAmount) {
+    //print('setAmount4Farm tokenType: $tokenType, depositedToken: $depositedToken, balanceAmount: $balanceAmount, depositedAmount:$depositedAmount, harvestedAmount: $harvestedAmount');
+    try {
+      double.parse(balanceAmount.toString());
+      double.parse(depositedAmount.toString());
+      double.parse(harvestedAmount.toString());
+    } catch (e) {
+      print('setAmount4Farm double.parse error');
+      return;
+    }
+    if (_account != '') {
+      String _key = '$_account+${depositedToken.toString()}';
+      _tokenAmountMap[_key] = FarmTokenAmount();
+      _tokenAmountMap[_key].balanceAmount = balanceAmount.toString();
+      _tokenAmountMap[_key].depositedAmount = depositedAmount.toString();
+      _tokenAmountMap[_key].harvestedAmount = harvestedAmount.toString();
+      if (mounted) {
+        setState(() {});
+      }
+    }
+  }
+
+  void setAllowance4Farm(tokenType, stakeAmount, tokenAddress, poolAddress, allowanceAmount) {
     double allowanceValue = Decimal.tryParse(allowanceAmount.toString()).toDouble();
     double stakeValue= double.parse(stakeAmount.toString());
     if (stakeValue > allowanceValue) {
-      js.context.callMethod('approve', [tokenType, stakeAmount, tokenAddress, poolAddress]);
+      js.context.callMethod('approve4Farm', [tokenType, stakeAmount, tokenAddress, poolAddress]);
     } else {
-      js.context.callMethod('stake', [tokenType, stakeAmount, poolAddress]);
+      js.context.callMethod('stake4Farm', [tokenType, stakeAmount, poolAddress, tokenAddress]);
     }
   }
 
-  void setStake(tokenType, stakeAmount, poolAddress) {
-    js.context.callMethod('stake', [tokenType, stakeAmount, poolAddress]);
+  void setStake4Farm(tokenType, stakeAmount, poolAddress, tokenAddress) {
+    js.context.callMethod('stake4Farm', [tokenType, stakeAmount, poolAddress, tokenAddress]);
   }
 
-  void setHash(type, hash) {
-    setState(() {
-      if (type == 1) {
-        _toDepositAmount = '';
-        _toDepositValue = '';
-      } else if (type == 2) {
-        _toWithdrawAmount = '';
-        _toWithdrawValue = '';
-      } else if (type == 3) {
-        _toHarvestAmount = '';
-        _toHarvestValue = '';
-      }
-    });
-  }
 
-  _reloadAccount() async {
-    _timer1 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      tronFlag = js.context.hasProperty('tronWeb');
-      if (tronFlag) {
-        var result = js.context["tronWeb"]["defaultAddress"]["base58"];
-        if (result.toString() != 'false') {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
+  void setHash4Farm(type, poolAddress, tokenAddress, hash) async {
+    Util.showToast(S.of(context).swapSuccess);
+    for (int i = 0; i < 3; i++) {
+      await Future.delayed(Duration(milliseconds: 2000), (){
+        if (tokenAddress.toString() != 'TRX') {
+          js.context.callMethod('getAmount4Farm', [2, _account, tokenAddress, poolAddress]);
         } else {
-          Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+          js.context.callMethod('getAmount4Farm', [1, _account, tokenAddress, poolAddress]);
         }
-      } else {
-        Provider.of<IndexProvider>(context, listen: false).changeAccount('');
-      }
-    });
-  }
-
-  _reloadAmount() async {
-    js.context['setAmount']=setAmount;
-    _timer2 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      String account = Provider.of<IndexProvider>(context, listen: false).account;
-      if (account != '') {
-        for (int i=0; i<_farmRows.length; i++) {
-          js.context.callMethod('getAmount', [i.toString(), account, _farmRows[i].depositTokenAddress, _farmRows[i].poolAddress]);
+        if (i == 0) {
+          setState(() {
+            if (type == 1) {
+              _depositLoadFlag = false;
+              _toDepositAmount = '';
+              _toDepositValue = '';
+            } else if (type == 2) {
+              _withdrawLoadFlag = false;
+              _toWithdrawAmount = '';
+              _toWithdrawValue = '';
+            } else if (type == 3) {
+              _harvestLoadFlag = false;
+              _toHarvestAmount = '';
+              _toHarvestValue = '';
+            }
+          });
         }
-      } else {
-        for (int i=0; i<_farmRows.length; i++) {
-          setAmount(i, '0', '0', '0');
-        }
-      }
-    });
-  }
-
-  void setAmount(index, balanceAmount, depositedAmount, harvestedAmount) {
-    int i = int.parse(index.toString());
-    if (_farmRows.length > i) {
-      if (balanceAmount.toString() != '') {
-        _farmRows[i].balanceAmount = balanceAmount.toString();
-      }
-      if (depositedAmount.toString() != '') {
-        _farmRows[i].depositedAmount = depositedAmount.toString();
-      }
-      if (harvestedAmount.toString() != '') {
-        _farmRows[i].harvestedAmount = harvestedAmount.toString();
-      }
-      setState(() {});
+      });
     }
   }
 
-  _getMineInfo() async {
-    _getFarmData();
-    js.context['setMineInfo']=setMineInfo;
-    _timer3 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      for (int i=0; i<_farmRows.length; i++) {
-        js.context.callMethod('getMineInfo', [i.toString(), _farmRows[i].poolAddress, _farmRows[i].depositLpToken, _farmRows[i].mineLpToken]);
-      }
+  void setError4Farm(msg) {
+    print('setError4Farm: ${msg.toString()}');
+    setState(() {
+      _depositLoadFlag = false;
+      _withdrawLoadFlag = false;
+      _harvestLoadFlag = false;
     });
   }
-
-  void setMineInfo(index, totalSupply, depositTokenPrice, mineTokenPrice) {
-    int i = int.parse(index.toString());
-    if (_farmRows.length > i) {
-      double total = (Decimal.tryParse(totalSupply.toString())/Decimal.fromInt(10).pow(_farmRows[i].depositTokenDecimal)).toDouble();
-      _farmRows[i].depositTotalSupply = total;
-      double depositPrice = (Decimal.tryParse(depositTokenPrice.toString())/Decimal.fromInt(10).pow(_farmRows[i].depositTokenDecimal)).toDouble();
-      double minePrice = (Decimal.tryParse(mineTokenPrice.toString())/Decimal.fromInt(10).pow(_farmRows[i].mineTokenDecimal)).toDouble();
-      if (depositPrice > 0) {
-        _farmRows[i].depositTokenPrice = 1/depositPrice;
-      }
-      if (minePrice > 0) {
-        _farmRows[i].mineTokenPrice = 1/minePrice;
-      }
-      setState(() {});
-    }
-  }
-
-  _getApy() async {
-    _timer4 = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      String account = Provider.of<IndexProvider>(context, listen: false).account;
-      if (account != '') {
-        for (int i=0; i<_farmRows.length; i++) {
-          if (_farmRows[i].depositTotalSupply > 0 && _farmRows[i].depositTokenPrice > 0 && _farmRows[i].mineTokenPrice > 0) {
-            double value = (_farmRows[i].produceAmount * _farmRows[i].mineTokenPrice* 365*100) /(_farmRows[i].depositTotalSupply*_farmRows[i].depositTokenPrice);
-            _farmRows[i].apy = value.toStringAsFixed(2);
-          }
-        }
-      }
-    });
-  }
-
-  List<FarmRows> _farmRows = List<FarmRows>();
-
-  _getFarmData() async {
-    _farmRows.add(FarmRows(
-      id: 0,
-      poolType: 1,
-      poolAddress: 'TQjaZ9FD473QBTdUzMLmSyoGB6Yz1CGpux',
-      depositTokenName: 'TRX',
-      depositTokenType: 1,
-      depositTokenAddress: '',
-      depositTokenDecimal: 6,
-      mineTokenName: 'SUN',
-      mineTokenType: 2,
-      mineTokenAddress: 'TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9',
-      mineTokenDecimal: 18,
-      pic1: 'images/trx.png',
-      pic2: 'images/trx.png',
-      apy: '0.00',
-      balanceAmount: '0',
-      depositedAmount: '0',
-      harvestedAmount: '0',
-      depositTotalSupply: 0,
-      produceAmount: 2400,
-      depositTokenPrice: 0,
-      mineTokenPrice: 0,
-      depositLpToken: '',
-      mineLpToken: 'TUEYcyPAqc4hTg1fSuBCPc18vGWcJDECVw',
-    ));
-    _farmRows.add(FarmRows(
-      id: 1,
-      poolType: 1,
-      poolAddress: 'TTSV7bKDPoJQ8HsMBseNbgQrDCDtAFnAA6',
-      depositTokenName: 'SUN',
-      depositTokenType: 2,
-      depositTokenAddress: 'TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9',
-      depositTokenDecimal: 18,
-      mineTokenName: 'SUN',
-      mineTokenType: 2,
-      mineTokenAddress: 'TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9',
-      mineTokenDecimal: 18,
-      pic1: 'images/sun.png',
-      pic2: 'images/sun.png',
-      apy: '0.00',
-      balanceAmount: '0',
-      depositedAmount: '0',
-      harvestedAmount: '0',
-      depositTotalSupply: 0,
-      produceAmount: 1600,
-      depositTokenPrice: 0,
-      mineTokenPrice: 1,
-      depositLpToken: 'TUEYcyPAqc4hTg1fSuBCPc18vGWcJDECVw',
-      mineLpToken: 'TUEYcyPAqc4hTg1fSuBCPc18vGWcJDECVw',
-    ));
-    setState(() {});
-  }
-
 
 }

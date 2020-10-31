@@ -112,7 +112,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
             Expanded(
               child: _mainWidget(context),
             ),
-            //FooterPage(),
           ],
         ),
       ),
