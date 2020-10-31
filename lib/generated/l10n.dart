@@ -303,21 +303,11 @@ class S {
     );
   }
 
-  /// `please enter the correct value`
-  String get farmTips1 {
+  /// `Staked  USD`
+  String get farmStakedWap {
     return Intl.message(
-      'please enter the correct value',
-      name: 'farmTips1',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `coming soon`
-  String get swapTips1 {
-    return Intl.message(
-      'coming soon',
-      name: 'swapTips1',
+      'Staked  USD',
+      name: 'farmStakedWap',
       desc: '',
       args: [],
     );

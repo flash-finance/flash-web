@@ -25,14 +25,12 @@
   "farmBalance": "余额",
   "farmDeposited": "已存",
   "farmReward": "奖励",
-  "farmApy": "回报率",
+  "farmApy": "APY",
   "farmDeposit": "存入",
   "farmWithdraw": "赎回",
   "farmHarvest": "收获",
+  "farmStakedWap": "锁仓  美金",
 
-  "farmTips1": "请输入正确数值",
-
-  "swapTips1": "coming soon",
 
   "walletTips1": "数字钱包:  开源、安全、易用",
 

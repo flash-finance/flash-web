@@ -29,10 +29,8 @@
   "farmDeposit": "Deposit",
   "farmWithdraw": "Withdraw",
   "farmHarvest": "Harvest",
+  "farmStakedWap": "Staked  USD",
 
-  "farmTips1": "please enter the correct value",
-
-  "swapTips1": "coming soon",
 
   "walletTips1": "digital wallet:  open source, security, convenience",
 

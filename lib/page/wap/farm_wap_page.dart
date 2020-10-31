@@ -6,7 +6,6 @@ import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/model/farm_model.dart';
-import 'package:flash_web/model/farm_model.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
@@ -152,7 +151,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Farm',
+                      'Flash  Farm111',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(40),
                         color: MyColors.white,
@@ -257,8 +256,6 @@ class _FarmWapPageState extends State<FarmWapPage> {
   }
 
   Widget _topBizWidget(BuildContext context, FarmRow item, int index, int type) {
-    var time = DateTime.fromMillisecondsSinceEpoch(item.endTime * 1000);
-    String timeStr = DateUtil.formatDate(time, format: 'yyyy-MM-dd HH:mm');
     return InkWell(
       onTap: () {
         setState(() {
@@ -346,7 +343,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                   SizedBox(height: ScreenUtil().setHeight(8)),
                   Container(
                     child: Text(
-                      '${S.of(context).farmStaked} (USD)',
+                      '${S.of(context).farmStakedWap}',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(20),
                         color: MyColors.grey800,
