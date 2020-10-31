@@ -1,9 +1,10 @@
 {
   "actionTitle0": "Swap",
   "actionTitle1": "Farm",
-  "actionTitle2": "Wallet",
-  "actionTitle3": "About",
-  "actionTitle4": "Connect Wallet",
+  "actionTitle2": "Lend",
+  "actionTitle3": "Wallet",
+  "actionTitle4": "About",
+  "actionTitle5": "Connect Wallet",
 
   "connectWallet": "Please login with TronLink",
   "installWallet": "Haven't installed TronLink yet? Click here>>",

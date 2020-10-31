@@ -889,7 +889,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   List<Widget> _actionWidget(BuildContext context) {
     List<Widget> _widgetList = [];
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 7; i++) {
       _widgetList.add(_actionItemWidget(context, i));
     }
     _widgetList.add(SizedBox(width: LocalScreenUtil.getInstance().setWidth(50)));
@@ -915,11 +915,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
       case 4:
         actionTitle = S.of(context).actionTitle4;
         break;
+      case 5:
+        actionTitle = S.of(context).actionTitle5;
+        break;
     }
     return Container(
       color: MyColors.white,
       child: InkWell(
-        child: index != 4 && index != 5 ?
+        child: index != 5 && index != 6 ?
         Container(
             color: MyColors.white,
             child: Container(
@@ -937,7 +940,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 overflow: TextOverflow.ellipsis,
               ),
             ))
-            : index != 5 ?
+            : index != 6 ?
         Container(
           color: MyColors.white,
           child: Chip(
@@ -971,7 +974,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
           ),
         ),
         onTap: () async {
-          if (index != 4 && index != 5) {
+          if (index != 5 && index != 6) {
             CommonProvider.changeHomeIndex(index);
           }
           if (index == 0) {
@@ -979,12 +982,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
           } else if (index == 1) {
             Application.router.navigateTo(context, 'farm', transition: TransitionType.fadeIn);
           } else if (index == 2) {
-            Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
+            Application.router.navigateTo(context, 'lend', transition: TransitionType.fadeIn);
           } else if (index == 3) {
+            Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
+          } else if (index == 4) {
             Application.router.navigateTo(context, 'about', transition: TransitionType.fadeIn);
-          } else if (index == 4 && _account == '') {
+          } else if (index == 5 && _account == '') {
             _showConnectWalletDialLog(context);
-          } else if (index == 5) {
+          } else if (index == 6) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
             Util.showToast(S.of(context).swapSuccess);
           }

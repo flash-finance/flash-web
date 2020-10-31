@@ -53,31 +53,41 @@ class S {
     );
   }
 
-  /// `Wallet`
+  /// `Lend`
   String get actionTitle2 {
     return Intl.message(
-      'Wallet',
+      'Lend',
       name: 'actionTitle2',
       desc: '',
       args: [],
     );
   }
 
-  /// `About`
+  /// `Wallet`
   String get actionTitle3 {
     return Intl.message(
-      'About',
+      'Wallet',
       name: 'actionTitle3',
       desc: '',
       args: [],
     );
   }
 
-  /// `Connect Wallet`
+  /// `About`
   String get actionTitle4 {
     return Intl.message(
-      'Connect Wallet',
+      'About',
       name: 'actionTitle4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect Wallet`
+  String get actionTitle5 {
+    return Intl.message(
+      'Connect Wallet',
+      name: 'actionTitle5',
       desc: '',
       args: [],
     );
