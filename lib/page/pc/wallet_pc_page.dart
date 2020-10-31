@@ -161,7 +161,6 @@ class _WalletPcPageState extends State<WalletPcPage> {
     );
   }
 
-
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
       toolbarHeight: 80,
@@ -243,7 +242,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
                 '$actionTitle',
                 style: GoogleFonts.lato(
                   fontSize: 16.0,
-                  letterSpacing: 0.5,
+                  letterSpacing: 0.2,
                   color: _homeIndex == index ? MyColors.black : MyColors.grey700,
                   fontWeight: FontWeight.w500,
                 ),
@@ -261,7 +260,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
             label: Text(
               _account == '' ? '$actionTitle' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
               style: GoogleFonts.lato(
-                letterSpacing: 0.5,
+                letterSpacing: 0.2,
                 color: MyColors.white,
                 fontSize: 15,
               ),
@@ -277,7 +276,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
             label: Text(
               'English/中文',
               style: GoogleFonts.lato(
-                letterSpacing: 0.5,
+                letterSpacing: 0.2,
                 color: MyColors.white,
                 fontSize: 15,
               ),
@@ -308,6 +307,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
       ),
     );
   }
+
 
   _showConnectWalletDialLog(BuildContext context) {
     showDialog(

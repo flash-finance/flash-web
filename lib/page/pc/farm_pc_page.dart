@@ -1084,7 +1084,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 '$actionTitle',
                 style: GoogleFonts.lato(
                   fontSize: 16.0,
-                  letterSpacing: 0.5,
+                  letterSpacing: 0.2,
                   color: _homeIndex == index ? MyColors.black : MyColors.grey700,
                   fontWeight: FontWeight.w500,
                 ),
@@ -1102,7 +1102,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
             label: Text(
               _account == '' ? '$actionTitle' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
               style: GoogleFonts.lato(
-                letterSpacing: 0.5,
+                letterSpacing: 0.2,
                 color: MyColors.white,
                 fontSize: 15,
               ),
@@ -1118,7 +1118,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
             label: Text(
               'English/中文',
               style: GoogleFonts.lato(
-                letterSpacing: 0.5,
+                letterSpacing: 0.2,
                 color: MyColors.white,
                 fontSize: 15,
               ),
