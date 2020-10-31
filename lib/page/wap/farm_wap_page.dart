@@ -1026,7 +1026,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
               onTap: () {
                 Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 Navigator.pop(context);
-                Util.showToast(S.of(context).success, timeValue: 2);
+                Util.showToast(S.of(context).success, timeValue: 1);
               },
               leading: Icon(
                 Icons.language,

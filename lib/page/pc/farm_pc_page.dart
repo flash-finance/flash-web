@@ -1145,7 +1145,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
             _showConnectWalletDialLog(context);
           } else if (index == 6) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
-            Util.showToast(S.of(context).success, timeValue: 2);
+            Util.showToast(S.of(context).success, timeValue: 1);
           }
         },
       ),
