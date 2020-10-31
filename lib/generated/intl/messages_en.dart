@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "aboutTips01" : MessageLookupByLibrary.simpleMessage("trading:  directly to the platform of JustSwap"),
+    "aboutTips02" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN"),
     "aboutTips1" : MessageLookupByLibrary.simpleMessage("in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc."),
     "aboutTips2" : MessageLookupByLibrary.simpleMessage("the team is committed to the rapid development of products. currently, no private placement or currency issuance"),
     "aboutTips3" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN"),

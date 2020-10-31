@@ -152,7 +152,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Farm',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(40),
                         color: MyColors.white,
@@ -162,7 +162,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                   Container(
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
-                      '${S.of(context).aboutTips01}',
+                      '${S.of(context).aboutTips02}',
                       style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
@@ -544,7 +544,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                           backgroundColor: MyColors.blue500,
                           label: !_depositLoadFlag ? Container(
                             child: Text(
-                              '${S.of(context).farmDeposit}',
+                              _depositEnoughFlag ? '${S.of(context).farmDeposit}' : '${S.of(context).swapTokenNotEnough}',
                               style: GoogleFonts.lato(
                                 letterSpacing: 0.5,
                                 color: MyColors.white,
@@ -686,7 +686,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                           backgroundColor: MyColors.blue500,
                           label: !_withdrawLoadFlag ? Container(
                             child: Text(
-                              '${S.of(context).farmWithdraw}',
+                              _withdrawEnoughFlag ? '${S.of(context).farmWithdraw}' : '${S.of(context).swapTokenNotEnough}',
                               style: GoogleFonts.lato(
                                 letterSpacing: 0.5,
                                 color: MyColors.white,

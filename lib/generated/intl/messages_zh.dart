@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "aboutTips01" : MessageLookupByLibrary.simpleMessage("交易:  聚合JustSwap平台"),
+    "aboutTips02" : MessageLookupByLibrary.simpleMessage("挖矿:  聚合SUN平台"),
     "aboutTips1" : MessageLookupByLibrary.simpleMessage("在波场DeFi生态，Flash Finance团队希望做一系列的产品: 挖矿、机枪池、交易、借贷和数字钱包等"),
     "aboutTips2" : MessageLookupByLibrary.simpleMessage("团队致力于产品的快速开发，目前，不私募，不发币"),
     "aboutTips3" : MessageLookupByLibrary.simpleMessage("挖矿:  聚合SUN平台"),

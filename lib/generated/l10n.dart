@@ -343,6 +343,16 @@ class S {
     );
   }
 
+  /// `mining:  directly to the platform of SUN`
+  String get aboutTips02 {
+    return Intl.message(
+      'mining:  directly to the platform of SUN',
+      name: 'aboutTips02',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc.`
   String get aboutTips1 {
     return Intl.message(
