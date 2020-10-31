@@ -962,7 +962,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   children: <Widget>[
                     Container(
                       child: Text(
-                        '${_swapRows[_leftSelectIndex].swapTokenName}-${_swapRows[_rightSelectIndex].swapTokenName}',
+                        '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
                         style: GoogleFonts.lato(
                           letterSpacing: 0.2,
                           fontSize: ScreenUtil().setSp(30),
@@ -1154,7 +1154,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                         children: <Widget>[
                           Container(
                             child: Text(
-                              '${_swapRows[_leftSelectIndex].swapTokenName}-${_swapRows[_leftSelectIndex].baseTokenName}',
+                              '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_leftSelectIndex].baseTokenName}',
                               style: GoogleFonts.lato(
                                 letterSpacing: 0.2,
                                 fontSize: ScreenUtil().setSp(30),
@@ -1327,7 +1327,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                         children: <Widget>[
                           Container(
                             child: Text(
-                              '${_swapRows[_rightSelectIndex].baseTokenName}-${_swapRows[_rightSelectIndex].swapTokenName}',
+                              '${_swapRows[_rightSelectIndex].baseTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
                               style: GoogleFonts.lato(
                                 letterSpacing: 0.2,
                                 fontSize: ScreenUtil().setSp(30),
@@ -1668,6 +1668,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
               onTap: () {
                 Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 Navigator.pop(context);
+                Util.showToast(S.of(context).swapSuccess);
               },
               leading: Icon(
                 Icons.language,

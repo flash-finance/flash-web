@@ -1296,7 +1296,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     Container(
                       padding: EdgeInsets.only(left: 10),
                       child: Text(
-                        '${_swapRows[_leftSelectIndex].swapTokenName}-${_swapRows[_rightSelectIndex].swapTokenName}',
+                        '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
                         style: GoogleFonts.lato(
                           letterSpacing: 0.2,
                           fontSize: 16,
@@ -1506,7 +1506,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         children: <Widget>[
                           Container(
                             child: Text(
-                              '${_swapRows[_leftSelectIndex].swapTokenName}-${_swapRows[_leftSelectIndex].baseTokenName}',
+                              '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_leftSelectIndex].baseTokenName}',
                               style: GoogleFonts.lato(
                                 letterSpacing: 0.2,
                                 fontSize: 16,
@@ -1696,7 +1696,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         children: <Widget>[
                           Container(
                             child: Text(
-                              '${_swapRows[_rightSelectIndex].baseTokenName}-${_swapRows[_rightSelectIndex].swapTokenName}',
+                              '${_swapRows[_rightSelectIndex].baseTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
                               style: GoogleFonts.lato(
                                 letterSpacing: 0.2,
                                 fontSize: 16,

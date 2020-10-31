@@ -540,8 +540,8 @@ class _FarmWapPageState extends State<FarmWapPage> {
                         color: MyColors.white,
                         child: Chip(
                           elevation: 2,
-                          padding: !_depositLoadFlag ? EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(20))
-                              : EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(40)),                          backgroundColor: MyColors.blue500,
+                          padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(40)),
+                      backgroundColor: MyColors.blue500,
                           label: !_depositLoadFlag ? Container(
                             child: Text(
                               _depositEnoughFlag ? '${S.of(context).farmDeposit}' : '${S.of(context).swapTokenNotEnough}',
@@ -682,8 +682,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                         color: MyColors.white,
                         child: Chip(
                           elevation: 2,
-                          padding: !_withdrawLoadFlag ? EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(20))
-                          : EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(40)),
+                          padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(40)),
                           backgroundColor: MyColors.blue500,
                           label: !_withdrawLoadFlag ? Container(
                             child: Text(
@@ -815,8 +814,8 @@ class _FarmWapPageState extends State<FarmWapPage> {
                         color: MyColors.white,
                         child: Chip(
                           elevation: 2,
-                          padding: !_harvestLoadFlag ? EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(20))
-                              : EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(40)),                                    backgroundColor: MyColors.blue500,
+                          padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(40)),
+                          backgroundColor: MyColors.blue500,
                           label: !_harvestLoadFlag ? Container(
                             child: Text(
                               '${S.of(context).farmHarvest}',
@@ -1051,6 +1050,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
               onTap: () {
                 Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 Navigator.pop(context);
+                Util.showToast(S.of(context).swapSuccess);
               },
               leading: Icon(
                 Icons.language,
