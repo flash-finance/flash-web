@@ -539,6 +539,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
             _leftPrice = _rightPrice;
             _rightPrice = temp5;
 
+            double value1 = double.parse(_leftSwapAmount);
+            double value2 = double.parse(_leftBalanceAmount);
+            if (value1 > value2) {
+              _swapFlag = false;
+            } else {
+              _swapFlag = true;
+            }
+
             setState(() {});
           },
           child: Container(
