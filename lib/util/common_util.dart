@@ -5,12 +5,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class Util {
 
-  static showToast(String value) {
+  static showToast(String value, {int timeValue}) {
+    int times = 3;
+    if (timeValue != null && timeValue > 0) {
+      times = timeValue;
+    }
     Fluttertoast.showToast(
       msg: value,
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 3,
+      timeInSecForIosWeb: times,
       backgroundColor: Colors.blue[500],
       textColor: Colors.white,
       fontSize: 16.0,

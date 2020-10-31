@@ -172,7 +172,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap111',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -993,7 +993,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
             _showConnectWalletDialLog(context);
           } else if (index == 6) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
-            Util.showToast(S.of(context).success);
+            Util.showToast(S.of(context).success, timeValue: 2);
           }
         },
       ),

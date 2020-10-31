@@ -302,7 +302,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
             _showConnectWalletDialLog(context);
           } else if (index == 6) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
-            Util.showToast(S.of(context).success);
+            Util.showToast(S.of(context).success, timeValue: 2);
           }
         },
       ),

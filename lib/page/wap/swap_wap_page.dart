@@ -1668,7 +1668,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
               onTap: () {
                 Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 Navigator.pop(context);
-                Util.showToast(S.of(context).success);
+                Util.showToast(S.of(context).success, timeValue: 2);
               },
               leading: Icon(
                 Icons.language,
