@@ -6,6 +6,7 @@
   "actionTitle4": "关于",
   "actionTitle5": "连接钱包",
 
+  "success": "Success",
   "connectWallet": "请使用TronLink钱包登录",
   "installWallet": "还没安装TronLink？ 请点击此处>>",
 
@@ -22,7 +23,6 @@
   "swapTotalLiquidity": "总流动性",
   "swapToken": "Token",
   "swapTokenNotEnough": "余额不足",
-  "swapSuccess": "Success",
 
   "farmStaked": "锁仓",
   "farmDeadline": "结束时间",

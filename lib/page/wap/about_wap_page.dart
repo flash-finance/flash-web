@@ -257,7 +257,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
               onTap: () {
                 Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 Navigator.pop(context);
-                Util.showToast(S.of(context).swapSuccess);
+                Util.showToast(S.of(context).success);
               },
               leading: Icon(
                 Icons.language,

@@ -991,7 +991,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
             _showConnectWalletDialLog(context);
           } else if (index == 6) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
-            Util.showToast(S.of(context).swapSuccess);
+            Util.showToast(S.of(context).success);
           }
         },
       ),
@@ -2105,7 +2105,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
-    Util.showToast(S.of(context).swapSuccess);
+    Util.showToast(S.of(context).success);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
@@ -2126,7 +2126,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
-    Util.showToast(S.of(context).swapSuccess);
+    Util.showToast(S.of(context).success);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
@@ -2147,7 +2147,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
-    Util.showToast(S.of(context).swapSuccess);
+    Util.showToast(S.of(context).success);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, leftToken, _account]);

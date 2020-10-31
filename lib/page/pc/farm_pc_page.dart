@@ -1143,7 +1143,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
             _showConnectWalletDialLog(context);
           } else if (index == 6) {
             Provider.of<IndexProvider>(context, listen: false).changeLangType();
-            Util.showToast(S.of(context).swapSuccess);
+            Util.showToast(S.of(context).success);
           }
         },
       ),
@@ -1342,7 +1342,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
 
   void setHash4Farm(type, poolAddress, tokenAddress, hash) async {
-    Util.showToast(S.of(context).swapSuccess);
+    Util.showToast(S.of(context).success);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         if (tokenAddress.toString() != 'TRX') {

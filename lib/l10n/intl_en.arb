@@ -6,6 +6,7 @@
   "actionTitle4": "About",
   "actionTitle5": "Connect Wallet",
 
+  "success": "Success",
   "connectWallet": "Please login with TronLink",
   "installWallet": "Haven't installed TronLink yet? Click here>>",
 
@@ -21,7 +22,6 @@
   "swapTotalLiquidity": "Total Liquidity",
   "swapToken": "Token",
   "swapTokenNotEnough": "Token Not Enough",
-  "swapSuccess": "Success",
 
   "farmStaked": "Staked",
   "farmDeadline": "Deadline",

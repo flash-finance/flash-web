@@ -1026,7 +1026,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
               onTap: () {
                 Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 Navigator.pop(context);
-                Util.showToast(S.of(context).swapSuccess);
+                Util.showToast(S.of(context).success);
               },
               leading: Icon(
                 Icons.language,
@@ -1178,7 +1178,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
 
 
   void setHash4Farm(type, poolAddress, tokenAddress, hash) async {
-    Util.showToast(S.of(context).swapSuccess);
+    Util.showToast(S.of(context).success);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         if (tokenAddress.toString() != 'TRX') {

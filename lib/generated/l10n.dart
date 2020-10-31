@@ -93,6 +93,16 @@ class S {
     );
   }
 
+  /// `Success`
+  String get success {
+    return Intl.message(
+      'Success',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please login with TronLink`
   String get connectWallet {
     return Intl.message(
@@ -228,16 +238,6 @@ class S {
     return Intl.message(
       'Token Not Enough',
       name: 'swapTokenNotEnough',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Success`
-  String get swapSuccess {
-    return Intl.message(
-      'Success',
-      name: 'swapSuccess',
       desc: '',
       args: [],
     );
