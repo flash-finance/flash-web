@@ -34,17 +34,11 @@
   "farmHarvest": "Harvest",
   "farmStakedWap": "Staked  USD",
 
-  "aboutTips01": "trading:  directly to the platform of JustSwap",
-  "aboutTips02": "mining:  directly to the platform of SUN",
-  "aboutTips03": "lending:  open source, security, convenience",
-  "aboutTips04": "lending:  open source, security, convenience",
-  "aboutTips05": "talk is cheap.  show me the code",
-  "aboutTips06": "github:  https://github.com/flash-finance",
-
-
-
-  "aboutTips1": "in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc.",
-  "aboutTips2": "the team is committed to the rapid development of products. currently, no private placement or currency issuance",
-  "aboutTips3": "mining:  directly to the platform of SUN",
-  "aboutTips5": "to do: mining, vault, trading, lending, digital wallet, etc."
+  "swapTips01": "trading:  directly to the platform of JustSwap",
+  "farmTips01": "mining:  directly to the platform of SUN",
+  "leadTips01": "lending:  open source, security, convenience",
+  "walletTips01": "wallet:  open source, security, convenience",
+  "aboutTips01": "talk is cheap.  show me the code",
+  "aboutTips02": "github:  https://github.com/flash-finance",
+  "aboutTips03": "currently, no private placement or currency issuance"
 }

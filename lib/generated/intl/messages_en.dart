@@ -21,16 +21,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "aboutTips01" : MessageLookupByLibrary.simpleMessage("trading:  directly to the platform of JustSwap"),
-    "aboutTips02" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN"),
-    "aboutTips03" : MessageLookupByLibrary.simpleMessage("lending:  open source, security, convenience"),
-    "aboutTips04" : MessageLookupByLibrary.simpleMessage("lending:  open source, security, convenience"),
-    "aboutTips05" : MessageLookupByLibrary.simpleMessage("talk is cheap.  show me the code"),
-    "aboutTips06" : MessageLookupByLibrary.simpleMessage("github:  https://github.com/flash-finance"),
-    "aboutTips1" : MessageLookupByLibrary.simpleMessage("in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc."),
-    "aboutTips2" : MessageLookupByLibrary.simpleMessage("the team is committed to the rapid development of products. currently, no private placement or currency issuance"),
-    "aboutTips3" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN"),
-    "aboutTips5" : MessageLookupByLibrary.simpleMessage("to do: mining, vault, trading, lending, digital wallet, etc."),
+    "aboutTips01" : MessageLookupByLibrary.simpleMessage("talk is cheap.  show me the code"),
+    "aboutTips02" : MessageLookupByLibrary.simpleMessage("github:  https://github.com/flash-finance"),
+    "aboutTips03" : MessageLookupByLibrary.simpleMessage("currently, no private placement or currency issuance"),
     "actionTitle0" : MessageLookupByLibrary.simpleMessage("Swap"),
     "actionTitle1" : MessageLookupByLibrary.simpleMessage("Farm"),
     "actionTitle2" : MessageLookupByLibrary.simpleMessage("Lend"),
@@ -47,8 +40,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmReward" : MessageLookupByLibrary.simpleMessage("Reward"),
     "farmStaked" : MessageLookupByLibrary.simpleMessage("Staked"),
     "farmStakedWap" : MessageLookupByLibrary.simpleMessage("Staked  USD"),
+    "farmTips01" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
     "installWallet" : MessageLookupByLibrary.simpleMessage("Haven\'t installed TronLink yet? Click here>>"),
+    "leadTips01" : MessageLookupByLibrary.simpleMessage("lending:  open source, security, convenience"),
     "success" : MessageLookupByLibrary.simpleMessage("Success"),
     "swapBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
     "swapPool" : MessageLookupByLibrary.simpleMessage("Pool"),
@@ -56,11 +51,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "swapReceive" : MessageLookupByLibrary.simpleMessage("Receive"),
     "swapSend" : MessageLookupByLibrary.simpleMessage("Send"),
     "swapSwap" : MessageLookupByLibrary.simpleMessage("Swap"),
+    "swapTips01" : MessageLookupByLibrary.simpleMessage("trading:  directly to the platform of JustSwap"),
     "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
     "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
     "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token Name"),
     "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("Token Not Enough"),
     "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("Price (USD)"),
-    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity")
+    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity"),
+    "walletTips01" : MessageLookupByLibrary.simpleMessage("wallet:  open source, security, convenience")
   };
 }

@@ -130,7 +130,7 @@ class _LendPcPageState extends State<LendPcPage> {
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
-                      '${S.of(context).aboutTips03}',
+                      '${S.of(context).leadTips01}',
                       style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,

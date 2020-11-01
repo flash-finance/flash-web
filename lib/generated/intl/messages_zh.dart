@@ -21,16 +21,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "aboutTips01" : MessageLookupByLibrary.simpleMessage("交易:  聚合JustSwap平台"),
-    "aboutTips02" : MessageLookupByLibrary.simpleMessage("挖矿:  聚合SUN平台"),
-    "aboutTips03" : MessageLookupByLibrary.simpleMessage("借贷:  开源、安全、易用"),
-    "aboutTips04" : MessageLookupByLibrary.simpleMessage("数字钱包:  开源、安全、易用"),
-    "aboutTips05" : MessageLookupByLibrary.simpleMessage("talk is cheap.  show me the code"),
-    "aboutTips06" : MessageLookupByLibrary.simpleMessage("github:  https://github.com/flash-finance"),
-    "aboutTips1" : MessageLookupByLibrary.simpleMessage("在波场DeFi生态，Flash Finance团队希望做一系列的产品: 挖矿、机枪池、交易、借贷和数字钱包等"),
-    "aboutTips2" : MessageLookupByLibrary.simpleMessage("团队致力于产品的快速开发，目前，不私募，不发币"),
-    "aboutTips3" : MessageLookupByLibrary.simpleMessage("挖矿:  聚合SUN平台"),
-    "aboutTips5" : MessageLookupByLibrary.simpleMessage("会做:  挖矿、机枪池、交易、借贷和数字钱包等"),
+    "aboutTips01" : MessageLookupByLibrary.simpleMessage("talk is cheap.  show me the code"),
+    "aboutTips02" : MessageLookupByLibrary.simpleMessage("github:  https://github.com/flash-finance"),
+    "aboutTips03" : MessageLookupByLibrary.simpleMessage("目前，不私募，不发币"),
     "actionTitle0" : MessageLookupByLibrary.simpleMessage("交易"),
     "actionTitle1" : MessageLookupByLibrary.simpleMessage("挖矿"),
     "actionTitle2" : MessageLookupByLibrary.simpleMessage("借贷"),
@@ -47,8 +40,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmReward" : MessageLookupByLibrary.simpleMessage("奖励"),
     "farmStaked" : MessageLookupByLibrary.simpleMessage("锁仓"),
     "farmStakedWap" : MessageLookupByLibrary.simpleMessage("锁仓  美金"),
+    "farmTips01" : MessageLookupByLibrary.simpleMessage("挖矿:  聚合SUN平台"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("赎回"),
     "installWallet" : MessageLookupByLibrary.simpleMessage("还没安装TronLink？ 请点击此处>>"),
+    "leadTips01" : MessageLookupByLibrary.simpleMessage("借贷:  开源、安全、易用"),
     "success" : MessageLookupByLibrary.simpleMessage("Success"),
     "swapBalance" : MessageLookupByLibrary.simpleMessage("余额"),
     "swapPool" : MessageLookupByLibrary.simpleMessage("资金池"),
@@ -56,11 +51,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "swapReceive" : MessageLookupByLibrary.simpleMessage("接收"),
     "swapSend" : MessageLookupByLibrary.simpleMessage("发送"),
     "swapSwap" : MessageLookupByLibrary.simpleMessage("兑换"),
+    "swapTips01" : MessageLookupByLibrary.simpleMessage("交易:  聚合JustSwap平台"),
     "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
     "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("余额"),
     "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token 名称"),
     "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("余额不足"),
     "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("价格 (USD)"),
-    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("总流动性")
+    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("总流动性"),
+    "walletTips01" : MessageLookupByLibrary.simpleMessage("数字钱包:  开源、安全、易用")
   };
 }

@@ -175,7 +175,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   Container(
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
-                      '${S.of(context).aboutTips01}',
+                      '${S.of(context).swapTips01}',
                       style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,

@@ -344,100 +344,70 @@ class S {
   }
 
   /// `trading:  directly to the platform of JustSwap`
-  String get aboutTips01 {
+  String get swapTips01 {
     return Intl.message(
       'trading:  directly to the platform of JustSwap',
-      name: 'aboutTips01',
+      name: 'swapTips01',
       desc: '',
       args: [],
     );
   }
 
   /// `mining:  directly to the platform of SUN`
-  String get aboutTips02 {
+  String get farmTips01 {
     return Intl.message(
       'mining:  directly to the platform of SUN',
-      name: 'aboutTips02',
+      name: 'farmTips01',
       desc: '',
       args: [],
     );
   }
 
   /// `lending:  open source, security, convenience`
-  String get aboutTips03 {
+  String get leadTips01 {
     return Intl.message(
       'lending:  open source, security, convenience',
-      name: 'aboutTips03',
+      name: 'leadTips01',
       desc: '',
       args: [],
     );
   }
 
-  /// `lending:  open source, security, convenience`
-  String get aboutTips04 {
+  /// `wallet:  open source, security, convenience`
+  String get walletTips01 {
     return Intl.message(
-      'lending:  open source, security, convenience',
-      name: 'aboutTips04',
+      'wallet:  open source, security, convenience',
+      name: 'walletTips01',
       desc: '',
       args: [],
     );
   }
 
   /// `talk is cheap.  show me the code`
-  String get aboutTips05 {
+  String get aboutTips01 {
     return Intl.message(
       'talk is cheap.  show me the code',
-      name: 'aboutTips05',
+      name: 'aboutTips01',
       desc: '',
       args: [],
     );
   }
 
   /// `github:  https://github.com/flash-finance`
-  String get aboutTips06 {
+  String get aboutTips02 {
     return Intl.message(
       'github:  https://github.com/flash-finance',
-      name: 'aboutTips06',
+      name: 'aboutTips02',
       desc: '',
       args: [],
     );
   }
 
-  /// `in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc.`
-  String get aboutTips1 {
+  /// `currently, no private placement or currency issuance`
+  String get aboutTips03 {
     return Intl.message(
-      'in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc.',
-      name: 'aboutTips1',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `the team is committed to the rapid development of products. currently, no private placement or currency issuance`
-  String get aboutTips2 {
-    return Intl.message(
-      'the team is committed to the rapid development of products. currently, no private placement or currency issuance',
-      name: 'aboutTips2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `mining:  directly to the platform of SUN`
-  String get aboutTips3 {
-    return Intl.message(
-      'mining:  directly to the platform of SUN',
-      name: 'aboutTips3',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `to do: mining, vault, trading, lending, digital wallet, etc.`
-  String get aboutTips5 {
-    return Intl.message(
-      'to do: mining, vault, trading, lending, digital wallet, etc.',
-      name: 'aboutTips5',
+      'currently, no private placement or currency issuance',
+      name: 'aboutTips03',
       desc: '',
       args: [],
     );

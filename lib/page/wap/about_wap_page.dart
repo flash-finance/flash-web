@@ -94,7 +94,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
           Container(
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
-            child: Text('${S.of(context).aboutTips5}',
+            child: Text('${S.of(context).aboutTips01}',
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(28),
                   color: MyColors.black87,
@@ -106,7 +106,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
           Container(
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
-            child: Text('${S.of(context).aboutTips3}',
+            child: Text('${S.of(context).aboutTips02}',
               style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(28),
                   color: MyColors.black87,

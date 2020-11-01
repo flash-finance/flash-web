@@ -128,7 +128,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
-                      '${S.of(context).aboutTips05}',
+                      '${S.of(context).aboutTips01}',
                       style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
@@ -143,7 +143,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
                     child: Container(
                       margin: EdgeInsets.only(top: 10),
                       child: Text(
-                        '${S.of(context).aboutTips06}',
+                        '${S.of(context).aboutTips02}',
                         style: GoogleFonts.lato(
                           fontSize: 15,
                           color: MyColors.white,

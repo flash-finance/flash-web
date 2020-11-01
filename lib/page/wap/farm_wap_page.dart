@@ -160,7 +160,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                   Container(
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
-                      '${S.of(context).aboutTips02}',
+                      '${S.of(context).farmTips01}',
                       style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,

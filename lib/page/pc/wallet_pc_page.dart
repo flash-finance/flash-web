@@ -130,7 +130,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
-                      '${S.of(context).aboutTips04}',
+                      '${S.of(context).walletTips01}',
                       style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,

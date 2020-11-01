@@ -182,7 +182,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
-                      '${S.of(context).aboutTips01}',
+                      '${S.of(context).swapTips01}',
                       style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
