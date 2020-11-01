@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutTips01" : MessageLookupByLibrary.simpleMessage("talk is cheap.  show me the code"),
     "aboutTips02" : MessageLookupByLibrary.simpleMessage("https://github.com/flash-finance"),
     "aboutTips03" : MessageLookupByLibrary.simpleMessage("目前,  不私募,  不发币"),
-    "aboutTips04" : MessageLookupByLibrary.simpleMessage("交易平台:  没有资金池,  安全,  0.01%手续费"),
+    "aboutTips04" : MessageLookupByLibrary.simpleMessage("交易平台:  没有自建的资金池,  交易安全,  0.01%手续费"),
     "aboutTips051" : MessageLookupByLibrary.simpleMessage("交易合约:  "),
     "aboutTips052" : MessageLookupByLibrary.simpleMessage("TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg"),
     "aboutTips06" : MessageLookupByLibrary.simpleMessage("挖矿平台:  没有手续费,  没有合约"),
