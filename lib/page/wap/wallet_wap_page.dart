@@ -49,6 +49,7 @@ class _WalletWapPageState extends State<WalletWapPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
     return Scaffold(
       key: _scaffoldKey,

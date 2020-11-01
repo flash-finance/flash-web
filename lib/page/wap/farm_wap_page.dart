@@ -91,6 +91,8 @@ class _FarmWapPageState extends State<FarmWapPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
+
     _toDepositAmountController =  TextEditingController.fromValue(TextEditingValue(text: _toDepositAmount,
         selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _toDepositAmount.length))));
     _toWithdrawAmountController =  TextEditingController.fromValue(TextEditingValue(text: _toWithdrawAmount,
