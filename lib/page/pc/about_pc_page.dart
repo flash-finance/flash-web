@@ -191,18 +191,35 @@ class _AboutPcPageState extends State<AboutPcPage> {
             ),
             InkWell(
               onTap: () {
-
+                launch(swapContract).catchError((error) {
+                  print('launch error:$error');
+                });
               },
               child: Container(
                 padding: EdgeInsets.only(top: 10, bottom: 10),
-                child: Text(
-                  '${S.of(context).aboutTips05}',
-                  style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800], decoration: TextDecoration.underline),
-                  maxLines: 1,
-                  overflow: TextOverflow.clip,
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: '${S.of(context).aboutTips051}',
+                        style: GoogleFonts.lato(
+                            fontSize: 16,
+                            color: Colors.grey[800],
+                        ),
+                      ),
+                      TextSpan(
+                        text: '${S.of(context).aboutTips052}',
+                        style: GoogleFonts.lato(
+                          fontSize: 14,
+                          color: Colors.grey[800],
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 ),
               ),
-            ),
             Container(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(

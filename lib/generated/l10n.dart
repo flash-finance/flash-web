@@ -423,11 +423,21 @@ class S {
     );
   }
 
+  /// `swap contract:  `
+  String get aboutTips051 {
+    return Intl.message(
+      'swap contract:  ',
+      name: 'aboutTips051',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg`
-  String get aboutTips05 {
+  String get aboutTips052 {
     return Intl.message(
       'TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg',
-      name: 'aboutTips05',
+      name: 'aboutTips052',
       desc: '',
       args: [],
     );

@@ -43,7 +43,8 @@
   "aboutTips02": "github:  https://github.com/flash-finance",
   "aboutTips03": "目前，不私募，不发币",
   "aboutTips04": "交易平台:  没有资金池,  安全,  0.01%手续费",
-  "aboutTips05": "TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg",
+  "aboutTips051": "交易合约:  ",
+  "aboutTips052": "TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg",
   "aboutTips06": "挖矿平台:  没有手续费,  没有合约",
   "aboutTips07": "借贷、钱包:  即将到来"
 }

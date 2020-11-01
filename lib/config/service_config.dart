@@ -4,6 +4,8 @@ const tronLinkChrome = 'https://chrome.google.com/webstore/detail/tronlink%EF%BC
 
 const flashGithub = 'https://github.com/flash-finance';
 
+const swapContract = 'https://tronscan.io/#/contract/TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg/code';
+
 const baseUrl = 'https://flashfi.cn';
 
 const servicePath = <String, String>{
