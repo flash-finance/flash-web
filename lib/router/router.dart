@@ -21,6 +21,8 @@ class Routes {
 
     router.define('/wap/swap', handler: swapWapHandler);
     router.define('/wap/farm', handler: farmWapHandler);
+    router.define('/wap/lend', handler: lendWapHandler);
+    router.define('/wap/wallet', handler: walletWapHandler);
     router.define('/wap/about', handler: aboutWapHandler);
 
   }
