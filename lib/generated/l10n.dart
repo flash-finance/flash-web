@@ -363,20 +363,20 @@ class S {
     );
   }
 
-  /// `lending:  open source, security, convenience`
-  String get leadTips01 {
+  /// `lending:  open source,  security,  convenience`
+  String get lendTips01 {
     return Intl.message(
-      'lending:  open source, security, convenience',
-      name: 'leadTips01',
+      'lending:  open source,  security,  convenience',
+      name: 'lendTips01',
       desc: '',
       args: [],
     );
   }
 
-  /// `wallet:  open source, security, convenience`
+  /// `wallet:  open source,  security,  convenience`
   String get walletTips01 {
     return Intl.message(
-      'wallet:  open source, security, convenience',
+      'wallet:  open source,  security,  convenience',
       name: 'walletTips01',
       desc: '',
       args: [],
@@ -403,11 +403,51 @@ class S {
     );
   }
 
-  /// `currently, no private placement or currency issuance`
+  /// `currently,  no private placement or currency issuance`
   String get aboutTips03 {
     return Intl.message(
-      'currently, no private placement or currency issuance',
+      'currently,  no private placement or currency issuance',
       name: 'aboutTips03',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `swap platform:  no pool of tokens,  security,  0.01% handling fee`
+  String get aboutTips04 {
+    return Intl.message(
+      'swap platform:  no pool of tokens,  security,  0.01% handling fee',
+      name: 'aboutTips04',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg`
+  String get aboutTips05 {
+    return Intl.message(
+      'TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg',
+      name: 'aboutTips05',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `mining:  no handling fee,  no contract`
+  String get aboutTips06 {
+    return Intl.message(
+      'mining:  no handling fee,  no contract',
+      name: 'aboutTips06',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `lending,  wallet:  coming soon`
+  String get aboutTips07 {
+    return Intl.message(
+      'lending,  wallet:  coming soon',
+      name: 'aboutTips07',
       desc: '',
       args: [],
     );

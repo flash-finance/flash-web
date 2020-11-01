@@ -23,7 +23,11 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "aboutTips01" : MessageLookupByLibrary.simpleMessage("talk is cheap.  show me the code"),
     "aboutTips02" : MessageLookupByLibrary.simpleMessage("github:  https://github.com/flash-finance"),
-    "aboutTips03" : MessageLookupByLibrary.simpleMessage("currently, no private placement or currency issuance"),
+    "aboutTips03" : MessageLookupByLibrary.simpleMessage("currently,  no private placement or currency issuance"),
+    "aboutTips04" : MessageLookupByLibrary.simpleMessage("swap platform:  no pool of tokens,  security,  0.01% handling fee"),
+    "aboutTips05" : MessageLookupByLibrary.simpleMessage("TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg"),
+    "aboutTips06" : MessageLookupByLibrary.simpleMessage("mining:  no handling fee,  no contract"),
+    "aboutTips07" : MessageLookupByLibrary.simpleMessage("lending,  wallet:  coming soon"),
     "actionTitle0" : MessageLookupByLibrary.simpleMessage("Swap"),
     "actionTitle1" : MessageLookupByLibrary.simpleMessage("Farm"),
     "actionTitle2" : MessageLookupByLibrary.simpleMessage("Lend"),
@@ -43,7 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmTips01" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
     "installWallet" : MessageLookupByLibrary.simpleMessage("Haven\'t installed TronLink yet? Click here>>"),
-    "leadTips01" : MessageLookupByLibrary.simpleMessage("lending:  open source, security, convenience"),
+    "lendTips01" : MessageLookupByLibrary.simpleMessage("lending:  open source,  security,  convenience"),
     "success" : MessageLookupByLibrary.simpleMessage("Success"),
     "swapBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
     "swapPool" : MessageLookupByLibrary.simpleMessage("Pool"),
@@ -58,6 +62,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("Token Not Enough"),
     "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("Price (USD)"),
     "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity"),
-    "walletTips01" : MessageLookupByLibrary.simpleMessage("wallet:  open source, security, convenience")
+    "walletTips01" : MessageLookupByLibrary.simpleMessage("wallet:  open source,  security,  convenience")
   };
 }

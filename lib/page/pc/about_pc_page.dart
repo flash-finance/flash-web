@@ -167,12 +167,59 @@ class _AboutPcPageState extends State<AboutPcPage> {
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        padding: EdgeInsets.only(left: 80, top: 80, right: 80, bottom: 80),
+        padding: EdgeInsets.only(left: 80, top: 50, right: 80, bottom: 50),
         alignment: Alignment.center,
         child: Column(
           children: <Widget>[
             Container(
-              child: Text('团队致力于产品的快速开发。目前，不私募，不发币', style: GoogleFonts.lato(fontSize: 18, color: Colors.black87)),
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                '${S.of(context).aboutTips03}',
+                style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800]),
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                '${S.of(context).aboutTips04}',
+                style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800]),
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+              ),
+            ),
+            InkWell(
+              onTap: () {
+
+              },
+              child: Container(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Text(
+                  '${S.of(context).aboutTips05}',
+                  style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800], decoration: TextDecoration.underline),
+                  maxLines: 1,
+                  overflow: TextOverflow.clip,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                '${S.of(context).aboutTips06}',
+                style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800]),
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                '${S.of(context).aboutTips07}',
+                style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800]),
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+              ),
             ),
           ],
         ),

@@ -37,9 +37,13 @@
 
   "swapTips01": "交易:  聚合JustSwap平台",
   "farmTips01": "挖矿:  聚合SUN平台",
-  "leadTips01": "借贷:  开源、安全、易用",
+  "lendTips01": "借贷:  开源、安全、易用",
   "walletTips01": "数字钱包:  开源、安全、易用",
   "aboutTips01": "talk is cheap.  show me the code",
   "aboutTips02": "github:  https://github.com/flash-finance",
-  "aboutTips03": "目前，不私募，不发币"
+  "aboutTips03": "目前，不私募，不发币",
+  "aboutTips04": "交易平台:  没有资金池,  安全,  0.01%手续费",
+  "aboutTips05": "TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg",
+  "aboutTips06": "挖矿平台:  没有手续费,  没有合约",
+  "aboutTips07": "借贷、钱包:  即将到来"
 }
