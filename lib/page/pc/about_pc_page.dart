@@ -129,7 +129,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).aboutTips01}',
-                      style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
+                      style: GoogleFonts.lato(fontSize: 14, color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -142,15 +142,26 @@ class _AboutPcPageState extends State<AboutPcPage> {
                     },
                     child: Container(
                       margin: EdgeInsets.only(top: 10),
-                      child: Text(
-                        '${S.of(context).aboutTips02}',
-                        style: GoogleFonts.lato(
-                          fontSize: 15,
-                          color: MyColors.white,
-                          decoration: TextDecoration.underline,
+                      child: RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'github:  ',
+                              style: GoogleFonts.lato(
+                                fontSize: 14,
+                                color: Colors.grey[800],
+                              ),
+                            ),
+                            TextSpan(
+                              text: '${S.of(context).aboutTips02}',
+                              style: GoogleFonts.lato(
+                                fontSize: 16,
+                                color: Colors.grey[800],
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
                       ),
                     ),
                   ),

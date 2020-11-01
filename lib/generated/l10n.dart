@@ -393,10 +393,10 @@ class S {
     );
   }
 
-  /// `github:  https://github.com/flash-finance`
+  /// `https://github.com/flash-finance`
   String get aboutTips02 {
     return Intl.message(
-      'github:  https://github.com/flash-finance',
+      'https://github.com/flash-finance',
       name: 'aboutTips02',
       desc: '',
       args: [],
