@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flash_web/common/color.dart';
+import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
@@ -12,6 +13,8 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
+
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutWapPage extends StatefulWidget {
   @override
@@ -72,9 +75,8 @@ class _AboutWapPageState extends State<AboutWapPage> {
       child: Column(
         children: <Widget>[
           _topWidget(context),
-          Expanded(
-            child: _bodyWidget(context),
-          ),
+          SizedBox(height: ScreenUtil().setHeight(30)),
+          _bodyWidget(context),
         ],
       ),
     );
@@ -110,10 +112,41 @@ class _AboutWapPageState extends State<AboutWapPage> {
                   Container(
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
-                      '${S.of(context).lendTips01}',
+                      '${S.of(context).aboutTips01}',
                       style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      launch(flashGithub).catchError((error) {
+                        print('launch error:$error');
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'github:  ',
+                              style: GoogleFonts.lato(
+                                fontSize: ScreenUtil().setSp(24),
+                                color: MyColors.white,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '${S.of(context).aboutTips02}',
+                              style: GoogleFonts.lato(
+                                fontSize: ScreenUtil().setSp(24),
+                                color: MyColors.white,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -125,40 +158,88 @@ class _AboutWapPageState extends State<AboutWapPage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
-    return Container(
+    return Card(
+      elevation: 3,
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          gradient: LinearGradient(
-            colors: [MyColors.blue700, MyColors.blue500],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          )),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(30)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
-                    child: Text(
-                      '${S.of(context).lendTips01}',
-                      style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
-                      maxLines: 1,
-                      overflow: TextOverflow.clip,
-                    ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      child: Container(
+        padding: EdgeInsets.only(top: ScreenUtil().setHeight(50), bottom: ScreenUtil().setHeight(50)),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+              child: Text(
+                '${S.of(context).aboutTips03}',
+                style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(25), color: Colors.black87),
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+              child: Text(
+                '${S.of(context).aboutTips04}',
+                style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(25), color: Colors.black87),
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                launch(swapContract).catchError((error) {
+                  print('launch error:$error');
+                });
+              },
+              child: Container(
+                padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: '${S.of(context).aboutTips051}',
+                        style: GoogleFonts.lato(
+                          fontSize: ScreenUtil().setSp(25),
+                          color: Colors.black87,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '${S.of(context).aboutTips052}',
+                        style: GoogleFonts.lato(
+                          fontSize:  ScreenUtil().setSp(23),
+                          color: Colors.black87,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              )
-          ),
-        ],
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+              child: Text(
+                '${S.of(context).aboutTips06}',
+                style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(25), color: Colors.black87),
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+              child: Text(
+                '${S.of(context).aboutTips07}',
+                style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(25), color: Colors.black87),
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
-
 
   Widget _appBarWidget(BuildContext context) {
     return AppBar(

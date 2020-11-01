@@ -255,41 +255,6 @@ class _AboutPcPageState extends State<AboutPcPage> {
     );
   }
 
-
-/*  Widget _bizWidget(BuildContext context) {
-    return Container(
-      width: 1200,
-      margin: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-      child: Column(
-        children: [
-          Container(
-            child: Text('Flash Finance', style: GoogleFonts.lato(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black87),),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            child: Text('${S.of(context).aboutTips1}',
-                style: GoogleFonts.lato(fontSize: 17), maxLines: 1, overflow: TextOverflow.clip),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5),
-            child: Text('${S.of(context).aboutTips2}',
-                style: GoogleFonts.lato(fontSize: 17), maxLines: 1, overflow: TextOverflow.clip),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            child: Text('${S.of(context).aboutTips3}',
-                style: GoogleFonts.lato(fontSize: 16), maxLines: 1, overflow: TextOverflow.clip),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5),
-            child: Text('${S.of(context).aboutTips4}',
-                style: GoogleFonts.lato(fontSize: 16), maxLines: 1, overflow: TextOverflow.clip),
-          ),
-        ],
-      ),
-    );
-  }*/
-
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
       toolbarHeight: 80,

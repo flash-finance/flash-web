@@ -72,9 +72,8 @@ class _WalletWapPageState extends State<WalletWapPage> {
       child: Column(
         children: <Widget>[
           _topWidget(context),
-          Expanded(
-            child: _bodyWidget(context),
-          ),
+          SizedBox(height: ScreenUtil().setHeight(30)),
+          _bodyWidget(context),
         ],
       ),
     );
@@ -125,36 +124,23 @@ class _WalletWapPageState extends State<WalletWapPage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
-    return Container(
+    return Card(
+      elevation: 3,
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          gradient: LinearGradient(
-            colors: [MyColors.blue700, MyColors.blue500],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          )),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(30)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
-                    child: Text(
-                      '${S.of(context).lendTips01}',
-                      style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
-                      maxLines: 1,
-                      overflow: TextOverflow.clip,
-                    ),
-                  ),
-                ],
-              )
-          ),
-        ],
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      child: Container(
+        padding: EdgeInsets.only(top: ScreenUtil().setHeight(50), bottom: ScreenUtil().setHeight(50)),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              child: Text(
+                  'Coming  Soon',
+                  style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(35), color: Colors.black87)),
+            ),
+          ],
+        ),
       ),
     );
   }
