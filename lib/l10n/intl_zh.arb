@@ -9,7 +9,7 @@
   "success": "Success",
   "connectWallet": "请使用TronLink钱包登录",
   "installWallet": "还没安装TronLink？ 请点击此处>>",
-
+  "connectAccount": "连接账号",
 
   "swapSend": "发送",
   "swapReceive": "接收",

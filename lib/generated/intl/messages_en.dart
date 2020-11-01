@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "actionTitle3" : MessageLookupByLibrary.simpleMessage("Wallet"),
     "actionTitle4" : MessageLookupByLibrary.simpleMessage("About"),
     "actionTitle5" : MessageLookupByLibrary.simpleMessage("Connect Wallet"),
+    "connectAccount" : MessageLookupByLibrary.simpleMessage("Connect Account"),
     "connectWallet" : MessageLookupByLibrary.simpleMessage("Please login with TronLink"),
     "farmApy" : MessageLookupByLibrary.simpleMessage("APY"),
     "farmBalance" : MessageLookupByLibrary.simpleMessage("Balance"),

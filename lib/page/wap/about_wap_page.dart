@@ -7,13 +7,11 @@ import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
 import 'package:flash_web/util/common_util.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:js' as js;
-
 import 'package:provider/provider.dart';
+import 'dart:js' as js;
 
 class AboutWapPage extends StatefulWidget {
   @override
@@ -23,18 +21,18 @@ class AboutWapPage extends StatefulWidget {
 class _AboutWapPageState extends State<AboutWapPage> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
   String _account = '';
-  bool tronFlag = false;
+  bool _tronFlag = false;
   Timer _timer;
-
 
   @override
   void initState() {
     super.initState();
     if (mounted) {
       setState(() {
-        CommonProvider.changeHomeIndex(2);
+        CommonProvider.changeHomeIndex(4);
       });
     }
+    Provider.of<IndexProvider>(context, listen: false).init();
     _reloadAccount();
   }
 
@@ -51,6 +49,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: MyColors.white,
@@ -58,8 +57,11 @@ class _AboutWapPageState extends State<AboutWapPage> {
       drawer: _drawerWidget(context),
       body: Column(
         children: <Widget>[
+          _topWidget(context),
           Expanded(
-            child: _mainWidget(context),
+            child: Container(
+              child: Text('about'),
+            ),
           ),
           //FooterPage(),
         ],
@@ -67,65 +69,44 @@ class _AboutWapPageState extends State<AboutWapPage> {
     );
   }
 
-
-  Widget _mainWidget(BuildContext context) {
+  Widget _topWidget(BuildContext context) {
     return Container(
-      color: MyColors.white,
-      width: ScreenUtil().setWidth(750),
-      child: ListView(
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          gradient: LinearGradient(
+            colors: [MyColors.blue700, MyColors.blue500],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          _bizWidget(context),
-        ],
-      ),
-    );
-  }
-
-  Widget _bizWidget(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: ScreenUtil().setHeight(20), left: ScreenUtil().setWidth(50), right: ScreenUtil().setWidth(10), bottom: ScreenUtil().setHeight(20)),
-      child: Column(
-        children: [
           Container(
-            child: Text(
-              'Flash Finance',
-              style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(38), fontWeight: FontWeight.bold, color: Colors.black87),
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
-            child: Text('${S.of(context).aboutTips01}',
-                style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(28),
-                  color: MyColors.black87,
-                  fontWeight: FontWeight.w500
-              ),
-              maxLines: 2, overflow: TextOverflow.clip,
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
-            child: Text('${S.of(context).aboutTips02}',
-              style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(28),
-                  color: MyColors.black87,
-                  fontWeight: FontWeight.w500
-              ),
-              maxLines: 2, overflow: TextOverflow.clip,
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
-            child: Text('${S.of(context).aboutTips01}',
-              style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(28),
-                  color: MyColors.black87,
-                  fontWeight: FontWeight.w500
-              ),
-              maxLines: 2, overflow: TextOverflow.clip,
-            ),
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(30)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      'Flash  Finance',
+                      style: GoogleFonts.lato(
+                        fontSize: ScreenUtil().setSp(40),
+                        color: MyColors.white,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
+                    child: Text(
+                      '${S.of(context).lendTips01}',
+                      style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
+                      maxLines: 1,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                ],
+              )
           ),
         ],
       ),
@@ -180,7 +161,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
               },
               leading: Icon(
-                Icons.broken_image,
+                Icons.swap_horizontal_circle,
                 color: _homeIndex == 0 ? Colors.black87 : Colors.grey[700],
               ),
             ),
@@ -207,8 +188,8 @@ class _AboutWapPageState extends State<AboutWapPage> {
               ),
             ),
             ListTile(
-              title:  Text(
-                '${S.of(context).actionTitle3}',
+              title: Text(
+                '${S.of(context).actionTitle2}',
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
                   color: _homeIndex == 2 ? Colors.black : Colors.grey[700],
@@ -217,19 +198,63 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 overflow: TextOverflow.ellipsis,
               ),
               onTap: () {
+                Navigator.pop(context);
                 setState(() {
                   CommonProvider.changeHomeIndex(2);
                 });
-                Application.router.navigateTo(context, 'wap/about', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/lend', transition: TransitionType.fadeIn);
               },
               leading: Icon(
-                Icons.file_copy_sharp,
+                Icons.broken_image,
                 color: _homeIndex == 2 ? Colors.black87 : Colors.grey[700],
               ),
             ),
             ListTile(
               title: Text(
-                _account == '' ? '${S.of(context).actionTitle4}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
+                '${S.of(context).actionTitle3}',
+                style: GoogleFonts.lato(
+                  fontSize: ScreenUtil().setSp(32),
+                  color: _homeIndex == 3 ? Colors.black : Colors.grey[700],
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  CommonProvider.changeHomeIndex(3);
+                });
+                Application.router.navigateTo(context, 'wap/wallet', transition: TransitionType.fadeIn);
+              },
+              leading: Icon(
+                Icons.account_balance_wallet,
+                color: _homeIndex == 3 ? Colors.black87 : Colors.grey[700],
+              ),
+            ),
+            ListTile(
+              title:  Text(
+                '${S.of(context).actionTitle4}',
+                style: GoogleFonts.lato(
+                  fontSize: ScreenUtil().setSp(32),
+                  color: _homeIndex == 4 ? Colors.black : Colors.grey[700],
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              onTap: () {
+                setState(() {
+                  CommonProvider.changeHomeIndex(4);
+                });
+                Application.router.navigateTo(context, 'wap/about', transition: TransitionType.fadeIn);
+              },
+              leading: Icon(
+                Icons.file_copy_sharp,
+                color: _homeIndex == 4 ? Colors.black87 : Colors.grey[700],
+              ),
+            ),
+            ListTile(
+              title: Text(
+                _account == '' ? '${S.of(context).connectAccount}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
                   color: Colors.grey[700],
@@ -257,7 +282,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
               onTap: () {
                 Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 Navigator.pop(context);
-                Util.showToast(S.of(context).success, timeValue: 1);
+                Util.showToast(S.of(context).success, timeValue: 2);
               },
               leading: Icon(
                 Icons.language,
@@ -270,21 +295,37 @@ class _AboutWapPageState extends State<AboutWapPage> {
     );
   }
 
+  bool _reloadAccountFlag = false;
+
   _reloadAccount() async {
-    _timer = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
-      tronFlag = js.context.hasProperty('tronWeb');
-      if (tronFlag) {
-        var result = js.context["tronWeb"]["defaultAddress"]["base58"];
-        if (result.toString() != 'false') {
-          //Provider.of<IndexProvider>(context, listen: false).changeAccount(result.toString());
-        } else {
-          //Provider.of<IndexProvider>(context, listen: false).changeAccount('');
-        }
-      } else {
-        //Provider.of<IndexProvider>(context, listen: false).changeAccount('');
+    _getAccount();
+    _timer = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadAccountFlag) {
+        _getAccount();
       }
     });
   }
 
+  _getAccount() async {
+    _reloadAccountFlag = false;
+    _tronFlag = js.context.hasProperty('tronWeb');
+    if (_tronFlag) {
+      var result = js.context["tronWeb"]["defaultAddress"]["base58"];
+      if (result.toString() != 'false' && result.toString() != _account) {
+        if (mounted) {
+          setState(() {
+            _account = result.toString();
+          });
+        }
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          _account = '';
+        });
+      }
+    }
+    _reloadAccountFlag = true;
+  }
 
 }

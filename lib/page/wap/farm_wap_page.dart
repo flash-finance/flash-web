@@ -30,7 +30,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
   int _layoutIndex = -1;
   String _account = '';
   bool _layoutFlag = false;
-  bool tronFlag = false;
+  bool _tronFlag = false;
   Timer _timer1;
   Timer _timer2;
   Timer _timer3;
@@ -951,7 +951,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
                 Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
               },
               leading: Icon(
-                Icons.broken_image,
+                Icons.swap_horizontal_circle,
                 color: _homeIndex == 0 ? Colors.black87 : Colors.grey[700],
               ),
             ),
@@ -978,8 +978,8 @@ class _FarmWapPageState extends State<FarmWapPage> {
               ),
             ),
             ListTile(
-              title:  Text(
-                '${S.of(context).actionTitle3}',
+              title: Text(
+                '${S.of(context).actionTitle2}',
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
                   color: _homeIndex == 2 ? Colors.black : Colors.grey[700],
@@ -988,19 +988,63 @@ class _FarmWapPageState extends State<FarmWapPage> {
                 overflow: TextOverflow.ellipsis,
               ),
               onTap: () {
+                Navigator.pop(context);
                 setState(() {
                   CommonProvider.changeHomeIndex(2);
                 });
-                Application.router.navigateTo(context, 'wap/about', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/lend', transition: TransitionType.fadeIn);
               },
               leading: Icon(
-                Icons.file_copy_sharp,
+                Icons.broken_image,
                 color: _homeIndex == 2 ? Colors.black87 : Colors.grey[700],
               ),
             ),
             ListTile(
               title: Text(
-                _account == '' ? '${S.of(context).actionTitle4}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
+                '${S.of(context).actionTitle3}',
+                style: GoogleFonts.lato(
+                  fontSize: ScreenUtil().setSp(32),
+                  color: _homeIndex == 3 ? Colors.black : Colors.grey[700],
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  CommonProvider.changeHomeIndex(3);
+                });
+                Application.router.navigateTo(context, 'wap/wallet', transition: TransitionType.fadeIn);
+              },
+              leading: Icon(
+                Icons.account_balance_wallet,
+                color: _homeIndex == 3 ? Colors.black87 : Colors.grey[700],
+              ),
+            ),
+            ListTile(
+              title:  Text(
+                '${S.of(context).actionTitle4}',
+                style: GoogleFonts.lato(
+                  fontSize: ScreenUtil().setSp(32),
+                  color: _homeIndex == 4 ? Colors.black : Colors.grey[700],
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              onTap: () {
+                setState(() {
+                  CommonProvider.changeHomeIndex(4);
+                });
+                Application.router.navigateTo(context, 'wap/about', transition: TransitionType.fadeIn);
+              },
+              leading: Icon(
+                Icons.file_copy_sharp,
+                color: _homeIndex == 4 ? Colors.black87 : Colors.grey[700],
+              ),
+            ),
+            ListTile(
+              title: Text(
+                _account == '' ? '${S.of(context).connectAccount}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
                 style: GoogleFonts.lato(
                   fontSize: ScreenUtil().setSp(32),
                   color: Colors.grey[700],
@@ -1028,7 +1072,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
               onTap: () {
                 Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 Navigator.pop(context);
-                Util.showToast(S.of(context).success, timeValue: 1);
+                Util.showToast(S.of(context).success, timeValue: 2);
               },
               leading: Icon(
                 Icons.language,
@@ -1040,7 +1084,6 @@ class _FarmWapPageState extends State<FarmWapPage> {
       ),
     );
   }
-
 
   FarmData _farmData;
 
@@ -1092,8 +1135,8 @@ class _FarmWapPageState extends State<FarmWapPage> {
 
   _getAccount() async {
     _reloadAccountFlag = false;
-    tronFlag = js.context.hasProperty('tronWeb');
-    if (tronFlag) {
+    _tronFlag = js.context.hasProperty('tronWeb');
+    if (_tronFlag) {
       var result = js.context["tronWeb"]["defaultAddress"]["base58"];
       if (result.toString() != 'false' && result.toString() != _account) {
         if (mounted) {

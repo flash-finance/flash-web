@@ -9,6 +9,7 @@
   "success": "Success",
   "connectWallet": "Please login with TronLink",
   "installWallet": "Haven't installed TronLink yet? Click here>>",
+  "connectAccount": "Connect Account",
 
   "swapSend": "Send",
   "swapReceive": "Receive",

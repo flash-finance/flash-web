@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "actionTitle3" : MessageLookupByLibrary.simpleMessage("钱包"),
     "actionTitle4" : MessageLookupByLibrary.simpleMessage("关于"),
     "actionTitle5" : MessageLookupByLibrary.simpleMessage("连接钱包"),
+    "connectAccount" : MessageLookupByLibrary.simpleMessage("连接账号"),
     "connectWallet" : MessageLookupByLibrary.simpleMessage("请使用TronLink钱包登录"),
     "farmApy" : MessageLookupByLibrary.simpleMessage("APY"),
     "farmBalance" : MessageLookupByLibrary.simpleMessage("余额"),

@@ -123,6 +123,16 @@ class S {
     );
   }
 
+  /// `Connect Account`
+  String get connectAccount {
+    return Intl.message(
+      'Connect Account',
+      name: 'connectAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Send`
   String get swapSend {
     return Intl.message(
