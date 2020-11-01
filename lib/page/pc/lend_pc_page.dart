@@ -93,7 +93,7 @@ class _LendPcPageState extends State<LendPcPage> {
       child: ListView(
         children: <Widget>[
           _topWidget(context),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           _bizWidget(context),
         ],
       ),

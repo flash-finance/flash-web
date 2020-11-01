@@ -91,7 +91,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
       child: ListView(
         children: <Widget>[
           _topWidget(context),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           _bizWidget(context),
         ],
       ),
