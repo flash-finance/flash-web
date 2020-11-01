@@ -148,15 +148,15 @@ class _AboutPcPageState extends State<AboutPcPage> {
                             TextSpan(
                               text: 'github:  ',
                               style: GoogleFonts.lato(
-                                fontSize: 14,
-                                color: Colors.grey[800],
+                                fontSize: 16,
+                                color: MyColors.white,
                               ),
                             ),
                             TextSpan(
                               text: '${S.of(context).aboutTips02}',
                               style: GoogleFonts.lato(
                                 fontSize: 16,
-                                color: Colors.grey[800],
+                                color: MyColors.white,
                                 decoration: TextDecoration.underline,
                               ),
                             ),
