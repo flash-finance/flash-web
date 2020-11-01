@@ -106,6 +106,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
       body: Column(
         children: <Widget>[
           _topWidget(context),
+          SizedBox(height: ScreenUtil().setHeight(25)),
           Expanded(
             child: _mainWidget(context),
           ),
@@ -121,7 +122,6 @@ class _FarmWapPageState extends State<FarmWapPage> {
       color: MyColors.white,
       child: Column(
         children: <Widget>[
-          SizedBox(height: ScreenUtil().setHeight(30)),
           Expanded(
             child: _bodyWidget(context),
           ),

@@ -125,6 +125,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
       child: Column(
         children: <Widget>[
           _topWidget(context),
+          SizedBox(height: ScreenUtil().setHeight(30)),
           Expanded(
             child: _bodyWidget(context),
           ),
@@ -138,7 +139,6 @@ class _SwapWapPageState extends State<SwapWapPage> {
       width: ScreenUtil().setWidth(750),
       child: ListView(
         children: <Widget>[
-          SizedBox(height: ScreenUtil().setHeight(30)),
           _bizWidget(context),
         ],
       ),
