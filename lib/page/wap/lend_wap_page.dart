@@ -73,9 +73,7 @@ class _LendWapPageState extends State<LendWapPage> {
         children: <Widget>[
           _topWidget(context),
           SizedBox(height: ScreenUtil().setHeight(30)),
-          Expanded(
-            child: _bodyWidget(context),
-          ),
+          _bodyWidget(context),
         ],
       ),
     );
@@ -131,14 +129,15 @@ class _LendWapPageState extends State<LendWapPage> {
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        padding: EdgeInsets.only(top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(30)),
+        padding: EdgeInsets.only(top: ScreenUtil().setHeight(50), bottom: ScreenUtil().setHeight(50)),
         alignment: Alignment.center,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
               child: Text(
                   'Coming  Soon',
-                  style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(30), color: Colors.grey[800])),
+                  style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(35), color: Colors.black87)),
             ),
           ],
         ),
