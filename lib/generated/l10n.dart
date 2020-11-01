@@ -383,6 +383,26 @@ class S {
     );
   }
 
+  /// `talk is cheap.  show me the code`
+  String get aboutTips05 {
+    return Intl.message(
+      'talk is cheap.  show me the code',
+      name: 'aboutTips05',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `github:  https://github.com/flash-finance`
+  String get aboutTips06 {
+    return Intl.message(
+      'github:  https://github.com/flash-finance',
+      name: 'aboutTips06',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `in the ecosystem of TRON DeFi, the team of Flash Finance hopes to make a series of products: mining, vault, trading, lending and digital wallet, etc.`
   String get aboutTips1 {
     return Intl.message(

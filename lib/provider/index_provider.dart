@@ -28,7 +28,6 @@ class IndexProvider with ChangeNotifier {
 
   changeLangType() async {
     _langType = !_langType;
-    print('changeLangType: $_langType');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_langTypeKey, _langType);
     if (_langType) {

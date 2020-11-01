@@ -112,7 +112,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.only(top: 45, bottom: 45),
+              padding: EdgeInsets.only(top: 30, bottom: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -122,6 +122,35 @@ class _AboutPcPageState extends State<AboutPcPage> {
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Text(
+                      '${S.of(context).aboutTips05}',
+                      style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
+                      maxLines: 1,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      launch(flashGithub).catchError((error) {
+                        print('launch error:$error');
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Text(
+                        '${S.of(context).aboutTips06}',
+                        style: GoogleFonts.lato(
+                          fontSize: 15,
+                          color: MyColors.white,
+                          decoration: TextDecoration.underline,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
                       ),
                     ),
                   ),
