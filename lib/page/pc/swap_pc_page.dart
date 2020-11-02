@@ -2168,6 +2168,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   void setError(msg) {
     print('setError: ${msg.toString()}');
+    Util.showToast('${msg.toString()}');
     setState(() {
       _loadFlag = false;
     });

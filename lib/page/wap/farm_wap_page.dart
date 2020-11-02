@@ -1256,6 +1256,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
 
   void setError4Farm(msg) {
     print('setError4Farm: ${msg.toString()}');
+    Util.showToast('${msg.toString()}');
     setState(() {
       _depositLoadFlag = false;
       _withdrawLoadFlag = false;

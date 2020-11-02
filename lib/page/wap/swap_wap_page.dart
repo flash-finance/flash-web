@@ -1961,6 +1961,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
 
   void setError(msg) {
     print('setError: ${msg.toString()}');
+    Util.showToast('${msg.toString()}');
     setState(() {
       _loadFlag = false;
     });
