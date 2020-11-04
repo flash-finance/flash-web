@@ -438,14 +438,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 3, right: 3),
                   child: Text(
-                    '1  ${_swapRows[_leftSelectIndex].swapTokenName}  ≈  ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName} ',
+                    '1  ${_swapRows[_leftSelectIndex].swapTokenName}  ≈  ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
                     style: GoogleFonts.lato(
                       fontSize: 13,
                       color: MyColors.grey700,
                     ),
                   ),
                 ),
-                Container(
+               /* Container(
                   child: ClipOval(
                     child: Image.network(
                       '${_swapRows[_rightSelectIndex].swapPicUrl}',
@@ -454,10 +454,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
+                ),*/
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 3, right: 3),
+                  padding: EdgeInsets.only(left: 0, right: 3),
                   child: Text(
                     '≈  ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
                     style: GoogleFonts.lato(
@@ -466,7 +466,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ),
                   ),
                 ),
-                Container(
+                /*Container(
                   child: ClipOval(
                     child: Image.asset(
                       'images/usd.png',
@@ -475,7 +475,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
+                ),*/
               ],
             ),
           ) : Container(),
@@ -780,14 +780,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 3, right: 3),
                   child: Text(
-                    '1  ${_swapRows[_rightSelectIndex].swapTokenName}  ≈  ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName} ',
+                    '1  ${_swapRows[_rightSelectIndex].swapTokenName}  ≈  ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
                     style: GoogleFonts.lato(
                       fontSize: 13,
                       color: MyColors.grey700,
                     ),
                   ),
                 ),
-                Container(
+                /*Container(
                   child: ClipOval(
                     child: Image.network(
                       '${_swapRows[_leftSelectIndex].swapPicUrl}',
@@ -796,7 +796,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
+                ),*/
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 3, right: 3),
@@ -808,7 +808,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ),
                   ),
                 ),
-                Container(
+                /*Container(
                   child: ClipOval(
                     child: Image.asset(
                       'images/usd.png',
@@ -817,7 +817,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
+                ),*/
               ],
             ),
           ) : Container(),
