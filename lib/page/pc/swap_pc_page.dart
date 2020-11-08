@@ -15,12 +15,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
 
 import 'bottom_pc_page.dart';
-
 
 class SwapPcPage extends StatefulWidget {
   @override
@@ -164,7 +162,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap1',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,

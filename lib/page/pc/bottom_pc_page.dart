@@ -10,7 +10,7 @@ class _BottomPcPageState extends State<BottomPcPage> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(30),
-      color: Theme.of(context).bottomAppBarColor,
+      color: Colors.white,
       child: Column(
         children: <Widget>[
           Container(
