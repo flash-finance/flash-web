@@ -126,41 +126,49 @@ class _SwapPcPageState extends State<SwapPcPage> {
         child: TopPcPage(_opacity, _account),
       ),
       body: Container(
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          physics: ClampingScrollPhysics(),
-          child: Column(
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    child: SizedBox(
-                      height: 300,
-                      width: screenSize.width,
-                      child: Image.asset(
-                        'images/bg.jpg',
-                        fit: BoxFit.cover,
-                      ),
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  child: SizedBox(
+                    height: 300,
+                    width: screenSize.width,
+                    child: Image.asset(
+                      'images/bg.jpg',
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Column(
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        SizedBox(height: 80),
+                        _topWidget(context),
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      child: Column(
                         children: <Widget>[
-                          SizedBox(height: 80),
-                          _topWidget(context),
+                          SizedBox(height: 205),
                           _bizWidget(context),
                           SizedBox(height: screenSize.height / 6),
                           BottomPcPage(),
                         ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

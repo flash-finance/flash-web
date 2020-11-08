@@ -123,41 +123,45 @@ class _FarmPcPageState extends State<FarmPcPage> {
         child: TopPcPage(_opacity, _account),
       ),
       body: Container(
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          physics: ClampingScrollPhysics(),
-          child: Column(
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    child: SizedBox(
-                      height: 300,
-                      width: screenSize.width,
-                      child: Image.asset(
-                        'images/bg.jpg',
-                        fit: BoxFit.cover,
-                      ),
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  child: SizedBox(
+                    height: 300,
+                    width: screenSize.width,
+                    child: Image.asset(
+                      'images/bg.jpg',
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        SizedBox(height: 80),
+                        _topWidget(context),
+                      ],
+                    ),
+                  ],
+                ),
+                Container(
+                  child: Column(
                     children: <Widget>[
-                      Expanded(
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(height: 80),
-                            _topWidget(context),
-                            _bizWidget(context),
-                          ],
-                        ),
-                      ),
+                      SizedBox(height: 125),
+                      _bizWidget(context),
                     ],
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+            /*Expanded(
+              child: _bizWidget(context),
+            ),*/
+          ],
         ),
       ),
     );
@@ -200,23 +204,13 @@ class _FarmPcPageState extends State<FarmPcPage> {
     );
   }
 
-  Widget _bodyWidget(BuildContext context) {
-    return Container(
-      width: 1000,
-      child: ListView(
-        children: <Widget>[
-          _bizWidget(context),
-        ],
-      ),
-    );
-  }
 
   Widget _bizWidget(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 0),
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
         itemCount: _farmRows.length,
         itemBuilder: (context, index) {
           return _bizSubWidget(context, _farmRows[index], index);
