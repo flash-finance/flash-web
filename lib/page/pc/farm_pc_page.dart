@@ -200,12 +200,23 @@ class _FarmPcPageState extends State<FarmPcPage> {
     );
   }
 
+  Widget _bodyWidget(BuildContext context) {
+    return Container(
+      width: 1000,
+      child: ListView(
+        children: <Widget>[
+          _bizWidget(context),
+        ],
+      ),
+    );
+  }
+
   Widget _bizWidget(BuildContext context) {
     return Container(
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        //physics: NeverScrollableScrollPhysics(),
+        physics: ClampingScrollPhysics(),
         itemCount: _farmRows.length,
         itemBuilder: (context, index) {
           return _bizSubWidget(context, _farmRows[index], index);
