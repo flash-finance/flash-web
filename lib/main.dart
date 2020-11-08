@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
             ),
             headline1: TextStyle(color: Colors.blueGrey[800]),
           ),
-          bottomAppBarColor: Colors.blueGrey[900],
+          bottomAppBarColor: Colors.blueGrey[800],
           iconTheme: IconThemeData(color: Colors.blueGrey),
           brightness: brightness,
         );

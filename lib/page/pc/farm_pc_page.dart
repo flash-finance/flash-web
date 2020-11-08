@@ -53,6 +53,10 @@ class _FarmPcPageState extends State<FarmPcPage> {
   bool _depositEnoughFlag = true;
   bool _withdrawEnoughFlag = true;
 
+  ScrollController _scrollController;
+  double _scrollPosition = 0;
+  double _opacity = 0;
+
   @override
   void initState() {
     super.initState();
@@ -61,10 +65,18 @@ class _FarmPcPageState extends State<FarmPcPage> {
         CommonProvider.changeHomeIndex(1);
       });
     }
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
     Provider.of<IndexProvider>(context, listen: false).init();
     _reloadFarmData();
     _reloadAccount();
     _reloadTokenAmount();
+  }
+
+  _scrollListener() {
+    setState(() {
+      _scrollPosition = _scrollController.position.pixels;
+    });
   }
 
   @override
@@ -90,6 +102,10 @@ class _FarmPcPageState extends State<FarmPcPage> {
   @override
   Widget build(BuildContext context) {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
+
+    var screenSize = MediaQuery.of(context).size;
+    _opacity = _scrollPosition < screenSize.height * 0.40 ? _scrollPosition / (screenSize.height * 0.40) : 0.9;
+    
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
     _toDepositAmountController =  TextEditingController.fromValue(TextEditingValue(text: _toDepositAmount,
@@ -99,47 +115,49 @@ class _FarmPcPageState extends State<FarmPcPage> {
     _toHarvestAmountController =  TextEditingController.fromValue(TextEditingValue(text: _toHarvestAmount,
         selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _toHarvestAmount.length))));
 
-    var screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: MyColors.white,
       appBar: PreferredSize(
         preferredSize: Size(screenSize.width, 1500),
-        child: TopPcPage(_account),
+        child: TopPcPage(_opacity, _account),
       ),
       body: Container(
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  child: SizedBox(
-                    height: 300,
-                    width: screenSize.width,
-                    child: Image.asset(
-                      'images/bg.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(height: 80),
-                          _topWidget(context),
-                          _bizWidget(context),
-                        ],
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          physics: ClampingScrollPhysics(),
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  Container(
+                    child: SizedBox(
+                      height: 300,
+                      width: screenSize.width,
+                      child: Image.asset(
+                        'images/bg.jpg',
+                        fit: BoxFit.cover,
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-          ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(height: 80),
+                            _topWidget(context),
+                            _bizWidget(context),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -187,6 +205,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
+        //physics: NeverScrollableScrollPhysics(),
         itemCount: _farmRows.length,
         itemBuilder: (context, index) {
           return _bizSubWidget(context, _farmRows[index], index);

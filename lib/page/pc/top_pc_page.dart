@@ -12,10 +12,10 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TopPcPage extends StatefulWidget {
-
+  final double opacity;
   final String account;
 
-  TopPcPage(this.account);
+  TopPcPage(this.opacity, this.account);
 
   @override
   _TopPcPageState createState() => _TopPcPageState();
@@ -46,7 +46,7 @@ class _TopPcPageState extends State<TopPcPage> {
     return PreferredSize(
       preferredSize: Size(screenSize.width, 1500),
       child: Container(
-        color: Theme.of(context).bottomAppBarColor.withOpacity(0),
+        color: Theme.of(context).bottomAppBarColor.withOpacity(widget.opacity),
         child: Padding(
           padding: EdgeInsets.only(left: 20, top: 0, right: 20),
           child: Row(

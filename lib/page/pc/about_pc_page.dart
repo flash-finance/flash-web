@@ -26,6 +26,10 @@ class _AboutPcPageState extends State<AboutPcPage> {
   String _account = '';
   Timer _timer0;
 
+  ScrollController _scrollController;
+  double _scrollPosition = 0;
+  double _opacity = 0;
+
   @override
   void initState() {
     super.initState();
@@ -34,9 +38,19 @@ class _AboutPcPageState extends State<AboutPcPage> {
         CommonProvider.changeHomeIndex(4);
       });
     }
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
     Provider.of<IndexProvider>(context, listen: false).init();
     _reloadAccount();
   }
+
+  _scrollListener() {
+    setState(() {
+      _scrollPosition = _scrollController.position.pixels;
+    });
+  }
+
+
 
   @override
   void dispose() {
@@ -51,15 +65,18 @@ class _AboutPcPageState extends State<AboutPcPage> {
   @override
   Widget build(BuildContext context) {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
-    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
+
     var screenSize = MediaQuery.of(context).size;
+    _opacity = _scrollPosition < screenSize.height * 0.40 ? _scrollPosition / (screenSize.height * 0.40) : 0.9;
+
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: MyColors.white,
       appBar: PreferredSize(
         preferredSize: Size(screenSize.width, 1500),
-        child: TopPcPage(_account),
+        child: TopPcPage(_opacity, _account),
       ),
       body: Column(
         children: <Widget>[

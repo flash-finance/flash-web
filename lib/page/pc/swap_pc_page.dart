@@ -55,8 +55,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
   TextEditingController _rightSwapAmountController;
 
   bool _swapFlag = true;
-
   bool _loadFlag = false;
+
+  ScrollController _scrollController;
+  double _scrollPosition = 0;
+  double _opacity = 0;
 
   @override
   void initState() {
@@ -66,10 +69,18 @@ class _SwapPcPageState extends State<SwapPcPage> {
         CommonProvider.changeHomeIndex(0);
       });
     }
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
     Provider.of<IndexProvider>(context, listen: false).init();
     _reloadSwapData();
     _reloadAccount();
     _reloadTokenBalance();
+  }
+
+  _scrollListener() {
+    setState(() {
+      _scrollPosition = _scrollController.position.pixels;
+    });
   }
 
   @override
@@ -96,6 +107,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
   @override
   Widget build(BuildContext context) {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
+
+    var screenSize = MediaQuery.of(context).size;
+    _opacity = _scrollPosition < screenSize.height * 0.40 ? _scrollPosition / (screenSize.height * 0.40) : 0.9;
+
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
     _leftSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _leftSwapAmount,
@@ -103,47 +118,49 @@ class _SwapPcPageState extends State<SwapPcPage> {
     _rightSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _rightSwapAmount,
         selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _rightSwapAmount.length))));
 
-    var screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: MyColors.white,
       appBar: PreferredSize(
         preferredSize: Size(screenSize.width, 1500),
-        child: TopPcPage(_account),
+        child: TopPcPage(_opacity, _account),
       ),
       body: Container(
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  child: SizedBox(
-                    height: 300,
-                    width: screenSize.width,
-                    child: Image.asset(
-                      'images/bg.jpg',
-                      fit: BoxFit.cover,
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          physics: ClampingScrollPhysics(),
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  Container(
+                    child: SizedBox(
+                      height: 300,
+                      width: screenSize.width,
+                      child: Image.asset(
+                        'images/bg.jpg',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        SizedBox(height: 80),
-                        _topWidget(context),
-                        _bizWidget(context),
-                        SizedBox(height: screenSize.height / 6),
-                        BottomPcPage(),
-                      ],
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          SizedBox(height: 80),
+                          _topWidget(context),
+                          _bizWidget(context),
+                          SizedBox(height: screenSize.height / 6),
+                          BottomPcPage(),
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -162,7 +179,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap1',
+                      'Flash  Swap',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
