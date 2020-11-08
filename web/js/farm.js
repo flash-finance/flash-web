@@ -7,13 +7,11 @@ async function getAmount4Farm(tokenType, account, tokenAddress, poolAddress) {
             balanceAmount = result;
         }).catch(e => {
                 console.log('getUnconfirmedBalance error:' + JSON.stringify(e));
-                setError4Farm(JSON.stringify(e));
                 code = 1;
                });
     } else {
         let tokenObj = await tronWeb.contract().at(tokenAddress);
         balanceAmount = await tokenObj.balanceOf(account).call().catch(e => {
-            setError4Farm(JSON.stringify(e));
             console.log('getAmount4Farm balanceOf error:' + JSON.stringify(e));
             code = 1;
         });
@@ -22,12 +20,10 @@ async function getAmount4Farm(tokenType, account, tokenAddress, poolAddress) {
     let poolObj = await tronWeb.contract().at(poolAddress);
     let depositedAmount = await poolObj.balanceOf(account).call().catch(e => {
         console.log('getAmount4Farm balanceOf error:' + JSON.stringify(e));
-        setError4Farm(JSON.stringify(e));
         code = 1;
     });
     let harvestedAmount = await poolObj.earned(account).call().catch(e => {
         console.log('getAmount4Farm earned error:' + JSON.stringify(e));
-        setError4Farm(JSON.stringify(e));
         code = 1;
     });
 

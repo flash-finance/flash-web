@@ -61,39 +61,35 @@ class _LendPcPageState extends State<LendPcPage> {
         preferredSize: Size(screenSize.width, 1500),
         child: TopPcPage(_account),
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
+      body: Column(
+        children: <Widget>[
+          Stack(
             children: <Widget>[
-              Stack(
+              Container(
+                child: SizedBox(
+                  height: 300,
+                  width: screenSize.width,
+                  child: Image.asset(
+                    'images/bg.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                    child: SizedBox(
-                      height: 300,
-                      width: screenSize.width,
-                      child: Image.asset(
-                        'images/bg.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          SizedBox(height: 80),
-                          _topWidget(context),
-                          _bizWidget(context),
-                        ],
-                      )
+                      SizedBox(height: 80),
+                      _topWidget(context),
+                      _bizWidget(context),
                     ],
-                  ),
+                  )
                 ],
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

@@ -109,39 +109,37 @@ class _FarmPcPageState extends State<FarmPcPage> {
         child: TopPcPage(_account),
       ),
       body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    child: SizedBox(
-                      height: 300,
-                      width: screenSize.width,
-                      child: Image.asset(
-                        'images/bg.jpg',
-                        fit: BoxFit.cover,
-                      ),
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  child: SizedBox(
+                    height: 300,
+                    width: screenSize.width,
+                    child: Image.asset(
+                      'images/bg.jpg',
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(height: 80),
-                            _topWidget(context),
-                            _bizWidget(context),
-                          ],
-                        ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: 80),
+                          _topWidget(context),
+                          _bizWidget(context),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
