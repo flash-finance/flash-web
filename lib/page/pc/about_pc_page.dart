@@ -6,10 +6,7 @@ import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/page/pc/top_pc_page.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
-import 'package:flash_web/router/application.dart';
-import 'package:flash_web/util/common_util.dart';
 import 'package:flash_web/util/screen_util.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,6 +22,9 @@ class AboutPcPage extends StatefulWidget {
 }
 
 class _AboutPcPageState extends State<AboutPcPage> {
+  bool _tronFlag = false;
+  String _account = '';
+  Timer _timer0;
 
   @override
   void initState() {
@@ -35,10 +35,16 @@ class _AboutPcPageState extends State<AboutPcPage> {
       });
     }
     Provider.of<IndexProvider>(context, listen: false).init();
+    _reloadAccount();
   }
 
   @override
   void dispose() {
+    if (_timer0 != null) {
+      if (_timer0.isActive) {
+        _timer0.cancel();
+      }
+    }
     super.dispose();
   }
 
@@ -53,7 +59,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
       backgroundColor: MyColors.white,
       appBar: PreferredSize(
         preferredSize: Size(screenSize.width, 1500),
-        child: TopPcPage(),
+        child: TopPcPage(_account),
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -243,6 +249,37 @@ class _AboutPcPageState extends State<AboutPcPage> {
     );
   }
 
+  bool _reloadAccountFlag = false;
 
+  _reloadAccount() async {
+    _getAccount();
+    _timer0 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadAccountFlag) {
+        _getAccount();
+      }
+    });
+  }
+
+  _getAccount() async {
+    _reloadAccountFlag = false;
+    _tronFlag = js.context.hasProperty('tronWeb');
+    if (_tronFlag) {
+      var result = js.context["tronWeb"]["defaultAddress"]["base58"];
+      if (result.toString() != 'false' && result.toString() != _account) {
+        if (mounted) {
+          setState(() {
+            _account = result.toString();
+          });
+        }
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          _account = '';
+        });
+      }
+    }
+    _reloadAccountFlag = true;
+  }
 
 }

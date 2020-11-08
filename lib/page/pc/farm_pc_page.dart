@@ -19,9 +19,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
 
-import 'package:url_launcher/url_launcher.dart';
-
-import 'bottom_pc_page.dart';
 
 class FarmPcPage extends StatefulWidget {
   @override
@@ -30,8 +27,10 @@ class FarmPcPage extends StatefulWidget {
 
 class _FarmPcPageState extends State<FarmPcPage> {
   int _layoutIndex = -1;
+  bool _tronFlag = false;
   String _account = '';
   bool _layoutFlag = false;
+  Timer _timer0;
   Timer _timer1;
   Timer _timer2;
   String _toDepositAmount = '0.00';
@@ -64,11 +63,17 @@ class _FarmPcPageState extends State<FarmPcPage> {
     }
     Provider.of<IndexProvider>(context, listen: false).init();
     _reloadFarmData();
+    _reloadAccount();
     _reloadTokenAmount();
   }
 
   @override
   void dispose() {
+    if (_timer0 != null) {
+      if (_timer0.isActive) {
+        _timer0.cancel();
+      }
+    }
     if (_timer1 != null) {
       if (_timer1.isActive) {
         _timer1.cancel();
@@ -101,7 +106,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
       backgroundColor: MyColors.white,
       appBar: PreferredSize(
         preferredSize: Size(screenSize.width, 1500),
-        child: TopPcPage(),
+        child: TopPcPage(_account),
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -991,6 +996,39 @@ class _FarmPcPageState extends State<FarmPcPage> {
         ),
       ),
     );
+  }
+
+  bool _reloadAccountFlag = false;
+
+  _reloadAccount() async {
+    _getAccount();
+    _timer0 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadAccountFlag) {
+        _getAccount();
+      }
+    });
+  }
+
+  _getAccount() async {
+    _reloadAccountFlag = false;
+    _tronFlag = js.context.hasProperty('tronWeb');
+    if (_tronFlag) {
+      var result = js.context["tronWeb"]["defaultAddress"]["base58"];
+      if (result.toString() != 'false' && result.toString() != _account) {
+        if (mounted) {
+          setState(() {
+            _account = result.toString();
+          });
+        }
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          _account = '';
+        });
+      }
+    }
+    _reloadAccountFlag = true;
   }
 
   FarmData _farmData;

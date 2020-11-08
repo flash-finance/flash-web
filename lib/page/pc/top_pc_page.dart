@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
@@ -11,19 +10,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:js' as js;
 
 class TopPcPage extends StatefulWidget {
+
+  final String account;
+
+  TopPcPage(this.account);
 
   @override
   _TopPcPageState createState() => _TopPcPageState();
 }
 
 class _TopPcPageState extends State<TopPcPage> {
-  bool _tronFlag = false;
-  String _account = '';
-  Timer _timer1;
-
   final List _isHovering = [
     false,
     false,
@@ -34,19 +32,11 @@ class _TopPcPageState extends State<TopPcPage> {
 
   @override
   void initState() {
-    print('TopPcPage init');
     super.initState();
-    _reloadAccount();
   }
 
   @override
   void dispose() {
-    if (_timer1 != null) {
-      if (_timer1.isActive) {
-        _timer1.cancel();
-      }
-    }
-
     super.dispose();
   }
 
@@ -140,7 +130,7 @@ class _TopPcPageState extends State<TopPcPage> {
   Widget _actionAccountWidget(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (_account == '') {
+        if (widget.account == '') {
           _showConnectWalletDialLog(context);
         }
       },
@@ -150,7 +140,7 @@ class _TopPcPageState extends State<TopPcPage> {
           padding: EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
           backgroundColor: Colors.blue[500].withOpacity(0.9),
           label: Text(
-            _account == '' ? '${S.of(context).actionTitle5}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
+            widget.account == '' ? '${S.of(context).actionTitle5}' : widget.account.substring(0, 4) + '...' + widget.account.substring(widget.account.length - 4, widget.account.length),
             style: TextStyle(
               letterSpacing: 0.2,
               color: MyColors.white,
@@ -241,39 +231,6 @@ class _TopPcPageState extends State<TopPcPage> {
         ),
       ),
     );
-  }
-
-  bool _reloadAccountFlag = false;
-
-  _reloadAccount() async {
-    _getAccount();
-    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
-      if (_reloadAccountFlag) {
-        _getAccount();
-      }
-    });
-  }
-
-  _getAccount() async {
-    _reloadAccountFlag = false;
-    _tronFlag = js.context.hasProperty('tronWeb');
-    if (_tronFlag) {
-      var result = js.context["tronWeb"]["defaultAddress"]["base58"];
-      if (result.toString() != 'false' && result.toString() != _account) {
-        if (mounted) {
-          setState(() {
-            _account = result.toString();
-          });
-        }
-      }
-    } else {
-      if (mounted) {
-        setState(() {
-          _account = '';
-        });
-      }
-    }
-    _reloadAccountFlag = true;
   }
 
 }

@@ -28,9 +28,11 @@ class SwapPcPage extends StatefulWidget {
 }
 
 class _SwapPcPageState extends State<SwapPcPage> {
+  bool _tronFlag = false;
   String _account = '';
   String _leftKey = '';
   String _rightKey = '';
+  Timer _timer0;
   Timer _timer1;
   Timer _timer2;
 
@@ -60,7 +62,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   @override
   void initState() {
-    print('SwapPcPage initState');
     super.initState();
     if (mounted) {
       setState(() {
@@ -69,12 +70,18 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
     Provider.of<IndexProvider>(context, listen: false).init();
     _reloadSwapData();
+    _reloadAccount();
     _reloadTokenBalance();
   }
 
   @override
   void dispose() {
     print('SwapPcPage dispose');
+    if (_timer0 != null) {
+      if (_timer0.isActive) {
+        _timer0.cancel();
+      }
+    }
     if (_timer1 != null) {
       if (_timer1.isActive) {
         _timer1.cancel();
@@ -105,7 +112,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
       backgroundColor: MyColors.white,
       appBar: PreferredSize(
         preferredSize: Size(screenSize.width, 1500),
-        child: TopPcPage(),
+        child: TopPcPage(_account),
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -1670,6 +1677,39 @@ class _SwapPcPageState extends State<SwapPcPage> {
         ),
       ),
     );
+  }
+
+  bool _reloadAccountFlag = false;
+
+  _reloadAccount() async {
+    _getAccount();
+    _timer0 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadAccountFlag) {
+        _getAccount();
+      }
+    });
+  }
+
+  _getAccount() async {
+    _reloadAccountFlag = false;
+    _tronFlag = js.context.hasProperty('tronWeb');
+    if (_tronFlag) {
+      var result = js.context["tronWeb"]["defaultAddress"]["base58"];
+      if (result.toString() != 'false' && result.toString() != _account) {
+        if (mounted) {
+          setState(() {
+            _account = result.toString();
+          });
+        }
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          _account = '';
+        });
+      }
+    }
+    _reloadAccountFlag = true;
   }
 
   Widget _swapWidget(BuildContext context) {
