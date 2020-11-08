@@ -1083,6 +1083,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
   }
 
   _getTokenAmount(int type) async {
+    js.context['setError4Farm']=setError4Farm;
     _reloadTokenAmountFlag = false;
     if (_account != '') {
       for (int i=0; i<_farmRows.length; i++) {
