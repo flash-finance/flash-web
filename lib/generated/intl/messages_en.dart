@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "farmStaked" : MessageLookupByLibrary.simpleMessage("Staked"),
     "farmStakedWap" : MessageLookupByLibrary.simpleMessage("Staked  USD"),
     "farmTips01" : MessageLookupByLibrary.simpleMessage("mining:  directly to the platform of SUN"),
+    "farmTotalStakedValue" : MessageLookupByLibrary.simpleMessage("Total Staked Value"),
     "farmWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
     "installWallet" : MessageLookupByLibrary.simpleMessage("Haven\'t installed TronLink yet? Click here>>"),
     "lendTips01" : MessageLookupByLibrary.simpleMessage("lending:  open source,  security,  convenience"),

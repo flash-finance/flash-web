@@ -251,7 +251,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
               SizedBox(width: 10),
               Container(
                 child: Text(
-                  '总锁仓价值',
+                  '${S.of(context).farmTotalStakedValue}',
                   style: GoogleFonts.lato(
                     fontSize: 15,
                     color: MyColors.grey700,
@@ -319,7 +319,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                 child: Text(
                   'USD',
                   style: GoogleFonts.lato(
-                    fontSize: 15,
+                    fontSize: 14,
                     color: MyColors.grey700,
                   ),
                 ),

@@ -253,6 +253,16 @@ class S {
     );
   }
 
+  /// `Total Staked Value`
+  String get farmTotalStakedValue {
+    return Intl.message(
+      'Total Staked Value',
+      name: 'farmTotalStakedValue',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Staked`
   String get farmStaked {
     return Intl.message(

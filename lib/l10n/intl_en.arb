@@ -24,6 +24,7 @@
   "swapToken": "Token",
   "swapTokenNotEnough": "Token Not Enough",
 
+  "farmTotalStakedValue": "Total Staked Value",
   "farmStaked": "Staked",
   "farmDeadline": "Deadline",
   "farmBalance": "Balance",
