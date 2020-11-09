@@ -221,7 +221,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
             elevation: 3,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: Container(
-              padding: EdgeInsets.only(top: 30, bottom: 30),
+              padding: EdgeInsets.only(top: 28, bottom: 28),
               child : _descItemWidget(context),
             ),
           ),
@@ -260,6 +260,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
               ),
             ],
           ),
+          SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -335,7 +336,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
     return Container(
       child: Column(
         children: <Widget>[
-          SizedBox(height: index == 0 ? 35 : 0),
+          SizedBox(height: index == 0 ? 38 : 0),
           !_layoutFlag ? _oneWidget(context, item, index) : (_layoutIndex == index ? _twoWidget(context, item, index) : _oneWidget(context, item, index)),
           SizedBox(height: 10),
           SizedBox(height: index == _farmRows.length - 1 ? 50 : 0),
