@@ -41,6 +41,10 @@ class _FarmPcPageState extends State<FarmPcPage> {
   String _toWithdrawValue = '0.00';
   String _toHarvestValue = '0.00';
 
+  double _trxPrice = 0;
+  double _totalTrx = 0;
+  double _totalUsd = 0;
+
 
   TextEditingController _toDepositAmountController;
   TextEditingController _toWithdrawAmountController;
@@ -55,7 +59,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
   ScrollController _scrollController;
   double _scrollPosition = 0;
-  double _opacity = 0;
 
   @override
   void initState() {
@@ -65,19 +68,12 @@ class _FarmPcPageState extends State<FarmPcPage> {
         CommonProvider.changeHomeIndex(1);
       });
     }
-    _scrollController = ScrollController();
-    _scrollController.addListener(_scrollListener);
     Provider.of<IndexProvider>(context, listen: false).init();
     _reloadFarmData();
     _reloadAccount();
     _reloadTokenAmount();
   }
 
-  _scrollListener() {
-    setState(() {
-      _scrollPosition = _scrollController.position.pixels;
-    });
-  }
 
   @override
   void dispose() {
@@ -104,8 +100,6 @@ class _FarmPcPageState extends State<FarmPcPage> {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
 
     var screenSize = MediaQuery.of(context).size;
-    _opacity = _scrollPosition < screenSize.height * 0.40 ? _scrollPosition / (screenSize.height * 0.40) : 0.9;
-    
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
     _toDepositAmountController =  TextEditingController.fromValue(TextEditingValue(text: _toDepositAmount,
@@ -119,48 +113,60 @@ class _FarmPcPageState extends State<FarmPcPage> {
       extendBodyBehindAppBar: true,
       backgroundColor: MyColors.white,
       appBar: PreferredSize(
-        preferredSize: Size(screenSize.width, 1500),
-        child: TopPcPage(_opacity, _account),
+        child: AppBar(
+          elevation: 0,
+        ),
+        preferredSize: Size.fromHeight(0),
       ),
       body: Container(
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  child: SizedBox(
-                    height: 300,
-                    width: screenSize.width,
-                    child: Image.asset(
-                      'images/bg.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+        color: MyColors.white,
+        child: CustomScrollView(
+          controller: _scrollController,
+          slivers: <Widget>[
+            SliverAppBar(
+              leading: Container(),
+              expandedHeight: 300,
+              backgroundColor: MyColors.white,
+              flexibleSpace: Container(
+                child: Stack(
                   children: <Widget>[
-                    Column(
+                    Container(
+                      child: SizedBox(
+                        height: 300,
+                        width: screenSize.width,
+                        child: Image.asset(
+                          'images/bg.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    TopPcPage(0, _account),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 80),
-                        _topWidget(context),
+                        Column(
+                          children: <Widget>[
+                            SizedBox(height: 80),
+                            _topWidget(context),
+                            SizedBox(height: 30),
+                            Expanded(
+                              child: _descWidget(context),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ],
                 ),
-                Container(
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(height: 125),
-                      _bizWidget(context),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
-            /*Expanded(
-              child: _bizWidget(context),
-            ),*/
+            SliverList(
+              delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+                return _bizSubWidget(context, _farmRows[index], index);
+              },
+                childCount: _farmRows.length,
+              ),
+            ),
           ],
         ),
       ),
@@ -173,7 +179,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-            Container(
+          Container(
               padding: EdgeInsets.only(top: 30, bottom: 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -198,31 +204,138 @@ class _FarmPcPageState extends State<FarmPcPage> {
                   ),
                 ],
               )
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _descWidget(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        Container(
+          width: 1000,
+          child: Card(
+            color: MyColors.white,
+            elevation: 3,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            child: Container(
+              padding: EdgeInsets.only(top: 30, bottom: 30),
+              child : _descItemWidget(context),
             ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _descItemWidget(BuildContext context) {
+    return Container(
+      color: MyColors.white,
+      width: 1000,
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(width: 50),
+              Container(
+                child: Image.asset(
+                  'images/total.png',
+                  width: 30,
+                  height: 30,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(width: 10),
+              Container(
+                child: Text(
+                  '总锁仓价值',
+                  style: GoogleFonts.lato(
+                    fontSize: 15,
+                    color: MyColors.grey700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(width: 50),
+              Container(
+                child: Text(
+                  '  ≈  ',
+                  style: GoogleFonts.lato(
+                    fontSize: 18,
+                    color: MyColors.grey700,
+                  ),
+                ),
+              ),
+              SizedBox(width: 5),
+              Container(
+                child: Text(
+                  '${_totalTrx.toStringAsFixed(0)}',
+                  style: GoogleFonts.lato(
+                    fontSize: 20,
+                    color: MyColors.black87,
+                  ),
+                ),
+              ),
+              SizedBox(width: 5),
+              Container(
+                child: Text(
+                  ' TRX',
+                  style: GoogleFonts.lato(
+                    fontSize: 16,
+                    color: MyColors.black87,
+                  ),
+                ),
+              ),
+              SizedBox(width: 5),
+              Container(
+                child: Text(
+                  '  ≈  ',
+                  style: GoogleFonts.lato(
+                    fontSize: 18,
+                    color: MyColors.grey700,
+                  ),
+                ),
+              ),
+              SizedBox(width: 5),
+              Container(
+                child: Text(
+                  '${_totalUsd.toStringAsFixed(0)}',
+                  style: GoogleFonts.lato(
+                    fontSize: 15,
+                    color: MyColors.grey700,
+                  ),
+                ),
+              ),
+              SizedBox(width: 5),
+              Container(
+                child: Text(
+                  'USD',
+                  style: GoogleFonts.lato(
+                    fontSize: 15,
+                    color: MyColors.grey700,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 
 
-  Widget _bizWidget(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 0),
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        itemCount: _farmRows.length,
-        itemBuilder: (context, index) {
-          return _bizSubWidget(context, _farmRows[index], index);
-        },
-      ),
-    );
-  }
-
   Widget _bizSubWidget(BuildContext context, FarmRow item, int index) {
     return Container(
       child: Column(
         children: <Widget>[
+          SizedBox(height: index == 0 ? 35 : 0),
           !_layoutFlag ? _oneWidget(context, item, index) : (_layoutIndex == index ? _twoWidget(context, item, index) : _oneWidget(context, item, index)),
           SizedBox(height: 10),
           SizedBox(height: index == _farmRows.length - 1 ? 50 : 0),
@@ -340,7 +453,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                   SizedBox(height: 8),
                   Container(
                     child: Text(
-                     item.poolType == 1 ? 'Token': 'LP Token',
+                      item.poolType == 1 ? 'Token': 'LP Token',
                       style: GoogleFonts.lato(
                         fontSize: 14.5,
                         color: MyColors.grey700,
@@ -356,7 +469,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-              Container(
+                  Container(
                     child: Text(
                       '${item.depositTokenValue.toStringAsFixed(0)}  USD',
                       style: GoogleFonts.lato(
@@ -923,9 +1036,9 @@ class _FarmPcPageState extends State<FarmPcPage> {
                           ),
                         ),
                       ) :  Container(
-                    color: Colors.blue[500],
-                      child: CupertinoActivityIndicator(),
-                    ),
+                        color: Colors.blue[500],
+                        child: CupertinoActivityIndicator(),
+                      ),
                     ),
                   ),
                 ),
@@ -1078,6 +1191,19 @@ class _FarmPcPageState extends State<FarmPcPage> {
           _farmData = respModel.data;
           if (_farmData != null && _farmData.rows != null && _farmData.rows.length > 0) {
             _farmRows = _farmData.rows;
+            _totalTrx = 0;
+            _totalUsd = 0;
+            for (int i = 0; i < _farmRows.length; i++) {
+              _totalUsd += _farmRows[i].depositTokenValue;
+              if (_farmRows[i].depositTokenType == 1) {
+                _trxPrice = _farmRows[i].depositTokenPrice;
+                _totalTrx += _farmRows[i].depositTotalSupply;
+              } else {
+                if (_trxPrice > 0) {
+                  _totalTrx += _farmRows[i].depositTotalSupply * _farmRows[i].depositTokenPrice / _trxPrice;
+                }
+              }
+            }
           }
         }
       });
@@ -1111,7 +1237,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
       for (int i=0; i<_farmRows.length; i++) {
         String _key = '$_account+${_farmRows[i].depositTokenAddress}';
         if (type == 1 || _tokenAmountMap[_key] == null || _tokenAmountMap[_key].balanceAmount == null
-             || _tokenAmountMap[_key].depositedAmount == null &&  _tokenAmountMap[_key].harvestedAmount == null) {
+            || _tokenAmountMap[_key].depositedAmount == null &&  _tokenAmountMap[_key].harvestedAmount == null) {
           js.context.callMethod('getAmount4Farm', [_farmRows[i].depositTokenType, _account, _farmRows[i].depositTokenAddress, _farmRows[i].poolAddress]);
         }
       }

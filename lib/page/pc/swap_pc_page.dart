@@ -57,10 +57,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   bool _swapFlag = true;
   bool _loadFlag = false;
 
-  ScrollController _scrollController;
-  double _scrollPosition = 0;
-  double _opacity = 0;
-
   @override
   void initState() {
     super.initState();
@@ -69,18 +65,11 @@ class _SwapPcPageState extends State<SwapPcPage> {
         CommonProvider.changeHomeIndex(0);
       });
     }
-    _scrollController = ScrollController();
-    _scrollController.addListener(_scrollListener);
+
     Provider.of<IndexProvider>(context, listen: false).init();
     _reloadSwapData();
     _reloadAccount();
     _reloadTokenBalance();
-  }
-
-  _scrollListener() {
-    setState(() {
-      _scrollPosition = _scrollController.position.pixels;
-    });
   }
 
   @override
@@ -109,8 +98,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
 
     var screenSize = MediaQuery.of(context).size;
-    _opacity = _scrollPosition < screenSize.height * 0.40 ? _scrollPosition / (screenSize.height * 0.40) : 0.9;
-
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
     _leftSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _leftSwapAmount,
@@ -122,53 +109,59 @@ class _SwapPcPageState extends State<SwapPcPage> {
       extendBodyBehindAppBar: true,
       backgroundColor: MyColors.white,
       appBar: PreferredSize(
-        preferredSize: Size(screenSize.width, 1500),
-        child: TopPcPage(_opacity, _account),
+        child: AppBar(
+          elevation: 0,
+        ),
+        preferredSize: Size.fromHeight(0),
       ),
       body: Container(
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  child: SizedBox(
-                    height: 300,
-                    width: screenSize.width,
-                    child: Image.asset(
-                      'images/bg.jpg',
-                      fit: BoxFit.cover,
+        child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  Container(
+                    child: SizedBox(
+                      height: 300,
+                      width: screenSize.width,
+                      child: Image.asset(
+                        'images/bg.jpg',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        SizedBox(height: 80),
-                        _topWidget(context),
-                      ],
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      child: Column(
+                  TopPcPage(0, _account),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Column(
                         children: <Widget>[
-                          SizedBox(height: 205),
-                          _bizWidget(context),
-                          SizedBox(height: screenSize.height / 6),
-                          BottomPcPage(),
+                          SizedBox(height: 80),
+                          _topWidget(context),
                         ],
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ],
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(height: 205),
+                            _bizWidget(context),
+                            SizedBox(height: screenSize.height / 6),
+                            BottomPcPage(),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -231,15 +224,15 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   Widget _dataWidget(BuildContext context) {
     return Container(
-      child: Row(
-        children: <Widget>[
-          _dataLeftWidget(context),
-          SizedBox(width: 10),
-          _dataMidWidget(context),
-          SizedBox(width: 10),
-          _dataRightWidget(context),
-        ],
-      )
+        child: Row(
+          children: <Widget>[
+            _dataLeftWidget(context),
+            SizedBox(width: 10),
+            _dataMidWidget(context),
+            SizedBox(width: 10),
+            _dataRightWidget(context),
+          ],
+        )
     );
   }
 
@@ -264,26 +257,26 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 ),
                 Container(
                   padding: EdgeInsets.only(right: 2),
-                    child: RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: '${S.of(context).swapBalance}:  ',
-                            style: GoogleFonts.lato(
-                              fontSize: 16,
-                              color: MyColors.grey700,
-                            ),
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '${S.of(context).swapBalance}:  ',
+                          style: GoogleFonts.lato(
+                            fontSize: 16,
+                            color: MyColors.grey700,
                           ),
-                          TextSpan(
-                            text: '${Util.formatNum(double.parse(_leftBalanceAmount), 4)}',
-                            style: GoogleFonts.lato(
-                              fontSize: 16,
-                              color: MyColors.black87,
-                            ),
+                        ),
+                        TextSpan(
+                          text: '${Util.formatNum(double.parse(_leftBalanceAmount), 4)}',
+                          style: GoogleFonts.lato(
+                            fontSize: 16,
+                            color: MyColors.black87,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
+                  ),
                 ),
               ],
             ),
@@ -374,7 +367,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
 
                             if (leftAmount > double.parse(_leftBalanceAmount)) {
-                                _swapFlag = false;
+                              _swapFlag = false;
                             } else {
                               _swapFlag = true;
                             }
@@ -460,7 +453,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ),
                   ),
                 ),
-               /* Container(
+                /* Container(
                   child: ClipOval(
                     child: Image.network(
                       '${_swapRows[_rightSelectIndex].swapPicUrl}',
@@ -1046,14 +1039,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
               width: 160,
               alignment: Alignment.center,
               child: type == 1 ? Text(
-              '${Util.formatNum(item.swapTokenPrice2, 6)}',
-              style: TextStyle(
-                color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
-                fontSize: 14,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ) : Text(
+                '${Util.formatNum(item.swapTokenPrice2, 6)}',
+                style: TextStyle(
+                  color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
+                  fontSize: 14,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ) : Text(
                 '${Util.formatNum(item.swapTokenPrice2, 6)}',
                 style: TextStyle(
                   color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
@@ -1901,9 +1894,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   void setApprove(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue) {
     if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
-        js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
+      js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
     } else if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
-        js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, _account, baseTokenAddress]);
+      js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, _account, baseTokenAddress]);
     }
   }
 
