@@ -349,9 +349,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         border: InputBorder.none,
                       ),
                       style: TextStyle(
-                        color: Colors.grey[800],
+                        color: MyColors.black87,
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
                       ),
                       keyboardType: TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [MyNumberTextInputFormatter(digit:6)],
@@ -690,9 +689,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         border: InputBorder.none,
                       ),
                       style: TextStyle(
-                        color: Colors.grey[800],
+                        color: MyColors.black87,
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
                       ),
                       keyboardType: TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [MyNumberTextInputFormatter(digit:6)],
