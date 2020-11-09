@@ -267,7 +267,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
               SizedBox(width: 50),
               Container(
                 child: Text(
-                  '  ≈  ',
+                  ' ≈  ',
                   style: GoogleFonts.lato(
                     fontSize: 18,
                     color: MyColors.grey700,

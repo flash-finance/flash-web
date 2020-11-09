@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
         title: 'Flash Finance',
         theme: data,
         debugShowCheckedModeBanner: false,
+        onGenerateRoute: Application.router.generator,
         home: isNotMobile ? SwapPcPage() : SwapWapPage(),
         localizationsDelegates: [
           S.delegate,
