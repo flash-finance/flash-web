@@ -38,19 +38,10 @@ class _AboutPcPageState extends State<AboutPcPage> {
         CommonProvider.changeHomeIndex(4);
       });
     }
-    _scrollController = ScrollController();
-    _scrollController.addListener(_scrollListener);
+
     Provider.of<IndexProvider>(context, listen: false).init();
     _reloadAccount();
   }
-
-  _scrollListener() {
-    setState(() {
-      _scrollPosition = _scrollController.position.pixels;
-    });
-  }
-
-
 
   @override
   void dispose() {
@@ -67,46 +58,64 @@ class _AboutPcPageState extends State<AboutPcPage> {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
 
     var screenSize = MediaQuery.of(context).size;
-    _opacity = _scrollPosition < screenSize.height * 0.40 ? _scrollPosition / (screenSize.height * 0.40) : 0.9;
-
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: MyColors.white,
       appBar: PreferredSize(
-        preferredSize: Size(screenSize.width, 1500),
-        child: TopPcPage(_opacity, _account),
+        child: AppBar(
+          elevation: 0,
+        ),
+        preferredSize: Size.fromHeight(0),
       ),
-      body: Column(
-        children: <Widget>[
-          Stack(
+      body: Container(
+        child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: Column(
             children: <Widget>[
-              Container(
-                child: SizedBox(
-                  height: 300,
-                  width: screenSize.width,
-                  child: Image.asset(
-                    'images/bg.jpg',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Stack(
                 children: <Widget>[
-                  Column(
+                  Container(
+                    child: SizedBox(
+                      height: 300,
+                      width: screenSize.width,
+                      child: Image.asset(
+                        'images/bg.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  TopPcPage(0, _account),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(height: 80),
-                      _topWidget(context),
-                      _bizWidget(context),
+                      Column(
+                        children: <Widget>[
+                          SizedBox(height: 80),
+                          _topWidget(context),
+                        ],
+                      )
                     ],
-                  )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(height: 230),
+                            _bizWidget(context),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
