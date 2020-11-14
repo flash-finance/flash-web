@@ -151,8 +151,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           children: <Widget>[
                             SizedBox(height: 205),
                             _bizWidget(context),
-                            SizedBox(height: screenSize.height / 6),
-                            BottomPcPage(),
+                            //SizedBox(height: screenSize.height / 6),
+                            //BottomPcPage(),
                           ],
                         ),
                       )
@@ -565,10 +565,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
             height: 50,
             color: MyColors.white,
             alignment: Alignment.center,
-            margin: EdgeInsets.only(bottom: 35),
+            margin: EdgeInsets.only(bottom: 30),
             child: Icon(
-              Icons.swap_horiz,
-              size: 28,
+              Icons.sync,
+              size: 25,
               color: Colors.grey[700],
             ),
           )
