@@ -59,7 +59,7 @@ class _TopPcPageState extends State<TopPcPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     _actionItemWidget(context, '${S.of(context).actionTitle0}', 0),
-                    _actionItemWidget(context, '${S.of(context).actionTitle1}', 1),
+                    //_actionItemWidget(context, '${S.of(context).actionTitle1}', 1),
                     _actionItemWidget(context, '${S.of(context).actionTitle2}', 2),
                     _actionItemWidget(context, '${S.of(context).actionTitle3}', 3),
                     _actionItemWidget(context, '${S.of(context).actionTitle4}', 4),

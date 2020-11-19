@@ -198,7 +198,7 @@ class _WalletWapPageState extends State<WalletWapPage> {
                 color: _homeIndex == 0 ? Colors.black87 : Colors.grey[700],
               ),
             ),
-            ListTile(
+           /*ListTile(
               title: Text(
                 '${S.of(context).actionTitle1}',
                 style: GoogleFonts.lato(
@@ -219,7 +219,7 @@ class _WalletWapPageState extends State<WalletWapPage> {
                 Icons.assistant,
                 color: _homeIndex == 1 ? Colors.black87 : Colors.grey[700],
               ),
-            ),
+            ),*/
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle2}',
