@@ -83,10 +83,10 @@ class S {
     );
   }
 
-  /// `Connect Wallet`
+  /// `Connect  Wallet`
   String get actionTitle5 {
     return Intl.message(
-      'Connect Wallet',
+      'Connect  Wallet',
       name: 'actionTitle5',
       desc: '',
       args: [],

@@ -48,9 +48,10 @@ class Util {
   static TextStyle textStyle4Appbar(BuildContext context, int type, Color color, {double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 12.0;
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
     return TextStyle(
       fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
-      letterSpacing: letterSpacing,
+      letterSpacing: langType ? letterSpacing : 0.0,
       color: color,
       fontSize: fontSize,
     );
@@ -59,6 +60,7 @@ class Util {
   static TextStyle textStyle(BuildContext context, int type, Color color, {double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 12.0;
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
     return TextStyle(
       fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
       letterSpacing: letterSpacing,
