@@ -403,10 +403,10 @@ class S {
     );
   }
 
-  /// `talk is cheap.  show me the code`
+  /// `to make finance easier`
   String get aboutTips01 {
     return Intl.message(
-      'talk is cheap.  show me the code',
+      'to make finance easier',
       name: 'aboutTips01',
       desc: '',
       args: [],

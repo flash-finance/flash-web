@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "aboutTips01" : MessageLookupByLibrary.simpleMessage("talk is cheap.  show me the code"),
+    "aboutTips01" : MessageLookupByLibrary.simpleMessage("让金融变得更简单"),
     "aboutTips02" : MessageLookupByLibrary.simpleMessage("https://github.com/flash-finance"),
     "aboutTips03" : MessageLookupByLibrary.simpleMessage("目前,  不私募,  不发币"),
     "aboutTips04" : MessageLookupByLibrary.simpleMessage("交易平台:  没有自建的资金池,  交易安全,  0.01%手续费"),
