@@ -87,7 +87,9 @@ class _TopPcPageState extends State<TopPcPage> {
                               icon: Icon(IconData(0xe8e9, fontFamily: 'ICON'), size: 23.0, color: Colors.grey[900]),
                               color: Colors.grey[900],
                               onPressed: () {
-
+                                launch(twitter).catchError((error) {
+                                  print('launch error:$error');
+                                });
                               },
                             ),
                           ),
@@ -110,7 +112,9 @@ class _TopPcPageState extends State<TopPcPage> {
                                 icon: Icon(IconData(0xe600, fontFamily: 'ICON'), size: 20.0, color: Colors.grey[900]),
                                 color: Colors.grey[900],
                                 onPressed: () {
-
+                                  launch(flashGithub).catchError((error) {
+                                    print('launch error:$error');
+                                  });
                                 },
                               ),
                             ),
@@ -265,8 +269,7 @@ class _TopPcPageState extends State<TopPcPage> {
                         style: GoogleFonts.lato(
                           fontSize: 14.0,
                           letterSpacing: 0.2,
-                          color: Colors.grey[800],
-                          //decoration: TextDecoration.underline,
+                          color: Colors.grey[900],
                         ),
                       ),
                     )),
