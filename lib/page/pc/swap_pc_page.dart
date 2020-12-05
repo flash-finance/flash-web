@@ -1730,7 +1730,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ),
             ),
           ) : Container(
-            color: MyColors.buttonColor.withOpacity(0.86),
             child: CupertinoActivityIndicator(),
           ),
         ),
