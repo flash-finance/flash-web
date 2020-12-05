@@ -20,7 +20,7 @@ class _BottomPcPageState extends State<BottomPcPage> {
             child: Text(
               'Copyright © 2020 | Flash Finance',
               style: TextStyle(
-                color: Colors.grey[900],
+                color: Colors.black87,
                 fontSize: 14.5,
               ),
             ),
