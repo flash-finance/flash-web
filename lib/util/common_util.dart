@@ -18,7 +18,7 @@ class Util {
       backgroundColor: Colors.blue[600],
       textColor: Colors.white,
       fontSize: 16.0,
-      webBgColor: "linear-gradient(to bottom, #1976D2, #2196F3)",
+      webBgColor: "linear-gradient(to bottom, #1976D2, #1E88E5)",
       webPosition: "center",
     );
   }

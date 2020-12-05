@@ -76,7 +76,7 @@ class _TopPcPageState extends State<TopPcPage> {
                       height: 50.0,
                       width: 50.0,
                       child: Opacity(
-                        opacity: 0.8,
+                        opacity: 0.9,
                         child: Center(
                           child: Card(
                             elevation: 5.0,
@@ -99,7 +99,7 @@ class _TopPcPageState extends State<TopPcPage> {
                         height: 50.0,
                         width: 50.0,
                         child: Opacity(
-                          opacity: 0.8,
+                          opacity: 0.9,
                           child: Center(
                             child: Card(
                               elevation: 5.0,
@@ -184,7 +184,7 @@ class _TopPcPageState extends State<TopPcPage> {
       },
       child: Container(
         child: Opacity(
-          opacity: 0.8,
+          opacity: 0.9,
           child: Chip(
             elevation: 1,
             padding: EdgeInsets.only(left: 20, top: 10, bottom: 10, right: 20),
@@ -208,7 +208,7 @@ class _TopPcPageState extends State<TopPcPage> {
         child: Container(
           margin: EdgeInsets.only(left: 15),
           child: Opacity(
-            opacity: 0.8,
+            opacity: 0.9,
             child: Chip(
               elevation: 1,
               padding: EdgeInsets.only(left: 20, top: 10, bottom: 10, right: 20),
