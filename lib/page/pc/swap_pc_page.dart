@@ -478,7 +478,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: MyColors.buttonColor.withOpacity(0.9),
+                      color: MyColors.buttonColor.withOpacity(0.86),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
@@ -770,16 +770,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ),
                   ),
                 ),
-                /*Container(
-                  child: ClipOval(
-                    child: Image.network(
-                      '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                      width: 17,
-                      height: 17,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),*/
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 3, right: 3),
@@ -1729,7 +1719,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         color: Colors.white,
         child: Chip(
           padding: _swapFlag ? EdgeInsets.only(left: 55, top: 15, right: 55, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
-          backgroundColor: MyColors.buttonColor.withOpacity(0.9),
+          backgroundColor: MyColors.buttonColor.withOpacity(0.86),
           label: !_loadFlag ? Container(
             child: Text(
               _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
@@ -1740,7 +1730,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ),
             ),
           ) : Container(
-            color: MyColors.buttonColor.withOpacity(0.9),
+            color: MyColors.buttonColor.withOpacity(0.86),
             child: CupertinoActivityIndicator(),
           ),
         ),
