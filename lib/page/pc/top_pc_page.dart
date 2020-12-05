@@ -191,7 +191,7 @@ class _TopPcPageState extends State<TopPcPage> {
             backgroundColor: Colors.white,
             label: Text(
               widget.account == '' ? '${S.of(context).actionTitle5}' : widget.account.substring(0, 4) + '...' + widget.account.substring(widget.account.length - 4, widget.account.length),
-              style: Util.textStyle4Appbar(context, 1, Colors.grey[900], spacing: 0.2, size: 14),
+              style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.2, size: 14),
             ),
           ),
         ),
@@ -215,7 +215,7 @@ class _TopPcPageState extends State<TopPcPage> {
               backgroundColor: Colors.white,
               label: Text(
                 'English/中文',
-                style: Util.textStyle4Appbar(context, 1, Colors.grey[900], spacing: 0.2, size: 14),
+                style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.2, size: 14),
               ),
             ),
           ),

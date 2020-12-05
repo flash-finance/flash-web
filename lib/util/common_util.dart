@@ -1,5 +1,6 @@
 import 'package:common_utils/common_utils.dart';
 import 'package:flash_web/common/color.dart';
+import 'package:flash_web/common/screen_utils.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -61,9 +62,13 @@ class Util {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 12.0;
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    return TextStyle(
+    return langType ? TextStyle(
       fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
       letterSpacing: letterSpacing,
+      color: color,
+      fontSize: fontSize,
+    ) :GoogleFonts.lato(
+      letterSpacing: 0.0,
       color: color,
       fontSize: fontSize,
     );
