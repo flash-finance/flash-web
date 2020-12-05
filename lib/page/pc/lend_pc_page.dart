@@ -5,6 +5,7 @@ import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/page/pc/top_pc_page.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
+import 'package:flash_web/util/common_util.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -139,7 +140,7 @@ class _LendPcPageState extends State<LendPcPage> {
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).lendTips01}',
-                      style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
+                      style: Util.textStyle4Appbar(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),

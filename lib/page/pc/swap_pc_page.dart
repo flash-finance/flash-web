@@ -897,7 +897,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
 
     return InkWell(
-      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderRadius: BorderRadius.all(Radius.circular(5.0)),
       onTap: () {
         if (type == 1 && index != _rightSelectIndex) {
           _leftSelectIndex = index;

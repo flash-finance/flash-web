@@ -197,7 +197,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).farmTips01}',
-                      style: GoogleFonts.lato(fontSize: 15, color: MyColors.white),
+                      style: Util.textStyle4Appbar(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),

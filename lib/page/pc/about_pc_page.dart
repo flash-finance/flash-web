@@ -6,6 +6,7 @@ import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/page/pc/top_pc_page.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
+import 'package:flash_web/util/common_util.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
@@ -99,7 +100,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
                           Container(
                             child: Column(
                               children: <Widget>[
-                                SizedBox(height: 230),
+                                SizedBox(height: 205),
                                 _bizWidget(context),
                               ],
                             ),
@@ -127,7 +128,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.only(top: 30, bottom: 30),
+              padding: EdgeInsets.only(top: 30, bottom: 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -144,40 +145,9 @@ class _AboutPcPageState extends State<AboutPcPage> {
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).aboutTips01}',
-                      style: GoogleFonts.lato(fontSize: 14, color: MyColors.white),
+                      style: Util.textStyle4Appbar(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      launch(flashGithub).catchError((error) {
-                        print('launch error:$error');
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(top: 10),
-                      child: RichText(
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'github:  ',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.white,
-                              ),
-                            ),
-                            TextSpan(
-                              text: '${S.of(context).aboutTips02}',
-                              style: GoogleFonts.lato(
-                                fontSize: 16,
-                                color: MyColors.white,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
                   ),
                 ],
@@ -202,7 +172,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 '${S.of(context).aboutTips03}',
-                style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800]),
+                style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
@@ -211,36 +181,30 @@ class _AboutPcPageState extends State<AboutPcPage> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 '${S.of(context).aboutTips04}',
-                style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800]),
+                style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
             ),
             InkWell(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
               onTap: () {
                 launch(swapContract).catchError((error) {
                   print('launch error:$error');
                 });
               },
               child: Container(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
+                padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
                 child: RichText(
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
                         text: '${S.of(context).aboutTips051}',
-                        style: GoogleFonts.lato(
-                            fontSize: 16,
-                            color: Colors.grey[800],
-                        ),
+                        style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
                       ),
                       TextSpan(
                         text: '${S.of(context).aboutTips052}',
-                        style: GoogleFonts.lato(
-                          fontSize: 14,
-                          color: Colors.grey[800],
-                          decoration: TextDecoration.underline,
-                        ),
+                        style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.0, size: 14),
                       ),
                     ],
                   ),
@@ -251,7 +215,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 '${S.of(context).aboutTips06}',
-                style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800]),
+                style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
@@ -260,7 +224,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 '${S.of(context).aboutTips07}',
-                style: GoogleFonts.lato(fontSize: 16, color: Colors.grey[800]),
+                style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
