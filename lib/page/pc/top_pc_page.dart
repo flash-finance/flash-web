@@ -1,6 +1,7 @@
 import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
+import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/router/application.dart';
 import 'package:flash_web/util/common_util.dart';
@@ -132,6 +133,7 @@ class _TopPcPageState extends State<TopPcPage> {
   }
 
   Widget _actionItemWidget(BuildContext context, String name, int index) {
+    bool flag = CommonProvider.homeIndex == index;
     return  InkWell(
       onHover: (value) {
         setState(() {
@@ -159,7 +161,10 @@ class _TopPcPageState extends State<TopPcPage> {
             padding: EdgeInsets.only(top: 5),
             child: Text(
               '$name',
-              style: Util.textStyle4Appbar(context, 1, _isHovering[index] ? Colors.blue[200] : Colors.white, spacing: 0.2, size: 15),
+              style: Util.textStyle4Appbar(
+                  context, 1,
+                  flag ? Colors.blue[200] : (_isHovering[index] ? Colors.blue[200] : Colors.white),
+                  spacing: 0.2, size: 15),
             ),
           ),
           SizedBox(height: 5),
@@ -167,7 +172,7 @@ class _TopPcPageState extends State<TopPcPage> {
             maintainAnimation: true,
             maintainState: true,
             maintainSize: true,
-            visible: _isHovering[index],
+            visible: flag ? true : _isHovering[index],
             child: Container(
               height: 2,
               width: 20,
