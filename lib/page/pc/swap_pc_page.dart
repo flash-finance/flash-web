@@ -478,7 +478,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.blue[700],
+                      color: Colors.blue[800],
                       borderRadius: BorderRadius.circular(6),
                     ),
                     padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
@@ -1729,7 +1729,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         color: Colors.white,
         child: Chip(
           padding: _swapFlag ? EdgeInsets.only(left: 55, top: 15, right: 55, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
-          backgroundColor:  Colors.blue[700],
+          backgroundColor:  Colors.blue[800],
           label: !_loadFlag ? Container(
             child: Text(
               _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
@@ -1740,7 +1740,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ),
             ),
           ) : Container(
-            color: Colors.blue[500],
+            color: Colors.blue[800],
             child: CupertinoActivityIndicator(),
           ),
         ),

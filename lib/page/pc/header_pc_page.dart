@@ -1,3 +1,4 @@
+import 'package:flash_web/common/color.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class _HeaderPcPageState extends State<HeaderPcPage> {
     var screenSize = MediaQuery.of(context).size;
 
     return Container(
-      color: Color(0xff151e5a),
+      color: MyColors.headerColor,
       child: SizedBox(
         height: 300,
         width: screenSize.width,
