@@ -1,4 +1,5 @@
 import 'package:common_utils/common_utils.dart';
+import 'package:flash_web/common/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,10 +16,28 @@ class Util {
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: times,
-      backgroundColor: Colors.blue[600],
+      backgroundColor: Colors.blue[500],
       textColor: Colors.white,
       fontSize: 16.0,
-      webBgColor: "linear-gradient(to bottom, #1976D2, #1E88E5)",
+      webBgColor: "linear-gradient(to bottom, #1976D2, #2196F3)",
+      webPosition: "center",
+    );
+  }
+
+  static showToast4Pc(String value, {int timeValue}) {
+    int times = 3;
+    if (timeValue != null && timeValue > 0) {
+      times = timeValue;
+    }
+    Fluttertoast.showToast(
+      msg: value,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: times,
+      backgroundColor: MyColors.buttonColor,
+      textColor: Colors.white,
+      fontSize: 16.0,
+      webBgColor: "linear-gradient(to bottom, #003399, #003399)",
       webPosition: "center",
     );
   }

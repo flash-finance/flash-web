@@ -32,5 +32,6 @@ class MyColors {
   static const Color darkRed = Color(0xB3E53935);
 
   static const Color headerColor = Color(0xFF151E5A);
+  static const Color buttonColor = Color(0xFF003399);
 
 }

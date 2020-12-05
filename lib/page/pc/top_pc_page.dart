@@ -203,7 +203,7 @@ class _TopPcPageState extends State<TopPcPage> {
     return InkWell(
         onTap: () {
           Provider.of<IndexProvider>(context, listen: false).changeLangType();
-          Util.showToast(S.of(context).success, timeValue: 1);
+          Util.showToast4Pc(S.of(context).success, timeValue: 1);
         },
         child: Container(
           margin: EdgeInsets.only(left: 15),

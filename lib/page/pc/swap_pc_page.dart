@@ -478,7 +478,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.blue[600],
+                      color: MyColors.buttonColor.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
@@ -1729,7 +1729,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         color: Colors.white,
         child: Chip(
           padding: _swapFlag ? EdgeInsets.only(left: 55, top: 15, right: 55, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
-          backgroundColor:  Colors.blue[600],
+          backgroundColor: MyColors.buttonColor.withOpacity(0.9),
           label: !_loadFlag ? Container(
             child: Text(
               _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
@@ -1740,7 +1740,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ),
             ),
           ) : Container(
-            color: Colors.blue[800],
+            color: MyColors.buttonColor.withOpacity(0.9),
             child: CupertinoActivityIndicator(),
           ),
         ),
@@ -1879,7 +1879,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
-    Util.showToast(S.of(context).success);
+    Util.showToast4Pc(S.of(context).success);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
@@ -1900,7 +1900,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
-    Util.showToast(S.of(context).success);
+    Util.showToast4Pc(S.of(context).success);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
@@ -1921,7 +1921,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     setState(() {
       _loadFlag = false;
     });
-    Util.showToast(S.of(context).success);
+    Util.showToast4Pc(S.of(context).success);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         js.context.callMethod('getTokenBalance', [2, leftToken, _account]);
@@ -1940,7 +1940,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
   void setError(msg) {
     print('setError: ${msg.toString()}');
-    Util.showToast('${msg.toString()}');
+    Util.showToast4Pc('${msg.toString()}');
     setState(() {
       _loadFlag = false;
     });
