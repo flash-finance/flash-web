@@ -478,7 +478,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: MyColors.buttonColor.withOpacity(0.86),
+                      color: MyColors.blueColor1.withOpacity(0.86),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
@@ -1719,7 +1719,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
         color: Colors.white,
         child: Chip(
           padding: _swapFlag ? EdgeInsets.only(left: 55, top: 15, right: 55, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
-          backgroundColor: MyColors.buttonColor.withOpacity(0.86),
+          backgroundColor: MyColors.blueColor1.withOpacity(0.86),
           label: !_loadFlag ? Container(
             child: Text(
               _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
