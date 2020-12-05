@@ -8,12 +8,17 @@ import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:flutter/material.dart';
+import 'package:footer/footer.dart';
+import 'package:footer/footer_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
 
 import 'package:url_launcher/url_launcher.dart';
+
+import 'bottom_pc_page.dart';
+import 'header_pc_page.dart';
 
 
 class AboutPcPage extends StatefulWidget {
@@ -56,65 +61,60 @@ class _AboutPcPageState extends State<AboutPcPage> {
   @override
   Widget build(BuildContext context) {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
-
-    var screenSize = MediaQuery.of(context).size;
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: MyColors.white,
+      backgroundColor: Colors.grey[200],
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
         ),
         preferredSize: Size.fromHeight(0),
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: Column(
-            children: <Widget>[
-              Stack(
+      body: FooterView(
+        children: <Widget>[
+          Container(
+            child: SingleChildScrollView(
+              physics: ClampingScrollPhysics(),
+              child: Column(
                 children: <Widget>[
-                  Container(
-                    child: SizedBox(
-                      height: 300,
-                      width: screenSize.width,
-                      child: Image.asset(
-                        'images/bg.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  TopPcPage(0, _account),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Stack(
                     children: <Widget>[
-                      Column(
+                      HeaderPcPage(),
+                      TopPcPage(0, _account),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(height: 80),
-                          _topWidget(context),
+                          Column(
+                            children: <Widget>[
+                              SizedBox(height: 80),
+                              _topWidget(context),
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(height: 230),
-                            _bizWidget(context),
-                          ],
-                        ),
-                      )
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(height: 230),
+                                _bizWidget(context),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
+        ],
+        footer: Footer(
+          child: BottomPcPage(),
         ),
       ),
     );

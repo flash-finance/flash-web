@@ -34,7 +34,7 @@ dependencies:
   google_fonts: ^1.1.0
   shared_preferences: ^0.5.12
   provider: ^4.3.2+2
-  fluro: ^1.7.4
+  fluro: ^1.7.8
   flutter_screenutil: ^3.1.1
   flutter_swiper: ^1.1.6
   common_utils: ^1.2.1
@@ -42,6 +42,7 @@ dependencies:
   decimal: ^0.3.5
   fluttertoast: ^7.1.1
   dynamic_theme: ^1.0.1
+  footer: ^0.0.3
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +61,22 @@ flutter:
 
   assets:
     - images/
+    -
+  fonts:
+    - family: SHS-M
+      fonts:
+        - asset: fonts/scn-medium.ttf
+          weight: 700
+
+    - family: SHS-R
+      fonts:
+        - asset: fonts/scn-regular.ttf
+          weight: 700
+
+    - family: ICON
+      fonts:
+        - asset: fonts/iconfont.ttf
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

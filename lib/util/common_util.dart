@@ -23,6 +23,17 @@ class Util {
     );
   }
 
+  static TextStyle textStyle(BuildContext context, int type, Color color, {double spacing, double size}) {
+    double letterSpacing = spacing != null ? spacing : 0.0;
+    double fontSize = size != null ? size : 12.0;
+    return TextStyle(
+      fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
+      letterSpacing: letterSpacing,
+      color: color,
+      fontSize: fontSize,
+    );
+  }
+
   static String removeDecimalZeroFormat(double x){
     int i = x.truncate() ;
     if(x == i){

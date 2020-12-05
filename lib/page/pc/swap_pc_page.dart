@@ -13,12 +13,15 @@ import 'package:flash_web/util/common_util.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:footer/footer.dart';
+import 'package:footer/footer_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
 
 import 'bottom_pc_page.dart';
+import 'header_pc_page.dart';
 
 class SwapPcPage extends StatefulWidget {
   @override
@@ -96,8 +99,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
   @override
   Widget build(BuildContext context) {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
-
-    var screenSize = MediaQuery.of(context).size;
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
     _leftSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _leftSwapAmount,
@@ -107,61 +108,57 @@ class _SwapPcPageState extends State<SwapPcPage> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: MyColors.white,
+      backgroundColor: Colors.grey[200],
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
         ),
         preferredSize: Size.fromHeight(0),
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: Column(
-            children: <Widget>[
-              Stack(
+      body: FooterView(
+        children: <Widget>[
+          Container(
+            child: SingleChildScrollView(
+              physics: ClampingScrollPhysics(),
+              child: Column(
                 children: <Widget>[
-                  Container(
-                    child: SizedBox(
-                      height: 300,
-                      width: screenSize.width,
-                      child: Image.asset(
-                        'images/bg.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  TopPcPage(0, _account),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Stack(
                     children: <Widget>[
-                      Column(
+                      HeaderPcPage(),
+                      TopPcPage(0, _account),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(height: 80),
-                          _topWidget(context),
+                          Column(
+                            children: <Widget>[
+                              SizedBox(height: 80),
+                              _topWidget(context),
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(height: 205),
-                            _bizWidget(context),
-                            //SizedBox(height: screenSize.height / 6),
-                            //BottomPcPage(),
-                          ],
-                        ),
-                      )
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(height: 205),
+                                _bizWidget(context),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          )
+        ],
+        footer: Footer(
+          child: BottomPcPage(),
         ),
       ),
     );
@@ -452,16 +449,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ),
                   ),
                 ),
-                /* Container(
-                  child: ClipOval(
-                    child: Image.network(
-                      '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                      width: 17,
-                      height: 17,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),*/
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 0, right: 3),
@@ -473,16 +460,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ),
                   ),
                 ),
-                /*Container(
-                  child: ClipOval(
-                    child: Image.asset(
-                      'images/usd.png',
-                      width: 19,
-                      height: 19,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),*/
               ],
             ),
           ) : Container(),
@@ -501,7 +478,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.blue[500],
+                      color: Colors.blue[700],
                       borderRadius: BorderRadius.circular(6),
                     ),
                     padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
@@ -1751,8 +1728,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
       child: Container(
         color: Colors.white,
         child: Chip(
-          padding: _swapFlag ? EdgeInsets.only(left: 70, top: 15, right: 70, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
-          backgroundColor:  MyColors.blue500,
+          padding: _swapFlag ? EdgeInsets.only(left: 55, top: 15, right: 55, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
+          backgroundColor:  Colors.blue[700],
           label: !_loadFlag ? Container(
             child: Text(
               _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',

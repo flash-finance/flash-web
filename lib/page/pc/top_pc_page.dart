@@ -41,17 +41,21 @@ class _TopPcPageState extends State<TopPcPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
     var screenSize = MediaQuery.of(context).size;
     return PreferredSize(
       preferredSize: Size(screenSize.width, 1500),
       child: Container(
         color: Theme.of(context).bottomAppBarColor.withOpacity(widget.opacity),
         child: Padding(
-          padding: EdgeInsets.only(left: 20, top: 0, right: 20),
+          padding: EdgeInsets.only(left: 40, top: 0, right: 40),
           child: Row(
             children: <Widget>[
-              Container(
-                child: Image.asset('images/logo.png', fit: BoxFit.contain, width: 80, height: 80),
+              Opacity(
+                opacity: 0.8,
+                child: Container(
+                  child: Image.asset('images/logo.png', fit: BoxFit.contain, width: 80, height: 80),
+                ),
               ),
               Expanded(
                 child: Row(
@@ -63,11 +67,56 @@ class _TopPcPageState extends State<TopPcPage> {
                     _actionItemWidget(context, '${S.of(context).actionTitle2}', 2),
                     _actionItemWidget(context, '${S.of(context).actionTitle3}', 3),
                     _actionItemWidget(context, '${S.of(context).actionTitle4}', 4),
-                    SizedBox(width: 20),
+                    SizedBox(width: 10),
                     _actionAccountWidget(context),
-                    SizedBox(width: 20),
+                    SizedBox(width: 10),
                     _actionLangWidget(context),
                     SizedBox(width: 20),
+                    Container(
+                      height: 50.0,
+                      width: 50.0,
+                      child: Opacity(
+                        opacity: 0.8,
+                        child: Center(
+                          child: Card(
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            child: IconButton(
+                              icon: Icon(IconData(0xe8e9, fontFamily: 'ICON'), size: 23.0, color: Colors.grey[900]),
+                              color: Colors.grey[900],
+                              onPressed: () {
+
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Container(
+                        height: 50.0,
+                        width: 50.0,
+                        child: Opacity(
+                          opacity: 0.8,
+                          child: Center(
+                            child: Card(
+                              elevation: 5.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25.0),
+                              ),
+                              child: IconButton(
+                                icon: Icon(IconData(0xe600, fontFamily: 'ICON'), size: 20.0, color: Colors.grey[900]),
+                                color: Colors.grey[900],
+                                onPressed: () {
+
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                    ),
                   ],
                 ),
               ),
@@ -102,11 +151,11 @@ class _TopPcPageState extends State<TopPcPage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(width: 60),
-          Text(
-            '$name',
-            style: TextStyle(
-              color: _isHovering[index] ? Colors.blue[200] : Colors.white,
-              fontSize: 15,
+          Container(
+            padding: EdgeInsets.only(top: 5),
+            child: Text(
+              '$name',
+              style: Util.textStyle(context, 1, _isHovering[index] ? Colors.blue[200] : Colors.white, spacing: 0.2, size: 15),
             ),
           ),
           SizedBox(height: 5),
@@ -134,16 +183,15 @@ class _TopPcPageState extends State<TopPcPage> {
         }
       },
       child: Container(
-        child: Chip(
-          elevation: 1,
-          padding: EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
-          backgroundColor: Colors.blue[500].withOpacity(0.9),
-          label: Text(
-            widget.account == '' ? '${S.of(context).actionTitle5}' : widget.account.substring(0, 4) + '...' + widget.account.substring(widget.account.length - 4, widget.account.length),
-            style: TextStyle(
-              letterSpacing: 0.2,
-              color: MyColors.white,
-              fontSize: 14,
+        child: Opacity(
+          opacity: 0.8,
+          child: Chip(
+            elevation: 1,
+            padding: EdgeInsets.only(left: 20, top: 10, bottom: 10, right: 20),
+            backgroundColor: Colors.white,
+            label: Text(
+              widget.account == '' ? '${S.of(context).actionTitle5}' : widget.account.substring(0, 4) + '...' + widget.account.substring(widget.account.length - 4, widget.account.length),
+              style: Util.textStyle(context, 1, Colors.grey[900], spacing: 0.2, size: 14),
             ),
           ),
         ),
@@ -153,29 +201,27 @@ class _TopPcPageState extends State<TopPcPage> {
 
   Widget _actionLangWidget(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Provider.of<IndexProvider>(context, listen: false).changeLangType();
-        Util.showToast(S.of(context).success, timeValue: 1);
-      },
-      child: Container(
-        margin: EdgeInsets.only(left: 15),
-        child: Chip(
-          elevation: 1,
-          padding: EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
-          backgroundColor: Colors.blue[500].withOpacity(0.9),
-          label: Text(
-            'English/中文',
-            style: TextStyle(
-              letterSpacing: 0.2,
-              color: MyColors.white,
-              fontSize: 14,
+        onTap: () {
+          Provider.of<IndexProvider>(context, listen: false).changeLangType();
+          Util.showToast(S.of(context).success, timeValue: 1);
+        },
+        child: Container(
+          margin: EdgeInsets.only(left: 15),
+          child: Opacity(
+            opacity: 0.8,
+            child: Chip(
+              elevation: 1,
+              padding: EdgeInsets.only(left: 20, top: 10, bottom: 10, right: 20),
+              backgroundColor: Colors.white,
+              label: Text(
+                'English/中文',
+                style: Util.textStyle(context, 1, Colors.grey[900], spacing: 0.2, size: 14),
+              ),
             ),
           ),
-        ),
-      )
+        )
     );
   }
-
 
   _showConnectWalletDialLog(BuildContext context) {
     showDialog(
