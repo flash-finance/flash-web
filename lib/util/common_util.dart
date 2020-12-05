@@ -15,7 +15,7 @@ class Util {
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: times,
-      backgroundColor: Colors.blue[500],
+      backgroundColor: Colors.blue[600],
       textColor: Colors.white,
       fontSize: 16.0,
       webBgColor: "linear-gradient(to bottom, #1976D2, #2196F3)",
