@@ -1,8 +1,11 @@
 import 'package:common_utils/common_utils.dart';
 import 'package:flash_web/common/color.dart';
+import 'package:flash_web/provider/index_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class Util {
 
@@ -39,6 +42,17 @@ class Util {
       fontSize: 16.0,
       webBgColor: "linear-gradient(to bottom, #003399, #003399)",
       webPosition: "center",
+    );
+  }
+
+  static TextStyle textStyle4Appbar(BuildContext context, int type, Color color, {double spacing, double size}) {
+    double letterSpacing = spacing != null ? spacing : 0.0;
+    double fontSize = size != null ? size : 12.0;
+    return TextStyle(
+      fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
+      letterSpacing: letterSpacing,
+      color: color,
+      fontSize: fontSize,
     );
   }
 
