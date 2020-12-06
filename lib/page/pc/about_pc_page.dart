@@ -133,7 +133,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
                   Container(
                     child: Text(
                       'Flash  Finance',
-                      style: Util.textStyle4Pc(context, 1, Colors.white, spacing: 0.0, size: 30),
+                      style: Util.textStyle4Pc(context, 1, Colors.grey[100], spacing: 0.0, size: 30),
                     ),
                   ),
                   Container(

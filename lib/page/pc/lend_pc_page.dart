@@ -129,7 +129,7 @@ class _LendPcPageState extends State<LendPcPage> {
                   Container(
                     child: Text(
                       'Flash  Lend',
-                      style: Util.textStyle4Pc(context, 1, Colors.white, spacing: 0.0, size: 30),
+                      style: Util.textStyle4Pc(context, 1, Colors.grey[100], spacing: 0.0, size: 30),
                     ),
                   ),
                   Container(
