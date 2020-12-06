@@ -845,12 +845,12 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     alignment: Alignment.centerLeft,
                     child: type == 1 ? Text(
                       '${item.swapTokenName}',
-                      style: Util.textStyle4Wap(context, 2, index != _rightSelectIndex  ? Colors.grey[800] :Colors.black26, spacing: 0.0, size: 26),
+                      style: Util.textStyle4WapEn(context, 2, index != _rightSelectIndex  ? Colors.grey[800] :Colors.grey[500], spacing: 0.0, size: 26),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ) : Text(
                       '${item.swapTokenName}',
-                      style: Util.textStyle4Wap(context, 2, index != _leftSelectIndex  ? Colors.grey[800] :Colors.black26, spacing: 0.0, size: 26),
+                      style: Util.textStyle4WapEn(context, 2, index != _leftSelectIndex  ? Colors.grey[800] :Colors.grey[500], spacing: 0.0, size: 26),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -865,7 +865,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 child: type == 1 ? Text(
                   '${Util.formatNum(item.swapTokenPrice2, 6)}',
                   style: TextStyle(
-                    color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
+                    color: index != _rightSelectIndex  ? Colors.grey[800] :Colors.grey[500],
                     fontSize: ScreenUtil().setSp(26),
                     fontWeight: FontWeight.w500,
                   ),
@@ -874,7 +874,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 ) : Text(
                   '${Util.formatNum(item.swapTokenPrice2, 6)}',
                   style: TextStyle(
-                    color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
+                    color: index != _leftSelectIndex  ? Colors.grey[800] :Colors.grey[500],
                     fontSize: ScreenUtil().setSp(26),
                     fontWeight: FontWeight.w500,
                   ),
