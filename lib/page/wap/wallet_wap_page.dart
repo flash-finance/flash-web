@@ -101,7 +101,7 @@ class _WalletWapPageState extends State<WalletWapPage> {
                   Container(
                     child: Text(
                       'Flash  Wallet',
-                      style: Util.textStyle4Wap(context, 1, Colors.white, spacing: 0.0, size: 40),
+                      style: Util.textStyle4WapEn(context, 1, Colors.white, spacing: 0.0, size: 40),
                     ),
                   ),
                   Container(

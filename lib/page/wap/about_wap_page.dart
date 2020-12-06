@@ -104,7 +104,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
                   Container(
                     child: Text(
                       'Flash  Finance',
-                      style: Util.textStyle4Wap(context, 1, Colors.white, spacing: 0.0, size: 40),
+                      style: Util.textStyle4WapEn(context, 1, Colors.white, spacing: 0.0, size: 40),
                     ),
                   ),
                   Container(

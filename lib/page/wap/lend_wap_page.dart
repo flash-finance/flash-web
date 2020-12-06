@@ -101,7 +101,7 @@ class _LendWapPageState extends State<LendWapPage> {
                   Container(
                     child: Text(
                       'Flash  Lend',
-                      style: Util.textStyle4Wap(context, 1, Colors.white, spacing: 0.0, size: 40),
+                      style: Util.textStyle4WapEn(context, 1, Colors.white, spacing: 0.0, size: 40),
                     ),
                   ),
                   Container(
