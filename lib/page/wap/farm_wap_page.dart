@@ -938,10 +938,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle0}',
-                style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(32),
-                  color: _homeIndex == 0 ? Colors.black : Colors.grey[700],
-                ),
+                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 0 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -960,10 +957,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle2}',
-                style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(32),
-                  color: _homeIndex == 2 ? Colors.black : Colors.grey[700],
-                ),
+                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 2 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -982,10 +976,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle3}',
-                style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(32),
-                  color: _homeIndex == 3 ? Colors.black : Colors.grey[700],
-                ),
+                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 3 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1004,10 +995,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
             ListTile(
               title:  Text(
                 '${S.of(context).actionTitle4}',
-                style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(32),
-                  color: _homeIndex == 4 ? Colors.black : Colors.grey[700],
-                ),
+                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 4 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1025,10 +1013,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
             ListTile(
               title: Text(
                 _account == '' ? '${S.of(context).connectAccount}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
-                style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(32),
-                  color: Colors.grey[700],
-                ),
+                style: Util.textStyle4WapAppBar(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1042,10 +1027,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
             ListTile(
               title: Text(
                 'English/中文',
-                style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(32),
-                  color: Colors.grey[700],
-                ),
+                style: Util.textStyle4WapAppBar(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
