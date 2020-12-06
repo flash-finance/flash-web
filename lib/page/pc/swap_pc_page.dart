@@ -178,7 +178,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   Container(
                     child: Text(
                       'Flash  Swap',
-                      style: Util.textStyle4Pc(context, 1, Colors.grey[100], spacing: 0.0, size: 30),
+                      style: Util.textStyle4Pc(context, 1, Colors.grey[100], spacing: 0.0, size: 28),
                     ),
                   ),
                   Container(
