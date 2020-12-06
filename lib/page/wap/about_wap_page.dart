@@ -290,32 +290,10 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
               },
               leading: Icon(
-                Icons.swap_horizontal_circle,
+                Icons.donut_small,
                 color: _homeIndex == 0 ? Colors.black87 : Colors.grey[700],
               ),
             ),
-            /*ListTile(
-              title: Text(
-                '${S.of(context).actionTitle1}',
-                style: GoogleFonts.lato(
-                  fontSize: ScreenUtil().setSp(32),
-                  color: _homeIndex == 1 ? Colors.black : Colors.grey[700],
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                setState(() {
-                  CommonProvider.changeHomeIndex(1);
-                });
-                Application.router.navigateTo(context, 'wap/farm', transition: TransitionType.fadeIn);
-              },
-              leading: Icon(
-                Icons.assistant,
-                color: _homeIndex == 1 ? Colors.black87 : Colors.grey[700],
-              ),
-            ),*/
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle2}',
