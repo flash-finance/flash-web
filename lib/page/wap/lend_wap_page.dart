@@ -134,8 +134,9 @@ class _LendWapPageState extends State<LendWapPage> {
           children: <Widget>[
             Container(
               child: Text(
-                  'Coming  Soon',
-                  style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(35), color: Colors.black87)),
+                'Coming  Soon',
+                style: Util.textStyle4Wap(context, 1, Colors.grey[800], spacing: 0.0, size: 35),
+              ),
             ),
           ],
         ),

@@ -138,17 +138,8 @@ class _AboutWapPageState extends State<AboutWapPage> {
             Container(
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
               child: Text(
-                '${S.of(context).aboutTips03}',
-                style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(25), color: Colors.black87),
-                maxLines: 1,
-                overflow: TextOverflow.clip,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
-              child: Text(
                 '${S.of(context).aboutTips04}',
-                style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(25), color: Colors.black87),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 25),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
@@ -160,24 +151,17 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 });
               },
               child: Container(
-                padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+                padding: EdgeInsets.only(left: ScreenUtil().setWidth(10), top: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(10), bottom: ScreenUtil().setHeight(10)),
                 child: RichText(
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
                         text: '${S.of(context).aboutTips051}',
-                        style: GoogleFonts.lato(
-                          fontSize: ScreenUtil().setSp(25),
-                          color: Colors.black87,
-                        ),
+                        style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 25),
                       ),
                       TextSpan(
                         text: '${S.of(context).aboutTips052}',
-                        style: GoogleFonts.lato(
-                          fontSize:  ScreenUtil().setSp(23),
-                          color: Colors.black87,
-                          decoration: TextDecoration.underline,
-                        ),
+                        style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 23),
                       ),
                     ],
                   ),
@@ -187,17 +171,8 @@ class _AboutWapPageState extends State<AboutWapPage> {
             Container(
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
               child: Text(
-                '${S.of(context).aboutTips06}',
-                style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(25), color: Colors.black87),
-                maxLines: 1,
-                overflow: TextOverflow.clip,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
-              child: Text(
                 '${S.of(context).aboutTips07}',
-                style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(25), color: Colors.black87),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 25),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
