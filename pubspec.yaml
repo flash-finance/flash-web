@@ -65,12 +65,12 @@ flutter:
   fonts:
     - family: ZH-M
       fonts:
-        - asset: fonts/scn-medium.ttf
+        - asset: fonts/PingFangSC-Medium.ttf
           weight: 700
 
     - family: ZN-R
       fonts:
-        - asset: fonts/scn-regular.ttf
+        - asset: fonts/PingFangSC-Regular.ttf
           weight: 700
 
     - family: EN-M
