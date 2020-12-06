@@ -403,10 +403,10 @@ class S {
     );
   }
 
-  /// `to make finance easier`
+  /// `to make finance simpler`
   String get aboutTips01 {
     return Intl.message(
-      'to make finance easier',
+      'to make finance simpler',
       name: 'aboutTips01',
       desc: '',
       args: [],

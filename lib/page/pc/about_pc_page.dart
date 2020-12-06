@@ -171,15 +171,6 @@ class _AboutPcPageState extends State<AboutPcPage> {
             Container(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
-                '${S.of(context).aboutTips03}',
-                style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
-                maxLines: 1,
-                overflow: TextOverflow.clip,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: Text(
                 '${S.of(context).aboutTips04}',
                 style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
                 maxLines: 1,
@@ -211,15 +202,6 @@ class _AboutPcPageState extends State<AboutPcPage> {
                 ),
                 ),
               ),
-            Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: Text(
-                '${S.of(context).aboutTips06}',
-                style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
-                maxLines: 1,
-                overflow: TextOverflow.clip,
-              ),
-            ),
             Container(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
