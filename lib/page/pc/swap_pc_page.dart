@@ -188,7 +188,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).swapTips01}',
-                      style: Util.textStyle4Appbar(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
+                      style: Util.textStyle4PcAppbar(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -246,7 +246,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   padding: EdgeInsets.only(left: 2),
                   child: Text(
                     '${S.of(context).swapSend}',
-                    style: Util.textStyle(context, 1, Colors.black87, spacing: 0.0, size: 16),
+                    style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.0, size: 16),
                   ),
                 ),
                 Container(
@@ -256,7 +256,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       children: <TextSpan>[
                         TextSpan(
                           text: '${S.of(context).swapBalance}:  ',
-                          style: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.0, size: 16),
+                          style: Util.textStyle4Pc(context, 1, Colors.grey[700], spacing: 0.0, size: 16),
                         ),
                         TextSpan(
                           text: '${Util.formatNum(double.parse(_leftBalanceAmount), 4)}',
@@ -478,7 +478,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
                     child: Text(
                       '${S.of(context).swapPooledTokens}',
-                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.0, size: 12),
+                      style: Util.textStyle4Pc(context, 1, Colors.white, spacing: 0.0, size: 12),
                     ),
                   ),
                 ),
@@ -556,7 +556,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   padding: EdgeInsets.only(left: 2),
                   child: Text(
                     '${S.of(context).swapReceive}',
-                    style: Util.textStyle(context, 1, Colors.black87, spacing: 0.0, size: 16),
+                    style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.0, size: 16),
                   ),
                 ),
                 Container(
@@ -566,7 +566,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       children: <TextSpan>[
                         TextSpan(
                           text: '${S.of(context).swapBalance}:  ',
-                          style: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.0, size: 16),
+                          style: Util.textStyle4Pc(context, 1, Colors.grey[700], spacing: 0.0, size: 16),
                         ),
                         TextSpan(
                           text: '${Util.formatNum(double.parse(_rightBalanceAmount), 4)}',
@@ -784,7 +784,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
                     child: Text(
                       '${S.of(context).swapPooledTokens}',
-                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.0, size: 12),
+                      style: Util.textStyle4Pc(context, 1, Colors.white, spacing: 0.0, size: 12),
                     ),
                   ),
                 ),
@@ -1693,7 +1693,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
           label: !_loadFlag ? Container(
             child: Text(
               _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
-              style: Util.textStyle(context, 1, Colors.white, spacing: _swapFlag ? 0.7 : 0.2, size: 15),
+              style: Util.textStyle4Pc(context, 1, Colors.white, spacing: _swapFlag ? 0.7 : 0.2, size: 15),
             ),
           ) : Container(
             child: CupertinoActivityIndicator(),

@@ -161,7 +161,7 @@ class _TopPcPageState extends State<TopPcPage> {
             padding: EdgeInsets.only(top: 5),
             child: Text(
               '$name',
-              style: Util.textStyle4Appbar(
+              style: Util.textStyle4PcAppbar(
                   context, 1,
                   flag ? Colors.blue[200] : (_isHovering[index] ? Colors.blue[200] : Colors.white),
                   spacing: 0.2, size: 15),
@@ -200,7 +200,7 @@ class _TopPcPageState extends State<TopPcPage> {
             backgroundColor: Colors.white,
             label: Text(
               widget.account == '' ? '${S.of(context).actionTitle5}' : widget.account.substring(0, 4) + '...' + widget.account.substring(widget.account.length - 4, widget.account.length),
-              style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.2, size: 14),
+              style: Util.textStyle4PcAppbar(context, 1, Colors.black87, spacing: 0.2, size: 14),
             ),
           ),
         ),
@@ -224,7 +224,7 @@ class _TopPcPageState extends State<TopPcPage> {
               backgroundColor: Colors.white,
               label: Text(
                 'English/中文',
-                style: Util.textStyle4Appbar(context, 1, Colors.black87, spacing: 0.2, size: 14),
+                style: Util.textStyle4PcAppbar(context, 1, Colors.black87, spacing: 0.2, size: 14),
               ),
             ),
           ),

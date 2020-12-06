@@ -139,7 +139,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).walletTips01}',
-                      style: Util.textStyle4Appbar(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
+                      style: Util.textStyle4PcAppbar(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
