@@ -1,9 +1,9 @@
 import 'package:common_utils/common_utils.dart';
 import 'package:flash_web/common/color.dart';
-import 'package:flash_web/common/screen_utils.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -71,6 +71,18 @@ class Util {
       letterSpacing: 0.0,
       color: color,
       fontSize: fontSize,
+    );
+  }
+
+  static TextStyle textStyle4WapAppBar(BuildContext context, int type, Color color, {double spacing, double size}) {
+    double letterSpacing = spacing != null ? spacing : 0.0;
+    double fontSize = size != null ? size : 23.0;
+    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
+    return TextStyle(
+      fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
+      letterSpacing: langType ? letterSpacing : 0.0,
+      color: color,
+      fontSize: ScreenUtil().setSp(fontSize),
     );
   }
 

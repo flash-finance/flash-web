@@ -111,7 +111,7 @@ class _LendWapPageState extends State<LendWapPage> {
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
                       '${S.of(context).lendTips01}',
-                      style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
+                      style: Util.textStyle4WapAppBar(context, 1, Colors.white, spacing: 0.0, size: 22),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),

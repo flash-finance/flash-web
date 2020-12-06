@@ -61,13 +61,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
 
   @override
   void initState() {
-    print('SwapWapPage initState');
     super.initState();
-    if (mounted) {
-      setState(() {
-        CommonProvider.changeHomeIndex(0);
-      });
-    }
+    CommonProvider.changeHomeIndex(0);
     Provider.of<IndexProvider>(context, listen: false).init();
     _reloadSwapData();
     _reloadAccount();
@@ -178,7 +173,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
                       '${S.of(context).swapTips01}',
-                      style: Util.textStyle4Wap(context, 1, Colors.white, spacing: 0.0, size: 22),
+                      style: Util.textStyle4WapAppBar(context, 1, Colors.white, spacing: 0.0, size: 22),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -1547,7 +1542,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
 
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
-      backgroundColor:  MyColors.lightBg,
+      backgroundColor: Colors.white,
       elevation: 0,
       titleSpacing: 0.0,
       title: Container(

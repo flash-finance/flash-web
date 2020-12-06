@@ -55,7 +55,7 @@ class _TopPcPageState extends State<TopPcPage> {
               Opacity(
                 opacity: 0.8,
                 child: Container(
-                  child: Image.asset('images/logo.png', fit: BoxFit.contain, width: 80, height: 80),
+                  child: Image.asset('images/logo250.png', fit: BoxFit.contain, width: 80, height: 80),
                 ),
               ),
               Expanded(

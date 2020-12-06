@@ -114,40 +114,9 @@ class _AboutWapPageState extends State<AboutWapPage> {
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
                       '${S.of(context).aboutTips01}',
-                      style: GoogleFonts.lato(fontSize: ScreenUtil().setSp(22), color: MyColors.white),
+                      style: Util.textStyle4WapAppBar(context, 1, Colors.white, spacing: 0.0, size: 22),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      launch(flashGithub).catchError((error) {
-                        print('launch error:$error');
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(top: 10),
-                      child: RichText(
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'github:  ',
-                              style: GoogleFonts.lato(
-                                fontSize: ScreenUtil().setSp(24),
-                                color: MyColors.white,
-                              ),
-                            ),
-                            TextSpan(
-                              text: '${S.of(context).aboutTips02}',
-                              style: GoogleFonts.lato(
-                                fontSize: ScreenUtil().setSp(24),
-                                color: MyColors.white,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
                   ),
                 ],
