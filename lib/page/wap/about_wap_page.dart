@@ -104,10 +104,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
                   Container(
                     child: Text(
                       'Flash  Finance',
-                      style: GoogleFonts.lato(
-                        fontSize: ScreenUtil().setSp(40),
-                        color: MyColors.white,
-                      ),
+                      style: Util.textStyle4Wap(context, 1, Colors.white, spacing: 0.0, size: 40),
                     ),
                   ),
                   Container(

@@ -5,7 +5,6 @@ import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/model/swap_model.dart';
-import 'package:flash_web/page/pc/top_pc_page.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/service/method_service.dart';
@@ -20,8 +19,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
 
-import 'bottom_pc_page.dart';
-import 'header_pc_page.dart';
+import 'common/bottom_pc_page.dart';
+import 'common/header_pc_page.dart';
+import 'common/top_pc_page.dart';
 
 class SwapPcPage extends StatefulWidget {
   @override
@@ -177,11 +177,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap01',
-                      style: GoogleFonts.lato(
-                        fontSize: 30,
-                        color: MyColors.white,
-                      ),
+                      'Flash  Swap',
+                      style: Util.textStyle4Pc(context, 1, Colors.white, spacing: 0.0, size: 30),
                     ),
                   ),
                   Container(

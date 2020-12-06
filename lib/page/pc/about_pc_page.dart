@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
-import 'package:flash_web/page/pc/top_pc_page.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/util/common_util.dart';
@@ -11,15 +9,15 @@ import 'package:flash_web/util/screen_util.dart';
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
 
 import 'package:url_launcher/url_launcher.dart';
 
-import 'bottom_pc_page.dart';
-import 'header_pc_page.dart';
+import 'common/bottom_pc_page.dart';
+import 'common/header_pc_page.dart';
+import 'common/top_pc_page.dart';
 
 
 class AboutPcPage extends StatefulWidget {
@@ -135,10 +133,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
                   Container(
                     child: Text(
                       'Flash  Finance',
-                      style: GoogleFonts.lato(
-                        fontSize: 30,
-                        color: MyColors.white,
-                      ),
+                      style: Util.textStyle4Pc(context, 1, Colors.white, spacing: 0.0, size: 30),
                     ),
                   ),
                   Container(

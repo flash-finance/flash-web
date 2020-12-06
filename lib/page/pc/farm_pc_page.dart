@@ -6,7 +6,6 @@ import 'package:flash_web/common/color.dart';
 import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
 import 'package:flash_web/model/farm_model.dart';
-import 'package:flash_web/page/pc/top_pc_page.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
 import 'package:flash_web/service/method_service.dart';
@@ -18,6 +17,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
+
+import 'common/top_pc_page.dart';
 
 
 class FarmPcPage extends StatefulWidget {
