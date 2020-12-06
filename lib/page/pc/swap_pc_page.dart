@@ -177,7 +177,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap01',
                       style: GoogleFonts.lato(
                         fontSize: 30,
                         color: MyColors.white,
@@ -188,7 +188,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).swapTips01}',
-                      style: Util.textStyle4PcAppbar(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
+                      style: Util.textStyle4Pc(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),

@@ -162,7 +162,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'Flash  Swap',
+                      'Flash  Swap01',
                       style: GoogleFonts.lato(
                         fontSize: ScreenUtil().setSp(40),
                         color: MyColors.white,
@@ -173,7 +173,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
                       '${S.of(context).swapTips01}',
-                      style: Util.textStyle4WapAppBar(context, 2, Colors.white, spacing: 0.0, size: 22),
+                      style: Util.textStyle4Wap(context, 2, Colors.white, spacing: 0.0, size: 22),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -235,7 +235,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   padding: EdgeInsets.only(left: ScreenUtil().setWidth(2)),
                   child: Text(
                     '${S.of(context).swapSend}',
-                    style: GoogleFonts.lato(
+                    style: GoogleFonts.roboto(
                       fontSize: ScreenUtil().setSp(28),
                       color: MyColors.black87,
                     ),
@@ -1573,7 +1573,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle0}',
-                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 0 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, _homeIndex == 0 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1592,7 +1592,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle2}',
-                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 2 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, _homeIndex == 2 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1611,7 +1611,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle3}',
-                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 3 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, _homeIndex == 3 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1630,7 +1630,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ListTile(
               title:  Text(
                 '${S.of(context).actionTitle4}',
-                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 4 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, _homeIndex == 4 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1648,7 +1648,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ListTile(
               title: Text(
                 _account == '' ? '${S.of(context).connectAccount}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
-                style: Util.textStyle4WapAppBar(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1662,7 +1662,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ListTile(
               title: Text(
                  'English/中文',
-                style: Util.textStyle4WapAppBar(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

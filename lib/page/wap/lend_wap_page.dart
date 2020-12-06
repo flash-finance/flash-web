@@ -111,7 +111,7 @@ class _LendWapPageState extends State<LendWapPage> {
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
                       '${S.of(context).lendTips01}',
-                      style: Util.textStyle4WapAppBar(context, 2, Colors.white, spacing: 0.0, size: 22),
+                      style: Util.textStyle4Wap(context, 2, Colors.white, spacing: 0.0, size: 22),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -179,7 +179,7 @@ class _LendWapPageState extends State<LendWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle0}',
-                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 0 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, _homeIndex == 0 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -198,7 +198,7 @@ class _LendWapPageState extends State<LendWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle2}',
-                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 2 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, _homeIndex == 2 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -217,7 +217,7 @@ class _LendWapPageState extends State<LendWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle3}',
-                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 3 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, _homeIndex == 3 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -236,7 +236,7 @@ class _LendWapPageState extends State<LendWapPage> {
             ListTile(
               title:  Text(
                 '${S.of(context).actionTitle4}',
-                style: Util.textStyle4WapAppBar(context, 2, _homeIndex == 4 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, _homeIndex == 4 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -254,7 +254,7 @@ class _LendWapPageState extends State<LendWapPage> {
             ListTile(
               title: Text(
                 _account == '' ? '${S.of(context).connectAccount}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
-                style: Util.textStyle4WapAppBar(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -268,7 +268,7 @@ class _LendWapPageState extends State<LendWapPage> {
             ListTile(
               title: Text(
                 'English/中文',
-                style: Util.textStyle4WapAppBar(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

@@ -63,14 +63,14 @@ flutter:
     - images/
     -
   fonts:
-    - family: SHS-M
+    - family: NS-M
       fonts:
-        - asset: fonts/scn-medium.ttf
+        - asset: fonts/NotoSans-Medium.ttf
           weight: 700
 
-    - family: SHS-R
+    - family: NS-R
       fonts:
-        - asset: fonts/scn-regular.ttf
+        - asset: fonts/NotoSans-Regular.ttf
           weight: 700
 
     - family: ICON

@@ -46,57 +46,26 @@ class Util {
     );
   }
 
-  static TextStyle textStyle4PcAppbar(BuildContext context, int type, Color color, {double spacing, double size}) {
-    double letterSpacing = spacing != null ? spacing : 0.0;
-    double fontSize = size != null ? size : 12.0;
-    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    return TextStyle(
-      fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
-      letterSpacing: langType ? letterSpacing : 0.0,
-      color: color,
-      fontSize: fontSize,
-    );
-  }
-
   static TextStyle textStyle4Pc(BuildContext context, int type, Color color, {double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 12.0;
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    return langType ? TextStyle(
-      fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
-      letterSpacing: letterSpacing,
-      color: color,
-      fontSize: fontSize,
-    ) :GoogleFonts.lato(
-      letterSpacing: 0.0,
+    return TextStyle(
+      fontFamily: type == 1 ? 'NS-R' : 'NS-M',
+      letterSpacing: langType ? letterSpacing : 0.0,
       color: color,
       fontSize: fontSize,
     );
   }
 
-  static TextStyle textStyle4WapAppBar(BuildContext context, int type, Color color, {double spacing, double size}) {
-    double letterSpacing = spacing != null ? spacing : 0.0;
-    double fontSize = size != null ? size : 23.0;
-    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    return TextStyle(
-      fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
-      letterSpacing: langType ? letterSpacing : 0.0,
-      color: color,
-      fontSize: ScreenUtil().setSp(fontSize),
-    );
-  }
 
   static TextStyle textStyle4Wap(BuildContext context, int type, Color color, {double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
-    double fontSize = size != null ? size : 23.0;
+    double fontSize = size != null ? size : 12.0;
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    return langType ? TextStyle(
-      fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
-      letterSpacing: letterSpacing,
-      color: color,
-      fontSize: ScreenUtil().setSp(fontSize),
-    ) : GoogleFonts.lato(
-      letterSpacing: 0.0,
+    return TextStyle(
+      fontFamily: type == 1 ? 'NS-R' : 'NS-M',
+      letterSpacing: langType ? letterSpacing : 0.0,
       color: color,
       fontSize: ScreenUtil().setSp(fontSize),
     );

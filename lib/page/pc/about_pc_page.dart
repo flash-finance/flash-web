@@ -145,7 +145,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).aboutTips01}',
-                      style: Util.textStyle4PcAppbar(context, 1, Colors.grey[300], spacing: 0.4, size: 15),
+                      style: Util.textStyle4Pc(context, 1, Colors.grey[300], spacing: 0.4, size: 15),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -172,7 +172,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 '${S.of(context).aboutTips04}',
-                style: Util.textStyle4PcAppbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
+                style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.0, size: 16),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
@@ -191,11 +191,11 @@ class _AboutPcPageState extends State<AboutPcPage> {
                     children: <TextSpan>[
                       TextSpan(
                         text: '${S.of(context).aboutTips051}',
-                        style: Util.textStyle4PcAppbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
+                        style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.0, size: 16),
                       ),
                       TextSpan(
                         text: '${S.of(context).aboutTips052}',
-                        style: Util.textStyle4PcAppbar(context, 1, Colors.black87, spacing: 0.0, size: 14),
+                        style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.0, size: 14),
                       ),
                     ],
                   ),
@@ -206,7 +206,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 '${S.of(context).aboutTips07}',
-                style: Util.textStyle4PcAppbar(context, 1, Colors.black87, spacing: 0.0, size: 16),
+                style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.0, size: 16),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
