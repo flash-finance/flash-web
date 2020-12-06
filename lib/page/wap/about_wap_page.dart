@@ -10,7 +10,6 @@ import 'package:flash_web/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dart:js' as js;
 
@@ -145,6 +144,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
               ),
             ),
             InkWell(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
               onTap: () {
                 launch(swapContract).catchError((error) {
                   print('launch error:$error');
