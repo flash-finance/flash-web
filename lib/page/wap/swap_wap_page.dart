@@ -296,7 +296,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             alignment: Alignment.center,
                             child: Text(
                               _flag1 ? '${_swapRows[_leftSelectIndex].swapTokenName}' : '',
-                              style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                              style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(5)),
@@ -555,7 +555,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             alignment: Alignment.center,
                             child: Text(
                               _flag2 ? '${_swapRows[_rightSelectIndex].swapTokenName}' : '',
-                              style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                              style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(5)),
