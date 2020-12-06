@@ -1034,7 +1034,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
               onTap: () {
                 Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 Navigator.pop(context);
-                Util.showToast(S.of(context).success, timeValue: 2);
+                Util.showToast4Wap(S.of(context).success, timeValue: 2);
               },
               leading: Icon(
                 Icons.language,
@@ -1185,7 +1185,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
 
 
   void setHash4Farm(type, poolAddress, tokenAddress, hash) async {
-    Util.showToast(S.of(context).success, timeValue: 2);
+    Util.showToast4Wap(S.of(context).success, timeValue: 2);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         if (tokenAddress.toString() != 'TRX') {
@@ -1216,7 +1216,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
 
   void setError4Farm(msg) {
     print('setError4Farm: ${msg.toString()}');
-    Util.showToast('${msg.toString()}');
+    Util.showToast4Wap('${msg.toString()}');
     setState(() {
       _depositLoadFlag = false;
       _withdrawLoadFlag = false;

@@ -1285,7 +1285,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
 
   void setHash4Farm(type, poolAddress, tokenAddress, hash) async {
-    Util.showToast(S.of(context).success);
+    Util.showToast4Pc(S.of(context).success);
     for (int i = 0; i < 3; i++) {
       await Future.delayed(Duration(milliseconds: 2000), (){
         if (tokenAddress.toString() != 'TRX') {
@@ -1316,7 +1316,7 @@ class _FarmPcPageState extends State<FarmPcPage> {
 
   void setError4Farm(msg) {
     print('setError4Farm: ${msg.toString()}');
-    Util.showToast('${msg.toString()}');
+    Util.showToast4Pc('${msg.toString()}');
     setState(() {
       _depositLoadFlag = false;
       _withdrawLoadFlag = false;

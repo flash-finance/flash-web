@@ -5,28 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class Util {
-
-  static showToast(String value, {int timeValue}) {
-    int times = 3;
-    if (timeValue != null && timeValue > 0) {
-      times = timeValue;
-    }
-    Fluttertoast.showToast(
-      msg: value,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: times,
-      backgroundColor: Colors.blue[500],
-      textColor: Colors.white,
-      fontSize: 16.0,
-      webBgColor: "linear-gradient(to bottom, #1976D2, #2196F3)",
-      webPosition: "center",
-    );
-  }
 
   static showToast4Pc(String value, {int timeValue}) {
     int times = 3;
@@ -46,26 +27,73 @@ class Util {
     );
   }
 
+  static showToast4Wap(String value, {int timeValue}) {
+    int times = 3;
+    if (timeValue != null && timeValue > 0) {
+      times = timeValue;
+    }
+    Fluttertoast.showToast(
+      msg: value,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: times,
+      backgroundColor: Colors.blue[500],
+      textColor: Colors.white,
+      fontSize: 16.0,
+      webBgColor: "linear-gradient(to bottom, #1976D2, #2196F3)",
+      webPosition: "center",
+    );
+  }
+
   static TextStyle textStyle4Pc(BuildContext context, int type, Color color, {double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 12.0;
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    return TextStyle(
-      fontFamily: type == 1 ? 'NS-R' : 'NS-M',
-      letterSpacing: langType ? letterSpacing : 0.0,
+    return langType ? TextStyle(
+      fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
+      letterSpacing: letterSpacing,
+      color: color,
+      fontSize: fontSize,
+    ) : TextStyle(
+      fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+      letterSpacing: 0.0,
       color: color,
       fontSize: fontSize,
     );
   }
 
+  static TextStyle textStyle4PcEn(BuildContext context, int type, Color color, {double spacing, double size}) {
+    double fontSize = size != null ? size : 12.0;
+    return TextStyle(
+      fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+      letterSpacing: 0.0,
+      color: color,
+      fontSize: fontSize,
+    );
+  }
 
   static TextStyle textStyle4Wap(BuildContext context, int type, Color color, {double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 12.0;
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
+    return langType ? TextStyle(
+      fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
+      letterSpacing: letterSpacing,
+      color: color,
+      fontSize: ScreenUtil().setSp(fontSize),
+    ) : TextStyle(
+      fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+      letterSpacing: 0.0,
+      color: color,
+      fontSize: ScreenUtil().setSp(fontSize),
+    );
+  }
+
+  static TextStyle textStyle4WapEn(BuildContext context, int type, Color color, {double spacing, double size}) {
+    double fontSize = size != null ? size : 12.0;
     return TextStyle(
-      fontFamily: type == 1 ? 'NS-R' : 'NS-M',
-      letterSpacing: langType ? letterSpacing : 0.0,
+      fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+      letterSpacing: 0.0,
       color: color,
       fontSize: ScreenUtil().setSp(fontSize),
     );
