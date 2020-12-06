@@ -8,7 +8,7 @@ const flashGithub = 'https://github.com/flash-finance';
 
 const swapContract = 'https://tronscan.io/#/contract/TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg/code';
 
-const baseUrl = 'https://flashfi.cn';
+const baseUrl = 'https://flash2c.cn';
 
 const servicePath = <String, String>{
   'swapQuery': baseUrl + '/flash/api/v1/common/tron/swap/query',
