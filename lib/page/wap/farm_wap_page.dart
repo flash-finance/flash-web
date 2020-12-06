@@ -911,7 +911,7 @@ class _FarmWapPageState extends State<FarmWapPage> {
       elevation: 0,
       titleSpacing: 0.0,
       title: Container(
-        child: Image.asset('images/logo.png', fit: BoxFit.contain, width: ScreenUtil().setWidth(110), height: ScreenUtil().setWidth(110)),
+        child: Image.asset('images/logo150.png', fit: BoxFit.contain, width: ScreenUtil().setWidth(110), height: ScreenUtil().setWidth(110)),
       ),
       leading: IconButton(
         hoverColor: MyColors.white,
