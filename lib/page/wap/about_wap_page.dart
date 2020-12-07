@@ -161,7 +161,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
                       ),
                       TextSpan(
                         text: '${S.of(context).aboutTips052}',
-                        style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 23),
+                        style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 23),
                       ),
                     ],
                   ),

@@ -190,7 +190,7 @@ class _AboutPcPageState extends State<AboutPcPage> {
                       ),
                       TextSpan(
                         text: '${S.of(context).aboutTips052}',
-                        style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.0, size: 14),
+                        style: Util.textStyle4PcEn(context, 1, Colors.black87, spacing: 0.0, size: 14),
                       ),
                     ],
                   ),
