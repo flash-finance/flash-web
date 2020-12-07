@@ -65,23 +65,21 @@ flutter:
   fonts:
     - family: ZH-M
       fonts:
-        - asset: fonts/PingFangSC-Medium.ttf
-          weight: 700
+        - asset: fonts/Montserrat-Medium.ttf
+          weight: 400
 
     - family: ZN-R
       fonts:
-        - asset: fonts/PingFangSC-Regular.ttf
-          weight: 700
+        - asset: fonts/Montserrat-Regular.ttf
 
     - family: EN-M
       fonts:
         - asset: fonts/SF-Pro-Display-Medium.otf
-          weight: 700
+          weight: 400
 
     - family: EN-R
       fonts:
         - asset: fonts/SF-Pro-Display-Regular.otf
-          weight: 700
 
     - family: ICON
       fonts:

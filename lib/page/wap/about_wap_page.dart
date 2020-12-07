@@ -138,7 +138,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
               child: Text(
                 '${S.of(context).aboutTips04}',
-                style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 25),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[850], spacing: 0.0, size: 25),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
@@ -157,11 +157,11 @@ class _AboutWapPageState extends State<AboutWapPage> {
                     children: <TextSpan>[
                       TextSpan(
                         text: '${S.of(context).aboutTips051}',
-                        style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 25),
+                        style: Util.textStyle4Wap(context, 2, Colors.grey[850], spacing: 0.0, size: 25),
                       ),
                       TextSpan(
                         text: '${S.of(context).aboutTips052}',
-                        style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 23),
+                        style: Util.textStyle4Wap(context, 2, Colors.grey[850], spacing: 0.0, size: 23),
                       ),
                     ],
                   ),
@@ -172,7 +172,7 @@ class _AboutWapPageState extends State<AboutWapPage> {
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
               child: Text(
                 '${S.of(context).aboutTips07}',
-                style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 25),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[850], spacing: 0.0, size: 25),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
