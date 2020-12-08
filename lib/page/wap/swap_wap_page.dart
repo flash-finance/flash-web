@@ -1216,7 +1216,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_leftSelectIndex].baseTokenName}',
-                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
+                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
                                   ),
                                 ),
                               ],
@@ -1334,7 +1334,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_rightSelectIndex].baseTokenName}',
-                                    style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
+                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
 
                                   ),
                                 ),
@@ -1372,7 +1372,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                                    style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
+                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
                                   ),
                                 ),
                               ],
