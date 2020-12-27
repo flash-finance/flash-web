@@ -1,23 +1,25 @@
 import 'dart:async';
 
+import 'package:flash_web/config/service_config.dart';
 import 'package:flash_web/generated/l10n.dart';
+import 'package:flash_web/model/tron_info_model.dart';
 import 'package:flash_web/provider/common_provider.dart';
 import 'package:flash_web/provider/index_provider.dart';
+import 'package:flash_web/service/method_service.dart';
 import 'package:flash_web/util/common_util.dart';
 import 'package:flash_web/util/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:js' as js;
 
 import 'common/bottom_pc_page.dart';
 import 'common/header_pc_page.dart';
 import 'common/top_pc_page.dart';
-
 
 class WalletPcPage extends StatefulWidget {
   @override
@@ -39,6 +41,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
     }
 
     Provider.of<IndexProvider>(context, listen: false).init();
+    _getTronInfo();
     _reloadAccount();
   }
 
@@ -58,7 +61,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
@@ -76,39 +79,28 @@ class _WalletPcPageState extends State<WalletPcPage> {
                     children: <Widget>[
                       HeaderPcPage(),
                       TopPcPage(0, _account),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Column(
+                      Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          child: Column(
                             children: <Widget>[
                               SizedBox(height: 80),
                               _topWidget(context),
                             ],
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            child: Column(
-                              children: <Widget>[
-                                SizedBox(height: 205),
-                                _bizWidget(context),
-                              ],
-                            ),
-                          )
-                        ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
+                  _tronInfo != null ? _picWidget(context) : Container(),
                 ],
               ),
             ),
           )
         ],
         footer: Footer(
-          child: BottomPcPage(),
+          backgroundColor: Colors.white,
+          child: BottomPcPage(color: Colors.white),
         ),
       ),
     );
@@ -128,46 +120,113 @@ class _WalletPcPageState extends State<WalletPcPage> {
                   Container(
                     child: Text(
                       'Flash  Wallet',
-                      style: Util.textStyle4PcEn(context, 1, Colors.grey[100], spacing: 0.0, size: 28),
+                      style: Util.textStyle4PcEn(context, 1, Colors.grey[100],
+                          spacing: 0.0, size: 28),
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).walletTips01}',
-                      style: Util.textStyle4Pc(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
+                      style: Util.textStyle4Pc(context, 1, Colors.grey[300],
+                          spacing: 0.0, size: 15),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
                   ),
+                  _tronInfo != null
+                      ? _androidDownloadWidget(context)
+                      : Container(),
                 ],
-              )
+              )),
+        ],
+      ),
+    );
+  }
+
+  Widget _androidDownloadWidget(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      child: Column(
+        children: [
+          InkWell(
+            onTap: () {
+              launch('${_tronInfo.androidDownloadUrl}').catchError((error) {});
+            },
+            child: Container(
+              child: Chip(
+                padding:
+                    EdgeInsets.only(left: 14, top: 15, bottom: 15, right: 14),
+                backgroundColor: Colors.white,
+                label: Text(
+                  'Android 下载',
+                  style: Util.textStyle4Pc(context, 2, Colors.black87,
+                      spacing: 0.0, size: 16),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          Container(
+            child: Text(
+              'V${_tronInfo.androidVersionNum} 版本',
+              style: Util.textStyle4PcEn(context, 1, Colors.white,
+                  spacing: 0.0, size: 16),
+              maxLines: 5,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _bizWidget(BuildContext context) {
-    return Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-      child: Container(
-        width: 1000,
-        padding: EdgeInsets.only(left: 80, top: 80, right: 80, bottom: 80),
-        alignment: Alignment.center,
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: Text('Coming  Soon', style: GoogleFonts.lato(fontSize: 24, color: Colors.grey[800])),
-            ),
-          ],
-        ),
+  Widget _picWidget(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            child: Image.asset('images/app-01.png',
+                fit: BoxFit.contain, width: 350, height: 500),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 50),
+            child: Image.asset('images/app-02.png',
+                fit: BoxFit.contain, width: 350, height: 500),
+          ),
+        ],
       ),
     );
   }
 
   bool _reloadAccountFlag = false;
+
+  TronInfo _tronInfo;
+
+  TronInfo get tronInfo => _tronInfo;
+
+  _getTronInfo() async {
+    try {
+      String url = servicePath['tronInfoQuery'];
+      await requestGet(url).then((val) {
+        var respData = Map<String, dynamic>.from(val);
+        TronInfoRespModel respModel = TronInfoRespModel.fromJson(respData);
+        if (respModel != null &&
+            respModel.code == 0 &&
+            respModel.data != null) {
+          if (respModel.data.tronInfo != null) {
+            if (mounted) {
+              setState(() {
+                _tronInfo = respModel.data.tronInfo;
+              });
+            }
+          }
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 
   _reloadAccount() async {
     _getAccount();
@@ -199,5 +258,4 @@ class _WalletPcPageState extends State<WalletPcPage> {
     }
     _reloadAccountFlag = true;
   }
-
 }
