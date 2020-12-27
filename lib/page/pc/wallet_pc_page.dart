@@ -156,11 +156,11 @@ class _WalletPcPageState extends State<WalletPcPage> {
             child: Container(
               child: Chip(
                 padding:
-                    EdgeInsets.only(left: 14, top: 15, bottom: 15, right: 14),
+                    EdgeInsets.only(left: 18, top: 15, bottom: 15, right: 18),
                 backgroundColor: Colors.white,
                 label: Text(
-                  'Android 下载',
-                  style: Util.textStyle4Pc(context, 2, Colors.black87,
+                  'Android ${S.of(context).walletDownload}',
+                  style: Util.textStyle4PcEn(context, 2, Colors.grey[850],
                       spacing: 0.0, size: 16),
                 ),
               ),
@@ -169,7 +169,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
           SizedBox(height: 20),
           Container(
             child: Text(
-              'V${_tronInfo.androidVersionNum} 版本',
+              'V${_tronInfo.androidVersionNum} ${S.of(context).walletVersion}',
               style: Util.textStyle4PcEn(context, 1, Colors.white,
                   spacing: 0.0, size: 16),
               maxLines: 5,

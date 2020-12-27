@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("Token Not Enough"),
     "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("Price (USD)"),
     "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity"),
-    "walletTips01" : MessageLookupByLibrary.simpleMessage("wallet:  open source,  security,  convenience")
+    "walletDownload" : MessageLookupByLibrary.simpleMessage("Download"),
+    "walletTips01" : MessageLookupByLibrary.simpleMessage("wallet:  open source,  security,  convenience"),
+    "walletVersion" : MessageLookupByLibrary.simpleMessage("Version")
   };
 }

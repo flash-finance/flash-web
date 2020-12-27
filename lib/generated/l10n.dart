@@ -403,6 +403,26 @@ class S {
     );
   }
 
+  /// `Download`
+  String get walletDownload {
+    return Intl.message(
+      'Download',
+      name: 'walletDownload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Version`
+  String get walletVersion {
+    return Intl.message(
+      'Version',
+      name: 'walletVersion',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `to make finance simpler`
   String get aboutTips01 {
     return Intl.message(
