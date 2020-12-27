@@ -22,13 +22,7 @@ class TopPcPage extends StatefulWidget {
 }
 
 class _TopPcPageState extends State<TopPcPage> {
-  final List _isHovering = [
-    false,
-    false,
-    false,
-    false,
-    false
-  ];
+  final List _isHovering = [false, false, false, false, false];
 
   @override
   void initState() {
@@ -55,7 +49,8 @@ class _TopPcPageState extends State<TopPcPage> {
               Opacity(
                 opacity: 0.8,
                 child: Container(
-                  child: Image.asset('images/logo250.png', fit: BoxFit.contain, width: 80, height: 80),
+                  child: Image.asset('images/logo250.png',
+                      fit: BoxFit.contain, width: 80, height: 80),
                 ),
               ),
               Expanded(
@@ -63,11 +58,15 @@ class _TopPcPageState extends State<TopPcPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    _actionItemWidget(context, '${S.of(context).actionTitle0}', 0),
+                    _actionItemWidget(
+                        context, '${S.of(context).actionTitle0}', 0),
                     //_actionItemWidget(context, '${S.of(context).actionTitle1}', 1),
-                    _actionItemWidget(context, '${S.of(context).actionTitle2}', 2),
-                    _actionItemWidget(context, '${S.of(context).actionTitle3}', 3),
-                    _actionItemWidget(context, '${S.of(context).actionTitle4}', 4),
+                    _actionItemWidget(
+                        context, '${S.of(context).actionTitle2}', 2),
+                    _actionItemWidget(
+                        context, '${S.of(context).actionTitle3}', 3),
+                    _actionItemWidget(
+                        context, '${S.of(context).actionTitle4}', 4),
                     SizedBox(width: 10),
                     _actionAccountWidget(context),
                     SizedBox(width: 10),
@@ -85,7 +84,8 @@ class _TopPcPageState extends State<TopPcPage> {
                               borderRadius: BorderRadius.circular(25.0),
                             ),
                             child: IconButton(
-                              icon: Icon(IconData(0xe8e9, fontFamily: 'ICON'), size: 23.0, color: Colors.grey[900]),
+                              icon: Icon(IconData(0xe8e9, fontFamily: 'ICON'),
+                                  size: 23.0, color: Colors.grey[900]),
                               color: Colors.grey[900],
                               onPressed: () {
                                 launch(twitter).catchError((error) {
@@ -99,28 +99,29 @@ class _TopPcPageState extends State<TopPcPage> {
                     ),
                     SizedBox(width: 10),
                     Container(
-                        height: 50.0,
-                        width: 50.0,
-                        child: Opacity(
-                          opacity: 0.9,
-                          child: Center(
-                            child: Card(
-                              elevation: 5.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                              child: IconButton(
-                                icon: Icon(IconData(0xe600, fontFamily: 'ICON'), size: 20.0, color: Colors.grey[900]),
-                                color: Colors.grey[900],
-                                onPressed: () {
-                                  launch(flashGithub).catchError((error) {
-                                    print('launch error:$error');
-                                  });
-                                },
-                              ),
+                      height: 50.0,
+                      width: 50.0,
+                      child: Opacity(
+                        opacity: 0.9,
+                        child: Center(
+                          child: Card(
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            child: IconButton(
+                              icon: Icon(IconData(0xe600, fontFamily: 'ICON'),
+                                  size: 20.0, color: Colors.grey[900]),
+                              color: Colors.grey[900],
+                              onPressed: () {
+                                launch(flashGithub).catchError((error) {
+                                  print('launch error:$error');
+                                });
+                              },
                             ),
                           ),
                         ),
+                      ),
                     ),
                   ],
                 ),
@@ -134,7 +135,7 @@ class _TopPcPageState extends State<TopPcPage> {
 
   Widget _actionItemWidget(BuildContext context, String name, int index) {
     bool flag = CommonProvider.homeIndex == index;
-    return  InkWell(
+    return InkWell(
       onHover: (value) {
         setState(() {
           value ? _isHovering[index] = true : _isHovering[index] = false;
@@ -142,15 +143,20 @@ class _TopPcPageState extends State<TopPcPage> {
       },
       onTap: () {
         if (index == 0) {
-          Application.router.navigateTo(context, 'swap', transition: TransitionType.fadeIn);
+          Application.router
+              .navigateTo(context, 'swap', transition: TransitionType.fadeIn);
         } else if (index == 1) {
-          Application.router.navigateTo(context, 'farm', transition: TransitionType.fadeIn);
+          Application.router
+              .navigateTo(context, 'farm', transition: TransitionType.fadeIn);
         } else if (index == 2) {
-          Application.router.navigateTo(context, 'lend', transition: TransitionType.fadeIn);
+          Application.router
+              .navigateTo(context, 'lend', transition: TransitionType.fadeIn);
         } else if (index == 3) {
-          Application.router.navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
+          Application.router
+              .navigateTo(context, 'wallet', transition: TransitionType.fadeIn);
         } else if (index == 4) {
-          Application.router.navigateTo(context, 'about', transition: TransitionType.fadeIn);
+          Application.router
+              .navigateTo(context, 'about', transition: TransitionType.fadeIn);
         }
       },
       child: Column(
@@ -162,9 +168,13 @@ class _TopPcPageState extends State<TopPcPage> {
             child: Text(
               '$name',
               style: Util.textStyle4Pc(
-                  context, 1,
-                  flag ? Colors.blue[200] : (_isHovering[index] ? Colors.blue[200] : Colors.white),
-                  spacing: 0.2, size: 15),
+                  context,
+                  1,
+                  flag
+                      ? Colors.blue[200]
+                      : (_isHovering[index] ? Colors.blue[200] : Colors.white),
+                  spacing: 0.2,
+                  size: 15),
             ),
           ),
           SizedBox(height: 5),
@@ -199,8 +209,14 @@ class _TopPcPageState extends State<TopPcPage> {
             padding: EdgeInsets.only(left: 20, top: 10, bottom: 10, right: 20),
             backgroundColor: Colors.white,
             label: Text(
-              widget.account == '' ? '${S.of(context).actionTitle5}' : widget.account.substring(0, 4) + '...' + widget.account.substring(widget.account.length - 4, widget.account.length),
-              style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.2, size: 14),
+              widget.account == ''
+                  ? '${S.of(context).actionTitle5}'
+                  : widget.account.substring(0, 4) +
+                      '...' +
+                      widget.account.substring(
+                          widget.account.length - 4, widget.account.length),
+              style: Util.textStyle4Pc(context, 1, Colors.black87,
+                  spacing: 0.2, size: 14),
             ),
           ),
         ),
@@ -220,26 +236,26 @@ class _TopPcPageState extends State<TopPcPage> {
             opacity: 0.9,
             child: Chip(
               elevation: 1,
-              padding: EdgeInsets.only(left: 20, top: 10, bottom: 10, right: 20),
+              padding:
+                  EdgeInsets.only(left: 20, top: 10, bottom: 10, right: 20),
               backgroundColor: Colors.white,
               label: Text(
                 'English/中文',
-                style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.2, size: 14),
+                style: Util.textStyle4Pc(context, 1, Colors.black87,
+                    spacing: 0.2, size: 14),
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 
   _showConnectWalletDialLog(BuildContext context) {
     showDialog(
       context: context,
-      child: AlertDialog(
+      builder: (context) => AlertDialog(
         elevation: 3,
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))
-        ),
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
           width: 300,
           height: 150,
@@ -285,5 +301,4 @@ class _TopPcPageState extends State<TopPcPage> {
       ),
     );
   }
-
 }

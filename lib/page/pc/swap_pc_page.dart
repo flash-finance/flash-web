@@ -101,10 +101,18 @@ class _SwapPcPageState extends State<SwapPcPage> {
     LocalScreenUtil.instance = LocalScreenUtil.getInstance()..init(context);
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
-    _leftSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _leftSwapAmount,
-        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _leftSwapAmount.length))));
-    _rightSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _rightSwapAmount,
-        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _rightSwapAmount.length))));
+    _leftSwapAmountController = TextEditingController.fromValue(
+        TextEditingValue(
+            text: _leftSwapAmount,
+            selection: TextSelection.fromPosition(TextPosition(
+                affinity: TextAffinity.downstream,
+                offset: _leftSwapAmount.length))));
+    _rightSwapAmountController = TextEditingController.fromValue(
+        TextEditingValue(
+            text: _rightSwapAmount,
+            selection: TextSelection.fromPosition(TextPosition(
+                affinity: TextAffinity.downstream,
+                offset: _rightSwapAmount.length))));
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -178,21 +186,22 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   Container(
                     child: Text(
                       'Flash  Swap',
-                      style: Util.textStyle4PcEn(context, 1, Colors.grey[100], spacing: 0.0, size: 28),
+                      style: Util.textStyle4PcEn(context, 1, Colors.grey[100],
+                          spacing: 0.0, size: 28),
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
                       '${S.of(context).swapTips01}',
-                      style: Util.textStyle4Pc(context, 1, Colors.grey[300], spacing: 0.0, size: 15),
+                      style: Util.textStyle4Pc(context, 1, Colors.grey[300],
+                          spacing: 0.0, size: 15),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
                   ),
                 ],
-              )
-          ),
+              )),
         ],
       ),
     );
@@ -201,7 +210,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
   Widget _bizWidget(BuildContext context) {
     return Card(
       elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
         padding: EdgeInsets.only(left: 80, top: 30, right: 80, bottom: 60),
         child: Column(
@@ -219,15 +229,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
   Widget _dataWidget(BuildContext context) {
     return Container(
         child: Row(
-          children: <Widget>[
-            _dataLeftWidget(context),
-            SizedBox(width: 10),
-            _dataMidWidget(context),
-            SizedBox(width: 10),
-            _dataRightWidget(context),
-          ],
-        )
-    );
+      children: <Widget>[
+        _dataLeftWidget(context),
+        SizedBox(width: 10),
+        _dataMidWidget(context),
+        SizedBox(width: 10),
+        _dataRightWidget(context),
+      ],
+    ));
   }
 
   Widget _dataLeftWidget(BuildContext context) {
@@ -243,7 +252,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   padding: EdgeInsets.only(left: 2),
                   child: Text(
                     '${S.of(context).swapSend}',
-                    style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.0, size: 16),
+                    style: Util.textStyle4Pc(context, 1, Colors.black87,
+                        spacing: 0.0, size: 16),
                   ),
                 ),
                 Container(
@@ -253,10 +263,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       children: <TextSpan>[
                         TextSpan(
                           text: '${S.of(context).swapBalance}:  ',
-                          style: Util.textStyle4Pc(context, 1, Colors.grey[700], spacing: 0.0, size: 16),
+                          style: Util.textStyle4Pc(context, 1, Colors.grey[700],
+                              spacing: 0.0, size: 16),
                         ),
                         TextSpan(
-                          text: '${Util.formatNum(double.parse(_leftBalanceAmount), 4)}',
+                          text:
+                              '${Util.formatNum(double.parse(_leftBalanceAmount), 4)}',
                           style: GoogleFonts.lato(
                             fontSize: 16,
                             color: MyColors.black87,
@@ -290,15 +302,17 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           SizedBox(width: 15),
                           Container(
                             child: ClipOval(
-                              child: _flag1 ? Image.network(
-                                '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                width: 30,
-                                height: 30,
-                                fit: BoxFit.cover,
-                              ) : Container(
-                                width: 30,
-                                height: 30,
-                              ),
+                              child: _flag1
+                                  ? Image.network(
+                                      '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                                      width: 30,
+                                      height: 30,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Container(
+                                      width: 30,
+                                      height: 30,
+                                    ),
                             ),
                           ),
                           SizedBox(width: 10),
@@ -306,7 +320,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             width: 45,
                             alignment: Alignment.center,
                             child: Text(
-                              _flag1 ? '${_swapRows[_leftSelectIndex].swapTokenName}' : '',
+                              _flag1
+                                  ? '${_swapRows[_leftSelectIndex].swapTokenName}'
+                                  : '',
                               style: GoogleFonts.lato(
                                 fontSize: 15,
                                 color: MyColors.grey700,
@@ -315,7 +331,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           ),
                           SizedBox(width: 5),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: 23, color: Colors.black54),
+                            child: Icon(Icons.arrow_drop_down,
+                                size: 23, color: Colors.black54),
                           ),
                         ],
                       ),
@@ -333,25 +350,46 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       cursorColor: MyColors.black87,
                       decoration: InputDecoration(
                         hintText: '',
-                        hintStyle: TextStyle(color: Colors.grey[400], fontSize: 16, letterSpacing: 0.5),
+                        hintStyle: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: 16,
+                            letterSpacing: 0.5),
                         border: InputBorder.none,
                       ),
                       style: TextStyle(
                         color: MyColors.black87,
                         fontSize: 16,
                       ),
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: [MyNumberTextInputFormatter(digit:6)],
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [MyNumberTextInputFormatter(digit: 6)],
                       onChanged: (String value) {
-                        if (value != null && value != '' && double.parse(value) >= 0) {
+                        if (value != null &&
+                            value != '' &&
+                            double.parse(value) >= 0) {
                           _leftSwapAmount = value;
-                          double leftAmount = Decimal.tryParse(_leftSwapAmount).toDouble();
-                          _leftSwapValue = (Decimal.tryParse(_leftSwapAmount) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                          double leftAmount =
+                              Decimal.tryParse(_leftSwapAmount).toDouble();
+                          _leftSwapValue = (Decimal.tryParse(_leftSwapAmount) *
+                                  Decimal.fromInt(10).pow(
+                                      _swapRows[_leftSelectIndex]
+                                          .swapTokenPrecision))
+                              .toStringAsFixed(0);
 
-                          if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-                            double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
+                          if (_flag1 &&
+                              _flag2 &&
+                              _swapRows[_rightSelectIndex].swapTokenPrice1 >
+                                  0) {
+                            double rightAmount = leftAmount *
+                                _swapRows[_leftSelectIndex].swapTokenPrice1 /
+                                _swapRows[_rightSelectIndex].swapTokenPrice1;
                             _rightSwapAmount = Util.formatNum(rightAmount, 6);
-                            _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                            _rightSwapValue =
+                                (Decimal.tryParse(rightAmount.toString()) *
+                                        Decimal.fromInt(10).pow(
+                                            _swapRows[_rightSelectIndex]
+                                                .swapTokenPrecision))
+                                    .toStringAsFixed(0);
 
                             if (leftAmount > double.parse(_leftBalanceAmount)) {
                               _swapFlag = false;
@@ -371,13 +409,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       },
                       onSaved: (String value) {},
                       onEditingComplete: () {},
-                    )
-                ),
+                    )),
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      _leftSwapAmount = Util.formatNum(double.parse(_leftBalanceAmount), 6);
-                      double leftAmount = Decimal.tryParse(_leftBalanceAmount).toDouble();
+                      _leftSwapAmount =
+                          Util.formatNum(double.parse(_leftBalanceAmount), 6);
+                      double leftAmount =
+                          Decimal.tryParse(_leftBalanceAmount).toDouble();
 
                       if (_flag1 && _flag2) {
                         if (_balanceMap[_leftKey] != null) {
@@ -385,9 +424,16 @@ class _SwapPcPageState extends State<SwapPcPage> {
                         }
 
                         if (_swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-                          double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
+                          double rightAmount = leftAmount *
+                              _swapRows[_leftSelectIndex].swapTokenPrice1 /
+                              _swapRows[_rightSelectIndex].swapTokenPrice1;
                           _rightSwapAmount = Util.formatNum(rightAmount, 6);
-                          _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                          _rightSwapValue =
+                              (Decimal.tryParse(rightAmount.toString()) *
+                                      Decimal.fromInt(10).pow(
+                                          _swapRows[_rightSelectIndex]
+                                              .swapTokenPrecision))
+                                  .toStringAsFixed(0);
 
                           if (leftAmount > double.parse(_leftBalanceAmount)) {
                             _swapFlag = false;
@@ -402,8 +448,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       width: 40,
                       padding: EdgeInsets.only(top: 2, bottom: 2),
                       alignment: Alignment.center,
-                      child: Text(
-                          'MAX',
+                      child: Text('MAX',
                           style: TextStyle(
                             color: Colors.grey[700],
                             fontSize: 15,
@@ -416,44 +461,46 @@ class _SwapPcPageState extends State<SwapPcPage> {
             ),
           ),
           SizedBox(height: 8),
-          _flag1 && _flag2 ? Container(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  child: ClipOval(
-                    child: Image.network(
-                      '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                      width: 17,
-                      height: 17,
-                      fit: BoxFit.cover,
-                    ),
+          _flag1 && _flag2
+              ? Container(
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        child: ClipOval(
+                          child: Image.network(
+                            '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                            width: 17,
+                            height: 17,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(left: 3, right: 3),
+                        child: Text(
+                          '1  ${_swapRows[_leftSelectIndex].swapTokenName}  ≈  ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
+                          style: GoogleFonts.lato(
+                            fontSize: 13,
+                            color: MyColors.grey700,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(left: 0, right: 3),
+                        child: Text(
+                          '≈  ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
+                          style: GoogleFonts.lato(
+                            fontSize: 13,
+                            color: MyColors.grey700,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 3, right: 3),
-                  child: Text(
-                    '1  ${_swapRows[_leftSelectIndex].swapTokenName}  ≈  ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                    style: GoogleFonts.lato(
-                      fontSize: 13,
-                      color: MyColors.grey700,
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 0, right: 3),
-                  child: Text(
-                    '≈  ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
-                    style: GoogleFonts.lato(
-                      fontSize: 13,
-                      color: MyColors.grey700,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ) : Container(),
+                )
+              : Container(),
           SizedBox(height: 8),
           Container(
             alignment: Alignment.centerLeft,
@@ -461,9 +508,15 @@ class _SwapPcPageState extends State<SwapPcPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType == 1 || _swapRows[_rightSelectIndex].swapTokenType == 1)) {
+                    if (_flag1 &&
+                        _flag2 &&
+                        (_swapRows[_leftSelectIndex].swapTokenType == 1 ||
+                            _swapRows[_rightSelectIndex].swapTokenType == 1)) {
                       _showPoolTokenOneDialLog(context);
-                    } else if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType != 1 &&  _swapRows[_rightSelectIndex].swapTokenType != 1)) {
+                    } else if (_flag1 &&
+                        _flag2 &&
+                        (_swapRows[_leftSelectIndex].swapTokenType != 1 &&
+                            _swapRows[_rightSelectIndex].swapTokenType != 1)) {
                       _showPoolTokenTwoDialLog(context);
                     }
                   },
@@ -472,10 +525,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       color: MyColors.blueColor1.withOpacity(0.86),
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
+                    padding:
+                        EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
                     child: Text(
                       '${S.of(context).swapPooledTokens}',
-                      style: Util.textStyle4Pc(context, 1, Colors.white, spacing: 0.0, size: 12),
+                      style: Util.textStyle4Pc(context, 1, Colors.white,
+                          spacing: 0.0, size: 12),
                     ),
                   ),
                 ),
@@ -535,8 +590,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
               size: 25,
               color: Colors.grey[700],
             ),
-          )
-      ),
+          )),
     );
   }
 
@@ -553,7 +607,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   padding: EdgeInsets.only(left: 2),
                   child: Text(
                     '${S.of(context).swapReceive}',
-                    style: Util.textStyle4Pc(context, 1, Colors.black87, spacing: 0.0, size: 16),
+                    style: Util.textStyle4Pc(context, 1, Colors.black87,
+                        spacing: 0.0, size: 16),
                   ),
                 ),
                 Container(
@@ -563,10 +618,12 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       children: <TextSpan>[
                         TextSpan(
                           text: '${S.of(context).swapBalance}:  ',
-                          style: Util.textStyle4Pc(context, 1, Colors.grey[700], spacing: 0.0, size: 16),
+                          style: Util.textStyle4Pc(context, 1, Colors.grey[700],
+                              spacing: 0.0, size: 16),
                         ),
                         TextSpan(
-                          text: '${Util.formatNum(double.parse(_rightBalanceAmount), 4)}',
+                          text:
+                              '${Util.formatNum(double.parse(_rightBalanceAmount), 4)}',
                           style: GoogleFonts.lato(
                             fontSize: 16,
                             color: MyColors.black87,
@@ -600,15 +657,17 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           SizedBox(width: 15),
                           Container(
                             child: ClipOval(
-                              child: _flag2 ? Image.network(
-                                '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                width: 30,
-                                height: 30,
-                                fit: BoxFit.cover,
-                              ) : Container(
-                                width: 30,
-                                height: 30,
-                              ),
+                              child: _flag2
+                                  ? Image.network(
+                                      '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                                      width: 30,
+                                      height: 30,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Container(
+                                      width: 30,
+                                      height: 30,
+                                    ),
                             ),
                           ),
                           SizedBox(width: 10),
@@ -616,7 +675,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
                             width: 45,
                             alignment: Alignment.center,
                             child: Text(
-                              _flag2 ? '${_swapRows[_rightSelectIndex].swapTokenName}' : '',
+                              _flag2
+                                  ? '${_swapRows[_rightSelectIndex].swapTokenName}'
+                                  : '',
                               style: GoogleFonts.lato(
                                 fontSize: 15,
                                 color: MyColors.grey700,
@@ -625,7 +686,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           ),
                           SizedBox(width: 5),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: 23, color: Colors.black54),
+                            child: Icon(Icons.arrow_drop_down,
+                                size: 23, color: Colors.black54),
                           ),
                         ],
                       ),
@@ -643,27 +705,50 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       cursorColor: MyColors.black87,
                       decoration: InputDecoration(
                         hintText: '',
-                        hintStyle: TextStyle(color: Colors.grey[400], fontSize: 16, letterSpacing: 0.5),
+                        hintStyle: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: 16,
+                            letterSpacing: 0.5),
                         border: InputBorder.none,
                       ),
                       style: TextStyle(
                         color: MyColors.black87,
                         fontSize: 16,
                       ),
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: [MyNumberTextInputFormatter(digit:6)],
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [MyNumberTextInputFormatter(digit: 6)],
                       onChanged: (String value) {
-                        if (value != null && value != '' && double.parse(value) >= 0) {
+                        if (value != null &&
+                            value != '' &&
+                            double.parse(value) >= 0) {
                           _rightSwapAmount = value;
-                          double rightAmount = Decimal.tryParse(_rightSwapAmount).toDouble();
-                          _rightSwapValue = (Decimal.tryParse(_rightSwapAmount) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                          double rightAmount =
+                              Decimal.tryParse(_rightSwapAmount).toDouble();
+                          _rightSwapValue =
+                              (Decimal.tryParse(_rightSwapAmount) *
+                                      Decimal.fromInt(10).pow(
+                                          _swapRows[_rightSelectIndex]
+                                              .swapTokenPrecision))
+                                  .toStringAsFixed(0);
 
-                          if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-                            double leftAmount = rightAmount * _swapRows[_rightSelectIndex].swapTokenPrice1 /_swapRows[_leftSelectIndex].swapTokenPrice1;
+                          if (_flag1 &&
+                              _flag2 &&
+                              _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+                            double leftAmount = rightAmount *
+                                _swapRows[_rightSelectIndex].swapTokenPrice1 /
+                                _swapRows[_leftSelectIndex].swapTokenPrice1;
                             _leftSwapAmount = Util.formatNum(leftAmount, 6);
-                            _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                            _leftSwapValue =
+                                (Decimal.tryParse(leftAmount.toString()) *
+                                        Decimal.fromInt(10).pow(
+                                            _swapRows[_leftSelectIndex]
+                                                .swapTokenPrecision))
+                                    .toStringAsFixed(0);
 
-                            if (_balanceMap[_leftKey] != null && double.parse(_leftSwapValue) > double.parse(_balanceMap[_leftKey])) {
+                            if (_balanceMap[_leftKey] != null &&
+                                double.parse(_leftSwapValue) >
+                                    double.parse(_balanceMap[_leftKey])) {
                               _swapFlag = false;
                             } else {
                               _swapFlag = true;
@@ -681,14 +766,15 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       },
                       onSaved: (String value) {},
                       onEditingComplete: () {},
-                    )
-                ),
+                    )),
                 Expanded(
                   child: InkWell(
                     onTap: () {
                       if (_flag1 && _flag2) {
-                        _rightSwapAmount = Util.formatNum(double.parse(_rightBalanceAmount), 6);
-                        double rightAmount = Decimal.tryParse(_rightBalanceAmount).toDouble();
+                        _rightSwapAmount = Util.formatNum(
+                            double.parse(_rightBalanceAmount), 6);
+                        double rightAmount =
+                            Decimal.tryParse(_rightBalanceAmount).toDouble();
 
                         if (_flag1 && _flag2) {
                           if (_balanceMap[_rightKey] != null) {
@@ -696,10 +782,19 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           }
 
                           if (_swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-                            double leftAmount = rightAmount * _swapRows[_rightSelectIndex].swapTokenPrice1 /_swapRows[_leftSelectIndex].swapTokenPrice1;
+                            double leftAmount = rightAmount *
+                                _swapRows[_rightSelectIndex].swapTokenPrice1 /
+                                _swapRows[_leftSelectIndex].swapTokenPrice1;
                             _leftSwapAmount = Util.formatNum(leftAmount, 4);
-                            _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
-                            if (_balanceMap[_leftKey] != null && double.parse(_leftSwapValue) > double.parse(_balanceMap[_leftKey])) {
+                            _leftSwapValue =
+                                (Decimal.tryParse(leftAmount.toString()) *
+                                        Decimal.fromInt(10).pow(
+                                            _swapRows[_leftSelectIndex]
+                                                .swapTokenPrecision))
+                                    .toStringAsFixed(0);
+                            if (_balanceMap[_leftKey] != null &&
+                                double.parse(_leftSwapValue) >
+                                    double.parse(_balanceMap[_leftKey])) {
                               _swapFlag = false;
                             } else {
                               _swapFlag = true;
@@ -713,8 +808,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
                       width: 40,
                       padding: EdgeInsets.only(top: 2, bottom: 2),
                       alignment: Alignment.center,
-                      child: Text(
-                          'MAX',
+                      child: Text('MAX',
                           style: TextStyle(
                             color: Colors.grey[700],
                             fontSize: 15,
@@ -727,61 +821,64 @@ class _SwapPcPageState extends State<SwapPcPage> {
             ),
           ),
           SizedBox(height: 8),
-          _flag1 && _flag2 ? Container(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  child: ClipOval(
-                    child: Image.network(
-                      '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                      width: 17,
-                      height: 17,
-                      fit: BoxFit.cover,
-                    ),
+          _flag1 && _flag2
+              ? Container(
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        child: ClipOval(
+                          child: Image.network(
+                            '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                            width: 17,
+                            height: 17,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(left: 3, right: 3),
+                        child: Text(
+                          '1  ${_swapRows[_rightSelectIndex].swapTokenName}  ≈  ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
+                          style: GoogleFonts.lato(
+                            fontSize: 13,
+                            color: MyColors.grey700,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(left: 3, right: 3),
+                        child: Text(
+                          '≈  ${Util.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
+                          style: GoogleFonts.lato(
+                            fontSize: 13,
+                            color: MyColors.grey700,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 3, right: 3),
-                  child: Text(
-                    '1  ${_swapRows[_rightSelectIndex].swapTokenName}  ≈  ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                    style: GoogleFonts.lato(
-                      fontSize: 13,
-                      color: MyColors.grey700,
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 3, right: 3),
-                  child: Text(
-                    '≈  ${Util.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
-                    style: GoogleFonts.lato(
-                      fontSize: 13,
-                      color: MyColors.grey700,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ) : Container(),
+                )
+              : Container(),
           SizedBox(height: 8),
           Container(
             alignment: Alignment.centerLeft,
             child: Row(
               children: <Widget>[
                 InkWell(
-                  onTap: () {
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       color: MyColors.white,
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    padding: EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
+                    padding:
+                        EdgeInsets.only(left: 12, top: 7, bottom: 7, right: 12),
                     child: Text(
                       '${S.of(context).swapPooledTokens}',
-                      style: Util.textStyle4Pc(context, 1, Colors.white, spacing: 0.0, size: 12),
+                      style: Util.textStyle4Pc(context, 1, Colors.white,
+                          spacing: 0.0, size: 12),
                     ),
                   ),
                 ),
@@ -796,10 +893,10 @@ class _SwapPcPageState extends State<SwapPcPage> {
   _showSwapTokenDialLog(BuildContext context, int type) {
     showDialog(
       context: context,
-      child: AlertDialog(
+      builder: (context) => AlertDialog(
         elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
-        ),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
           width: 450,
           height: 400,
@@ -817,7 +914,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     scrollDirection: Axis.vertical,
                     itemCount: _swapRows.length,
                     itemBuilder: (context, index) {
-                      return _selectSwapTokenWidget(context, index, _swapRows[index], type);
+                      return _selectSwapTokenWidget(
+                          context, index, _swapRows[index], type);
                     },
                   ),
                 ),
@@ -879,11 +977,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
     );
   }
 
-  Widget _selectSwapTokenWidget(BuildContext context, int index, SwapRow item, int type) {
+  Widget _selectSwapTokenWidget(
+      BuildContext context, int index, SwapRow item, int type) {
     String balanceAmount = '0.0000';
     String _key = '$_account+${item.swapTokenAddress}';
     if (item.swapTokenPrecision > 0 && _balanceMap[_key] != null) {
-      String temp = (Decimal.tryParse(_balanceMap[_key])/Decimal.fromInt(10).pow(item.swapTokenPrecision)).toString();
+      String temp = (Decimal.tryParse(_balanceMap[_key]) /
+              Decimal.fromInt(10).pow(item.swapTokenPrecision))
+          .toString();
       balanceAmount = Util.formatNum(double.parse(temp), 4);
     }
     bool flag = false;
@@ -915,7 +1016,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
           setState(() {});
           Navigator.pop(context);
         }
-
       },
       child: Container(
         width: 450,
@@ -946,23 +1046,29 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   Container(
                     padding: EdgeInsets.only(left: 10),
                     alignment: Alignment.centerLeft,
-                    child: type == 1 ? Text(
-                      '${item.swapTokenName}',
-                      style: TextStyle(
-                        color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
-                        fontSize: 14,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ) : Text(
-                      '${item.swapTokenName}',
-                      style: TextStyle(
-                        color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
-                        fontSize: 14,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    child: type == 1
+                        ? Text(
+                            '${item.swapTokenName}',
+                            style: TextStyle(
+                              color: index != _rightSelectIndex
+                                  ? Colors.black87
+                                  : Colors.black26,
+                              fontSize: 14,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        : Text(
+                            '${item.swapTokenName}',
+                            style: TextStyle(
+                              color: index != _leftSelectIndex
+                                  ? Colors.black87
+                                  : Colors.black26,
+                              fontSize: 14,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                   ),
                 ],
               ),
@@ -970,47 +1076,58 @@ class _SwapPcPageState extends State<SwapPcPage> {
             Container(
               width: 160,
               alignment: Alignment.center,
-              child: type == 1 ? Text(
-                '${Util.formatNum(item.swapTokenPrice2, 6)}',
-                style: TextStyle(
-                  color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
-                  fontSize: 14,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ) : Text(
-                '${Util.formatNum(item.swapTokenPrice2, 6)}',
-                style: TextStyle(
-                  color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
-                  fontSize: 14,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
+              child: type == 1
+                  ? Text(
+                      '${Util.formatNum(item.swapTokenPrice2, 6)}',
+                      style: TextStyle(
+                        color: index != _rightSelectIndex
+                            ? Colors.black87
+                            : Colors.black26,
+                        fontSize: 14,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    )
+                  : Text(
+                      '${Util.formatNum(item.swapTokenPrice2, 6)}',
+                      style: TextStyle(
+                        color: index != _leftSelectIndex
+                            ? Colors.black87
+                            : Colors.black26,
+                        fontSize: 14,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
             ),
             Expanded(
               child: Container(
                 alignment: Alignment.centerRight,
-                child: type == 1 ? Text(
-                  '$balanceAmount',
-                  style: TextStyle(
-                    color: index != _rightSelectIndex  ? Colors.black87 :Colors.black26,
-                    fontSize: 14,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ) : Text(
-                  '$balanceAmount',
-                  style: TextStyle(
-                    color: index != _leftSelectIndex  ? Colors.black87 :Colors.black26,
-                    fontSize: 14,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                child: type == 1
+                    ? Text(
+                        '$balanceAmount',
+                        style: TextStyle(
+                          color: index != _rightSelectIndex
+                              ? Colors.black87
+                              : Colors.black26,
+                          fontSize: 14,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    : Text(
+                        '$balanceAmount',
+                        style: TextStyle(
+                          color: index != _leftSelectIndex
+                              ? Colors.black87
+                              : Colors.black26,
+                          fontSize: 14,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
               ),
             ),
-
           ],
         ),
       ),
@@ -1020,16 +1137,17 @@ class _SwapPcPageState extends State<SwapPcPage> {
   _showPoolTokenOneDialLog(BuildContext context) {
     showDialog(
       context: context,
-      child: AlertDialog(
+      builder: (context) => AlertDialog(
         elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
         content: Container(
           width: 450,
           height: 230,
           padding: EdgeInsets.only(top: 10),
           child: Column(
-            children:<Widget> [
+            children: <Widget>[
               Container(
                 padding: EdgeInsets.only(top: 10, bottom: 10),
                 decoration: BoxDecoration(
@@ -1065,7 +1183,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
               ),
               SizedBox(height: 0),
               Container(
-                padding: EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
+                padding:
+                    EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -1101,7 +1220,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             padding: EdgeInsets.only(left: 10),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
+                              _swapRows[_leftSelectIndex].swapTokenType == 2
+                                  ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
                                 fontSize: 15,
@@ -1153,7 +1273,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             padding: EdgeInsets.only(left: 10),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
+                              _swapRows[_leftSelectIndex].swapTokenType == 2
+                                  ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
                                 fontSize: 15,
@@ -1193,7 +1314,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                           Container(
                             padding: EdgeInsets.only(left: 10),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
+                              _swapRows[_leftSelectIndex].swapTokenType == 2
+                                  ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                               style: GoogleFonts.lato(
                                 fontSize: 15,
@@ -1228,16 +1350,16 @@ class _SwapPcPageState extends State<SwapPcPage> {
   _showPoolTokenTwoDialLog(BuildContext context) {
     showDialog(
       context: context,
-      child: AlertDialog(
+      builder: (context) => AlertDialog(
         elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
-        ),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
           width: 450,
           height: 420,
           padding: EdgeInsets.only(top: 10),
           child: Column(
-            children:<Widget> [
+            children: <Widget>[
               Container(
                 child: Column(
                   children: <Widget>[
@@ -1275,7 +1397,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ),
                     SizedBox(height: 0),
                     Container(
-                      padding: EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
+                      padding: EdgeInsets.only(
+                          left: 20, top: 20, bottom: 20, right: 20),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -1465,7 +1588,8 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ),
                     SizedBox(height: 0),
                     Container(
-                      padding: EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
+                      padding: EdgeInsets.only(
+                          left: 20, top: 20, bottom: 20, right: 20),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -1675,9 +1799,25 @@ class _SwapPcPageState extends State<SwapPcPage> {
               _loadFlag = true;
             });
             if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
-              js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, _leftSwapValue, _rightSwapValue]);
-            } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 && _swapRows[_rightSelectIndex].swapTokenType == 2){
-              js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, _leftSwapValue, _account]);
+              js.context.callMethod('allowance', [
+                _swapRows[_leftSelectIndex].lpTokenAddress,
+                2,
+                _swapRows[_rightSelectIndex].swapTokenType,
+                _swapRows[_leftSelectIndex].swapTokenAddress,
+                _swapRows[_rightSelectIndex].swapTokenAddress,
+                _account,
+                _leftSwapValue,
+                _rightSwapValue
+              ]);
+            } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
+                _swapRows[_rightSelectIndex].swapTokenType == 2) {
+              js.context.callMethod('trxToTokenSwap', [
+                _swapRows[_rightSelectIndex].swapTokenAddress,
+                _swapRows[_rightSelectIndex].lpTokenAddress,
+                1,
+                _leftSwapValue,
+                _account
+              ]);
             }
           }
         }
@@ -1685,16 +1825,23 @@ class _SwapPcPageState extends State<SwapPcPage> {
       child: Container(
         color: Colors.white,
         child: Chip(
-          padding: _swapFlag ? EdgeInsets.only(left: 55, top: 15, right: 55, bottom: 15) : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
+          padding: _swapFlag
+              ? EdgeInsets.only(left: 55, top: 15, right: 55, bottom: 15)
+              : EdgeInsets.only(left: 40, top: 15, right: 40, bottom: 15),
           backgroundColor: MyColors.blueColor1.withOpacity(0.86),
-          label: !_loadFlag ? Container(
-            child: Text(
-              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
-              style: Util.textStyle4Pc(context, 1, Colors.white, spacing: _swapFlag ? 0.7 : 0.2, size: 15),
-            ),
-          ) : Container(
-            child: CupertinoActivityIndicator(),
-          ),
+          label: !_loadFlag
+              ? Container(
+                  child: Text(
+                    _swapFlag
+                        ? '${S.of(context).swapSwap}'
+                        : '${S.of(context).swapTokenNotEnough}',
+                    style: Util.textStyle4Pc(context, 1, Colors.white,
+                        spacing: _swapFlag ? 0.7 : 0.2, size: 15),
+                  ),
+                )
+              : Container(
+                  child: CupertinoActivityIndicator(),
+                ),
         ),
       ),
     );
@@ -1726,7 +1873,9 @@ class _SwapPcPageState extends State<SwapPcPage> {
         SwapRespModel respModel = SwapRespModel.fromJson(respData);
         if (respModel != null && respModel.code == 0) {
           _swapData = respModel.data;
-          if (_swapData != null && _swapData.rows != null && _swapData.rows.length > 0) {
+          if (_swapData != null &&
+              _swapData.rows != null &&
+              _swapData.rows.length > 0) {
             _swapRows = _swapData.rows;
           }
         }
@@ -1749,25 +1898,41 @@ class _SwapPcPageState extends State<SwapPcPage> {
       _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
     }
 
-    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0 && _balanceMap[_leftKey] != null) {
-      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toString();
+    if (_flag1 &&
+        _flag2 &&
+        _swapRows[_leftSelectIndex].swapTokenPrecision > 0 &&
+        _balanceMap[_leftKey] != null) {
+      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey]) /
+              Decimal.fromInt(10)
+                  .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
+          .toString();
     }
-    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0 && _balanceMap[_rightKey] != null) {
-      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toString();
+    if (_flag1 &&
+        _flag2 &&
+        _swapRows[_rightSelectIndex].swapTokenPrecision > 0 &&
+        _balanceMap[_rightKey] != null) {
+      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey]) /
+              Decimal.fromInt(10)
+                  .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
+          .toString();
     }
 
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toString();
+      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1 /
+              _swapRows[_rightSelectIndex].swapTokenPrice1)
+          .toString();
     }
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toString();
+      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1 /
+              _swapRows[_leftSelectIndex].swapTokenPrice1)
+          .toString();
     }
   }
 
   bool _reloadTokenBalanceFlag = false;
 
   _reloadTokenBalance() async {
-    js.context['setBalance']=setBalance;
+    js.context['setBalance'] = setBalance;
     _getTokenBalance(1);
     _timer2 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
       if (_reloadTokenBalanceFlag) {
@@ -1779,10 +1944,14 @@ class _SwapPcPageState extends State<SwapPcPage> {
   _getTokenBalance(int type) async {
     _reloadTokenBalanceFlag = false;
     if (_account != '') {
-      for (int i=0; i<_swapRows.length; i++) {
+      for (int i = 0; i < _swapRows.length; i++) {
         String _key = '$_account+${_swapRows[i].swapTokenAddress}';
         if (type == 1 || _balanceMap[_key] == null) {
-          js.context.callMethod('getTokenBalance', [_swapRows[i].swapTokenType, _swapRows[i].swapTokenAddress, _account]);
+          js.context.callMethod('getTokenBalance', [
+            _swapRows[i].swapTokenType,
+            _swapRows[i].swapTokenAddress,
+            _account
+          ]);
         }
       }
     }
@@ -1805,25 +1974,69 @@ class _SwapPcPageState extends State<SwapPcPage> {
     }
   }
 
-  void setAllowance(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue, allowanceAmount) {
-    double allowanceValue = Decimal.tryParse(allowanceAmount.toString()).toDouble();
+  void setAllowance(
+      lpTokenAddress,
+      swapTokenType,
+      baseTokenType,
+      swapTokenAddress,
+      baseTokenAddress,
+      swapTradeValue,
+      baseTradeValue,
+      allowanceAmount) {
+    double allowanceValue =
+        Decimal.tryParse(allowanceAmount.toString()).toDouble();
     double swapValue = double.parse(swapTradeValue.toString());
     if (swapValue > allowanceValue) {
-      js.context.callMethod('approve', [lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue]);
+      js.context.callMethod('approve', [
+        lpTokenAddress,
+        swapTokenType,
+        baseTokenType,
+        swapTokenAddress,
+        baseTokenAddress,
+        swapTradeValue,
+        baseTradeValue
+      ]);
     } else {
-      if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
-        js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
-      } else if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
-        js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, _account, baseTokenAddress]);
+      if (_account != '' &&
+          swapTokenType.toString() == '2' &&
+          baseTokenType.toString() == '1') {
+        js.context.callMethod('tokenToTrxSwap',
+            [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
+      } else if (_account != '' &&
+          swapTokenType.toString() == '2' &&
+          baseTokenType.toString() == '2') {
+        js.context.callMethod('tokenToTokenSwap', [
+          swapTokenAddress,
+          lpTokenAddress,
+          swapTradeValue,
+          1,
+          1,
+          _account,
+          baseTokenAddress
+        ]);
       }
     }
   }
 
-  void setApprove(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue) {
-    if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
-      js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
-    } else if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
-      js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, _account, baseTokenAddress]);
+  void setApprove(lpTokenAddress, swapTokenType, baseTokenType,
+      swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue) {
+    if (_account != '' &&
+        swapTokenType.toString() == '2' &&
+        baseTokenType.toString() == '1') {
+      js.context.callMethod('tokenToTrxSwap',
+          [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
+    } else if (_account != '' &&
+        swapTokenType.toString() == '2' &&
+        baseTokenType.toString() == '2') {
+      js.context.callMethod('tokenToTokenSwap', [
+        swapTokenAddress,
+        lpTokenAddress,
+        swapTradeValue,
+        1,
+        1,
+        _account,
+        baseTokenAddress
+      ]);
     }
   }
 
@@ -1833,7 +2046,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     });
     Util.showToast4Pc(S.of(context).success);
     for (int i = 0; i < 3; i++) {
-      await Future.delayed(Duration(milliseconds: 2000), (){
+      await Future.delayed(Duration(milliseconds: 2000), () {
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
         if (i == 0) {
@@ -1854,7 +2067,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     });
     Util.showToast4Pc(S.of(context).success);
     for (int i = 0; i < 3; i++) {
-      await Future.delayed(Duration(milliseconds: 2000), (){
+      await Future.delayed(Duration(milliseconds: 2000), () {
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
         if (i == 0) {
@@ -1875,7 +2088,7 @@ class _SwapPcPageState extends State<SwapPcPage> {
     });
     Util.showToast4Pc(S.of(context).success);
     for (int i = 0; i < 3; i++) {
-      await Future.delayed(Duration(milliseconds: 2000), (){
+      await Future.delayed(Duration(milliseconds: 2000), () {
         js.context.callMethod('getTokenBalance', [2, leftToken, _account]);
         js.context.callMethod('getTokenBalance', [2, rightToken, _account]);
         if (i == 0) {
@@ -1897,5 +2110,4 @@ class _SwapPcPageState extends State<SwapPcPage> {
       _loadFlag = false;
     });
   }
-
 }

@@ -57,7 +57,6 @@ class _SwapWapPageState extends State<SwapWapPage> {
 
   bool _loadFlag = false;
 
-
   @override
   void initState() {
     super.initState();
@@ -91,13 +90,22 @@ class _SwapWapPageState extends State<SwapWapPage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+    ScreenUtil.init(context,
+        designSize: Size(750, 1334), allowFontScaling: false);
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
-    _leftSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _leftSwapAmount,
-        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _leftSwapAmount.length))));
-    _rightSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _rightSwapAmount,
-        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _rightSwapAmount.length))));
+    _leftSwapAmountController = TextEditingController.fromValue(
+        TextEditingValue(
+            text: _leftSwapAmount,
+            selection: TextSelection.fromPosition(TextPosition(
+                affinity: TextAffinity.downstream,
+                offset: _leftSwapAmount.length))));
+    _rightSwapAmountController = TextEditingController.fromValue(
+        TextEditingValue(
+            text: _rightSwapAmount,
+            selection: TextSelection.fromPosition(TextPosition(
+                affinity: TextAffinity.downstream,
+                offset: _rightSwapAmount.length))));
 
     return Scaffold(
       key: _scaffoldKey,
@@ -143,7 +151,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
 
   Widget _topWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           gradient: LinearGradient(
@@ -155,28 +164,31 @@ class _SwapWapPageState extends State<SwapWapPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(30)),
+              padding: EdgeInsets.only(
+                  top: ScreenUtil().setHeight(30),
+                  bottom: ScreenUtil().setHeight(30)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     child: Text(
                       'Flash  Swap',
-                      style: Util.textStyle4WapEn(context, 1, Colors.white, spacing: 0.0, size: 40),
+                      style: Util.textStyle4WapEn(context, 1, Colors.white,
+                          spacing: 0.0, size: 40),
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
                       '${S.of(context).swapTips01}',
-                      style: Util.textStyle4Wap(context, 2, Colors.white, spacing: 0.0, size: 22),
+                      style: Util.textStyle4Wap(context, 2, Colors.white,
+                          spacing: 0.0, size: 22),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
                   ),
                 ],
-              )
-          ),
+              )),
         ],
       ),
     );
@@ -185,10 +197,16 @@ class _SwapWapPageState extends State<SwapWapPage> {
   Widget _bizWidget(BuildContext context) {
     return Card(
       elevation: 3,
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        padding: EdgeInsets.only(left: ScreenUtil().setWidth(0), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(0), bottom: ScreenUtil().setHeight(20)),
+        padding: EdgeInsets.only(
+            left: ScreenUtil().setWidth(0),
+            top: ScreenUtil().setHeight(20),
+            right: ScreenUtil().setWidth(0),
+            bottom: ScreenUtil().setHeight(20)),
         child: Column(
           children: <Widget>[
             SizedBox(height: ScreenUtil().setHeight(60)),
@@ -207,20 +225,20 @@ class _SwapWapPageState extends State<SwapWapPage> {
   Widget _dataWidget(BuildContext context) {
     return Container(
         child: Column(
-          children: <Widget>[
-            _dataLeftWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(0)),
-            _dataMidWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(0)),
-            _dataRightWidget(context),
-          ],
-        )
-    );
+      children: <Widget>[
+        _dataLeftWidget(context),
+        SizedBox(height: ScreenUtil().setHeight(0)),
+        _dataMidWidget(context),
+        SizedBox(height: ScreenUtil().setHeight(0)),
+        _dataRightWidget(context),
+      ],
+    ));
   }
 
   Widget _dataLeftWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       child: Column(
         children: <Widget>[
           Container(
@@ -231,7 +249,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   padding: EdgeInsets.only(left: ScreenUtil().setWidth(2)),
                   child: Text(
                     '${S.of(context).swapSend}',
-                    style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                    style: Util.textStyle4Wap(context, 2, Colors.grey[800],
+                        spacing: 0.0, size: 28),
                   ),
                 ),
                 Container(
@@ -241,10 +260,13 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       children: <TextSpan>[
                         TextSpan(
                           text: '${S.of(context).swapBalance}:  ',
-                          style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 28),
+                          style: Util.textStyle4Wap(
+                              context, 2, Colors.grey[700],
+                              spacing: 0.0, size: 28),
                         ),
                         TextSpan(
-                          text: '${Util.formatNum(double.parse(_leftBalanceAmount), 4)}',
+                          text:
+                              '${Util.formatNum(double.parse(_leftBalanceAmount), 4)}',
                           style: TextStyle(
                             color: Colors.grey[800],
                             fontSize: ScreenUtil().setSp(28),
@@ -272,22 +294,26 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     _showSwapTokenDialLog(context, 1);
                   },
                   child: Container(
-                    padding: EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
+                    padding: EdgeInsets.only(
+                        top: ScreenUtil().setHeight(5),
+                        bottom: ScreenUtil().setHeight(5)),
                     child: Container(
                       child: Row(
                         children: <Widget>[
                           SizedBox(width: ScreenUtil().setWidth(15)),
                           Container(
                             child: ClipOval(
-                              child: _flag1 ? Image.network(
-                                '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                width: ScreenUtil().setWidth(40),
-                                height: ScreenUtil().setWidth(40),
-                                fit: BoxFit.cover,
-                              ) : Container(
-                                width: ScreenUtil().setWidth(40),
-                                height: ScreenUtil().setWidth(40),
-                              ),
+                              child: _flag1
+                                  ? Image.network(
+                                      '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                                      width: ScreenUtil().setWidth(40),
+                                      height: ScreenUtil().setWidth(40),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Container(
+                                      width: ScreenUtil().setWidth(40),
+                                      height: ScreenUtil().setWidth(40),
+                                    ),
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(10)),
@@ -295,13 +321,19 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             width: ScreenUtil().setWidth(80),
                             alignment: Alignment.center,
                             child: Text(
-                              _flag1 ? '${_swapRows[_leftSelectIndex].swapTokenName}' : '',
-                              style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                              _flag1
+                                  ? '${_swapRows[_leftSelectIndex].swapTokenName}'
+                                  : '',
+                              style: Util.textStyle4WapEn(
+                                  context, 2, Colors.grey[800],
+                                  spacing: 0.0, size: 28),
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(5)),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[700]),
+                            child: Icon(Icons.arrow_drop_down,
+                                size: ScreenUtil().setSp(35),
+                                color: Colors.grey[700]),
                           ),
                         ],
                       ),
@@ -310,7 +342,10 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 ),
                 Container(
                     width: ScreenUtil().setWidth(360),
-                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(3), bottom: ScreenUtil().setHeight(3)),
+                    padding: EdgeInsets.only(
+                        left: ScreenUtil().setWidth(20),
+                        top: ScreenUtil().setHeight(3),
+                        bottom: ScreenUtil().setHeight(3)),
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
@@ -319,7 +354,10 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       cursorColor: MyColors.black87,
                       decoration: InputDecoration(
                         hintText: '',
-                        hintStyle: TextStyle(color: Colors.grey[400], fontSize: ScreenUtil().setSp(28), letterSpacing: 0.5),
+                        hintStyle: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: ScreenUtil().setSp(28),
+                            letterSpacing: 0.5),
                         border: InputBorder.none,
                       ),
                       style: TextStyle(
@@ -327,18 +365,36 @@ class _SwapWapPageState extends State<SwapWapPage> {
                         fontSize: ScreenUtil().setSp(28),
                         fontWeight: FontWeight.w500,
                       ),
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: [MyNumberTextInputFormatter(digit:6)],
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [MyNumberTextInputFormatter(digit: 6)],
                       onChanged: (String value) {
-                        if (value != null && value != '' && double.parse(value) >= 0) {
+                        if (value != null &&
+                            value != '' &&
+                            double.parse(value) >= 0) {
                           _leftSwapAmount = value;
-                          double leftAmount = Decimal.tryParse(_leftSwapAmount).toDouble();
-                          _leftSwapValue = (Decimal.tryParse(_leftSwapAmount) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                          double leftAmount =
+                              Decimal.tryParse(_leftSwapAmount).toDouble();
+                          _leftSwapValue = (Decimal.tryParse(_leftSwapAmount) *
+                                  Decimal.fromInt(10).pow(
+                                      _swapRows[_leftSelectIndex]
+                                          .swapTokenPrecision))
+                              .toStringAsFixed(0);
 
-                          if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-                            double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
+                          if (_flag1 &&
+                              _flag2 &&
+                              _swapRows[_rightSelectIndex].swapTokenPrice1 >
+                                  0) {
+                            double rightAmount = leftAmount *
+                                _swapRows[_leftSelectIndex].swapTokenPrice1 /
+                                _swapRows[_rightSelectIndex].swapTokenPrice1;
                             _rightSwapAmount = Util.formatNum(rightAmount, 6);
-                            _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                            _rightSwapValue =
+                                (Decimal.tryParse(rightAmount.toString()) *
+                                        Decimal.fromInt(10).pow(
+                                            _swapRows[_rightSelectIndex]
+                                                .swapTokenPrecision))
+                                    .toStringAsFixed(0);
 
                             if (leftAmount > double.parse(_leftBalanceAmount)) {
                               _swapFlag = false;
@@ -358,13 +414,14 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       },
                       onSaved: (String value) {},
                       onEditingComplete: () {},
-                    )
-                ),
+                    )),
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      _leftSwapAmount = Util.formatNum(double.parse(_leftBalanceAmount), 6);
-                      double leftAmount = Decimal.tryParse(_leftBalanceAmount).toDouble();
+                      _leftSwapAmount =
+                          Util.formatNum(double.parse(_leftBalanceAmount), 6);
+                      double leftAmount =
+                          Decimal.tryParse(_leftBalanceAmount).toDouble();
 
                       if (_flag1 && _flag2) {
                         if (_balanceMap[_leftKey] != null) {
@@ -372,9 +429,16 @@ class _SwapWapPageState extends State<SwapWapPage> {
                         }
 
                         if (_swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-                          double rightAmount = leftAmount * _swapRows[_leftSelectIndex].swapTokenPrice1 /_swapRows[_rightSelectIndex].swapTokenPrice1;
+                          double rightAmount = leftAmount *
+                              _swapRows[_leftSelectIndex].swapTokenPrice1 /
+                              _swapRows[_rightSelectIndex].swapTokenPrice1;
                           _rightSwapAmount = Util.formatNum(rightAmount, 6);
-                          _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                          _rightSwapValue =
+                              (Decimal.tryParse(rightAmount.toString()) *
+                                      Decimal.fromInt(10).pow(
+                                          _swapRows[_rightSelectIndex]
+                                              .swapTokenPrecision))
+                                  .toStringAsFixed(0);
 
                           if (leftAmount > double.parse(_leftBalanceAmount)) {
                             _swapFlag = false;
@@ -386,11 +450,15 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       }
                     },
                     child: Container(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(3), bottom: ScreenUtil().setHeight(3)),
+                      padding: EdgeInsets.only(
+                          top: ScreenUtil().setHeight(3),
+                          bottom: ScreenUtil().setHeight(3)),
                       alignment: Alignment.center,
                       child: Text(
                         'MAX',
-                        style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 27),
+                        style: Util.textStyle4WapEn(
+                            context, 2, Colors.grey[800],
+                            spacing: 0.0, size: 27),
                       ),
                     ),
                   ),
@@ -399,28 +467,36 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ),
           ),
           SizedBox(height: ScreenUtil().setHeight(10)),
-          _flag1 && _flag2 ? Container(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
-                  child: Text(
-                    '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                    style: Util.textStyle4WapEn(context, 2, Colors.grey[700], spacing: 0.0, size: 23),
+          _flag1 && _flag2
+              ? Container(
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding:
+                            EdgeInsets.only(left: ScreenUtil().setWidth(5)),
+                        child: Text(
+                          '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
+                          style: Util.textStyle4WapEn(
+                              context, 2, Colors.grey[700],
+                              spacing: 0.0, size: 23),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding:
+                            EdgeInsets.only(right: ScreenUtil().setWidth(5)),
+                        child: Text(
+                          ' ≈ ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
+                          style: Util.textStyle4WapEn(
+                              context, 2, Colors.grey[700],
+                              spacing: 0.0, size: 23),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(5)),
-                  child: Text(
-                    ' ≈ ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
-                    style: Util.textStyle4WapEn(context, 2, Colors.grey[700], spacing: 0.0, size: 23),
-                  ),
-                ),
-              ],
-            ),
-          ) : Container(),
+                )
+              : Container(),
         ],
       ),
     );
@@ -429,7 +505,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
   Widget _dataMidWidget(BuildContext context) {
     return Container(
       color: Colors.white,
-      margin: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(0)),
+      margin: EdgeInsets.only(
+          top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(0)),
       child: InkWell(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -472,14 +549,14 @@ class _SwapWapPageState extends State<SwapWapPage> {
               size: ScreenUtil().setSp(45),
               color: Colors.grey[700],
             ),
-          )
-      ),
+          )),
     );
   }
 
   Widget _dataRightWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       child: Column(
         children: <Widget>[
           Container(
@@ -490,7 +567,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   padding: EdgeInsets.only(left: ScreenUtil().setWidth(2)),
                   child: Text(
                     '${S.of(context).swapReceive}',
-                    style: Util.textStyle4Wap(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                    style: Util.textStyle4Wap(context, 2, Colors.grey[800],
+                        spacing: 0.0, size: 28),
                   ),
                 ),
                 Container(
@@ -500,10 +578,13 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       children: <TextSpan>[
                         TextSpan(
                           text: '${S.of(context).swapBalance}:  ',
-                          style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 28),
+                          style: Util.textStyle4Wap(
+                              context, 2, Colors.grey[700],
+                              spacing: 0.0, size: 28),
                         ),
                         TextSpan(
-                          text: '${Util.formatNum(double.parse(_rightBalanceAmount), 4)}',
+                          text:
+                              '${Util.formatNum(double.parse(_rightBalanceAmount), 4)}',
                           style: TextStyle(
                             color: Colors.grey[800],
                             fontSize: ScreenUtil().setSp(28),
@@ -531,22 +612,26 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     _showSwapTokenDialLog(context, 2);
                   },
                   child: Container(
-                    padding: EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
+                    padding: EdgeInsets.only(
+                        top: ScreenUtil().setHeight(5),
+                        bottom: ScreenUtil().setHeight(5)),
                     child: Container(
                       child: Row(
                         children: <Widget>[
                           SizedBox(width: ScreenUtil().setWidth(15)),
                           Container(
                             child: ClipOval(
-                              child: _flag2 ? Image.network(
-                                '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                width: ScreenUtil().setWidth(40),
-                                height: ScreenUtil().setWidth(40),
-                                fit: BoxFit.cover,
-                              ) : Container(
-                                width: ScreenUtil().setWidth(40),
-                                height: ScreenUtil().setWidth(40),
-                              ),
+                              child: _flag2
+                                  ? Image.network(
+                                      '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                                      width: ScreenUtil().setWidth(40),
+                                      height: ScreenUtil().setWidth(40),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Container(
+                                      width: ScreenUtil().setWidth(40),
+                                      height: ScreenUtil().setWidth(40),
+                                    ),
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(10)),
@@ -554,13 +639,19 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             width: ScreenUtil().setWidth(80),
                             alignment: Alignment.center,
                             child: Text(
-                              _flag2 ? '${_swapRows[_rightSelectIndex].swapTokenName}' : '',
-                              style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                              _flag2
+                                  ? '${_swapRows[_rightSelectIndex].swapTokenName}'
+                                  : '',
+                              style: Util.textStyle4WapEn(
+                                  context, 2, Colors.grey[800],
+                                  spacing: 0.0, size: 28),
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(5)),
                           Container(
-                            child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[700]),
+                            child: Icon(Icons.arrow_drop_down,
+                                size: ScreenUtil().setSp(35),
+                                color: Colors.grey[700]),
                           ),
                         ],
                       ),
@@ -569,7 +660,10 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 ),
                 Container(
                     width: ScreenUtil().setWidth(360),
-                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(3), bottom: ScreenUtil().setHeight(3)),
+                    padding: EdgeInsets.only(
+                        left: ScreenUtil().setWidth(20),
+                        top: ScreenUtil().setHeight(3),
+                        bottom: ScreenUtil().setHeight(3)),
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
@@ -578,27 +672,51 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       cursorColor: MyColors.black87,
                       decoration: InputDecoration(
                         hintText: '',
-                        hintStyle: TextStyle(color: Colors.grey[400], fontSize: ScreenUtil().setSp(30), letterSpacing: 0.5), border: InputBorder.none,
+                        hintStyle: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: ScreenUtil().setSp(30),
+                            letterSpacing: 0.5),
+                        border: InputBorder.none,
                       ),
                       style: TextStyle(
                         color: Colors.grey[850],
                         fontSize: ScreenUtil().setSp(28),
                         fontWeight: FontWeight.w500,
                       ),
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: [MyNumberTextInputFormatter(digit:6)],
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [MyNumberTextInputFormatter(digit: 6)],
                       onChanged: (String value) {
-                        if (value != null && value != '' && double.parse(value) >= 0) {
+                        if (value != null &&
+                            value != '' &&
+                            double.parse(value) >= 0) {
                           _rightSwapAmount = value;
-                          double rightAmount = Decimal.tryParse(_rightSwapAmount).toDouble();
-                          _rightSwapValue = (Decimal.tryParse(_rightSwapAmount) * Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                          double rightAmount =
+                              Decimal.tryParse(_rightSwapAmount).toDouble();
+                          _rightSwapValue =
+                              (Decimal.tryParse(_rightSwapAmount) *
+                                      Decimal.fromInt(10).pow(
+                                          _swapRows[_rightSelectIndex]
+                                              .swapTokenPrecision))
+                                  .toStringAsFixed(0);
 
-                          if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-                            double leftAmount = rightAmount * _swapRows[_rightSelectIndex].swapTokenPrice1 /_swapRows[_leftSelectIndex].swapTokenPrice1;
+                          if (_flag1 &&
+                              _flag2 &&
+                              _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+                            double leftAmount = rightAmount *
+                                _swapRows[_rightSelectIndex].swapTokenPrice1 /
+                                _swapRows[_leftSelectIndex].swapTokenPrice1;
                             _leftSwapAmount = Util.formatNum(leftAmount, 6);
-                            _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                            _leftSwapValue =
+                                (Decimal.tryParse(leftAmount.toString()) *
+                                        Decimal.fromInt(10).pow(
+                                            _swapRows[_leftSelectIndex]
+                                                .swapTokenPrecision))
+                                    .toStringAsFixed(0);
 
-                            if (_balanceMap[_leftKey] != null && double.parse(_leftSwapValue) > double.parse(_balanceMap[_leftKey])) {
+                            if (_balanceMap[_leftKey] != null &&
+                                double.parse(_leftSwapValue) >
+                                    double.parse(_balanceMap[_leftKey])) {
                               _swapFlag = false;
                             } else {
                               _swapFlag = true;
@@ -616,14 +734,15 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       },
                       onSaved: (String value) {},
                       onEditingComplete: () {},
-                    )
-                ),
+                    )),
                 Expanded(
                   child: InkWell(
                     onTap: () {
                       if (_flag1 && _flag2) {
-                        _rightSwapAmount = Util.formatNum(double.parse(_rightBalanceAmount), 6);
-                        double rightAmount = Decimal.tryParse(_rightBalanceAmount).toDouble();
+                        _rightSwapAmount = Util.formatNum(
+                            double.parse(_rightBalanceAmount), 6);
+                        double rightAmount =
+                            Decimal.tryParse(_rightBalanceAmount).toDouble();
 
                         if (_flag1 && _flag2) {
                           if (_balanceMap[_rightKey] != null) {
@@ -631,11 +750,20 @@ class _SwapWapPageState extends State<SwapWapPage> {
                           }
 
                           if (_swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-                            double leftAmount = rightAmount * _swapRows[_rightSelectIndex].swapTokenPrice1 /_swapRows[_leftSelectIndex].swapTokenPrice1;
+                            double leftAmount = rightAmount *
+                                _swapRows[_rightSelectIndex].swapTokenPrice1 /
+                                _swapRows[_leftSelectIndex].swapTokenPrice1;
                             _leftSwapAmount = Util.formatNum(leftAmount, 4);
-                            _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) * Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toStringAsFixed(0);
+                            _leftSwapValue =
+                                (Decimal.tryParse(leftAmount.toString()) *
+                                        Decimal.fromInt(10).pow(
+                                            _swapRows[_leftSelectIndex]
+                                                .swapTokenPrecision))
+                                    .toStringAsFixed(0);
 
-                            if (_balanceMap[_leftKey] != null && double.parse(_leftSwapValue) > double.parse(_balanceMap[_leftKey])) {
+                            if (_balanceMap[_leftKey] != null &&
+                                double.parse(_leftSwapValue) >
+                                    double.parse(_balanceMap[_leftKey])) {
                               _swapFlag = false;
                             } else {
                               _swapFlag = true;
@@ -646,11 +774,15 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       }
                     },
                     child: Container(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(3), bottom: ScreenUtil().setHeight(3)),
+                      padding: EdgeInsets.only(
+                          top: ScreenUtil().setHeight(3),
+                          bottom: ScreenUtil().setHeight(3)),
                       alignment: Alignment.center,
                       child: Text(
-                          'MAX',
-                        style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 27),
+                        'MAX',
+                        style: Util.textStyle4WapEn(
+                            context, 2, Colors.grey[800],
+                            spacing: 0.0, size: 27),
                       ),
                     ),
                   ),
@@ -659,28 +791,36 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ),
           ),
           SizedBox(height: ScreenUtil().setHeight(10)),
-          _flag1 && _flag2 ? Container(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
-                  child: Text(
-                    '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                    style: Util.textStyle4WapEn(context, 2, Colors.grey[700], spacing: 0.0, size: 23),
+          _flag1 && _flag2
+              ? Container(
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding:
+                            EdgeInsets.only(left: ScreenUtil().setWidth(5)),
+                        child: Text(
+                          '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
+                          style: Util.textStyle4WapEn(
+                              context, 2, Colors.grey[700],
+                              spacing: 0.0, size: 23),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding:
+                            EdgeInsets.only(right: ScreenUtil().setWidth(5)),
+                        child: Text(
+                          ' ≈ ${Util.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
+                          style: Util.textStyle4WapEn(
+                              context, 2, Colors.grey[700],
+                              spacing: 0.0, size: 23),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(5)),
-                  child: Text(
-                    ' ≈ ${Util.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
-                    style: Util.textStyle4WapEn(context, 2, Colors.grey[700], spacing: 0.0, size: 23),
-                  ),
-                ),
-              ],
-            ),
-          ) : Container(),
+                )
+              : Container(),
         ],
       ),
     );
@@ -688,15 +828,22 @@ class _SwapWapPageState extends State<SwapWapPage> {
 
   Widget _poolWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           InkWell(
             onTap: () {
-              if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType == 1 || _swapRows[_rightSelectIndex].swapTokenType == 1)) {
+              if (_flag1 &&
+                  _flag2 &&
+                  (_swapRows[_leftSelectIndex].swapTokenType == 1 ||
+                      _swapRows[_rightSelectIndex].swapTokenType == 1)) {
                 _showPoolTokenOneDialLog(context);
-              } else if (_flag1 && _flag2 && (_swapRows[_leftSelectIndex].swapTokenType != 1 &&  _swapRows[_rightSelectIndex].swapTokenType != 1)) {
+              } else if (_flag1 &&
+                  _flag2 &&
+                  (_swapRows[_leftSelectIndex].swapTokenType != 1 &&
+                      _swapRows[_rightSelectIndex].swapTokenType != 1)) {
                 _showPoolTokenTwoDialLog(context);
               }
             },
@@ -706,10 +853,15 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 color: Colors.blue[500],
                 borderRadius: BorderRadius.circular(6),
               ),
-              padding: EdgeInsets.only(left: ScreenUtil().setWidth(18), top: ScreenUtil().setHeight(12), bottom: ScreenUtil().setHeight(12), right: ScreenUtil().setWidth(18)),
+              padding: EdgeInsets.only(
+                  left: ScreenUtil().setWidth(18),
+                  top: ScreenUtil().setHeight(12),
+                  bottom: ScreenUtil().setHeight(12),
+                  right: ScreenUtil().setWidth(18)),
               child: Text(
                 '${S.of(context).swapPooledTokens}',
-                style: Util.textStyle4Wap(context, 2, Colors.white, spacing: 0.0, size: 23),
+                style: Util.textStyle4Wap(context, 2, Colors.white,
+                    spacing: 0.0, size: 23),
               ),
             ),
           ),
@@ -721,10 +873,10 @@ class _SwapWapPageState extends State<SwapWapPage> {
   _showSwapTokenDialLog(BuildContext context, int type) {
     showDialog(
       context: context,
-      child: AlertDialog(
+      builder: (context) => AlertDialog(
         elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
-        ),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
           width: ScreenUtil().setWidth(600),
           height: ScreenUtil().setHeight(650),
@@ -739,7 +891,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     scrollDirection: Axis.vertical,
                     itemCount: _swapRows.length,
                     itemBuilder: (context, index) {
-                      return _selectSwapTokenWidget(context, index, _swapRows[index], type);
+                      return _selectSwapTokenWidget(
+                          context, index, _swapRows[index], type);
                     },
                   ),
                 ),
@@ -764,7 +917,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
               padding: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
               child: Text(
                 '${S.of(context).swapTokenName}',
-                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700],
+                    spacing: 0.0, size: 26),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               )),
@@ -773,7 +927,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
               padding: EdgeInsets.only(right: ScreenUtil().setWidth(8)),
               child: Text(
                 '${S.of(context).swapTokenPrice}',
-                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700],
+                    spacing: 0.0, size: 26),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               )),
@@ -782,7 +937,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
     );
   }
 
-  Widget _selectSwapTokenWidget(BuildContext context, int index, SwapRow item, int type) {
+  Widget _selectSwapTokenWidget(
+      BuildContext context, int index, SwapRow item, int type) {
     bool flag = false;
     if (type == 1) {
       flag = index == _leftSelectIndex ? true : false;
@@ -812,11 +968,12 @@ class _SwapWapPageState extends State<SwapWapPage> {
           setState(() {});
           Navigator.pop(context);
         }
-
       },
       child: Container(
         width: ScreenUtil().setWidth(600),
-        padding: EdgeInsets.only(top: ScreenUtil().setHeight(18), bottom: ScreenUtil().setHeight(18)),
+        padding: EdgeInsets.only(
+            top: ScreenUtil().setHeight(18),
+            bottom: ScreenUtil().setHeight(18)),
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           color: flag ? Colors.grey[100] : null,
@@ -843,17 +1000,33 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   Container(
                     padding: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
                     alignment: Alignment.centerLeft,
-                    child: type == 1 ? Text(
-                      '${item.swapTokenName}',
-                      style: Util.textStyle4WapEn(context, 2, index != _rightSelectIndex  ? Colors.grey[800] :Colors.grey[500], spacing: 0.0, size: 26),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ) : Text(
-                      '${item.swapTokenName}',
-                      style: Util.textStyle4WapEn(context, 2, index != _leftSelectIndex  ? Colors.grey[800] :Colors.grey[500], spacing: 0.0, size: 26),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    child: type == 1
+                        ? Text(
+                            '${item.swapTokenName}',
+                            style: Util.textStyle4WapEn(
+                                context,
+                                2,
+                                index != _rightSelectIndex
+                                    ? Colors.grey[800]
+                                    : Colors.grey[500],
+                                spacing: 0.0,
+                                size: 26),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        : Text(
+                            '${item.swapTokenName}',
+                            style: Util.textStyle4WapEn(
+                                context,
+                                2,
+                                index != _leftSelectIndex
+                                    ? Colors.grey[800]
+                                    : Colors.grey[500],
+                                spacing: 0.0,
+                                size: 26),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                   ),
                 ],
               ),
@@ -862,25 +1035,31 @@ class _SwapWapPageState extends State<SwapWapPage> {
               child: Container(
                 alignment: Alignment.centerRight,
                 padding: EdgeInsets.only(right: ScreenUtil().setWidth(20)),
-                child: type == 1 ? Text(
-                  '${Util.formatNum(item.swapTokenPrice2, 6)}',
-                  style: TextStyle(
-                    color: index != _rightSelectIndex  ? Colors.grey[800] :Colors.grey[500],
-                    fontSize: ScreenUtil().setSp(26),
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ) : Text(
-                  '${Util.formatNum(item.swapTokenPrice2, 6)}',
-                  style: TextStyle(
-                    color: index != _leftSelectIndex  ? Colors.grey[800] :Colors.grey[500],
-                    fontSize: ScreenUtil().setSp(26),
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                child: type == 1
+                    ? Text(
+                        '${Util.formatNum(item.swapTokenPrice2, 6)}',
+                        style: TextStyle(
+                          color: index != _rightSelectIndex
+                              ? Colors.grey[800]
+                              : Colors.grey[500],
+                          fontSize: ScreenUtil().setSp(26),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    : Text(
+                        '${Util.formatNum(item.swapTokenPrice2, 6)}',
+                        style: TextStyle(
+                          color: index != _leftSelectIndex
+                              ? Colors.grey[800]
+                              : Colors.grey[500],
+                          fontSize: ScreenUtil().setSp(26),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
               ),
             ),
           ],
@@ -892,25 +1071,30 @@ class _SwapWapPageState extends State<SwapWapPage> {
   _showPoolTokenOneDialLog(BuildContext context) {
     showDialog(
       context: context,
-      child: AlertDialog(
+      builder: (context) => AlertDialog(
         elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
         content: Container(
           width: ScreenUtil().setWidth(600),
           height: ScreenUtil().setHeight(380),
           padding: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
           child: ListView(
-            children:<Widget> [
+            children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+                padding: EdgeInsets.only(
+                    top: ScreenUtil().setHeight(10),
+                    bottom: ScreenUtil().setHeight(10)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
                       child: Text(
                         '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
-                        style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
+                        style: Util.textStyle4WapEn(
+                            context, 2, Colors.grey[800],
+                            spacing: 0.0, size: 30),
                       ),
                     ),
                   ],
@@ -918,14 +1102,19 @@ class _SwapWapPageState extends State<SwapWapPage> {
               ),
               SizedBox(height: 0),
               Container(
-                padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(20), bottom:  ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(20)),
+                padding: EdgeInsets.only(
+                    left: ScreenUtil().setWidth(20),
+                    top: ScreenUtil().setHeight(20),
+                    bottom: ScreenUtil().setHeight(20),
+                    right: ScreenUtil().setWidth(20)),
                 child: Column(
                   children: <Widget>[
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${S.of(context).swapTotalLiquidity}',
-                        style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.2, size: 26),
+                        style: Util.textStyle4Wap(context, 2, Colors.grey[700],
+                            spacing: 0.2, size: 26),
                       ),
                     ),
                     SizedBox(height: ScreenUtil().setHeight(15)),
@@ -944,9 +1133,11 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                            padding: EdgeInsets.only(
+                                left: ScreenUtil().setWidth(15)),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
+                              _swapRows[_leftSelectIndex].swapTokenType == 2
+                                  ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                               style: TextStyle(
                                 color: Colors.grey[800],
@@ -960,7 +1151,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                           Container(
                             child: Text(
                               '  USD',
-                              style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.2, size: 26),
+                              style: Util.textStyle4WapEn(
+                                  context, 2, Colors.grey[800],
+                                  spacing: 0.2, size: 26),
                             ),
                           ),
                         ],
@@ -971,7 +1164,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${S.of(context).swapToken}',
-                        style: Util.textStyle4WapEn(context, 2, Colors.grey[700], spacing: 0.2, size: 26),
+                        style: Util.textStyle4WapEn(
+                            context, 2, Colors.grey[700],
+                            spacing: 0.2, size: 26),
                       ),
                     ),
                     SizedBox(height: ScreenUtil().setHeight(15)),
@@ -990,9 +1185,11 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                            padding: EdgeInsets.only(
+                                left: ScreenUtil().setWidth(15)),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
+                              _swapRows[_leftSelectIndex].swapTokenType == 2
+                                  ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                               style: TextStyle(
                                 color: Colors.grey[800],
@@ -1006,8 +1203,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                           Container(
                             child: Text(
                               '  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                              style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
-
+                              style: Util.textStyle4WapEn(
+                                  context, 2, Colors.grey[800],
+                                  spacing: 0.0, size: 26),
                             ),
                           ),
                         ],
@@ -1029,9 +1227,11 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                            padding: EdgeInsets.only(
+                                left: ScreenUtil().setWidth(15)),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
+                              _swapRows[_leftSelectIndex].swapTokenType == 2
+                                  ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                               style: TextStyle(
                                 color: Colors.grey[800],
@@ -1045,7 +1245,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                           Container(
                             child: Text(
                               '  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                              style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.2, size: 26),
+                              style: Util.textStyle4WapEn(
+                                  context, 2, Colors.grey[800],
+                                  spacing: 0.2, size: 26),
                             ),
                           ),
                         ],
@@ -1064,28 +1266,32 @@ class _SwapWapPageState extends State<SwapWapPage> {
   _showPoolTokenTwoDialLog(BuildContext context) {
     showDialog(
       context: context,
-      child: AlertDialog(
+      builder: (context) => AlertDialog(
         elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
-        ),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
           width: ScreenUtil().setWidth(600),
           height: ScreenUtil().setHeight(700),
           padding: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
           child: ListView(
-            children:<Widget> [
+            children: <Widget>[
               Container(
                 child: Column(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(0)),
+                      padding: EdgeInsets.only(
+                          top: ScreenUtil().setHeight(10),
+                          bottom: ScreenUtil().setHeight(0)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
                             child: Text(
                               '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_leftSelectIndex].baseTokenName}',
-                              style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
+                              style: Util.textStyle4WapEn(
+                                  context, 2, Colors.grey[800],
+                                  spacing: 0.0, size: 30),
                             ),
                           ),
                         ],
@@ -1093,14 +1299,20 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     ),
                     SizedBox(height: 0),
                     Container(
-                      padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(20), bottom:  ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(20)),
+                      padding: EdgeInsets.only(
+                          left: ScreenUtil().setWidth(20),
+                          top: ScreenUtil().setHeight(20),
+                          bottom: ScreenUtil().setHeight(20),
+                          right: ScreenUtil().setWidth(20)),
                       child: Column(
                         children: <Widget>[
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
                               '${S.of(context).swapTotalLiquidity}',
-                              style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.2, size: 26),
+                              style: Util.textStyle4Wap(
+                                  context, 2, Colors.grey[700],
+                                  spacing: 0.2, size: 26),
                             ),
                           ),
                           SizedBox(height: ScreenUtil().setHeight(15)),
@@ -1119,7 +1331,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1134,7 +1347,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                 Container(
                                   child: Text(
                                     '  USD',
-                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
+                                    style: Util.textStyle4WapEn(
+                                        context, 2, Colors.grey[800],
+                                        spacing: 0.0, size: 26),
                                   ),
                                 ),
                               ],
@@ -1145,7 +1360,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               '${S.of(context).swapToken}',
-                              style: Util.textStyle4WapEn(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
+                              style: Util.textStyle4WapEn(
+                                  context, 2, Colors.grey[700],
+                                  spacing: 0.0, size: 26),
                             ),
                           ),
                           SizedBox(height: ScreenUtil().setHeight(15)),
@@ -1164,7 +1381,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1179,7 +1397,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
+                                    style: Util.textStyle4WapEn(
+                                        context, 2, Colors.grey[800],
+                                        spacing: 0.0, size: 26),
                                   ),
                                 ),
                               ],
@@ -1201,7 +1421,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1216,7 +1437,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_leftSelectIndex].baseTokenName}',
-                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
+                                    style: Util.textStyle4WapEn(
+                                        context, 2, Colors.grey[800],
+                                        spacing: 0.0, size: 26),
                                   ),
                                 ),
                               ],
@@ -1233,14 +1456,18 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(0)),
+                      padding: EdgeInsets.only(
+                          top: ScreenUtil().setHeight(10),
+                          bottom: ScreenUtil().setHeight(0)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
                             child: Text(
                               '${_swapRows[_rightSelectIndex].baseTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
-                              style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
+                              style: Util.textStyle4WapEn(
+                                  context, 2, Colors.grey[800],
+                                  spacing: 0.0, size: 30),
                             ),
                           ),
                         ],
@@ -1248,14 +1475,20 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     ),
                     SizedBox(height: 0),
                     Container(
-                      padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(20), bottom:  ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(20)),
+                      padding: EdgeInsets.only(
+                          left: ScreenUtil().setWidth(20),
+                          top: ScreenUtil().setHeight(20),
+                          bottom: ScreenUtil().setHeight(20),
+                          right: ScreenUtil().setWidth(20)),
                       child: Column(
                         children: <Widget>[
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
                               '${S.of(context).swapTotalLiquidity}',
-                              style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
+                              style: Util.textStyle4Wap(
+                                  context, 2, Colors.grey[700],
+                                  spacing: 0.0, size: 26),
                             ),
                           ),
                           SizedBox(height: ScreenUtil().setHeight(15)),
@@ -1274,7 +1507,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1289,7 +1523,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                 Container(
                                   child: Text(
                                     '  USD',
-                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
+                                    style: Util.textStyle4WapEn(
+                                        context, 2, Colors.grey[800],
+                                        spacing: 0.0, size: 26),
                                   ),
                                 ),
                               ],
@@ -1300,7 +1536,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               '${S.of(context).swapToken}',
-                              style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
+                              style: Util.textStyle4Wap(
+                                  context, 2, Colors.grey[700],
+                                  spacing: 0.0, size: 26),
                             ),
                           ),
                           SizedBox(height: ScreenUtil().setHeight(15)),
@@ -1319,7 +1557,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1334,8 +1573,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_rightSelectIndex].baseTokenName}',
-                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
-
+                                    style: Util.textStyle4WapEn(
+                                        context, 2, Colors.grey[800],
+                                        spacing: 0.0, size: 26),
                                   ),
                                 ),
                               ],
@@ -1357,7 +1597,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1372,7 +1613,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                                    style: Util.textStyle4WapEn(context, 2, Colors.grey[800], spacing: 0.0, size: 26),
+                                    style: Util.textStyle4WapEn(
+                                        context, 2, Colors.grey[800],
+                                        spacing: 0.0, size: 26),
                                   ),
                                 ),
                               ],
@@ -1408,9 +1651,25 @@ class _SwapWapPageState extends State<SwapWapPage> {
               _loadFlag = true;
             });
             if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
-              js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, _leftSwapValue, _rightSwapValue]);
-            } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 && _swapRows[_rightSelectIndex].swapTokenType == 2){
-              js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, _leftSwapValue, _account]);
+              js.context.callMethod('allowance', [
+                _swapRows[_leftSelectIndex].lpTokenAddress,
+                2,
+                _swapRows[_rightSelectIndex].swapTokenType,
+                _swapRows[_leftSelectIndex].swapTokenAddress,
+                _swapRows[_rightSelectIndex].swapTokenAddress,
+                _account,
+                _leftSwapValue,
+                _rightSwapValue
+              ]);
+            } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
+                _swapRows[_rightSelectIndex].swapTokenType == 2) {
+              js.context.callMethod('trxToTokenSwap', [
+                _swapRows[_rightSelectIndex].swapTokenAddress,
+                _swapRows[_rightSelectIndex].lpTokenAddress,
+                1,
+                _leftSwapValue,
+                _account
+              ]);
             }
           }
         }
@@ -1418,17 +1677,32 @@ class _SwapWapPageState extends State<SwapWapPage> {
       child: Container(
         color: Colors.white,
         child: Chip(
-          padding: _swapFlag ? EdgeInsets.only(left: ScreenUtil().setWidth(80), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(80), bottom: ScreenUtil().setHeight(20)) : EdgeInsets.only(left: ScreenUtil().setWidth(60), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(60), bottom: ScreenUtil().setHeight(20)),
-          backgroundColor:  MyColors.blue500,
-          label: !_loadFlag ? Container(
-            child: Text(
-              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
-              style: Util.textStyle4Wap(context, 2, Colors.white, spacing: 0.5, size: 28),
-            ),
-          ) : Container(
-            color: Colors.blue[500],
-            child: CupertinoActivityIndicator(),
-          ),
+          padding: _swapFlag
+              ? EdgeInsets.only(
+                  left: ScreenUtil().setWidth(80),
+                  top: ScreenUtil().setHeight(20),
+                  right: ScreenUtil().setWidth(80),
+                  bottom: ScreenUtil().setHeight(20))
+              : EdgeInsets.only(
+                  left: ScreenUtil().setWidth(60),
+                  top: ScreenUtil().setHeight(20),
+                  right: ScreenUtil().setWidth(60),
+                  bottom: ScreenUtil().setHeight(20)),
+          backgroundColor: MyColors.blue500,
+          label: !_loadFlag
+              ? Container(
+                  child: Text(
+                    _swapFlag
+                        ? '${S.of(context).swapSwap}'
+                        : '${S.of(context).swapTokenNotEnough}',
+                    style: Util.textStyle4Wap(context, 2, Colors.white,
+                        spacing: 0.5, size: 28),
+                  ),
+                )
+              : Container(
+                  color: Colors.blue[500],
+                  child: CupertinoActivityIndicator(),
+                ),
         ),
       ),
     );
@@ -1440,13 +1714,17 @@ class _SwapWapPageState extends State<SwapWapPage> {
       elevation: 0,
       titleSpacing: 0.0,
       title: Container(
-        child: Image.asset('images/logo150.png', fit: BoxFit.contain, width: ScreenUtil().setWidth(110), height: ScreenUtil().setWidth(110)),
+        child: Image.asset('images/logo150.png',
+            fit: BoxFit.contain,
+            width: ScreenUtil().setWidth(110),
+            height: ScreenUtil().setWidth(110)),
       ),
       leading: IconButton(
         hoverColor: MyColors.white,
         icon: Container(
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
-          child: Icon(Icons.menu, size: ScreenUtil().setWidth(55), color: Colors.grey[800]),
+          child: Icon(Icons.menu,
+              size: ScreenUtil().setWidth(55), color: Colors.grey[800]),
         ),
         onPressed: () {
           _scaffoldKey.currentState.openDrawer();
@@ -1467,7 +1745,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle0}',
-                style: Util.textStyle4Wap(context, 2, _homeIndex == 0 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2,
+                    _homeIndex == 0 ? Colors.black : Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1476,7 +1756,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(0);
                 });
-                Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/swap',
+                    transition: TransitionType.fadeIn);
               },
               leading: Icon(
                 Icons.donut_small,
@@ -1486,7 +1767,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle2}',
-                style: Util.textStyle4Wap(context, 2, _homeIndex == 2 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2,
+                    _homeIndex == 2 ? Colors.black : Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1495,7 +1778,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(2);
                 });
-                Application.router.navigateTo(context, 'wap/lend', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/lend',
+                    transition: TransitionType.fadeIn);
               },
               leading: Icon(
                 Icons.broken_image,
@@ -1505,7 +1789,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle3}',
-                style: Util.textStyle4Wap(context, 2, _homeIndex == 3 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2,
+                    _homeIndex == 3 ? Colors.black : Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1514,7 +1800,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(3);
                 });
-                Application.router.navigateTo(context, 'wap/wallet', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/wallet',
+                    transition: TransitionType.fadeIn);
               },
               leading: Icon(
                 Icons.account_balance_wallet,
@@ -1522,9 +1809,11 @@ class _SwapWapPageState extends State<SwapWapPage> {
               ),
             ),
             ListTile(
-              title:  Text(
+              title: Text(
                 '${S.of(context).actionTitle4}',
-                style: Util.textStyle4Wap(context, 2, _homeIndex == 4 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2,
+                    _homeIndex == 4 ? Colors.black : Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -1532,7 +1821,8 @@ class _SwapWapPageState extends State<SwapWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(4);
                 });
-                Application.router.navigateTo(context, 'wap/about', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/about',
+                    transition: TransitionType.fadeIn);
               },
               leading: Icon(
                 Icons.file_copy_sharp,
@@ -1541,13 +1831,18 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ),
             ListTile(
               title: Text(
-                _account == '' ? '${S.of(context).connectAccount}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
-                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
+                _account == ''
+                    ? '${S.of(context).connectAccount}'
+                    : _account.substring(0, 4) +
+                        '...' +
+                        _account.substring(
+                            _account.length - 4, _account.length),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              onTap: () {
-              },
+              onTap: () {},
               leading: Icon(
                 Icons.account_circle,
                 color: Colors.grey[700],
@@ -1555,13 +1850,15 @@ class _SwapWapPageState extends State<SwapWapPage> {
             ),
             ListTile(
               title: Text(
-                 'English/中文',
-                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
+                'English/中文',
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
               onTap: () {
-                Provider.of<IndexProvider>(context, listen: false).changeLangType();
+                Provider.of<IndexProvider>(context, listen: false)
+                    .changeLangType();
                 Navigator.pop(context);
                 Util.showToast4Wap(S.of(context).success, timeValue: 2);
               },
@@ -1597,8 +1894,10 @@ class _SwapWapPageState extends State<SwapWapPage> {
           setState(() {
             _account = result.toString();
             if (_flag1 && _flag2) {
-              _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
-              _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
+              _leftKey =
+                  '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
+              _rightKey =
+                  '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
             }
           });
         }
@@ -1609,8 +1908,10 @@ class _SwapWapPageState extends State<SwapWapPage> {
         setState(() {
           _account = '';
           if (_flag1 && _flag2) {
-            _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
-            _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
+            _leftKey =
+                '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
+            _rightKey =
+                '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
           }
         });
       }
@@ -1644,7 +1945,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
         SwapRespModel respModel = SwapRespModel.fromJson(respData);
         if (respModel != null && respModel.code == 0) {
           _swapData = respModel.data;
-          if (_swapData != null && _swapData.rows != null && _swapData.rows.length > 0) {
+          if (_swapData != null &&
+              _swapData.rows != null &&
+              _swapData.rows.length > 0) {
             _swapRows = _swapData.rows;
           }
         }
@@ -1667,25 +1970,41 @@ class _SwapWapPageState extends State<SwapWapPage> {
       _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
     }
 
-    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0 && _balanceMap[_leftKey] != null) {
-      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toString();
+    if (_flag1 &&
+        _flag2 &&
+        _swapRows[_leftSelectIndex].swapTokenPrecision > 0 &&
+        _balanceMap[_leftKey] != null) {
+      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey]) /
+              Decimal.fromInt(10)
+                  .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
+          .toString();
     }
-    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0 && _balanceMap[_rightKey] != null) {
-      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toString();
+    if (_flag1 &&
+        _flag2 &&
+        _swapRows[_rightSelectIndex].swapTokenPrecision > 0 &&
+        _balanceMap[_rightKey] != null) {
+      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey]) /
+              Decimal.fromInt(10)
+                  .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
+          .toString();
     }
 
     if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toString();
+      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1 /
+              _swapRows[_rightSelectIndex].swapTokenPrice1)
+          .toString();
     }
     if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toString();
+      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1 /
+              _swapRows[_leftSelectIndex].swapTokenPrice1)
+          .toString();
     }
   }
 
   bool _reloadTokenBalanceFlag = false;
 
   _reloadTokenBalance() async {
-    js.context['setBalance']=setBalance;
+    js.context['setBalance'] = setBalance;
     _getTokenBalance(1);
     _timer3 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
       if (_reloadTokenBalanceFlag) {
@@ -1697,10 +2016,14 @@ class _SwapWapPageState extends State<SwapWapPage> {
   _getTokenBalance(int type) async {
     _reloadTokenBalanceFlag = false;
     if (_account != '') {
-      for (int i=0; i<_swapRows.length; i++) {
+      for (int i = 0; i < _swapRows.length; i++) {
         String _key = '$_account+${_swapRows[i].swapTokenAddress}';
         if (type == 1 || _balanceMap[_key] == null) {
-          js.context.callMethod('getTokenBalance', [_swapRows[i].swapTokenType, _swapRows[i].swapTokenAddress, _account]);
+          js.context.callMethod('getTokenBalance', [
+            _swapRows[i].swapTokenType,
+            _swapRows[i].swapTokenAddress,
+            _account
+          ]);
         }
       }
     }
@@ -1723,25 +2046,69 @@ class _SwapWapPageState extends State<SwapWapPage> {
     }
   }
 
-  void setAllowance(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue, allowanceAmount) {
-    double allowanceValue = Decimal.tryParse(allowanceAmount.toString()).toDouble();
+  void setAllowance(
+      lpTokenAddress,
+      swapTokenType,
+      baseTokenType,
+      swapTokenAddress,
+      baseTokenAddress,
+      swapTradeValue,
+      baseTradeValue,
+      allowanceAmount) {
+    double allowanceValue =
+        Decimal.tryParse(allowanceAmount.toString()).toDouble();
     double swapValue = double.parse(swapTradeValue.toString());
     if (swapValue > allowanceValue) {
-      js.context.callMethod('approve', [lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue]);
+      js.context.callMethod('approve', [
+        lpTokenAddress,
+        swapTokenType,
+        baseTokenType,
+        swapTokenAddress,
+        baseTokenAddress,
+        swapTradeValue,
+        baseTradeValue
+      ]);
     } else {
-      if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
-        js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
-      } else if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
-        js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, _account, baseTokenAddress]);
+      if (_account != '' &&
+          swapTokenType.toString() == '2' &&
+          baseTokenType.toString() == '1') {
+        js.context.callMethod('tokenToTrxSwap',
+            [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
+      } else if (_account != '' &&
+          swapTokenType.toString() == '2' &&
+          baseTokenType.toString() == '2') {
+        js.context.callMethod('tokenToTokenSwap', [
+          swapTokenAddress,
+          lpTokenAddress,
+          swapTradeValue,
+          1,
+          1,
+          _account,
+          baseTokenAddress
+        ]);
       }
     }
   }
 
-  void setApprove(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue) {
-    if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '1') {
-      js.context.callMethod('tokenToTrxSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
-    } else if (_account != '' && swapTokenType.toString() == '2' && baseTokenType.toString() == '2') {
-      js.context.callMethod('tokenToTokenSwap', [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, 1, _account, baseTokenAddress]);
+  void setApprove(lpTokenAddress, swapTokenType, baseTokenType,
+      swapTokenAddress, baseTokenAddress, swapTradeValue, baseTradeValue) {
+    if (_account != '' &&
+        swapTokenType.toString() == '2' &&
+        baseTokenType.toString() == '1') {
+      js.context.callMethod('tokenToTrxSwap',
+          [swapTokenAddress, lpTokenAddress, swapTradeValue, 1, _account]);
+    } else if (_account != '' &&
+        swapTokenType.toString() == '2' &&
+        baseTokenType.toString() == '2') {
+      js.context.callMethod('tokenToTokenSwap', [
+        swapTokenAddress,
+        lpTokenAddress,
+        swapTradeValue,
+        1,
+        1,
+        _account,
+        baseTokenAddress
+      ]);
     }
   }
 
@@ -1751,7 +2118,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     });
     Util.showToast4Wap(S.of(context).success, timeValue: 2);
     for (int i = 0; i < 3; i++) {
-      await Future.delayed(Duration(milliseconds: 2000), (){
+      await Future.delayed(Duration(milliseconds: 2000), () {
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
         if (i == 0) {
@@ -1772,7 +2139,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     });
     Util.showToast4Wap(S.of(context).success, timeValue: 2);
     for (int i = 0; i < 3; i++) {
-      await Future.delayed(Duration(milliseconds: 2000), (){
+      await Future.delayed(Duration(milliseconds: 2000), () {
         js.context.callMethod('getTokenBalance', [2, swapToken, _account]);
         js.context.callMethod('getTokenBalance', [1, 'TRX', _account]);
         if (i == 0) {
@@ -1793,7 +2160,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
     });
     Util.showToast4Wap(S.of(context).success, timeValue: 2);
     for (int i = 0; i < 3; i++) {
-     await  Future.delayed(Duration(milliseconds: 2000), (){
+      await Future.delayed(Duration(milliseconds: 2000), () {
         js.context.callMethod('getTokenBalance', [2, leftToken, _account]);
         js.context.callMethod('getTokenBalance', [2, rightToken, _account]);
         if (i == 0) {
@@ -1815,6 +2182,4 @@ class _SwapWapPageState extends State<SwapWapPage> {
       _loadFlag = false;
     });
   }
-
-
 }
