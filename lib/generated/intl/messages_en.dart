@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutTips051" : MessageLookupByLibrary.simpleMessage("swap contract:  "),
     "aboutTips052" : MessageLookupByLibrary.simpleMessage("TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg"),
     "aboutTips06" : MessageLookupByLibrary.simpleMessage("mining:  no handling fee,  no contract"),
-    "aboutTips07" : MessageLookupByLibrary.simpleMessage("lending,  wallet:  coming soon"),
+    "aboutTips07" : MessageLookupByLibrary.simpleMessage("lending:  coming soon"),
     "actionTitle0" : MessageLookupByLibrary.simpleMessage("Swap"),
     "actionTitle1" : MessageLookupByLibrary.simpleMessage("Farm"),
     "actionTitle2" : MessageLookupByLibrary.simpleMessage("Lend"),

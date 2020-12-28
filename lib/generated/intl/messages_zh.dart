@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutTips051" : MessageLookupByLibrary.simpleMessage("交易合约:  "),
     "aboutTips052" : MessageLookupByLibrary.simpleMessage("TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg"),
     "aboutTips06" : MessageLookupByLibrary.simpleMessage("挖矿平台:  没有手续费,  没有合约"),
-    "aboutTips07" : MessageLookupByLibrary.simpleMessage("借贷、钱包:  即将到来"),
+    "aboutTips07" : MessageLookupByLibrary.simpleMessage("借贷:  即将到来"),
     "actionTitle0" : MessageLookupByLibrary.simpleMessage("交易"),
     "actionTitle1" : MessageLookupByLibrary.simpleMessage("挖矿"),
     "actionTitle2" : MessageLookupByLibrary.simpleMessage("借贷"),

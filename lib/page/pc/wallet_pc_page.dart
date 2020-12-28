@@ -156,7 +156,7 @@ class _WalletPcPageState extends State<WalletPcPage> {
             child: Container(
               child: Chip(
                 padding:
-                    EdgeInsets.only(left: 18, top: 15, bottom: 15, right: 18),
+                    EdgeInsets.only(left: 18, top: 13, bottom: 13, right: 18),
                 backgroundColor: Colors.white,
                 label: Text(
                   'Android ${S.of(context).walletDownload}',
@@ -199,8 +199,6 @@ class _WalletPcPageState extends State<WalletPcPage> {
     );
   }
 
-  bool _reloadAccountFlag = false;
-
   TronInfo _tronInfo;
 
   TronInfo get tronInfo => _tronInfo;
@@ -227,6 +225,8 @@ class _WalletPcPageState extends State<WalletPcPage> {
       print(e);
     }
   }
+
+  bool _reloadAccountFlag = false;
 
   _reloadAccount() async {
     _getAccount();

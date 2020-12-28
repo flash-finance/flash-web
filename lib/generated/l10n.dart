@@ -493,10 +493,10 @@ class S {
     );
   }
 
-  /// `lending,  wallet:  coming soon`
+  /// `lending:  coming soon`
   String get aboutTips07 {
     return Intl.message(
-      'lending,  wallet:  coming soon',
+      'lending:  coming soon',
       name: 'aboutTips07',
       desc: '',
       args: [],
