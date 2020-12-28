@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyColors {
-
   //static const Color bg = Color(0xFFf1f3f4);
   //static const Color bg = Color(0xFFFFFFFF);
 
@@ -34,4 +33,5 @@ class MyColors {
   static const Color headerColor = Color(0xFF151E5A);
   static const Color blueColor1 = Color(0xFF003399);
 
+  static const Color themeColorWap = Color(0xFF2676f8);
 }

@@ -50,7 +50,8 @@ class _AboutWapPageState extends State<AboutWapPage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+    ScreenUtil.init(context,
+        designSize: Size(750, 1334), allowFontScaling: false);
     bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
 
     return Scaffold(
@@ -84,40 +85,41 @@ class _AboutWapPageState extends State<AboutWapPage> {
 
   Widget _topWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          gradient: LinearGradient(
-            colors: [MyColors.blue700, MyColors.blue500],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          )),
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        color: MyColors.themeColorWap,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(30)),
+              padding: EdgeInsets.only(
+                  top: ScreenUtil().setHeight(30),
+                  bottom: ScreenUtil().setHeight(30)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     child: Text(
                       'Flash  Finance',
-                      style: Util.textStyle4WapEn(context, 1, Colors.white, spacing: 0.0, size: 40),
+                      style: Util.textStyle4WapEn(context, 1, Colors.white,
+                          spacing: 0.0, size: 40),
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
                     child: Text(
                       '${S.of(context).aboutTips01}',
-                      style: Util.textStyle4Wap(context, 2, Colors.white, spacing: 0.0, size: 22),
+                      style: Util.textStyle4Wap(context, 2, Colors.white,
+                          spacing: 0.0, size: 22),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
                   ),
                 ],
-              )
-          ),
+              )),
         ],
       ),
     );
@@ -126,19 +128,26 @@ class _AboutWapPageState extends State<AboutWapPage> {
   Widget _bodyWidget(BuildContext context) {
     return Card(
       elevation: 3,
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        padding: EdgeInsets.only(top: ScreenUtil().setHeight(50), bottom: ScreenUtil().setHeight(50)),
+        padding: EdgeInsets.only(
+            top: ScreenUtil().setHeight(50),
+            bottom: ScreenUtil().setHeight(50)),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+              padding: EdgeInsets.only(
+                  top: ScreenUtil().setHeight(10),
+                  bottom: ScreenUtil().setHeight(10)),
               child: Text(
                 '${S.of(context).aboutTips04}',
-                style: Util.textStyle4Wap(context, 2, Colors.grey[850], spacing: 0.0, size: 25),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[850],
+                    spacing: 0.0, size: 25),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
@@ -151,17 +160,23 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 });
               },
               child: Container(
-                padding: EdgeInsets.only(left: ScreenUtil().setWidth(10), top: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(10), bottom: ScreenUtil().setHeight(10)),
+                padding: EdgeInsets.only(
+                    left: ScreenUtil().setWidth(10),
+                    top: ScreenUtil().setHeight(10),
+                    right: ScreenUtil().setWidth(10),
+                    bottom: ScreenUtil().setHeight(10)),
                 child: RichText(
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
                         text: '${S.of(context).aboutTips051}',
-                        style: Util.textStyle4Wap(context, 2, Colors.grey[850], spacing: 0.0, size: 25),
+                        style: Util.textStyle4Wap(context, 2, Colors.grey[850],
+                            spacing: 0.0, size: 25),
                       ),
                       TextSpan(
                         text: '${S.of(context).aboutTips052}',
-                        style: Util.textStyle4Wap(context, 2, Colors.grey[850], spacing: 0.0, size: 23),
+                        style: Util.textStyle4Wap(context, 2, Colors.grey[850],
+                            spacing: 0.0, size: 23),
                       ),
                     ],
                   ),
@@ -169,10 +184,13 @@ class _AboutWapPageState extends State<AboutWapPage> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+              padding: EdgeInsets.only(
+                  top: ScreenUtil().setHeight(10),
+                  bottom: ScreenUtil().setHeight(10)),
               child: Text(
                 '${S.of(context).aboutTips07}',
-                style: Util.textStyle4Wap(context, 2, Colors.grey[850], spacing: 0.0, size: 25),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[850],
+                    spacing: 0.0, size: 25),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
               ),
@@ -185,17 +203,21 @@ class _AboutWapPageState extends State<AboutWapPage> {
 
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
-      backgroundColor:  MyColors.lightBg,
+      backgroundColor: MyColors.lightBg,
       elevation: 0,
       titleSpacing: 0.0,
       title: Container(
-        child: Image.asset('images/logo150.png', fit: BoxFit.contain, width: ScreenUtil().setWidth(110), height: ScreenUtil().setWidth(110)),
+        child: Image.asset('images/logo150.png',
+            fit: BoxFit.contain,
+            width: ScreenUtil().setWidth(110),
+            height: ScreenUtil().setWidth(110)),
       ),
       leading: IconButton(
         hoverColor: MyColors.white,
         icon: Container(
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
-          child: Icon(Icons.menu, size: ScreenUtil().setWidth(55), color: Colors.grey[800]),
+          child: Icon(Icons.menu,
+              size: ScreenUtil().setWidth(55), color: Colors.grey[800]),
         ),
         onPressed: () {
           _scaffoldKey.currentState.openDrawer();
@@ -216,7 +238,9 @@ class _AboutWapPageState extends State<AboutWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle0}',
-                style: Util.textStyle4Wap(context, 2, _homeIndex == 0 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2,
+                    _homeIndex == 0 ? Colors.black : Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -225,7 +249,8 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(0);
                 });
-                Application.router.navigateTo(context, 'wap/swap', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/swap',
+                    transition: TransitionType.fadeIn);
               },
               leading: Icon(
                 Icons.donut_small,
@@ -235,7 +260,9 @@ class _AboutWapPageState extends State<AboutWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle2}',
-                style: Util.textStyle4Wap(context, 2, _homeIndex == 2 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2,
+                    _homeIndex == 2 ? Colors.black : Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -244,7 +271,8 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(2);
                 });
-                Application.router.navigateTo(context, 'wap/lend', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/lend',
+                    transition: TransitionType.fadeIn);
               },
               leading: Icon(
                 Icons.broken_image,
@@ -254,7 +282,9 @@ class _AboutWapPageState extends State<AboutWapPage> {
             ListTile(
               title: Text(
                 '${S.of(context).actionTitle3}',
-                style: Util.textStyle4Wap(context, 2, _homeIndex == 3 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2,
+                    _homeIndex == 3 ? Colors.black : Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -263,7 +293,8 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(3);
                 });
-                Application.router.navigateTo(context, 'wap/wallet', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/wallet',
+                    transition: TransitionType.fadeIn);
               },
               leading: Icon(
                 Icons.account_balance_wallet,
@@ -271,9 +302,11 @@ class _AboutWapPageState extends State<AboutWapPage> {
               ),
             ),
             ListTile(
-              title:  Text(
+              title: Text(
                 '${S.of(context).actionTitle4}',
-                style: Util.textStyle4Wap(context, 2, _homeIndex == 4 ? Colors.black : Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2,
+                    _homeIndex == 4 ? Colors.black : Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -281,7 +314,8 @@ class _AboutWapPageState extends State<AboutWapPage> {
                 setState(() {
                   CommonProvider.changeHomeIndex(4);
                 });
-                Application.router.navigateTo(context, 'wap/about', transition: TransitionType.fadeIn);
+                Application.router.navigateTo(context, 'wap/about',
+                    transition: TransitionType.fadeIn);
               },
               leading: Icon(
                 Icons.file_copy_sharp,
@@ -290,13 +324,18 @@ class _AboutWapPageState extends State<AboutWapPage> {
             ),
             ListTile(
               title: Text(
-                _account == '' ? '${S.of(context).connectAccount}' : _account.substring(0, 4) + '...' + _account.substring(_account.length - 4, _account.length),
-                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
+                _account == ''
+                    ? '${S.of(context).connectAccount}'
+                    : _account.substring(0, 4) +
+                        '...' +
+                        _account.substring(
+                            _account.length - 4, _account.length),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              onTap: () {
-              },
+              onTap: () {},
               leading: Icon(
                 Icons.account_circle,
                 color: Colors.grey[700],
@@ -305,12 +344,14 @@ class _AboutWapPageState extends State<AboutWapPage> {
             ListTile(
               title: Text(
                 'English/中文',
-                style: Util.textStyle4Wap(context, 2, Colors.grey[700], spacing: 0.0, size: 32),
+                style: Util.textStyle4Wap(context, 2, Colors.grey[700],
+                    spacing: 0.0, size: 32),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
               onTap: () {
-                Provider.of<IndexProvider>(context, listen: false).changeLangType();
+                Provider.of<IndexProvider>(context, listen: false)
+                    .changeLangType();
                 Navigator.pop(context);
                 Util.showToast4Wap(S.of(context).success, timeValue: 2);
               },
@@ -357,5 +398,4 @@ class _AboutWapPageState extends State<AboutWapPage> {
     }
     _reloadAccountFlag = true;
   }
-
 }

@@ -93,12 +93,9 @@ class _WalletWapPageState extends State<WalletWapPage> {
       margin: EdgeInsets.only(
           left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          gradient: LinearGradient(
-            colors: [MyColors.blue700, MyColors.blue500],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          )),
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        color: MyColors.themeColorWap,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -149,7 +146,7 @@ class _WalletWapPageState extends State<WalletWapPage> {
                     top: ScreenUtil().setHeight(22),
                     right: ScreenUtil().setWidth(18),
                     bottom: ScreenUtil().setHeight(22)),
-                backgroundColor: Colors.blue[600],
+                backgroundColor: MyColors.themeColorWap,
                 label: Text(
                   'Android ${S.of(context).walletDownload}',
                   style: Util.textStyle4WapEn(context, 1, Colors.white,

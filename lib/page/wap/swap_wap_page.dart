@@ -154,12 +154,9 @@ class _SwapWapPageState extends State<SwapWapPage> {
       margin: EdgeInsets.only(
           left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          gradient: LinearGradient(
-            colors: [MyColors.blue700, MyColors.blue500],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          )),
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        color: MyColors.themeColorWap,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -850,7 +847,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.blue[500],
+                color: MyColors.themeColorWap,
                 borderRadius: BorderRadius.circular(6),
               ),
               padding: EdgeInsets.only(
@@ -1688,7 +1685,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   top: ScreenUtil().setHeight(20),
                   right: ScreenUtil().setWidth(60),
                   bottom: ScreenUtil().setHeight(20)),
-          backgroundColor: MyColors.blue500,
+          backgroundColor: MyColors.themeColorWap,
           label: !_loadFlag
               ? Container(
                   child: Text(
@@ -1700,7 +1697,7 @@ class _SwapWapPageState extends State<SwapWapPage> {
                   ),
                 )
               : Container(
-                  color: Colors.blue[500],
+                  color: MyColors.themeColorWap,
                   child: CupertinoActivityIndicator(),
                 ),
         ),
