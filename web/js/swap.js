@@ -27,7 +27,7 @@ async function allowance(lpTokenAddress, swapTokenType, baseTokenType, swapToken
         return;
      }
     //  USDT BTC
-    if (swapTokenAddress == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t' || swapTokenAddress == 'TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9') {
+    if (swapTokenAddress == 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t' || swapTokenAddress == 'TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9' || swapTokenAddress == 'THb4CqiFdwNHsWsQCs4JhzwjMWys4aqCbF') {
         result = tronWeb.toDecimal(result.remaining._hex);
     }
     // USDJ

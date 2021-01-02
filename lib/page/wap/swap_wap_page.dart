@@ -493,7 +493,17 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     ],
                   ),
                 )
-              : Container(),
+              : Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(
+                      left: ScreenUtil().setWidth(5),
+                      right: ScreenUtil().setWidth(5)),
+                  child: Text(
+                    '1 USDT ≈ 1 USD',
+                    style: Util.textStyle4WapEn(context, 2, Colors.white,
+                        spacing: 0.0, size: 23),
+                  ),
+                ),
         ],
       ),
     );
@@ -817,7 +827,17 @@ class _SwapWapPageState extends State<SwapWapPage> {
                     ],
                   ),
                 )
-              : Container(),
+              : Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(
+                      left: ScreenUtil().setWidth(5),
+                      right: ScreenUtil().setWidth(5)),
+                  child: Text(
+                    '1 USDT ≈ 1 USD',
+                    style: Util.textStyle4WapEn(context, 2, Colors.white,
+                        spacing: 0.0, size: 23),
+                  ),
+                ),
         ],
       ),
     );

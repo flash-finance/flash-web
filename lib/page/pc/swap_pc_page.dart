@@ -466,16 +466,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   child: Row(
                     children: <Widget>[
                       Container(
-                        child: ClipOval(
-                          child: Image.network(
-                            '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                            width: 17,
-                            height: 17,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Container(
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(left: 3, right: 3),
                         child: Text(
@@ -500,7 +490,17 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ],
                   ),
                 )
-              : Container(),
+              : Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(left: 3, right: 3),
+                  child: Text(
+                    '1 USDT ≈ 1 USD',
+                    style: GoogleFonts.lato(
+                      fontSize: 13,
+                      color: MyColors.white,
+                    ),
+                  ),
+                ),
           SizedBox(height: 8),
           Container(
             alignment: Alignment.centerLeft,
@@ -826,16 +826,6 @@ class _SwapPcPageState extends State<SwapPcPage> {
                   child: Row(
                     children: <Widget>[
                       Container(
-                        child: ClipOval(
-                          child: Image.network(
-                            '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                            width: 17,
-                            height: 17,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Container(
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(left: 3, right: 3),
                         child: Text(
@@ -860,7 +850,17 @@ class _SwapPcPageState extends State<SwapPcPage> {
                     ],
                   ),
                 )
-              : Container(),
+              : Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(left: 3, right: 3),
+                  child: Text(
+                    '1 USDT ≈ 1 USD',
+                    style: GoogleFonts.lato(
+                      fontSize: 13,
+                      color: MyColors.white,
+                    ),
+                  ),
+                ),
           SizedBox(height: 8),
           Container(
             alignment: Alignment.centerLeft,
