@@ -44,7 +44,7 @@ async function approve(lpTokenAddress, swapTokenType, baseTokenType, swapTokenAd
     let code = 0;
     let obj = await tronWeb.contract().at(swapTokenAddress);
     let result = await obj.approve(flashSwapContract, '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff').send({
-        feeLimit: 10000000
+        feeLimit: 100000000
     }).catch(e => {
         console.log('approve error:' + JSON.stringify(e));
         setError(JSON.stringify(e));
@@ -61,7 +61,7 @@ async function trxToTokenSwap(swapToken, lpToken, minTokens, trxSold, userAddres
     let obj = await tronWeb.contract().at(flashSwapContract);
     let result = await obj.trxToTokenSwap(swapToken, lpToken, minTokens.toString(), userAddress).send({
         callValue: trxSold.toString(),
-        feeLimit: 10000000
+        feeLimit: 100000000
     }).catch(e => {
        console.log('trxToTokenSwap error:' + JSON.stringify(e));
        setError(JSON.stringify(e));
@@ -78,7 +78,7 @@ async function tokenToTrxSwap(swapToken, lpToken, tokensSold, minTrx, userAddres
     let code = 0;
     let obj = await tronWeb.contract().at(flashSwapContract);
     let result = await obj.tokenToTrxSwap(swapToken, lpToken, tokensSold.toString(), minTrx.toString(), userAddress).send({
-        feeLimit: 10000000
+        feeLimit: 100000000
     }).catch(e => {
        console.log('tokenToTrxSwap error:' + JSON.stringify(e));
        setError(JSON.stringify(e));
@@ -95,7 +95,7 @@ async function tokenToTokenSwap(swapToken, lpToken, tokensSold, minTokensBought,
     let code = 0;
     let obj = await tronWeb.contract().at(flashSwapContract);
     let result = await obj.tokenToTokenSwap(swapToken, lpToken, tokensSold.toString(), minTokensBought.toString(), minTrxBought.toString(), userAddress, targetToken).send({
-        feeLimit: 10000000
+        feeLimit: 100000000
     }).catch(e => {
         console.log('tokenToTokenSwap error:' + JSON.stringify(e));
         setError(JSON.stringify(e));
