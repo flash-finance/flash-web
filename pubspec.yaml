@@ -41,7 +41,6 @@ dependencies:
   url_launcher: ^5.1.4
   decimal: ^0.3.5
   fluttertoast: ^7.1.1
-  dynamic_theme: ^1.0.1
   footer: ^0.0.3
 
 dev_dependencies:
